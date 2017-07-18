@@ -29,12 +29,18 @@ void Game::Start()
 	camera.SetFar(1000.0f);
 	camera.Update();
 	toCameraPos = camera.GetEyePt() - camera.GetLookatPt();
+
+	//プレイヤーを初期化。
+	player.Init();
 }
 /*!
  * @brief	更新。
  */
 void Game::Update()
 {
+	//プレイヤー更新
+	player.Update();
+
 	//カメラ更新
 	camera.Update();
 }
@@ -43,4 +49,5 @@ void Game::Update()
  */
 void Game::Render()
 {
+	player.Draw();
 }

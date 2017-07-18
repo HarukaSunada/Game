@@ -5,6 +5,7 @@
 #pragma once
 
 #include "myEngine/Physics/Physics.h"
+#include "Player.h"
 /*!
  * @brief	ゲームクラス。
  */
@@ -30,9 +31,16 @@ public:
 	 * @brief	描画。
 	 */
 	void Render();
+
+	//ゲームカメラのインスタンス取得
+	Camera* GetCamera()
+	{
+		return &camera;
+	}
 private:
 	D3DXVECTOR3 toCameraPos;	//カメラのポジション
 	Camera camera;				//カメラ
+	Player player;				//プレイヤー
 };
 
 extern Game* game;

@@ -19,3 +19,4 @@
 #include "myEngine/Graphics/SkinModelData.h"
 #include "myEngine/Graphics/Animation.h"
 #include "myEngine/Graphics/Light.h"
+#include "myEngine/HID/Pad.h"

@@ -5,6 +5,7 @@
 
 Player::Player()
 {
+	rotation = D3DXQUATERNION(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 
@@ -14,30 +15,62 @@ Player::~Player()
 
 void Player::Init()
 {
-	//ライトの設定
-	light.SetDiffuseLightDirection(0, D3DXVECTOR4(0.707f, 0.0f, -0.707f, 1.0f));
-	light.SetDiffuseLightDirection(1, D3DXVECTOR4(-0.707f, 0.0f, -0.707f, 1.0f));
-	light.SetDiffuseLightDirection(2, D3DXVECTOR4(0.0f, 0.707f, -0.707f, 1.0f));
-	light.SetDiffuseLightDirection(3, D3DXVECTOR4(0.0f, -0.707f, -0.707f, 1.0f));
-
-	light.SetDiffuseLightColor(0, D3DXVECTOR4(0.2f, 0.2f, 0.2f, 1.0f));
-	light.SetDiffuseLightColor(1, D3DXVECTOR4(0.2f, 0.2f, 0.2f, 1.0f));
-	light.SetDiffuseLightColor(2, D3DXVECTOR4(0.3f, 0.3f, 0.3f, 1.0f));
-	light.SetDiffuseLightColor(3, D3DXVECTOR4(0.2f, 0.2f, 0.2f, 1.0f));
-	light.SetAmbientLight(D3DXVECTOR4(0.3f, 0.3f, 0.3f, 1.0f));
-
 	//モデル読み込み
 	modelData.LoadModelData("Assets/modelData/Unity.X", &animation);
 	model.Init(&modelData);
-	model.SetLight(&light);
+	model.SetLight(game->GetLight());	//ライトの設定
 	animation.PlayAnimation(0);
-	position = { 0.0f,0.0f,0.0f };
+
+	//キャラクタコントローラを初期化。
+	D3DXVECTOR3 pos = D3DXVECTOR3(0.0f, 5.0f, 0.0f);
+	characterController.Init(0.3f, 1.0f, pos);
+	characterController.SetGravity(-20.0f);		//重力設定
 }
 
 void Player::Update()
 {
+//パッドの入力で動かす。
+	D3DXVECTOR3 moveSpeed = characterController.GetMoveSpeed();
+	float fMoveSpeed = 5.0f;
+	moveSpeed.x = 0.0f; 
+	moveSpeed.z = 0.0f;
+
+	//パッド入力
+	Pad* pad = game->GetPad();
+
+	//移動
+	if (pad->IsPress(Pad::enButtonLeft)) {
+		moveSpeed.x = fMoveSpeed;
+	}
+	if (pad->IsPress(Pad::enButtonRight)) {
+		moveSpeed.x = -fMoveSpeed;
+	}
+	if (pad->IsPress(Pad::enButtonUp)) {
+
+		moveSpeed.z = -fMoveSpeed;
+	}
+	if (pad->IsPress(Pad::enButtonDown)) {
+		moveSpeed.z = fMoveSpeed;
+	}
+
+	moveSpeed.x = -pad->GetLStickXF()*fMoveSpeed;
+	moveSpeed.z = -pad->GetLStickYF()*fMoveSpeed;
+
+	//ジャンプ
+	if ( pad->IsTrigger(Pad::enButtonA) && !characterController.IsJump()){
+		//ジャンプ
+		moveSpeed.y = 10.0f;
+		//ジャンプしたことをキャラクタコントローラーに通知。
+		characterController.Jump();
+	}
+
+	//プレイヤーが動く速度を設定
+	characterController.SetMoveSpeed(moveSpeed);
+	//キャラクタコントローラーの実行
+	characterController.Execute();	
+
 	animation.Update(1.0f / 60.0f);
-	model.UpdateWorldMatrix(position, D3DXQUATERNION(0.0f, 0.0f, 0.0f, 1.0f), D3DXVECTOR3(1.0f, 1.0f, 1.0f));
+	model.UpdateWorldMatrix(characterController.GetPosition(), rotation, D3DXVECTOR3(1.0f, 1.0f, 1.0f));
 }
 void Player::Draw()
 {

@@ -11,9 +11,10 @@ public:
 	void Update();
 	void Draw();
 private:
-	SkinModel model;
-	SkinModelData modelData;
-	Animation animation;
-	Light light;
-	D3DXVECTOR3 position;
+	SkinModel			model;
+	SkinModelData		modelData;
+	Animation			animation;
+	Light				light;
+	D3DXQUATERNION		rotation;	//回転
+	CharacterController characterController;	//キャラクタコントローラ
 };

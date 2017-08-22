@@ -6,6 +6,8 @@
 
 #include "myEngine/Physics/Physics.h"
 #include "Player.h"
+#include "Map.h"
+
 /*!
  * @brief	ゲームクラス。
  */
@@ -37,10 +39,25 @@ public:
 	{
 		return &camera;
 	}
-private:
-	D3DXVECTOR3 toCameraPos;	//カメラのポジション
-	Camera camera;				//カメラ
-	Player player;				//プレイヤー
+
+	Light* GetLight()
+	{
+		return &light;
+	}
+
+	//ゲームパッドのインスタンス取得
+	Pad* GetPad()
+	{
+		return &pad;
+	}
+
+private:	
+	Light			light;
+	D3DXVECTOR3		toCameraPos;		//カメラのポジション
+	Camera			camera;				//カメラ
+	Player			player;				//プレイヤー
+	Map				map;				//マップ
+	Pad				pad;				//ゲームパッド
 };
 
 extern Game* game;

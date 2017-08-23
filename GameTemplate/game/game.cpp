@@ -43,11 +43,6 @@ void Game::Start()
 
 	//カメラを初期化
 	camera.Init();
-	camera.SetEyePt(D3DXVECTOR3(0.0f, 4.0f, 10.0f));
-	camera.SetLookatPt(D3DXVECTOR3(0.0f, 2.5f, 0.0f));
-	camera.SetFar(1000.0f);
-	camera.Update();
-	toCameraPos = camera.GetEyePt() - camera.GetLookatPt();
 
 	//プレイヤーを初期化
 	player.Init();
@@ -72,6 +67,7 @@ void Game::Update()
 	//マップ更新
 	map.Update();
 }
+
 /*!
  * @brief	描画。
  */

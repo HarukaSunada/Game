@@ -7,6 +7,7 @@
 #include "myEngine/Physics/Physics.h"
 #include "Player.h"
 #include "Map.h"
+#include "GameCamera.h"
 
 /*!
  * @brief	ゲームクラス。
@@ -34,10 +35,16 @@ public:
 	 */
 	void Render();
 
-	//ゲームカメラのインスタンス取得
+	//カメラのインスタンス取得
 	Camera* GetCamera()
 	{
-		return &camera;
+		return camera.GetCamera();
+	}
+
+	//プレイヤーのインスタンス取得
+	Player* GetPlayer()
+	{
+		return &player;
 	}
 
 	Light* GetLight()
@@ -54,7 +61,7 @@ public:
 private:	
 	Light			light;
 	D3DXVECTOR3		toCameraPos;		//カメラのポジション
-	Camera			camera;				//カメラ
+	GameCamera		camera;
 	Player			player;				//プレイヤー
 	Map				map;				//マップ
 	Pad				pad;				//ゲームパッド

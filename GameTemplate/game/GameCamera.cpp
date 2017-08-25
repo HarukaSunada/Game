@@ -87,5 +87,16 @@ void GameCamera::Update()
 	camera.SetLookatPt(targetPos);
 	camera.SetEyePt(eyePos);
 
+	//カメラからZ方向への向き
+	cameraDirZ = targetPos - eyePos;
+	cameraDirZ.y = 0.0f;
+	D3DXVec3Normalize(&cameraDirZ, &cameraDirZ);
+
+	//カメラからX方向への向き
+	//cameraDirZに垂直なベクトル
+	cameraDirX.x = cameraDirZ.z;
+	cameraDirX.z = -cameraDirZ.x;
+	cameraDirX.y = 0.0f;
+
 	camera.Update();
 }

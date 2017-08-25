@@ -12,18 +12,11 @@ public:
 		animJump,
 	};
 
-	enum CharaAct {
-		Stand,
-		Run,
-		Jump,
-	};
-
 	Player();
 	~Player();
 	void Init();
 	void Update();
 	void Action();
-	void Motion(AnimNo prevAnim);
 
 	void Draw();
 
@@ -41,6 +34,7 @@ private:
 	CharacterController characterController;	//キャラクタコントローラ
 
 	AnimNo				anim;
-	CharaAct			act;
-	float				angle = 0.0f;
+	D3DXVECTOR3			dir;
+	//移動速度
+	float fMoveSpeed;
 };

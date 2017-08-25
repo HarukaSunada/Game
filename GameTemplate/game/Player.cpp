@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "game.h"
+#define MoveSpeedMax 5.0f
+#define MoveSpeedMin 0.0f
 
 
 Player::Player()
@@ -21,6 +23,9 @@ void Player::Init()
 	model.SetLight(game->GetLight());	//ライトの設定
 	anim = animStand;
 	animation.PlayAnimation(animStand);
+
+	fMoveSpeed = 0.0f;
+	dir = { 0.0f,0.0f,0.0f };
 
 	//キャラクタコントローラを初期化。
 	D3DXVECTOR3 pos = D3DXVECTOR3(0.0f, 5.0f, 0.0f);
@@ -49,36 +54,67 @@ void Player::Action()
 	D3DXVECTOR3 moveSpeed = characterController.GetMoveSpeed();
 
 	//移動速度
-	float fMoveSpeed = 5.0f;
 	moveSpeed.x = 0.0f;
 	moveSpeed.z = 0.0f;
 
 	//パッド入力
 	Pad* pad = game->GetPad();
-	float pad_x = -pad->GetLStickXF();
-	float pad_y = -pad->GetLStickYF();
+	float pad_x = pad->GetLStickXF();
+	float pad_y = pad->GetLStickYF();
 
-	//移動
-	moveSpeed.x = pad_x * fMoveSpeed;
-	moveSpeed.z = pad_y * fMoveSpeed;
+	//キャラの進行方向の計算
+	D3DXVECTOR3 cameraX = game->GetGameCamera()->GetCameraDirX();
+	D3DXVECTOR3 cameraZ = game->GetGameCamera()->GetCameraDirZ();
 
-	//キャラ方向変更
-	if ((pad_x != 0.0f) && (pad_y != 0.0f)) {
-		angle = atan2f(pad_x, pad_y);
+	//パッド入力無し
+	if ((pad_x == 0.0f) && (pad_y == 0.0f)) {
 
+		anim = animStand;
+
+		if (fMoveSpeed > MoveSpeedMin) {
+			//減速
+			fMoveSpeed -= 0.2f;
+		}
+	}
+	//パッド入力有り
+	else {
+		dir.x = cameraX.x * pad_x + cameraZ.x * pad_y;
+		dir.y = 0.0f;	//Y方向は不要
+		dir.z = cameraX.z * pad_x + cameraZ.z * pad_y;
+
+		if (fMoveSpeed < MoveSpeedMax) {
+			//加速
+			fMoveSpeed += 0.2f;
+		}
+
+		//キャラ方向変更
 		float s;
-		float halfAngle = angle * 0.5f;
+		float halfAngle = atan2f(dir.x, dir.z) * 0.5f;
 		s = sin(halfAngle);
 		rotation.w = cos(halfAngle);
 		rotation.y = 1 * s;
 
+		//ベクトルの大きさ
+		float length = pad_x*pad_x + pad_y*pad_y;
+		sqrt(length);
+
+		//アニメーション
 		anim = animRun;
-	}
-	else {
-		anim = animStand;
+		//速度が遅いので歩き
+		if (length * fMoveSpeed < 2.5f) {
+			anim = animWalk;
+		}
+
+		//if (length < 0.3f) {
+		//	anim = animWalk;
+		//}
 	}
 
-	//ジャンプ
+	//移動
+	moveSpeed.x = dir.x * fMoveSpeed;
+	moveSpeed.z = dir.z * fMoveSpeed;
+
+	//ジャンプする
 	if (pad->IsTrigger(Pad::enButtonA) && !characterController.IsJump()) {
 		//ジャンプ
 		moveSpeed.y = 10.0f;
@@ -98,12 +134,6 @@ void Player::Action()
 
 	//プレイヤーが動く速度を設定
 	characterController.SetMoveSpeed(moveSpeed);
-}
-
-void Player::Motion(AnimNo prevAnim) {
-
-
-
 }
 
 void Player::Draw()

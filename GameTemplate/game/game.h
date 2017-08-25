@@ -41,6 +41,12 @@ public:
 		return camera.GetCamera();
 	}
 
+	//カメラのインスタンス取得
+	GameCamera* GetGameCamera()
+	{
+		return &camera;
+	}
+
 	//プレイヤーのインスタンス取得
 	Player* GetPlayer()
 	{

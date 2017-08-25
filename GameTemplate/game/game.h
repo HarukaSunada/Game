@@ -60,8 +60,7 @@ public:
 
 private:	
 	Light			light;
-	D3DXVECTOR3		toCameraPos;		//カメラのポジション
-	GameCamera		camera;
+	GameCamera		camera;				//カメラ
 	Player			player;				//プレイヤー
 	Map				map;				//マップ
 	Pad				pad;				//ゲームパッド

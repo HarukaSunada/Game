@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GameCamera.h"
 #include "game.h"
-#define SPEED 0.05f
+#define SPEED 0.02f
 
 GameCamera::GameCamera()
 {
@@ -63,6 +63,18 @@ void GameCamera::Update()
 		//toEyePos‚ğ‰ñ‚·B
 		D3DXVECTOR3 toEyePosOld = toEyePos;
 		D3DXVec3TransformCoord(&toEyePos, &toEyePos, &mRot);
+
+		//ã‰º‰ñ“]‚Ì§ŒÀ
+		D3DXVECTOR3 toEyePosDir;
+		D3DXVec3Normalize(&toEyePosDir, &toEyePos);		
+		if (toEyePosDir.y < -0.10f) {
+			//ãŒü‚«‚·‚¬‚é‚©‚ç~‚ß‚é
+			toEyePos = toEyePosOld;
+		}
+		else if (toEyePosDir.y > 0.70f) {
+			//‰ºŒü‚«‚·‚¬‚é‚©‚ç~‚ß‚é
+			toEyePos = toEyePosOld;
+		}
 	}
 
 	//ƒJƒƒ‰‚Ì‹“_‚ğŒˆ’è

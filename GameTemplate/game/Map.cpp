@@ -17,10 +17,11 @@ Map::~Map()
 
 void Map::Init()
 {
-	//配置されているオブジェクトの数を計算
+	//配置オブジェクト個数を計算
 	int numObject = sizeof(mapChipInfo) / sizeof(mapChipInfo[0]);
+
+	//オブジェクトを一個ずつロード
 	for (int i = 0; i < numObject; i++) {
-		//オブジェクトを一個ずつロード
 		//MapChipのインスタンスを動的に生成
 		MapChip* mapChip = new MapChip;
 		//マップチップの情報を渡して初期化する
@@ -32,7 +33,7 @@ void Map::Init()
 
 void Map::Draw()
 {
-	//マップチップを一個ずつ更新。
+	//マップチップを一個ずつ更新
 	for (int i = 0; i < mapChipList.size(); i++) {
 		mapChipList[i]->Draw();
 	}
@@ -40,7 +41,7 @@ void Map::Draw()
 
 void Map::Update()
 {
-	//マップチップを一個ずつ更新。
+	//マップチップを一個ずつ更新
 	for (int i = 0; i < mapChipList.size(); i++) {
 		mapChipList[i]->Update();
 	}

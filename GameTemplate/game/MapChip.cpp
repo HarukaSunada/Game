@@ -12,20 +12,24 @@ MapChip::MapChip() :
 
 MapChip::~MapChip()
 {
+	//剛体除去
 	g_physicsWorld->RemoveRigidBody(&rigidBody);
 }
 
 void MapChip::Init(SMapChipLocInfo& locInfo)
 {
-	//読み込むモデルのファイルパスを作成。
+	//読み込むモデルのファイルパス作成
 	char modelPath[256];
 	sprintf(modelPath, "Assets/modelData/%s.x", locInfo.modelName);
-	//モデルをロード。
+	//モデルをロード
 	modelData.LoadModelData(modelPath, NULL);
-	//ロードしたモデルデータを使ってSkinModelを初期化。
+	//モデルデータでSkinModel初期化
 	model.Init(&modelData);
 
+	//ライト
 	model.SetLight(game->GetLight());
+
+	//情報を記録
 	this->position = locInfo.position;
 	this->rotation = locInfo.rotation;
 
@@ -42,8 +46,8 @@ void MapChip::Init(SMapChipLocInfo& locInfo)
 	rbInfo.pos = position;
 	rbInfo.rot = rotation;
 
-	rigidBody.Create(rbInfo);
-	g_physicsWorld->AddRigidBody(&rigidBody);
+	rigidBody.Create(rbInfo);			//作成
+	g_physicsWorld->AddRigidBody(&rigidBody);	//物理ワールドに追加
 }
 
 void MapChip::Update()

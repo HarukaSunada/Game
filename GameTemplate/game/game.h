@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Map.h"
 #include "GameCamera.h"
+#include "Sprite.h"
 
 /*!
  * @brief	ゲームクラス。
@@ -64,12 +65,21 @@ public:
 		return &pad;
 	}
 
+	float GetDeltaTime()
+	{
+		return frameDeltaTime;
+	}
+
 private:	
 	Light			light;
 	GameCamera		camera;				//カメラ
 	Player			player;				//プレイヤー
 	Map				map;				//マップ
 	Pad				pad;				//ゲームパッド
+	float			frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。
+
+	Sprite			sprite;
+	LPD3DXSPRITE	m_pSprite;
 };
 
 extern Game* game;

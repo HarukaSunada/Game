@@ -49,6 +49,8 @@ void Game::Start()
 
 	//マップの初期化
 	map.Init();
+
+	sprite.Init();
 }
 /*!
  * @brief	更新。
@@ -75,4 +77,5 @@ void Game::Render()
 {
 	player.Draw();
 	map.Draw();
+	sprite.Draw();
 }

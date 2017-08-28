@@ -47,6 +47,6 @@ void Terminate()
 {
 	delete game;
 	delete g_effectManager;
-	//g_pd3dDevice->Release();
-	//g_pD3D->Release();
+	g_pd3dDevice->Release();
+	g_pD3D->Release();
 }

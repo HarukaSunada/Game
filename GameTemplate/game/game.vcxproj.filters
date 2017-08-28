@@ -87,6 +87,9 @@
     <ClCompile Include="GameCamera.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>ソース ファイル\myEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -151,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="GameCamera.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>ソース ファイル\myEngine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

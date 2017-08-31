@@ -12,6 +12,12 @@ public:
 		animJump,
 	};
 
+	struct Status
+	{
+		int HP;
+		int score;
+	};
+
 	Player();
 	~Player();
 	void Init();
@@ -29,12 +35,12 @@ private:
 	SkinModel			model;
 	SkinModelData		modelData;
 	Animation			animation;
-	Light				light;
 	D3DXQUATERNION		rotation;	//回転
 	CharacterController characterController;	//キャラクタコントローラ
 
 	AnimNo				anim;
 	D3DXVECTOR3			dir;
+	Status				state;
 	//移動速度
 	float fMoveSpeed;
 };

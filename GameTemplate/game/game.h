@@ -79,7 +79,8 @@ private:
 	float			frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。
 
 	Sprite			sprite;
-	LPD3DXSPRITE	m_pSprite;
+	Sprite			spriteB;
+	//LPD3DXSPRITE	m_pSprite;
 };
 
 extern Game* game;

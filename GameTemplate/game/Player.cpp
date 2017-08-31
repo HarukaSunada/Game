@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "game.h"
-#define MoveSpeedMax 5.0f
+#define MoveSpeedMax 6.0f
 #define MoveSpeedMin 0.0f
 
 
@@ -24,8 +24,13 @@ void Player::Init()
 	anim = animStand;
 	animation.PlayAnimation(animStand);
 
+	//速さ
 	fMoveSpeed = 0.0f;
 	dir = { 0.0f,0.0f,0.0f };
+
+	//ステータス初期化
+	state.HP = 10;
+	state.score = 0;
 
 	//キャラクタコントローラを初期化。
 	D3DXVECTOR3 pos = D3DXVECTOR3(0.0f, 5.0f, 0.0f);

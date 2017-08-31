@@ -14,29 +14,44 @@ Sprite::~Sprite()
 void Sprite::Init()
 {
 	D3DXCreateSprite(g_pd3dDevice, &g_pSprite);
-	D3DXCreateTextureFromFile(g_pd3dDevice, "Assets/Sprite/test.jpg", &g_pTexture);
 
-	m_position = { 0.0f,0.0f};
+	//m_texFileName = "Assets/Sprite/inventory.png";
+
+	D3DXIMAGE_INFO imgInfo;		//画像情報格納用構造体
+
+	//テクスチャ読込
+	D3DXCreateTextureFromFileEx(g_pd3dDevice, this->m_texFileName, 0, 0, 0, 0, D3DFMT_UNKNOWN,
+		D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_DEFAULT, 0xff000000, &imgInfo, NULL, &this->g_pTexture);
+
+	//テクスチャの中点セット
+	//this->m_texCenter = D3DXVECTOR2((float)imgInfo.Width / 2, (float)imgInfo.Height / 2);
+	this->m_texCenter = D3DXVECTOR2(0.0f, (float)imgInfo.Height / 2);
+
+	RECT rec = { 0, 0, imgInfo.Width, imgInfo.Height };			//描画領域
+	memcpy(&this->m_rect, &rec, sizeof(RECT));					//描画領域セット
+
+	m_angle		= 0;
+	m_scale		= D3DXVECTOR2(1, 1);
+	m_backColor = D3DCOLOR_ARGB(255, 255, 255, 255);
+
+	SetupMatrices();
 }
 
 void Sprite::Draw()
 {
-	RECT rc;
-	D3DXVECTOR3 center;
-	D3DXVECTOR3 position;
+	g_pSprite->Begin(D3DXSPRITE_ALPHABLEND);			//スプライト描画開始
+	g_pSprite->SetTransform(&this->m_transformMatrix);	//変換行列セット
 
-	g_pSprite->Begin(NULL);
+	//スプライトにテクスチャ貼付け
+	g_pSprite->Draw(this->g_pTexture, &this->m_rect, 
+		&D3DXVECTOR3(this->m_texCenter.x, this->m_texCenter.y, 0.0f), NULL, this->m_backColor);
 
-	rc.left = 0;
-	rc.top = 0;
-	rc.right = 256;
-	rc.bottom = 256;
-	center.x = 0;
-	center.y = 0;
-	position.x = m_position.x;
-	position.y = m_position.y;
+	g_pSprite->End();	//スプライト描画終了
+}
 
-	g_pSprite->Draw(g_pTexture, &rc, &center, &position, 0xFFFFFFFF);
-
-	g_pSprite->End();
+void Sprite::SetupMatrices()
+{
+	D3DXMatrixIdentity(&this->m_transformMatrix);	//ワールド行列初期化
+	D3DXMatrixTransformation2D(&this->m_transformMatrix, NULL, 0.0f, 
+		&this->m_scale,NULL, D3DXToRadian(this->m_angle), &this->m_position);	//変換行列作成
 }

@@ -50,6 +50,14 @@ void Game::Start()
 	//マップの初期化
 	map.Init();
 
+	spriteB.SetFileName("Assets/Sprite/HPtestB.png");
+	//sprite.SetPosition(D3DXVECTOR2(340, 670));
+	spriteB.SetPosition(D3DXVECTOR2(10, 670));
+	spriteB.Init();
+
+	sprite.SetFileName("Assets/Sprite/HPtestA.png");
+	//sprite.SetPosition(D3DXVECTOR2(340, 670));
+	sprite.SetPosition(D3DXVECTOR2(10, 670));
 	sprite.Init();
 }
 /*!
@@ -68,6 +76,14 @@ void Game::Update()
 
 	//マップ更新
 	map.Update();
+
+	if (pad.IsTrigger(Pad::enButtonX))
+	{
+		D3DXVECTOR2 scale = sprite.GetScale();
+		scale.x -= 0.1;
+		sprite.SetScale(scale);
+		sprite.SetupMatrices();
+	}
 }
 
 /*!
@@ -77,5 +93,6 @@ void Game::Render()
 {
 	player.Draw();
 	map.Draw();
+	spriteB.Draw();
 	sprite.Draw();
 }

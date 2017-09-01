@@ -1,16 +1,11 @@
 #pragma once
-
 #include "myEngine/Physics/CharacterController.h"
 
-class Player
+class Enemy
 {
 public:
-	enum AnimNo {
-		animStand,
-		animWalk,
-		animRun,
-		animJump,
-	};
+	Enemy();
+	~Enemy();
 
 	struct Status
 	{
@@ -18,8 +13,6 @@ public:
 		int score;
 	};
 
-	Player();
-	~Player();
 	void Init();
 	void Update();
 	void Action();
@@ -47,9 +40,10 @@ private:
 	D3DXQUATERNION		rotation;	//回転
 	CharacterController characterController;	//キャラクタコントローラ
 
-	AnimNo				anim;
 	D3DXVECTOR3			dir;
 	Status				state;
 	//移動速度
 	float fMoveSpeed;
 };
+
+

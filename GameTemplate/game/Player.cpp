@@ -105,12 +105,8 @@ void Player::Action()
 
 		//アニメーション
 		anim = animRun;
-		//速度が遅いので歩き
-		if (length * fMoveSpeed < 2.5f) {
-			anim = animWalk;
-		}
-
-		//if (length < 0.3f) {
+		////速度が遅いので歩き
+		//if (length * fMoveSpeed < 2.5f) {
 		//	anim = animWalk;
 		//}
 	}

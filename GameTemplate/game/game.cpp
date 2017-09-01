@@ -47,18 +47,12 @@ void Game::Start()
 	//プレイヤーを初期化
 	player.Init();
 
+	enemy.Init();
+
 	//マップの初期化
 	map.Init();
 
-	spriteB.SetFileName("Assets/Sprite/HPtestB.png");
-	//sprite.SetPosition(D3DXVECTOR2(340, 670));
-	spriteB.SetPosition(D3DXVECTOR2(10, 670));
-	spriteB.Init();
-
-	sprite.SetFileName("Assets/Sprite/HPtestA.png");
-	//sprite.SetPosition(D3DXVECTOR2(340, 670));
-	sprite.SetPosition(D3DXVECTOR2(10, 670));
-	sprite.Init();
+	gauge.Init();
 }
 /*!
  * @brief	更新。
@@ -71,19 +65,25 @@ void Game::Update()
 	//プレイヤー更新
 	player.Update();
 
+	enemy.Update();
+
+	if (game->GetPad()->IsTrigger(Pad::enButtonX))
+	{
+		int HP = player.GetStatus().HP;
+		if (HP > 0)
+		{
+			HP -= 1;
+			player.SetHP(HP);
+		}
+	}
+
 	//カメラ更新
 	camera.Update();
 
 	//マップ更新
 	map.Update();
 
-	if (pad.IsTrigger(Pad::enButtonX))
-	{
-		D3DXVECTOR2 scale = sprite.GetScale();
-		scale.x -= 0.1;
-		sprite.SetScale(scale);
-		sprite.SetupMatrices();
-	}
+	gauge.Update();
 }
 
 /*!
@@ -92,7 +92,7 @@ void Game::Update()
 void Game::Render()
 {
 	player.Draw();
+	enemy.Draw();
 	map.Draw();
-	spriteB.Draw();
-	sprite.Draw();
+	gauge.Draw();
 }

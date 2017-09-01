@@ -15,8 +15,6 @@ void Sprite::Init()
 {
 	D3DXCreateSprite(g_pd3dDevice, &g_pSprite);
 
-	//m_texFileName = "Assets/Sprite/inventory.png";
-
 	D3DXIMAGE_INFO imgInfo;		//画像情報格納用構造体
 
 	//テクスチャ読込

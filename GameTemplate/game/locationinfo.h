@@ -556,3 +556,10 @@
 	D3DXVECTOR3(-2.60f, 4.93f, 53.90f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
+
+////enemy
+//{
+//	"enemy_00",
+//	D3DXVECTOR3(0.00f, 2.00f, 7.36f),             //平行移動
+//	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 0.00f),  //回転
+//},

@@ -8,7 +8,8 @@
 #include "Player.h"
 #include "Map.h"
 #include "GameCamera.h"
-#include "Sprite.h"
+#include "HPGauge.h"
+#include "Enemy.h"
 
 /*!
  * @brief	ゲームクラス。
@@ -78,9 +79,8 @@ private:
 	Pad				pad;				//ゲームパッド
 	float			frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。
 
-	Sprite			sprite;
-	Sprite			spriteB;
-	//LPD3DXSPRITE	m_pSprite;
+	HPGauge			gauge;
+	Enemy			enemy;				//エネミー
 };
 
 extern Game* game;

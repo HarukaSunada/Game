@@ -153,8 +153,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameCamera.cpp" />
+    <ClCompile Include="HPGauge.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapChip.cpp" />
@@ -180,8 +182,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="HPGauge.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapChip.h" />
     <ClInclude Include="myEngine\Graphics\Animation.h" />

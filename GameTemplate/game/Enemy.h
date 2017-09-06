@@ -1,3 +1,7 @@
+/*
+	エネミーの基本クラス
+*/
+
 #pragma once
 #include "myEngine/Physics/CharacterController.h"
 
@@ -13,7 +17,13 @@ public:
 		int score;
 	};
 
-	void Init();
+	enum AnimNo {
+		animStand,
+		animWalk,
+		animAttak,
+	};
+
+	virtual void Init();
 	void Update();
 	void Action();
 
@@ -32,7 +42,7 @@ public:
 	{
 		state.HP = hp;
 	}
-private:
+protected:
 
 	SkinModel			model;
 	SkinModelData		modelData;
@@ -42,8 +52,12 @@ private:
 
 	D3DXVECTOR3			dir;
 	Status				state;
+	AnimNo				anim;
+
+	bool	flag = false;
+
 	//移動速度
-	float fMoveSpeed;
+	const float MoveSpeed=1.5f;
 };
 
 

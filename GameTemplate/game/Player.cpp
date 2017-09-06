@@ -42,6 +42,16 @@ void Player::Update()
 {
 	Action();
 
+	if (isDamage)
+	{
+		timer += game->GetDeltaTime();	//プレイ時間カウント
+	}
+	if (timer > 1.00f)
+	{
+		timer = 0.0f;
+		isDamage = false;
+	}
+
 	//キャラクタコントローラーの実行
 	characterController.Execute();	
 
@@ -139,5 +149,22 @@ void Player::Action()
 
 void Player::Draw()
 {
+	if (isDamage) {
+		int a = (int)(timer*10)%2;
+		if (a==0) {
+			return;
+		}
+	}
 	model.Draw(&game->GetCamera()->GetViewMatrix(), &game->GetCamera()->GetProjectionMatrix());
+}
+
+void Player::Damage(int dm)
+{
+	if (isDamage) { return; }
+	state.HP -= dm;
+	if (state.HP < 0)
+	{
+		state.HP = 0;
+	}
+	isDamage = true;
 }

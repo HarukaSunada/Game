@@ -10,6 +10,7 @@
 #include "GameCamera.h"
 #include "HPGauge.h"
 #include "Enemy.h"
+#include "Skelton.h"
 
 /*!
  * @brief	ゲームクラス。
@@ -80,7 +81,8 @@ private:
 	float			frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。
 
 	HPGauge			gauge;
-	Enemy			enemy;				//エネミー
+	//Enemy			enemy;				//エネミー
+	Skelton			enemy;				//エネミー
 };
 
 extern Game* game;

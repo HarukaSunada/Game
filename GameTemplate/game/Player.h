@@ -26,6 +26,8 @@ public:
 
 	void Draw();
 
+	void Damage(int dm);
+
 	D3DXVECTOR3 GetPosition()
 	{
 		return characterController.GetPosition();
@@ -39,6 +41,8 @@ public:
 	{
 		state.HP = hp;
 	}
+
+
 private:
 
 	SkinModel			model;
@@ -52,4 +56,6 @@ private:
 	Status				state;
 	//ˆÚ“®‘¬“x
 	float fMoveSpeed;
+	float timer = 0.0f;
+	bool	isDamage = false;
 };

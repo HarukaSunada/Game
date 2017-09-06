@@ -12,6 +12,9 @@ public:
 
 private:
 	Sprite			gauge;
+	Sprite			gauge2;
+	Sprite			gauge3;
+	Sprite*			showGauge;
 	Sprite			back;
 	Sprite			sp;
 	bool flag = false;

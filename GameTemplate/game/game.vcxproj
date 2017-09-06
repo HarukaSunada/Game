@@ -173,6 +173,7 @@
     <ClCompile Include="myEngine\Physics\RigidBody.cpp" />
     <ClCompile Include="myEngine\System.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Skelton.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -204,6 +205,7 @@
     <ClInclude Include="myEngine\Physics\RigidBody.h" />
     <ClInclude Include="myEngine\system.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Skelton.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

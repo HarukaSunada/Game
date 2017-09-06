@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "Enemy.h"
 #include "game.h"
-#define MoveSpeedMax 5.0f
-#define MoveSpeedMin 0.0f
 
 
 Enemy::Enemy()
@@ -17,14 +15,13 @@ Enemy::~Enemy()
 
 void Enemy::Init()
 {
-	//モデル読み込み
-	modelData.LoadModelData("Assets/modelData/enemy_00.X", &animation);
 	model.Init(&modelData);
 	model.SetLight(game->GetLight());	//ライトの設定
-	animation.PlayAnimation(0);
+	animation.PlayAnimation(animStand);
+	anim = animStand;
 	
 	//速さ
-	fMoveSpeed = 0.0f;
+	//fMoveSpeed = 0.0f;
 	dir = { 0.0f,0.0f,0.0f };
 
 	//ステータス初期化
@@ -51,6 +48,11 @@ void Enemy::Update()
 //アクション
 void Enemy::Action()
 {
+	//前のモーション
+	AnimNo prevAnim = anim;
+	
+	D3DXVECTOR3 moveSpeed = characterController.GetMoveSpeed();
+
 	//ダメージ
 	D3DXVECTOR3 diff;
 	diff = game->GetPlayer()->GetPosition() - characterController.GetPosition();
@@ -59,12 +61,38 @@ void Enemy::Action()
 	float length = diff.x * diff.x + diff.y * diff.y + diff.z * diff.z;
 	sqrt(length);
 
+	D3DXVECTOR3 dir;
+	if (!flag && length < 7.0f) {
+		flag = true;
+		anim = animWalk;
+	}
+
+	if (flag) {
+		D3DXVec3Normalize(&dir, &diff);
+		//移動速度
+		moveSpeed.x = dir.x * MoveSpeed;
+		moveSpeed.z = dir.z * MoveSpeed;
+
+		//キャラ方向変更
+		float s;
+		float halfAngle = atan2f(dir.x, dir.z) * 0.5f;
+		s = sin(halfAngle);
+		rotation.w = cos(halfAngle);
+		rotation.y = 1 * s;
+	}
+
 	if (length < 0.60f) {
-		int HP = game->GetPlayer()->GetStatus().HP;
-		if (HP > 0) {
-			HP--;
-			game->GetPlayer()->SetHP(HP);
+		if (game->GetPlayer()->GetStatus().HP > 0) {
+			game->GetPlayer()->Damage(1);
 		}
+	}
+
+	//プレイヤーが動く速度を設定
+	characterController.SetMoveSpeed(moveSpeed);
+
+	//モーション変更
+	if (anim != prevAnim) {
+		animation.PlayAnimation(anim, 0.3f);
 	}
 }
 

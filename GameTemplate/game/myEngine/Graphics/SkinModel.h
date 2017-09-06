@@ -45,6 +45,11 @@ public:
 	*@brief	オリジナルメッシュの先頭を取得する。
 	*/
 	LPD3DXMESH GetOrgMeshFirst();
+
+	D3DXMATRIX GetWorldMatrix()
+	{
+		return worldMatrix;
+	}
 private:
 	D3DXMATRIX			worldMatrix;				//!<ワールド行列。
 	D3DXMATRIX			rotationMatrix;				//!<回転行列。

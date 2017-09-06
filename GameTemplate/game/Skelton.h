@@ -6,5 +6,6 @@ public:
 	Skelton();
 	~Skelton();
 	void Init() override;
+	void Action() override;
 };
 

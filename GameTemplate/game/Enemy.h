@@ -17,15 +17,23 @@ public:
 		int score;
 	};
 
+	//アニメーション
 	enum AnimNo {
 		animStand,
 		animWalk,
-		animAttak,
+		animAttack,
+	};
+
+	//行動
+	enum Act {
+		actWait,
+		actFound,
+		actAttack,
 	};
 
 	virtual void Init();
 	void Update();
-	void Action();
+	virtual void Action() = 0;
 
 	void Draw();
 
@@ -50,14 +58,17 @@ protected:
 	D3DXQUATERNION		rotation;	//回転
 	CharacterController characterController;	//キャラクタコントローラ
 
-	D3DXVECTOR3			dir;
+	//D3DXVECTOR3			dir;
 	Status				state;
 	AnimNo				anim;
 
+	float timer = 0.0f;
 	bool	flag = false;
 
+	Act	act;
+
 	//移動速度
-	const float MoveSpeed=1.5f;
+	const float MoveSpeed=2.0f;
 };
 
 

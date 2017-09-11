@@ -25,10 +25,6 @@ void Enemy::Init()
 	//fMoveSpeed = 0.0f;
 	//dir = { 0.0f,0.0f,0.0f };
 
-	//ステータス初期化
-	state.HP = 10;
-	state.score = 0;
-
 	//キャラクタコントローラを初期化。
 	D3DXVECTOR3 pos = D3DXVECTOR3(0.0f, 2.00f, 7.36f);
 	characterController.Init(0.3f, 1.0f, pos);

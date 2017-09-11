@@ -2,16 +2,21 @@
 
 #include "myEngine/Physics/CharacterController.h"
 
+/*
+	プレイヤークラス
+*/
 class Player
 {
 public:
+	//アニメーション番号
 	enum AnimNo {
 		animStand,
-		animWalk,
 		animRun,
-		animJump,
+		animAttack,
+		animSkill,
 	};
 
+	//キャラのステータス
 	struct Status
 	{
 		int HP;
@@ -20,42 +25,52 @@ public:
 
 	Player();
 	~Player();
+	//初期化
 	void Init();
+
+	//更新
 	void Update();
+
+	//行動
 	void Action();
 
+	//描画
 	void Draw();
 
+	//ダメージ処理
+	//dm　ダメージ数
 	void Damage(int dm);
 
+	//位置を取得
 	D3DXVECTOR3 GetPosition()
 	{
 		return characterController.GetPosition();
 	}
 
+	//ステータスを取得
 	Status GetStatus()
 	{
 		return state;
 	}
+
+	//HPを設定
 	void SetHP(int hp)
 	{
 		state.HP = hp;
 	}
 
-
 private:
-
-	SkinModel			model;
-	SkinModelData		modelData;
-	Animation			animation;
-	D3DXQUATERNION		rotation;	//回転
+	SkinModel			model;			//モデル
+	SkinModelData		modelData;		//モデルデータ
+	Animation			animation;		//アニメーション
+	D3DXQUATERNION		rotation;		//回転
 	CharacterController characterController;	//キャラクタコントローラ
 
-	AnimNo				anim;
-	D3DXVECTOR3			dir;
-	Status				state;
-	//移動速度
-	float fMoveSpeed;
-	float timer = 0.0f;
-	bool	isDamage = false;
+	AnimNo				anim;			//アニメーション番号
+	D3DXVECTOR3			dir;			//キャラの方向
+	Status				state;			//ステータス
+
+	float				fMoveSpeed;			//移動速度
+	float				timer = 0.0f;		//タイマー
+	bool				isDamage = false;	//ダメージフラグ
 };

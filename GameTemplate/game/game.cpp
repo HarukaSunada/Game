@@ -65,17 +65,11 @@ void Game::Update()
 	//プレイヤー更新
 	player.Update();
 
-	enemy.Update();
-
-	if (game->GetPad()->IsTrigger(Pad::enButtonX))
-	{
-		int HP = player.GetStatus().HP;
-		if (HP > 0)
-		{
-			HP -= 1;
-			player.SetHP(HP);
-		}
+	if (player.GetStatus().HP <= 0) {
+		gameOver = true;
 	}
+
+	enemy.Update();
 
 	//カメラ更新
 	camera.Update();

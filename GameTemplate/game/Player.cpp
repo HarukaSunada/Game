@@ -18,11 +18,11 @@ Player::~Player()
 void Player::Init()
 {
 	//モデル読み込み
-	modelData.LoadModelData("Assets/modelData/Unity.X", &animation);
+	modelData.LoadModelData("Assets/modelData/char.X", &animation);
 	model.Init(&modelData);
 	model.SetLight(game->GetLight());	//ライトの設定
 	anim = animStand;
-	animation.PlayAnimation(animStand);
+	animation.PlayAnimation(anim);
 
 	//速さ
 	fMoveSpeed = 0.0f;
@@ -56,12 +56,13 @@ void Player::Update()
 	characterController.Execute();	
 
 	animation.Update(1.0f / 60.0f);
-	model.UpdateWorldMatrix(characterController.GetPosition(), rotation, D3DXVECTOR3(1.0f, 1.0f, 1.0f));
+	model.UpdateWorldMatrix(characterController.GetPosition(), rotation, D3DXVECTOR3(0.6f, 0.6f, 0.6f));
 }
 
 //アクション
 void Player::Action()
 {
+
 	//前のモーション
 	AnimNo prevAnim = anim;
 
@@ -115,10 +116,6 @@ void Player::Action()
 
 		//アニメーション
 		anim = animRun;
-		////速度が遅いので歩き
-		//if (length * fMoveSpeed < 2.5f) {
-		//	anim = animWalk;
-		//}
 	}
 
 	//移動
@@ -129,13 +126,12 @@ void Player::Action()
 	if (pad->IsTrigger(Pad::enButtonA) && !characterController.IsJump()) {
 		//ジャンプ
 		moveSpeed.y = 10.0f;
-		//モーション
-		anim = animJump;
 		//ジャンプしたことをキャラクタコントローラーに通知。
 		characterController.Jump();
 	}
-	if (characterController.IsJump()) {
-		anim = animJump;
+	//テスト
+	if (pad->IsTrigger(Pad::enButtonB)) {
+		anim = animAttack;
 	}
 
 	//モーション変更

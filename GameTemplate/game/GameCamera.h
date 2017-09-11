@@ -1,11 +1,18 @@
 #pragma once
+
+/*
+	ゲームカメラクラス
+*/
 class GameCamera
 {
 public:
 	GameCamera();
 	~GameCamera();
 
+	//初期化
 	void Init();
+
+	//更新
 	void Update();
 
 	//カメラのインスタンス取得
@@ -14,11 +21,13 @@ public:
 		return &camera;
 	}
 
+	//カメラから見た奥方向のベクトルを取得
 	D3DXVECTOR3 GetCameraDirZ()
 	{
 		return cameraDirZ;
 	}
 
+	////カメラから見た横方向のベクトルを取得
 	D3DXVECTOR3 GetCameraDirX()
 	{
 		return cameraDirX;

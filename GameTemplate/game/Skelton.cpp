@@ -13,6 +13,10 @@ Skelton::~Skelton()
 
 void Skelton::Init()
 {
+	//ステータス初期化
+	state.HP = 10;
+	state.score = 0;
+
 	//モデル読み込み
 	modelData.LoadModelData("Assets/modelData/enemy_00.X", &animation);
 	Enemy::Init();
@@ -53,7 +57,7 @@ void Skelton::Action()
 		angle = acos(angle);
 
 		//視野に入った、かつ近い
-		if (fabsf(angle) < D3DXToRadian(45.0f) && length < 15.0f) {
+		if (fabsf(angle) < D3DXToRadian(45.0f) && length < 30.0f) {
 			//発見した
 			act = actFound;
 			anim = animWalk;
@@ -78,7 +82,14 @@ void Skelton::Action()
 			anim = animAttack;
 			act = actAttack;
 		}
+		else if (length > 60.f) {
+			anim = animStand;
+			act = actWait;
+			moveSpeed.x = 0.0f;
+			moveSpeed.z = 0.0f;
+		}
 	}
+	//攻撃時
 	else if (act == actAttack)
 	{
 		moveSpeed.x = 0.0f;

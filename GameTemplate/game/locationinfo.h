@@ -1,9 +1,9 @@
-﻿//Building_b
-{
-	"Building_b",
-	D3DXVECTOR3(11.72f, 1.70f, -9.14f),             //平行移動
-	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 0.00f ),  //回転
-},
+﻿////Building_b
+//{
+//	"Building_b",
+//	D3DXVECTOR3(11.72f, 1.70f, -9.14f),             //平行移動
+//	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 0.00f ),  //回転
+//},
 //fence_a
 {
 	"fence_a",
@@ -28,12 +28,12 @@
 	D3DXVECTOR3(-10.36f, 0.35f, 34.94f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 0.00f ),  //回転
 },
-//well
-{
-	"well",
-	D3DXVECTOR3(-5.86f, 1.58f, 7.36f),             //平行移動
-	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 0.00f ),  //回転
-},
+////well
+//{
+//	"well",
+//	D3DXVECTOR3(-5.86f, 1.58f, 7.36f),             //平行移動
+//	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 0.00f ),  //回転
+//},
 //Building_e
 {
 	"Building_e",
@@ -472,18 +472,18 @@
 	D3DXVECTOR3(-25.06f, 1.67f, 22.26f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
 },
-//Building_a
-{
-	"Building_a",
-	D3DXVECTOR3(-25.06f, 1.67f, 8.86f),             //平行移動
-	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
-},
-//Building_a
-{
-	"Building_a",
-	D3DXVECTOR3(-25.06f, 1.67f, -4.28f),             //平行移動
-	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
-},
+////Building_a
+//{
+//	"Building_a",
+//	D3DXVECTOR3(-25.06f, 1.67f, 8.86f),             //平行移動
+//	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
+//},
+////Building_a
+//{
+//	"Building_a",
+//	D3DXVECTOR3(-25.06f, 1.67f, -4.28f),             //平行移動
+//	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
+//},
 //Dungeon 4-way_00
 {
 	"Dungeon 4-way_00",

@@ -72,17 +72,22 @@ public:
 		return frameDeltaTime;
 	}
 
+	bool isGameOver()
+	{
+		return gameOver;
+	}
 private:	
 	Light			light;
 	GameCamera		camera;				//カメラ
 	Player			player;				//プレイヤー
 	Map				map;				//マップ
 	Pad				pad;				//ゲームパッド
-	float			frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。
 
-	HPGauge			gauge;
-	//Enemy			enemy;				//エネミー
+	HPGauge			gauge;				//HPゲージ
 	Skelton			enemy;				//エネミー
+
+	bool			gameOver=false;		//ゲームオーバーフラグ
+	const float		frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。
 };
 
-extern Game* game;
+extern Game* game;		//ゲームのインスタンス

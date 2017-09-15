@@ -19,6 +19,9 @@ public:
 	//スケルトン生成
 	void CreateSkelton(D3DXVECTOR3 pos);
 
+	//ダメージ処理
+	void Damage(int dm);
+
 private:
 	std::vector<Enemy*>	enemyList;	//敵のリスト
 };

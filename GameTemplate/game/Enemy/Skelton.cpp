@@ -29,10 +29,10 @@ void Skelton::Action()
 	AnimNo prevAnim = anim;
 	D3DXVECTOR3 moveSpeed = characterController.GetMoveSpeed();
 
-	if (game->GetPlayer()->judgeDamage())
-	{
-		Damage(1);
-	}
+	//if (game->GetPlayer()->judgeDamage())
+	//{
+	//	Damage(1);
+	//}
 
 	//プレイヤーへのベクトル
 	D3DXVECTOR3 diff;
@@ -135,6 +135,8 @@ void Skelton::Action()
 
 void Skelton::Damage(int dm)
 {
+	if (isDamage) { return; }
+	isDamage = true;
 	act = actDamage;
 	state.HP -= dm;
 }

@@ -60,11 +60,9 @@ public:
 	}
 
 	//攻撃判定
-	bool judgeDamage()
-	{
-		return isAttack;
-	}
-private:	
+	bool judgeDamage();
+
+private:
 	SkinModel			model;				//モデル
 	SkinModelData		modelData;			//モデルデータ
 	Animation			animation;			//アニメーション

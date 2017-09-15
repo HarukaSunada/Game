@@ -44,6 +44,7 @@ void Player::Update()
 {
 	Action();
 
+	//無敵状態
 	if (isDamage)
 	{
 		timer += game->GetDeltaTime();	//プレイ時間カウント
@@ -131,14 +132,16 @@ void Player::Action()
 		//ジャンプしたことをキャラクタコントローラーに通知。
 		characterController.Jump();
 	}
-	//テスト
+	//攻撃(Bボタン)
 	if (isAttack == false && pad->IsTrigger(Pad::enButtonB)) {
+		//攻撃状態に遷移
 		isAttack = true;
-		//game->GetEnemy()->Damage(1);
 	}
 
+	//攻撃状態の時
 	if (isAttack) {
 		attackTimer += game->GetDeltaTime();	//プレイ時間カウント
+		game->GetEnemyManager()->Damage(1);
 		anim = animAttack;
 	}
 	if (attackTimer > 0.8f)
@@ -158,6 +161,7 @@ void Player::Action()
 
 void Player::Draw()
 {
+	//ダメージを受けているときに点滅
 	if (isDamage) {
 		int a = (int)(timer*10)%2;
 		if (a==0) {
@@ -169,7 +173,10 @@ void Player::Draw()
 
 void Player::Damage(int dm)
 {
+	//無敵時間なら処理しない
 	if (isDamage) { return; }
+
+	//HP減算
 	state.HP -= dm;
 	if (state.HP < 0)
 	{

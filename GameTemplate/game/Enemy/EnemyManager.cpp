@@ -35,3 +35,11 @@ void EnemyManager::Draw()
 		enemyList[i]->Draw();
 	}
 }
+
+void EnemyManager::Damage(int dm)
+{
+	for (int i = 0; i < enemyList.size(); i++)
+	{
+		enemyList[i]->Damage(dm);
+	}
+}

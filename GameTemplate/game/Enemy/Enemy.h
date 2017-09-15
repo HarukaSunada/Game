@@ -80,9 +80,11 @@ protected:
 	AnimNo				anim;				//アニメーション番号
 	Act					act;				//現在の行動
 
-	float				timer = 0.0f;		//タイマー
+	float				timer		= 0.0f;		//タイマー
 
-	const float			MoveSpeed = 2.0f;	//移動速度
+	const float			MoveSpeed	= 2.0f;		//移動速度
+	bool				isDamage	= false;	//ダメージフラグ
+	float				damageTimer = 0.0f;		//無敵のタイマー
 };
 
 

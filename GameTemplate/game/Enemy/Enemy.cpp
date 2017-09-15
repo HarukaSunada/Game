@@ -46,6 +46,16 @@ void Enemy::Update()
 	//行動
 	Action();
 
+	if (isDamage)
+	{
+		damageTimer += game->GetDeltaTime();	//プレイ時間カウント
+	}
+	if (damageTimer > 1.00f)
+	{
+		damageTimer = 0.0f;
+		isDamage = false;
+	}
+
 	//キャラクタコントローラーの実行
 	characterController.Execute();
 

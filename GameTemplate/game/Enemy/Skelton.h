@@ -15,6 +15,8 @@ public:
 
 	//行動
 	void Action() override;
+
+	//ダメージ
 	void Damage(int dm) override;
 };
 

@@ -47,10 +47,13 @@ void Game::Start()
 	//プレイヤーを初期化
 	player.Init();
 
-	enemy.Init();
+	//enemy.Init();
+	//enemyManager.CreateSkelton(D3DXVECTOR3(0.0f, 2.00f, 7.36f));
+	//enemyManager.CreateSkelton(D3DXVECTOR3(-7.0f, 2.00f, 0.36f));
+	//enemyManager.CreateSkelton(D3DXVECTOR3(7.0f, 2.00f, 0.36f));
 
 	//マップの初期化
-	map.Init();
+	map.Init(&enemyManager);
 
 	gauge.Init();
 }
@@ -69,7 +72,8 @@ void Game::Update()
 		gameOver = true;
 	}
 
-	enemy.Update();
+	//enemy.Update();
+	enemyManager.Update();
 
 	//カメラ更新
 	camera.Update();
@@ -86,7 +90,8 @@ void Game::Update()
 void Game::Render()
 {
 	player.Draw();
-	enemy.Draw();
+	//enemy.Draw();
+	enemyManager.Draw();
 	map.Draw();
 	gauge.Draw();
 }

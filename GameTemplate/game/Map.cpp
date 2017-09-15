@@ -2,6 +2,7 @@
 #include "Map.h"
 #include "MapChip.h"
 
+
 static SMapChipLocInfo mapChipInfo[] = {
 #include "locationInfo.h"
 };
@@ -15,7 +16,7 @@ Map::~Map()
 {
 }
 
-void Map::Init()
+void Map::Init(EnemyManager* en)
 {
 	//配置オブジェクト個数を計算
 	int numObject = sizeof(mapChipInfo) / sizeof(mapChipInfo[0]);
@@ -29,6 +30,10 @@ void Map::Init()
 		//動的配列にプッシュ
 		mapChipList.push_back(mapChip);
 	}
+
+	en->CreateSkelton(D3DXVECTOR3(0.0f, 2.00f, 7.36f));
+	en->CreateSkelton(D3DXVECTOR3(-7.0f, 2.00f, 0.36f));
+	en->CreateSkelton(D3DXVECTOR3(7.0f, 2.00f, 0.36f));
 }
 
 void Map::Draw()

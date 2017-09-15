@@ -13,6 +13,8 @@ Player::Player()
 
 Player::~Player()
 {
+	////剛体除去
+	//g_physicsWorld->RemoveRigidBody(characterController.GetRigidBody());
 }
 
 void Player::Init()
@@ -130,8 +132,19 @@ void Player::Action()
 		characterController.Jump();
 	}
 	//テスト
-	if (pad->IsTrigger(Pad::enButtonB)) {
+	if (isAttack == false && pad->IsTrigger(Pad::enButtonB)) {
+		isAttack = true;
+		//game->GetEnemy()->Damage(1);
+	}
+
+	if (isAttack) {
+		attackTimer += game->GetDeltaTime();	//プレイ時間カウント
 		anim = animAttack;
+	}
+	if (attackTimer > 0.8f)
+	{
+		attackTimer = 0.0f;
+		isAttack = false;
 	}
 
 	//モーション変更

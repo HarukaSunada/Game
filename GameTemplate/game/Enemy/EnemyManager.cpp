@@ -1,0 +1,37 @@
+#include "stdafx.h"
+#include "EnemyManager.h"
+#include "Skelton.h"
+
+
+EnemyManager::EnemyManager()
+{
+}
+
+
+EnemyManager::~EnemyManager()
+{
+}
+
+void EnemyManager::CreateSkelton(D3DXVECTOR3 pos)
+{
+	Enemy* enemy = new Skelton;
+	enemy->Init(pos);
+
+	//リストにプッシュ
+	enemyList.push_back(enemy);
+}
+
+void EnemyManager::Update()
+{
+	for (int i = 0; i < enemyList.size(); i++)
+	{
+		enemyList[i]->Update();
+	}
+}
+void EnemyManager::Draw()
+{
+	for (int i = 0; i < enemyList.size(); i++)
+	{
+		enemyList[i]->Draw();
+	}
+}

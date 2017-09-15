@@ -59,18 +59,26 @@ public:
 		state.HP = hp;
 	}
 
-private:
-	SkinModel			model;			//モデル
-	SkinModelData		modelData;		//モデルデータ
-	Animation			animation;		//アニメーション
-	D3DXQUATERNION		rotation;		//回転
+	//攻撃判定
+	bool judgeDamage()
+	{
+		return isAttack;
+	}
+private:	
+	SkinModel			model;				//モデル
+	SkinModelData		modelData;			//モデルデータ
+	Animation			animation;			//アニメーション
+	D3DXQUATERNION		rotation;			//回転
 	CharacterController characterController;	//キャラクタコントローラ
 
-	AnimNo				anim;			//アニメーション番号
-	D3DXVECTOR3			dir;			//キャラの方向
-	Status				state;			//ステータス
+	AnimNo				anim;				//アニメーション番号
+	D3DXVECTOR3			dir;				//キャラの方向
+	Status				state;				//ステータス
 
-	float				fMoveSpeed;			//移動速度
-	float				timer = 0.0f;		//タイマー
-	bool				isDamage = false;	//ダメージフラグ
+	float				fMoveSpeed;				//移動速度
+	float				timer = 0.0f;			//タイマー
+	float				attackTimer = 0.0f;		//タイマー
+
+	bool				isAttack = false;		//攻撃フラグ
+	bool				isDamage = false;		//ダメージフラグ
 };

@@ -29,7 +29,7 @@
       <UniqueIdentifier>{c48b3419-5b88-4f66-b127-b9547613d726}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\Enemy">
-      <UniqueIdentifier>{3f093809-7c08-4c0f-8379-f4540ac322dc}</UniqueIdentifier>
+      <UniqueIdentifier>{716acbc9-3a8a-4ed8-9d43-5559dda4cd3b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -96,10 +96,13 @@
     <ClCompile Include="HPGauge.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Skelton.cpp">
+    <ClCompile Include="Enemy\Enemy.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
+    <ClCompile Include="Enemy\EnemyManager.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy\Skelton.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
@@ -170,14 +173,17 @@
     <ClInclude Include="Sprite.h">
       <Filter>ソース ファイル\myEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>ソース ファイル\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Skelton.h">
-      <Filter>ソース ファイル\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="HPGauge.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\Enemy.h">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\EnemyManager.h">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\Skelton.h">
+      <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

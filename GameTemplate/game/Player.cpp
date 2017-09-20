@@ -184,3 +184,28 @@ void Player::Damage(int dm)
 	}
 	isDamage = true;
 }
+
+float Player::Angle(D3DXVECTOR3 enemyPos)
+{
+	//プレイヤーへのベクトル
+	D3DXVECTOR3 diff;
+	diff = enemyPos - characterController.GetPosition();
+
+	//Enemyへの向き
+	D3DXVECTOR3 toEnemy;
+	D3DXVec3Normalize(&toEnemy, &diff);
+
+	//前方向
+	D3DXVECTOR3 direction;
+	D3DXMATRIX wMatrix = model.GetWorldMatrix();
+	direction.x = wMatrix.m[2][0];
+	direction.y = wMatrix.m[2][1];
+	direction.z = wMatrix.m[2][2];
+	D3DXVec3Normalize(&direction, &direction);
+
+	//視野角?
+	float angle = toEnemy.x * direction.x + toEnemy.y * direction.y + toEnemy.z * direction.z;
+	angle = acos(angle);
+
+	return angle;
+}

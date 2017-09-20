@@ -1,0 +1,37 @@
+﻿  stdafx.cpp
+  Enemy.cpp
+  EnemyManager.cpp
+Enemy\EnemyManager.cpp(26): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+Enemy\EnemyManager.cpp(33): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+Enemy\EnemyManager.cpp(41): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+  Skelton.cpp
+  game.cpp
+  GameCamera.cpp
+  HPGauge.cpp
+  main.cpp
+  Map.cpp
+Map.cpp(45): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+Map.cpp(53): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+  MapChip.cpp
+  Animation.cpp
+  Camera.cpp
+  EffectManager.cpp
+  SkinModel.cpp
+  SkinModelData.cpp
+myEngine\Graphics\SkinModelData.cpp(320): warning C4316: 'D3DXFRAME_DERIVED': ヒープで割り当てられたオブジェクトが 16 にアラインメントされていない可能性があります
+  Pad.cpp
+  CapsuleCollider.cpp
+  CharacterController.cpp
+  MeshCollider.cpp
+  Physics.cpp
+  RigidBody.cpp
+  コンパイル中...
+  System.cpp
+  Player.cpp
+  Sprite.cpp
+Sprite.cpp(28): warning C4838: 'UINT' から 'LONG' への変換には縮小変換が必要です
+  コード生成しています。
+  All 969 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  コード生成が終了しました。
+  game.vcxproj -> C:\Users\kbc16b18\Documents\DirectX\DirectXⅡ\GameTemplate\Release\game.exe
+  game.vcxproj -> C:\Users\kbc16b18\Documents\DirectX\DirectXⅡ\GameTemplate\Release\game.pdb (Full PDB)

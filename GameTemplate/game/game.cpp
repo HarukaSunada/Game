@@ -3,6 +3,7 @@
  */
 #include "stdafx.h"
 #include "game.h"
+#include "TitleScene.h"
 
 
 /*!
@@ -47,14 +48,10 @@ void Game::Start()
 	//プレイヤーを初期化
 	player.Init();
 
-	//enemy.Init();
-	//enemyManager.CreateSkelton(D3DXVECTOR3(0.0f, 2.00f, 7.36f));
-	//enemyManager.CreateSkelton(D3DXVECTOR3(-7.0f, 2.00f, 0.36f));
-	//enemyManager.CreateSkelton(D3DXVECTOR3(7.0f, 2.00f, 0.36f));
-
 	//マップの初期化
 	map.Init(&enemyManager);
 
+	//HPゲージの初期化
 	gauge.Init();
 }
 /*!
@@ -68,11 +65,12 @@ void Game::Update()
 	//プレイヤー更新
 	player.Update();
 
+	//HPが0なのでゲームオーバー
 	if (player.GetStatus().HP <= 0) {
 		gameOver = true;
 	}
 
-	//enemy.Update();
+	//エネミー更新
 	enemyManager.Update();
 
 	//カメラ更新
@@ -81,6 +79,7 @@ void Game::Update()
 	//マップ更新
 	map.Update();
 
+	//HPゲージ更新
 	gauge.Update();
 }
 
@@ -90,7 +89,6 @@ void Game::Update()
 void Game::Render()
 {
 	player.Draw();
-	//enemy.Draw();
 	enemyManager.Draw();
 	map.Draw();
 	gauge.Draw();

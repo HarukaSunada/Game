@@ -6,7 +6,7 @@
 
 #include "myEngine/Physics/Physics.h"
 #include "Player.h"
-#include "Map.h"
+#include "Map/Map.h"
 #include "GameCamera.h"
 #include "HPGauge.h"
 #include "Enemy/Enemy.h"
@@ -57,12 +57,6 @@ public:
 		return &player;
 	}
 
-	//プレイヤーのインスタンス取得
-	//Enemy* GetEnemy()
-	//{
-	//	return &enemy;
-	//}
-
 	//敵管理クラスのインスタンス取得
 	EnemyManager* GetEnemyManager()
 	{
@@ -87,23 +81,23 @@ public:
 		return frameDeltaTime;
 	}
 
-	//ゲームオーバーになったか
+	//ゲームオーバーになったか取得
 	bool isGameOver()
 	{
 		return gameOver;
 	}
 private:	
-	Light			light;
+	Light			light;				//ライト
 	GameCamera		camera;				//カメラ
 	Player			player;				//プレイヤー
 	Map				map;				//マップ
 	Pad				pad;				//ゲームパッド
 
 	HPGauge			gauge;				//HPゲージ
-	//Skelton			enemy;				//エネミー
 	EnemyManager	enemyManager;		//エネミー管理
 
 	bool			gameOver=false;		//ゲームオーバーフラグ
+
 	const float		frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。
 };
 

@@ -25,6 +25,7 @@ private:
 	Sprite			gauge3;		//青のゲージ
 	Sprite*			showGauge;	//表示するスプライト
 	Sprite			back;		//ゲージのバック
+
 	Sprite			sp;			//テスト用(GameOver)
 	bool flag = false;			//テスト用
 };

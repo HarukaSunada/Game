@@ -59,8 +59,9 @@ public:
 		state.HP = hp;
 	}
 
-	//攻撃判定
-	bool judgeDamage();
+	//視野角計算
+	//引数nemyPos　対象のポジション
+	float Angle(D3DXVECTOR3 enemyPos);
 
 private:
 	SkinModel			model;				//モデル

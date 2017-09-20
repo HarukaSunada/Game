@@ -25,10 +25,6 @@ void Enemy::Init(D3DXVECTOR3 pos)
 	animation.PlayAnimation(animStand);
 	anim = animStand;
 	act = actWait;
-	
-	//速さ
-	//fMoveSpeed = 0.0f;
-	//dir = { 0.0f,0.0f,0.0f };
 
 	//キャラクタコントローラを初期化。
 	//D3DXVECTOR3 pos = D3DXVECTOR3(0.0f, 2.00f, 7.36f);
@@ -75,4 +71,3 @@ void Enemy::Draw()
 	}
 	model.Draw(&game->GetCamera()->GetViewMatrix(), &game->GetCamera()->GetProjectionMatrix());
 }
-

@@ -20,3 +20,4 @@
 #include "myEngine/Graphics/Animation.h"
 #include "myEngine/Graphics/Light.h"
 #include "myEngine/HID/Pad.h"
+extern Camera* g_camera;		//ゲームのインスタンス

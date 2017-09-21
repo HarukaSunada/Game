@@ -18,6 +18,8 @@ Map::~Map()
 
 void Map::Init(EnemyManager* en)
 {
+	sky.Init();
+
 	//配置オブジェクト個数を計算
 	int numObject = sizeof(mapChipInfo) / sizeof(mapChipInfo[0]);
 
@@ -41,6 +43,7 @@ void Map::Init(EnemyManager* en)
 
 void Map::Draw()
 {
+	sky.Draw();
 	//マップチップを一個ずつ更新
 	for (int i = 0; i < mapChipList.size(); i++) {
 		mapChipList[i]->Draw();
@@ -49,6 +52,7 @@ void Map::Draw()
 
 void Map::Update()
 {
+	sky.Update();
 	//マップチップを一個ずつ更新
 	for (int i = 0; i < mapChipList.size(); i++) {
 		mapChipList[i]->Update();

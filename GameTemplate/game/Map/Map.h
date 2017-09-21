@@ -1,5 +1,5 @@
 #include "Enemy/EnemyManager.h"
-
+#include "Sky.h"
 class MapChip;
 
 class Map
@@ -20,4 +20,5 @@ public:
 private:
 	std::vector<MapChip*>	mapChipList;	//マップチップのリスト
 	EnemyManager*	enemy;
+	Sky sky;
 };

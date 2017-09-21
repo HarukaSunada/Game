@@ -14,8 +14,8 @@ TitleScene::~TitleScene()
 void TitleScene::Init()
 {
 	//テクスチャ読み込み
-	back.SetFileName("Assets/Sprite/HPtestB.png");
-	back.SetPosition(D3DXVECTOR2(0, 0));
+	back.SetFileName("Assets/Sprite/title.png");
+	back.SetPosition(D3DXVECTOR2(640, 390));
 	back.Init();
 }
 

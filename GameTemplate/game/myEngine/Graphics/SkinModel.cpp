@@ -28,6 +28,9 @@ namespace {
 		pd3dDevice->GetDeviceCaps(&d3dCaps);
 		D3DXMATRIX viewProj;
 		D3DXMatrixMultiply(&viewProj, viewMatrix, projMatrix);
+
+		D3DXVECTOR3 eyePos;
+
 		
 		//テクニックを設定。
 		{
@@ -48,7 +51,9 @@ namespace {
 				light,
 				sizeof(Light)
 			);
-
+			//視点を送る
+			eyePos = g_camera->GetEyePt();
+			pEffect->SetVector("g_eyePos", (D3DXVECTOR4*)&eyePos);
 		}
 		if (pMeshContainer->pSkinInfo != NULL)
 		{
@@ -81,6 +86,7 @@ namespace {
 				pEffect->SetInt("CurNumBones", pMeshContainer->NumInfl - 1);
 				D3DXMATRIX viewRotInv;
 				D3DXMatrixInverse(&viewRotInv, NULL, viewMatrix);
+
 				viewRotInv.m[3][0] = 0.0f;
 				viewRotInv.m[3][1] = 0.0f;
 				viewRotInv.m[3][2] = 0.0f;
@@ -89,6 +95,7 @@ namespace {
 				pEffect->SetMatrix("g_viewMatrixRotInv", &viewRotInv);
 				pEffect->Begin(0, D3DXFX_DONOTSAVESTATE);
 				pEffect->BeginPass(0);
+
 				pEffect->CommitChanges();
 				// draw the subset with the current world matrix palette and material state
 				pMeshContainer->MeshData.pMesh->DrawSubset(iAttrib);
@@ -109,6 +116,7 @@ namespace {
 			
 			pEffect->SetMatrix("g_worldMatrix", &mWorld);
 			pEffect->SetMatrix("g_rotationMatrix", rotationMatrix);
+
 			pEffect->Begin(0, D3DXFX_DONOTSAVESTATE);
 			pEffect->BeginPass(0);
 

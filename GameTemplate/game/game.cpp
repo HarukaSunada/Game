@@ -5,7 +5,7 @@
 #include "game.h"
 #include "TitleScene.h"
 
-
+Camera* g_camera;
 /*!
  * @brief	コンストラクタ。
  */
@@ -40,10 +40,12 @@ void Game::Start()
 	light.SetDiffuseLightColor(1, D3DXVECTOR4(0.2f, 0.2f, 0.2f, 1.0f));
 	light.SetDiffuseLightColor(2, D3DXVECTOR4(0.3f, 0.3f, 0.3f, 1.0f));
 	light.SetDiffuseLightColor(3, D3DXVECTOR4(0.2f, 0.2f, 0.2f, 1.0f));
-	light.SetAmbientLight(D3DXVECTOR4(0.3f, 0.3f, 0.3f, 1.0f));
+	light.SetAmbientLight(D3DXVECTOR4(0.5f, 0.5f, 0.5f, 1.0f));
 
+	//title.Init();
 	//カメラを初期化
 	camera.Init();
+	g_camera = camera.GetCamera();
 
 	//プレイヤーを初期化
 	player.Init();
@@ -88,6 +90,7 @@ void Game::Update()
  */
 void Game::Render()
 {
+	//title.Draw();
 	player.Draw();
 	enemyManager.Draw();
 	map.Draw();

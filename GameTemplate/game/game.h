@@ -12,6 +12,7 @@
 #include "Enemy/Enemy.h"
 #include "Enemy/Skelton.h"
 #include "Enemy/EnemyManager.h"
+#include "TitleScene.h"
 
 /*!
  * @brief	ゲームクラス。
@@ -99,6 +100,8 @@ private:
 	bool			gameOver=false;		//ゲームオーバーフラグ
 
 	const float		frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。
+
+	TitleScene	title;
 };
 
 extern Game* game;		//ゲームのインスタンス

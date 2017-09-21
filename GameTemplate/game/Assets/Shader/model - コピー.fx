@@ -16,8 +16,6 @@ float4x4	g_viewMatrixRotInv;		//!<カメラの回転行列の逆行列。
 
 bool g_isHasNormalMap;			//法線マップ保持している？
 
-float3 g_eyePos;	//視点
-
 texture g_diffuseTexture;		//ディフューズテクスチャ。
 sampler g_diffuseTextureSampler = 
 sampler_state
@@ -142,28 +140,8 @@ float4 PSMain( VS_OUTPUT In ) : COLOR
 {
 	float4 color = tex2D(g_diffuseTextureSampler, In.Tex0);
 	float3 normal = In.Normal;
-	
-	//ディフューズライトを計算
+		
 	float4 lig = DiffuseLight(normal);
-
-	//モデルのワールド頂点座標?
-	float3 worldPos = mul(In.Pos, g_worldMatrix);
-
-	//視点へのベクトル
-	float3 E = normalize(g_eyePos - worldPos);
-
-	//反射ベクトル
-	//ディフューズライトの向き　g_light.diffuseLightDir[0]
-	float3  R = -g_light.diffuseLightDir[0] + 2.0f * dot(normal, g_light.diffuseLightDir[0])*normal;
-
-	//スペキュラの強さを求める
-	float3 spec = max(0.0f, dot(R, E));
-
-	//絞りを適応
-	spec = pow(spec, 20.0f);
-	
-	//lig.xyz += spec;
-
 	color *= lig;
 	
 	return color;

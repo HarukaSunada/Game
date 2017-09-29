@@ -14,6 +14,8 @@ float4x4	g_worldMatrix;			//!<ワールド行列。
 float4x4	g_rotationMatrix;		//!<回転行列。
 float4x4	g_viewMatrixRotInv;		//!<カメラの回転行列の逆行列。
 
+//float3		g_eyePos;
+
 bool g_isHasNormalMap;			//法線マップ保持している？
 
 texture g_diffuseTexture;		//ディフューズテクスチャ。

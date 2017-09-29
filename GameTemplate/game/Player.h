@@ -41,6 +41,9 @@ public:
 	//dm　ダメージ数
 	void Damage(int dm);
 
+	//解放
+	void Release();
+
 	//位置を取得
 	D3DXVECTOR3 GetPosition()
 	{

@@ -58,3 +58,14 @@ void Map::Update()
 		mapChipList[i]->Update();
 	}
 }
+
+void Map::Release()
+{
+	//マップチップを一個ずつ削除
+	for (int i = 0; i < mapChipList.size(); i++) {
+		mapChipList[i]->Remove();
+		delete mapChipList[i];
+	}
+	mapChipList.clear();
+	mapChipList.shrink_to_fit();
+}

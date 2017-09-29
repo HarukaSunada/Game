@@ -3,7 +3,6 @@
  */
 #include "stdafx.h"
 #include "game.h"
-#include "TitleScene.h"
 
 Camera* g_camera;
 /*!
@@ -42,7 +41,6 @@ void Game::Start()
 	light.SetDiffuseLightColor(3, D3DXVECTOR4(0.2f, 0.2f, 0.2f, 1.0f));
 	light.SetAmbientLight(D3DXVECTOR4(0.5f, 0.5f, 0.5f, 1.0f));
 
-	//title.Init();
 	//ƒJƒƒ‰‚ğ‰Šú‰»
 	camera.Init();
 	g_camera = camera.GetCamera();
@@ -90,7 +88,6 @@ void Game::Update()
  */
 void Game::Render()
 {
-	//title.Draw();
 	player.Draw();
 	enemyManager.Draw();
 	map.Draw();

@@ -51,6 +51,9 @@ public:
 	//•`‰æ
 	void Draw();
 
+	//íœ‚Ìˆ—
+	void Remove();
+
 	//ˆÊ’u‚ğæ“¾
 	D3DXVECTOR3 GetPosition()
 	{

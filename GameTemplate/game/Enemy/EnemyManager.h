@@ -22,6 +22,9 @@ public:
 	//ダメージ処理
 	void Damage(int dm);
 
+	//削除処理
+	void Release();
+
 private:
 	std::vector<Enemy*>	enemyList;	//敵のリスト
 };

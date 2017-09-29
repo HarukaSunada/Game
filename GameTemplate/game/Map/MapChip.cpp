@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "game.h"
+#include "Scene/GameScene.h"
 #include "MapChip.h"
 
 
@@ -12,8 +12,7 @@ MapChip::MapChip() :
 
 MapChip::~MapChip()
 {
-	//„‘Ìœ‹Ž
-	g_physicsWorld->RemoveRigidBody(&rigidBody);
+
 }
 
 void MapChip::Init(SMapChipLocInfo& locInfo)
@@ -57,4 +56,10 @@ void MapChip::Update()
 void MapChip::Draw()
 {
 	model.Draw(&game->GetCamera()->GetViewMatrix(), &game->GetCamera()->GetProjectionMatrix());
+}
+
+void MapChip::Remove()
+{
+	//„‘Ìœ‹Ž
+	g_physicsWorld->RemoveRigidBody(&rigidBody);
 }

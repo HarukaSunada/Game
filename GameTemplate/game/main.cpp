@@ -4,17 +4,22 @@
 #include "stdafx.h"
 #include "myEngine/Graphics/Camera.h"
 #include "myEngine/Graphics/Light.h"
-#include "game.h"
+//#include "game.h"
+#include "Scene/SceneManager.h"
 
-Game* game;
+//Game* game;
+SceneManager* scene;
 
 //-----------------------------------------------------------------------------
 // Name: ゲームを初期化。
 //-----------------------------------------------------------------------------
 void Init()
 {
-	game = new Game;
-	game->Start();
+	//game = new Game;
+	//game->Start();
+
+	scene = new SceneManager;
+	scene->Start();
 }
 //-----------------------------------------------------------------------------
 // Name: 描画処理。
@@ -26,7 +31,8 @@ VOID Render()
 	//シーンの描画開始。
 	g_pd3dDevice->BeginScene();
 
-	game->Render();
+	//game->Render();
+	scene->Render();
 
 	// シーンの描画終了。
 	g_pd3dDevice->EndScene();
@@ -38,14 +44,16 @@ VOID Render()
  -----------------------------------------------------------------------------*/
 void Update()
 {
-	game->Update();
+	//game->Update();
+	scene->Update();
 }
 //-----------------------------------------------------------------------------
 //ゲームが終了するときに呼ばれる処理。
 //-----------------------------------------------------------------------------
 void Terminate()
 {
-	delete game;
+	//delete game;
+	delete scene;
 	delete g_effectManager;
 	g_pd3dDevice->Release();
 	g_pD3D->Release();

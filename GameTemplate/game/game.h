@@ -12,7 +12,7 @@
 #include "Enemy/Enemy.h"
 #include "Enemy/Skelton.h"
 #include "Enemy/EnemyManager.h"
-#include "TitleScene.h"
+#include "Scene/TitleScene.h"
 
 /*!
  * @brief	ゲームクラス。
@@ -102,6 +102,8 @@ private:
 	const float		frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。
 
 	TitleScene	title;
+
+	bool		isTitle = true;
 };
 
 extern Game* game;		//ゲームのインスタンス

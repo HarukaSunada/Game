@@ -30,7 +30,7 @@ namespace {
 		D3DXMatrixMultiply(&viewProj, viewMatrix, projMatrix);
 
 		D3DXVECTOR3 eyePos;
-
+		eyePos = g_camera->GetEyePt();
 		
 		//テクニックを設定。
 		{
@@ -52,7 +52,6 @@ namespace {
 				sizeof(Light)
 			);
 			//視点を送る
-			eyePos = g_camera->GetEyePt();
 			pEffect->SetVector("g_eyePos", (D3DXVECTOR4*)&eyePos);
 		}
 		if (pMeshContainer->pSkinInfo != NULL)

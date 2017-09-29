@@ -153,15 +153,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ClearMarker.cpp" />
     <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="Enemy\EnemyManager.cpp" />
     <ClCompile Include="Enemy\Skelton.cpp" />
-    <ClCompile Include="game.cpp" />
     <ClCompile Include="GameCamera.cpp" />
+    <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="HPGauge.cpp" />
+    <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map\Map.cpp" />
     <ClCompile Include="Map\MapChip.cpp" />
+    <ClCompile Include="Map\Sky.cpp" />
     <ClCompile Include="myEngine\Graphics\Animation.cpp" />
     <ClCompile Include="myEngine\Graphics\Camera.cpp" />
     <ClCompile Include="myEngine\Graphics\EffectManager.cpp" />
@@ -175,8 +178,11 @@
     <ClCompile Include="myEngine\Physics\RigidBody.cpp" />
     <ClCompile Include="myEngine\System.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Sky.cpp" />
+    <ClCompile Include="RenderTarget.cpp" />
+    <ClCompile Include="SceneBase.cpp" />
+    <ClCompile Include="Scene\GameScene.cpp" />
+    <ClCompile Include="Scene\SceneManager.cpp" />
+    <ClCompile Include="Scene\TitleScene.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -184,17 +190,19 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ClearMarker.h" />
     <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="Enemy\EnemyManager.h" />
     <ClInclude Include="Enemy\Skelton.h" />
-    <ClInclude Include="game.h" />
     <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="HPGauge.h" />
+    <ClInclude Include="LoadingScene.h" />
     <ClInclude Include="Map\Map.h" />
     <ClInclude Include="Map\MapChip.h" />
+    <ClInclude Include="Map\Sky.h" />
     <ClInclude Include="myEngine\Graphics\Animation.h" />
     <ClInclude Include="myEngine\Graphics\Camera.h" />
     <ClInclude Include="myEngine\Graphics\EffectManager.h" />
@@ -211,11 +219,13 @@
     <ClInclude Include="myEngine\Physics\RigidBody.h" />
     <ClInclude Include="myEngine\system.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="Sky.h" />
+    <ClInclude Include="RenderTarget.h" />
+    <ClInclude Include="SceneBase.h" />
+    <ClInclude Include="Scene\GameScene.h" />
+    <ClInclude Include="Scene\SceneManager.h" />
+    <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

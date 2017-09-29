@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Enemy.h"
-#include "game.h"
+#include "Scene/GameScene.h"
 
 
 Enemy::Enemy()
@@ -27,7 +27,6 @@ void Enemy::Init(D3DXVECTOR3 pos)
 	act = actWait;
 
 	//キャラクタコントローラを初期化。
-	//D3DXVECTOR3 pos = D3DXVECTOR3(0.0f, 2.00f, 7.36f);
 	characterController.Init(0.3f, 1.0f, pos);
 	characterController.SetGravity(-20.0f);		//重力設定
 }
@@ -70,4 +69,11 @@ void Enemy::Draw()
 		return;
 	}
 	model.Draw(&game->GetCamera()->GetViewMatrix(), &game->GetCamera()->GetProjectionMatrix());
+}
+
+//削除時の処理
+void Enemy::Remove()
+{
+	//剛体除去
+	g_physicsWorld->RemoveRigidBody(characterController.GetRigidBody());
 }

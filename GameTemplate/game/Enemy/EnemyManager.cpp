@@ -43,3 +43,14 @@ void EnemyManager::Damage(int dm)
 		enemyList[i]->Damage(dm);
 	}
 }
+
+void EnemyManager::Release()
+{
+	//エネミーを一個ずつ削除
+	for (int i = 0; i < enemyList.size(); i++) {
+		enemyList[i]->Remove();
+		delete enemyList[i];
+	}
+	enemyList.clear();
+	enemyList.shrink_to_fit();
+}

@@ -20,6 +20,9 @@ public:
 	void Update();
 	void Draw();
 
+	//削除時の処理
+	void Remove();
+
 private:
 	SkinModel		model;			//モデル
 	SkinModelData	modelData;		//モデルデータ

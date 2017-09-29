@@ -17,8 +17,10 @@ public:
 
 	//更新
 	void Update();
+
+	//ダメージ処理
+	void Release();
 private:
 	std::vector<MapChip*>	mapChipList;	//マップチップのリスト
-	EnemyManager*	enemy;
 	Sky sky;
 };

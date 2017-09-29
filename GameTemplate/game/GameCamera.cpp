@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "GameCamera.h"
-#include "game.h"
+#include "Scene/GameScene.h"
 #define SPEED 0.02f
 
 GameCamera::GameCamera()

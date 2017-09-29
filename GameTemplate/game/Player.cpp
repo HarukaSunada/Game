@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
-#include "game.h"
+#include "Scene/GameScene.h"
 #define MoveSpeedMax 6.0f
 #define MoveSpeedMin 0.0f
 
@@ -13,8 +13,7 @@ Player::Player()
 
 Player::~Player()
 {
-	////„‘Ìœ‹Ž
-	//g_physicsWorld->RemoveRigidBody(characterController.GetRigidBody());
+
 }
 
 void Player::Init()
@@ -208,4 +207,10 @@ float Player::Angle(D3DXVECTOR3 enemyPos)
 	angle = acos(angle);
 
 	return angle;
+}
+
+void Player::Release()
+{
+	//„‘Ìœ‹Ž
+	g_physicsWorld->RemoveRigidBody(characterController.GetRigidBody());
 }

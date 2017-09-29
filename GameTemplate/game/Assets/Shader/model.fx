@@ -14,9 +14,9 @@ float4x4	g_worldMatrix;			//!<ワールド行列。
 float4x4	g_rotationMatrix;		//!<回転行列。
 float4x4	g_viewMatrixRotInv;		//!<カメラの回転行列の逆行列。
 
-bool g_isHasNormalMap;			//法線マップ保持している？
+float3		g_eyePos;
 
-float3 g_eyePos;	//視点
+bool g_isHasNormalMap;			//法線マップ保持している？
 
 texture g_diffuseTexture;		//ディフューズテクスチャ。
 sampler g_diffuseTextureSampler = 
@@ -135,6 +135,26 @@ VS_OUTPUT VSMain( VS_INPUT In, uniform bool hasSkin )
     o.Tex0 = In.Tex0;
 	return o;
 }
+
+/*!
+	スペキュラライトを計算
+	worldPos		ワールド頂点座標
+	normal			法線
+*/
+float3 SpecularLight(float3 worldPos, float3 normal)
+{
+	float3 eyePos = 0.0f;
+
+	//視点へのベクトル
+	float3 E = normalize(eyePos - worldPos);
+	//反射ベクトル
+	float3  R = -g_light.diffuseLightDir[0] + 2 * dot(normal, g_light.diffuseLightDir[0])*normal;
+	//スペキュラの強さを求める
+	float3 t = max(0.0f, dot(R, E));
+	t = pow(t, 50.0f);
+
+	return t;
+}
 /*!
  * @brief	ピクセルシェーダー。
  */
@@ -143,26 +163,10 @@ float4 PSMain( VS_OUTPUT In ) : COLOR
 	float4 color = tex2D(g_diffuseTextureSampler, In.Tex0);
 	float3 normal = In.Normal;
 	
-	//ディフューズライトを計算
 	float4 lig = DiffuseLight(normal);
 
-	//モデルのワールド頂点座標?
-	float3 worldPos = mul(In.Pos, g_worldMatrix);
-
-	//視点へのベクトル
-	float3 E = normalize(g_eyePos - worldPos);
-
-	//反射ベクトル
-	//ディフューズライトの向き　g_light.diffuseLightDir[0]
-	float3  R = -g_light.diffuseLightDir[0] + 2.0f * dot(normal, g_light.diffuseLightDir[0])*normal;
-
-	//スペキュラの強さを求める
-	float3 spec = max(0.0f, dot(R, E));
-
-	//絞りを適応
-	spec = pow(spec, 20.0f);
-	
-	//lig.xyz += spec;
+	//スペキュラ
+	//lig.xyz += SpecularLight(In.Pos, normal);
 
 	color *= lig;
 	

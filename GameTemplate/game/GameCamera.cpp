@@ -21,6 +21,8 @@ void GameCamera::Init()
 	camera.SetLookatPt(D3DXVECTOR3(0.0f, 2.5f, 0.0f));
 	camera.SetFar(1000.0f);
 	camera.Update();
+	cameraCollisionSolver.Init(0.2f);
+
 	toEyePos = camera.GetEyePt() - camera.GetLookatPt();
 }
 
@@ -86,6 +88,13 @@ void GameCamera::Update()
 	D3DXVECTOR3 eyePos = targetPos + toEyePos;
 	camera.SetLookatPt(targetPos);
 	camera.SetEyePt(eyePos);
+
+	//カメラコリジョン処理の実行。
+	D3DXVECTOR3 newPos;
+	if (cameraCollisionSolver.Execute(newPos, camera.GetEyePt(), camera.GetLookatPt()))
+	{
+		camera.SetEyePt(newPos);
+	}
 
 	//カメラからZ方向への向き
 	cameraDirZ = targetPos - eyePos;

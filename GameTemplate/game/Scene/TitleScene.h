@@ -21,5 +21,6 @@ public:
 
 private:
 	Sprite			back;
+	bool			sceneEnd = false;
 };
 

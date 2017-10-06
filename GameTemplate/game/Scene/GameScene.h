@@ -20,6 +20,11 @@
 class Game : public SceneBase
 {
 public:
+	enum GameState {
+		GameRun,
+		GameOver,
+		GameClear,
+	};
 	/*!
 	 * @brief	コンストラクタ。
 	 */
@@ -86,15 +91,22 @@ public:
 		return frameDeltaTime;
 	}
 
-	//ゲームオーバーになったか取得
-	bool isGameOver()
-	{
-		return gameOver;
-	}
-
+	//シーンが終わったかどうか
 	bool isSceneEnd()
 	{
 		return sceneEnd;
+	}
+
+	//テスト用
+	void setEnd()
+	{
+		sceneEnd = true;
+		state = GameClear;
+	}
+
+	GameState GetState()
+	{
+		return state;
 	}
 private:	
 	Light			light;				//ライト
@@ -106,13 +118,12 @@ private:
 	HPGauge			gauge;				//HPゲージ
 	EnemyManager	enemyManager;		//エネミー管理
 
-	bool			gameOver=false;		//ゲームオーバーフラグ
+	bool			sceneEnd = false;	//シーン終了フラグ
+	GameState		state;
 
 	const float		frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。
 
 	float timer = 0.0f;
-
-	bool		sceneEnd = false;
 };
 
 extern Game* game;		//ゲームのインスタンス

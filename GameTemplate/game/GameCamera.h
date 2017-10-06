@@ -1,4 +1,5 @@
 #pragma once
+#include "myEngine/Physics/CameraCollisionSolver.h"
 
 /*
 	ゲームカメラクラス
@@ -38,5 +39,7 @@ private:
 
 	D3DXVECTOR3		cameraDirZ;		//カメラから見た奥方向のベクトル
 	D3DXVECTOR3		cameraDirX;		//カメラから見た横方向のベクトル
+
+	CameraCollisionSolver	cameraCollisionSolver;	//カメラのコリジョン
 };
 

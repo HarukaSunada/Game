@@ -1,5 +1,6 @@
 #include "Enemy/EnemyManager.h"
 #include "Sky.h"
+#include "ClearMarker.h"
 class MapChip;
 
 class Map
@@ -23,4 +24,5 @@ public:
 private:
 	std::vector<MapChip*>	mapChipList;	//マップチップのリスト
 	Sky sky;
+	ClearMarker marker;
 };

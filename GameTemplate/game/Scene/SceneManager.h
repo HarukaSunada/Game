@@ -3,6 +3,8 @@
 #include "GameScene.h"
 #include "SceneBase.h"
 #include "LoadingScene.h"
+#include "GameOverScene.h"
+#include "ResultScene.h"
 
 /*
 	シーン管理クラス
@@ -21,6 +23,8 @@ public:
 
 	//描画関数
 	void Render();
+
+	void SceneChange();
 
 	//シーン状態
 	enum SceneState {
@@ -45,7 +49,6 @@ public:
 private:
 	SceneState			state;		//現在のシーン
 	Pad					pad;		//ゲームパッド
-	TitleScene*			Title;		//タイトルシーン
 	SceneBase*			scene;		//現在のシーンのポインタ
 	LoadingScene		loading;	//ローディング画面
 	LoadStep			load;		//現在のローディング段階

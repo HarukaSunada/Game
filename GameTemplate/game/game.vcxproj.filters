@@ -132,6 +132,18 @@
     <ClCompile Include="ClearMarker.cpp">
       <Filter>ソース ファイル\Map</Filter>
     </ClCompile>
+    <ClCompile Include="ResultScene.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ShadowMap.cpp">
+      <Filter>ソース ファイル\myEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="myEngine\Physics\CameraCollisionSolver.cpp">
+      <Filter>ソース ファイル\myEngine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="myEngine\Physics\SphereCollider.cpp">
+      <Filter>ソース ファイル\myEngine\Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -215,16 +227,10 @@
     <ClInclude Include="Map\Sky.h">
       <Filter>ソース ファイル\Map</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\GameScene.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="SceneBase.h">
       <Filter>ソース ファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="LoadingScene.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOverScene.h">
       <Filter>ソース ファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="RenderTarget.h">
@@ -235,6 +241,24 @@
     </ClInclude>
     <ClInclude Include="ClearMarker.h">
       <Filter>ソース ファイル\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultScene.h">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverScene.h">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\GameScene.h">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadowMap.h">
+      <Filter>ソース ファイル\myEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="myEngine\Physics\CameraCollisionSolver.h">
+      <Filter>ソース ファイル\myEngine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="myEngine\Physics\SphereCollider.h">
+      <Filter>ソース ファイル\myEngine\Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

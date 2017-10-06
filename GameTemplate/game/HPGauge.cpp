@@ -47,12 +47,25 @@ void HPGauge::Update()
 	D3DXVECTOR2 scale = gauge.GetScale();
 	int HP = game->GetPlayer()->GetStatus().HP;
 
+	////6以上の時は青
+	//if (HP >= 6) {
+	//	showGauge = &gauge3;
+	//}
+	////3以上の時は黄
+	//else if (HP >= 3) {
+	//	showGauge = &gauge2;
+	//}
+	////3以下は赤
+	//else
+	//{
+	//	showGauge = &gauge;
+	//}
 	//6以上の時は青
-	if (HP >= 6) {
+	if (HP >= 4) {
 		showGauge = &gauge3;
 	}
 	//3以上の時は黄
-	else if (HP >= 3) {
+	else if (HP >= 2) {
 		showGauge = &gauge2;
 	}
 	//3以下は赤
@@ -61,8 +74,10 @@ void HPGauge::Update()
 		showGauge = &gauge;
 	}
 
+	////スケールセット
+	//scale.x = (float)HP / 10.0f;
 	//スケールセット
-	scale.x = (float)HP / 10.0f;
+	scale.x = (float)HP / 5.0f;
 	showGauge->SetScale(scale);
 	showGauge->SetupMatrices();
 

@@ -53,6 +53,8 @@ void Game::Init()
 
 	//HPゲージの初期化
 	gauge.Init();
+
+	state = GameRun;
 }
 /*!
  * @brief	更新。
@@ -67,9 +69,9 @@ void Game::Update()
 
 	//HPが0なのでゲームオーバー
 	if (player.GetStatus().HP <= 0) {
-		gameOver = true;
+		state = GameOver;
 	}
-	if (gameOver == true) {
+	if (state == GameOver) {
 		timer += frameDeltaTime;
 		if (timer > 3.0f) {
 			sceneEnd = true;

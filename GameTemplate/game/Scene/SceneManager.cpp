@@ -16,9 +16,8 @@ void SceneManager::Start()
 {
 	//タイトルシーン生成
 	state = stateTitel;
-	Title = new TitleScene();
-	Title->Init();
-	scene = Title;
+	scene = new TitleScene();
+	scene->Init();
 
 	loading.Init();
 	load = Wait;
@@ -40,16 +39,7 @@ void SceneManager::Update()
 			load = Wait;
 		}
 		else if (load == LoadStart) {
-			//タイトルの削除
-			delete Title;
-
-			//ゲームシーンへ切り替え
-			state = stateGame;
-			game = new Game();
-			game->Init();
-
-			load = LoadEnd;
-			scene = game;
+			SceneChange();
 		}
 		else if (pad.IsTrigger(Pad::enButtonA)) {
 			load = LoadStart;
@@ -58,31 +48,45 @@ void SceneManager::Update()
 		break;
 	//ゲームシーン
 	case stateGame:
+		//テスト用
+		if (pad.IsTrigger(Pad::enButtonStart)) {
+			game->setEnd();
+		}
+
 		if (load == LoadEnd) {
 			load = Wait;
 		}
 		else if (load == LoadStart) {
-			game->Release();
-			delete game;
-
-			//タイトルへ切り替え
-			state = stateTitel;
-			Title = new TitleScene();
-			Title->Init();
-
-			load = LoadEnd;
-			scene = Title;
+			SceneChange();
 		}
 		//ゲームオーバー(仮)
-		else if (game->isSceneEnd() || pad.IsTrigger(Pad::enButtonStart)) {
+		else if (game->isSceneEnd()) {
 			load = LoadStart;
 		}
 		break;
 	case stateResult:
+		if (load == LoadEnd) {
+			load = Wait;
+		}
+		else if (load == LoadStart) {
+			SceneChange();
+		}
+		//仮
+		else if (pad.IsTrigger(Pad::enButtonStart)) {
+			load = LoadStart;
+		}
 		break;
 	case stateGameOver:
-		break;
-	default:
+		if (load == LoadEnd) {
+			load = Wait;
+		}
+		else if (load == LoadStart) {
+			SceneChange();
+		}
+		//仮
+		else if (pad.IsTrigger(Pad::enButtonStart)) {
+			load = LoadStart;
+		}
 		break;
 	}
 }
@@ -94,4 +98,57 @@ void SceneManager::Render()
 	if (load != Wait) {
 		loading.Draw();
 	}
+}
+
+void SceneManager::SceneChange()
+{
+	switch (state)
+	{
+	//タイトルシーン
+	case stateTitel:
+		//タイトルの削除
+		delete scene;
+
+		//ゲームシーンへ切り替え
+		state = stateGame;
+		game = new Game();
+		game->Init();
+
+		scene = game;
+		break;
+
+	//ゲームシーン
+	case stateGame:
+		if (game->GetState() == Game::GameClear) {
+			//タイトルへ切り替え
+			state = stateResult;
+			scene = new ResultScene();
+		}
+		else{
+			//タイトルへ切り替え
+			state = stateGameOver;
+			scene = new GameOverScene();
+		}
+
+		game->Release();
+		delete game;
+
+		scene->Init();
+
+		break;
+
+	//リザルトシーン
+	case stateResult:
+	case stateGameOver:
+		delete scene;
+
+		//タイトルへ切り替え
+		state = stateTitel;
+		scene = new TitleScene();
+		scene->Init();
+
+		break;
+	}
+
+	load = LoadEnd;
 }

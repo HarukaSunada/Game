@@ -29,6 +29,10 @@ void Map::Init(EnemyManager* en)
 		if (strcmp("Skeleton@Skin", mapChipInfo[i].modelName) == 0) {
 			en->CreateSkelton(mapChipInfo[i].position);
 		}
+		//クリアマーカーテスト
+		else if (strcmp("test", mapChipInfo[i].modelName) == 0) {
+			marker.Init(mapChipInfo[i].position);
+		}
 		//マップチップ
 		else {
 			//MapChipのインスタンスを動的に生成
@@ -48,6 +52,7 @@ void Map::Draw()
 	for (int i = 0; i < mapChipList.size(); i++) {
 		mapChipList[i]->Draw();
 	}
+	marker.Draw();
 }
 
 void Map::Update()
@@ -57,6 +62,7 @@ void Map::Update()
 	for (int i = 0; i < mapChipList.size(); i++) {
 		mapChipList[i]->Update();
 	}
+	marker.Update();
 }
 
 void Map::Release()

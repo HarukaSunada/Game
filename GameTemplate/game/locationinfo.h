@@ -1,10 +1,4 @@
-﻿////青空
-//{
-//"青空",
-//D3DXVECTOR3(0.00f, 0.00f, 0.00f),             //平行移動
-//D3DXQUATERNION(0.00f, 0.00f, 0.00f, 0.00f),  //回転
-//},
-//fence_a
+﻿//fence_a
 {
 	"fence_a",
 	D3DXVECTOR3(-6.16f, 0.38f, 12.16f),             //平行移動
@@ -307,13 +301,13 @@
 //Dungeon Walls Set_IN
 {
 	"Dungeon Walls Set_IN",
-	D3DXVECTOR3(-2.00f, 4.1f, -22.80f),             //平行移動
+	D3DXVECTOR3(-2.00f, 4.20f, -22.80f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //Dungeon Walls Set_IN
 {
 	"Dungeon Walls Set_IN",
-	D3DXVECTOR3(-1.80f, 4.1f, -65.80f),             //平行移動
+	D3DXVECTOR3(-1.80f, 4.70f, -65.80f),             //平行移動
 	D3DXQUATERNION(0.00f, -1.00f, 0.00f, 0.02f ),  //回転
 },
 //Building_a
@@ -362,5 +356,11 @@
 {
 	"Skeleton@Skin",
 	D3DXVECTOR3(-26.30f, 11.20f, -35.80f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+},
+//test
+{
+	"test",
+	D3DXVECTOR3(-1.68f, 0.00f, -78.38f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },

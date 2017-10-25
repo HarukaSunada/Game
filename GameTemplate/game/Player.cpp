@@ -144,7 +144,7 @@ void Player::Action()
 		game->GetEnemyManager()->Damage(1);
 		anim = animAttack;
 	}
-	if (attackTimer > 0.8f)
+	if (attackTimer > 0.75f)
 	{
 		attackTimer = 0.0f;
 		isAttack = false;

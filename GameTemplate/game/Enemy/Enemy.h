@@ -38,7 +38,7 @@ public:
 	};
 
 	//‰Šú‰»
-	virtual void Init(D3DXVECTOR3 pos);
+	virtual void Init(D3DXVECTOR3 pos, SkinModelData& mData);
 
 	//XV
 	void Update();

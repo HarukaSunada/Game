@@ -15,8 +15,10 @@ Enemy::~Enemy()
 	//g_physicsWorld->RemoveRigidBody(characterController.GetRigidBody());
 }
 
-void Enemy::Init(D3DXVECTOR3 pos)
+void Enemy::Init(D3DXVECTOR3 pos, SkinModelData& mData)
 {
+	modelData.CloneModelData(mData, &animation);
+
 	//ƒ‚ƒfƒ‹‚Ì‰Šú‰»
 	model.Init(&modelData);
 	model.SetLight(game->GetLight());	//ƒ‰ƒCƒg‚Ìİ’è

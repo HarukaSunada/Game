@@ -14,12 +14,16 @@ GameCamera::~GameCamera()
 
 void GameCamera::Init()
 {
+	D3DXVECTOR3 initCamraPos = D3DXVECTOR3(0.0f, 5.0f, 10.0f);
+
 	//カメラを初期化
 	camera.Init();
-	camera.SetEyePt(D3DXVECTOR3(0.0f, 5.0f, 10.0f));
-	//camera.SetEyePt(D3DXVECTOR3(0.0f, 7.0f, 10.0f));
+	//camera.Init(D3DXVECTOR3(0.0f, 2.5f, 0.0f), initCamraPos, 100.0f);
+
+	camera.SetEyePt(initCamraPos);
 	camera.SetLookatPt(D3DXVECTOR3(0.0f, 2.5f, 0.0f));
 	camera.SetFar(1000.0f);
+
 	camera.Update();
 	cameraCollisionSolver.Init(0.2f);
 
@@ -79,21 +83,25 @@ void GameCamera::Update()
 		}
 	}
 
-	//カメラの視点を決定
 	//プレイヤー追従カメラ
 	D3DXVECTOR3 targetPos = game->GetPlayer()->GetPosition();
-	//視点調整
+	//注視点調整
 	targetPos.y += 1.5f;
 
+	//カメラの視点を決定
 	D3DXVECTOR3 eyePos = targetPos + toEyePos;
 	camera.SetLookatPt(targetPos);
 	camera.SetEyePt(eyePos);
+	
+	//camera.SetTarTarget(targetPos);	//視点設定
+	//camera.UpdateSpringCamera();		//バネカメラの更新
 
 	//カメラコリジョン処理の実行。
 	D3DXVECTOR3 newPos;
 	if (cameraCollisionSolver.Execute(newPos, camera.GetEyePt(), camera.GetLookatPt()))
 	{
 		camera.SetEyePt(newPos);
+		//camera.ClearSpringParame();
 	}
 
 	//カメラからZ方向への向き
@@ -107,5 +115,9 @@ void GameCamera::Update()
 	cameraDirX.z = -cameraDirZ.x;
 	cameraDirX.y = 0.0f;
 
+	//カメラ更新
 	camera.Update();
+
+	//カメラ更新
+	//camera.UpdateCamera();
 }

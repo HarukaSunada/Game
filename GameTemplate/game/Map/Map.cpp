@@ -27,7 +27,7 @@ void Map::Init(EnemyManager* en)
 	for (int i = 0; i < numObject; i++) {
 		//スケルトン
 		if (strcmp("Skeleton@Skin", mapChipInfo[i].modelName) == 0) {
-			en->CreateSkelton(mapChipInfo[i].position);
+			en->CreateEnemy(mapChipInfo[i].position, skelton);
 		}
 		//クリアマーカーテスト
 		else if (strcmp("test", mapChipInfo[i].modelName) == 0) {

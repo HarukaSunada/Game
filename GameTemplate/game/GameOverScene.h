@@ -30,6 +30,7 @@ private:
 	Sprite			back;
 	Sprite			conti;
 	Sprite			end;
+	Sprite			cursor;
 	bool			sceneEnd = false;	//シーン終了フラグ
 	SelectState 	state;				//選択状態
 };

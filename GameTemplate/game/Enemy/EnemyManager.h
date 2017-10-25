@@ -4,6 +4,12 @@
 /*
 	敵管理クラス
 */
+
+//エネミーの種類
+enum EnemyType {
+	skelton,
+};
+
 class EnemyManager
 {
 public:
@@ -16,8 +22,8 @@ public:
 	//描画
 	void Draw();
 
-	//スケルトン生成
-	void CreateSkelton(D3DXVECTOR3 pos);
+	//エネミー生成
+	void CreateEnemy(D3DXVECTOR3 pos, EnemyType type);
 
 	//ダメージ処理
 	void Damage(int dm);
@@ -26,5 +32,13 @@ public:
 	void Release();
 
 private:
+	//エネミーのデータ
+	struct EnemyData
+	{
+		SkinModelData	model;	//モデルデータ
+		bool			isLoad;	//すでにロードしたか
+	};
+
+	EnemyData enData;
 	std::vector<Enemy*>	enemyList;	//敵のリスト
 };

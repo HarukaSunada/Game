@@ -2,8 +2,8 @@
 #include "Skelton.h"
 #include "game.h"
 
-SkinModelData	SkeltonModelData;	//スキンモデルデータ
-bool			SkeltonFlag = false;		//すでに読み込んでいるか
+//SkinModelData	SkeltonModelData;	//スキンモデルデータ
+//bool			SkeltonFlag = false;		//すでに読み込んでいるか
 
 Skelton::Skelton()
 {
@@ -14,21 +14,21 @@ Skelton::~Skelton()
 {
 }
 
-void Skelton::Init(D3DXVECTOR3 pos)
+void Skelton::Init(D3DXVECTOR3 pos, SkinModelData& mData)
 {
 	//ステータス初期化
 	state.HP = 3;
 	state.score = 0;
 
-	if (!SkeltonFlag) {
-		//モデル読み込み
-		SkeltonModelData.LoadModelData("Assets/modelData/enemy_00.X", NULL);
-		SkeltonFlag = true;
-	}
-	//モデルをクローン
-	modelData.CloneModelData(SkeltonModelData, &animation);
+	//if (!SkeltonFlag) {
+	//	//モデル読み込み
+	//	SkeltonModelData.LoadModelData("Assets/modelData/enemy_00.X", NULL);
+	//	SkeltonFlag = true;
+	//}
+	////モデルをクローン
+	//modelData.CloneModelData(mData, &animation);
 
-	Enemy::Init(pos);
+	Enemy::Init(pos, mData);
 }
 
 //アクション

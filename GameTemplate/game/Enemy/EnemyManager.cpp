@@ -12,10 +12,21 @@ EnemyManager::~EnemyManager()
 {
 }
 
-void EnemyManager::CreateSkelton(D3DXVECTOR3 pos)
+void EnemyManager::CreateEnemy(D3DXVECTOR3 pos,EnemyType type)
 {
-	Enemy* enemy = new Skelton;
-	enemy->Init(pos);
+	//作成
+	Enemy* enemy = nullptr;
+	if (type == skelton) {
+		if (!enData.isLoad) {
+			//モデル読み込み
+			enData.model.LoadModelData("Assets/modelData/enemy_00.X", NULL);
+			enData.isLoad = true;
+		}
+		//作成
+		enemy = new Skelton;
+	}
+
+	enemy->Init(pos, enData.model);
 
 	//リストにプッシュ
 	enemyList.push_back(enemy);

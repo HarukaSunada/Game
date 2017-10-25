@@ -187,6 +187,7 @@
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
     <ClCompile Include="ShadowMap.cpp" />
+    <ClCompile Include="SpringCamera.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -232,6 +233,7 @@
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="ShadowMap.h" />
+    <ClInclude Include="SpringCamera.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

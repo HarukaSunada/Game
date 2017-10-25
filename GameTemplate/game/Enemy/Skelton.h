@@ -11,7 +11,7 @@ public:
 	~Skelton();
 
 	//‰Šú‰»
-	void Init(D3DXVECTOR3 pos) override;
+	void Init(D3DXVECTOR3 pos, SkinModelData& mData) override;
 
 	//s“®
 	void Action() override;

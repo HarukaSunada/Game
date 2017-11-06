@@ -36,12 +36,9 @@ void Enemy::Init(D3DXVECTOR3 pos, SkinModelData& mData)
 void Enemy::Update()
 {
 	//HPが0
-	if (state.HP <= 0) {
+	if (isDead) {
 		return;
 	}
-
-	//行動
-	Action();
 
 	if (isDamage)
 	{
@@ -53,6 +50,12 @@ void Enemy::Update()
 		isDamage = false;
 	}
 
+
+	//一定以上の距離離れたときは非処理
+	if (Length() > 600.0f) { return; }
+	//行動
+	Action();
+
 	//キャラクタコントローラーの実行
 	characterController.Execute();
 
@@ -62,14 +65,17 @@ void Enemy::Update()
 
 void Enemy::Damage(int dm)
 {
-
+	if (state.HP <= 0) {
+		isDead = true;
+		game->GetPlayer()->addScore(state.score);
+	}
 }
 
 void Enemy::Draw()
 {
-	if (state.HP <= 0) {
-		return;
-	}
+	//死んだ、または一定以上の距離離れたときは非表示
+	if (isDead|| Length() > 600.0f) { return; }
+
 	model.Draw(&game->GetCamera()->GetViewMatrix(), &game->GetCamera()->GetProjectionMatrix());
 }
 
@@ -78,4 +84,42 @@ void Enemy::Remove()
 {
 	//剛体除去
 	g_physicsWorld->RemoveRigidBody(characterController.GetRigidBody());
+}
+
+float Enemy::Length()
+{
+	//プレイヤーへのベクトル
+	D3DXVECTOR3 diff;
+	diff = game->GetPlayer()->GetPosition() - characterController.GetPosition();
+
+	//ベクトルの大きさ
+	float length = diff.x * diff.x + diff.y * diff.y + diff.z * diff.z;
+	sqrt(length);
+
+	return length;
+}
+
+float Enemy::Angle()
+{
+	//プレイヤーへのベクトル
+	D3DXVECTOR3 diff = game->GetPlayer()->GetPosition() - characterController.GetPosition();
+
+	//プレイヤーへの向き
+	D3DXVECTOR3 toPlayer;
+	D3DXVec3Normalize(&toPlayer, &diff);
+
+	//前方向
+	D3DXVECTOR3 direction;
+	D3DXMATRIX wMatrix = model.GetWorldMatrix();
+	direction.x = wMatrix.m[2][0];
+	direction.y = wMatrix.m[2][1];
+	direction.z = wMatrix.m[2][2];
+	D3DXVec3Normalize(&direction, &direction);
+
+	//視野角?
+	float angle = toPlayer.x * direction.x + toPlayer.y * direction.y + toPlayer.z * direction.z;
+	angle = acos(angle);
+
+	//プレイヤーへの角度を返す
+	return angle;
 }

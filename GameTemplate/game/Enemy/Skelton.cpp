@@ -2,9 +2,6 @@
 #include "Skelton.h"
 #include "game.h"
 
-//SkinModelData	SkeltonModelData;	//スキンモデルデータ
-//bool			SkeltonFlag = false;		//すでに読み込んでいるか
-
 Skelton::Skelton()
 {
 }
@@ -18,15 +15,7 @@ void Skelton::Init(D3DXVECTOR3 pos, SkinModelData& mData)
 {
 	//ステータス初期化
 	state.HP = 3;
-	state.score = 0;
-
-	//if (!SkeltonFlag) {
-	//	//モデル読み込み
-	//	SkeltonModelData.LoadModelData("Assets/modelData/enemy_00.X", NULL);
-	//	SkeltonFlag = true;
-	//}
-	////モデルをクローン
-	//modelData.CloneModelData(mData, &animation);
+	state.score = 100;
 
 	Enemy::Init(pos, mData);
 }
@@ -56,7 +45,7 @@ void Skelton::Action()
 		float angle = Angle();
 
 		//視野に入った、かつ近い
-		if (fabsf(angle) < D3DXToRadian(45.0f) && length < 30.0f) {
+		if (fabsf(angle) < D3DXToRadian(45.0f) && length < 50.0f) {
 			//発見した
 			act = actFound;
 		}
@@ -143,41 +132,6 @@ void Skelton::Damage(int dm)
 		act = actDamage;
 		state.HP -= dm;
 	}
-}
 
-float Skelton::Length()
-{
-	//プレイヤーへのベクトル
-	D3DXVECTOR3 diff;
-	diff = game->GetPlayer()->GetPosition() - characterController.GetPosition();
-
-	//ベクトルの大きさ
-	float length = diff.x * diff.x + diff.y * diff.y + diff.z * diff.z;
-	sqrt(length);
-
-	return length;
-}
-
-float Skelton::Angle()
-{
-	//プレイヤーへのベクトル
-	D3DXVECTOR3 diff = game->GetPlayer()->GetPosition() - characterController.GetPosition();
-
-	//プレイヤーへの向き
-	D3DXVECTOR3 toPlayer;
-	D3DXVec3Normalize(&toPlayer, &diff);
-
-	//前方向
-	D3DXVECTOR3 direction;
-	D3DXMATRIX wMatrix = model.GetWorldMatrix();
-	direction.x = wMatrix.m[2][0];
-	direction.y = wMatrix.m[2][1];
-	direction.z = wMatrix.m[2][2];
-	D3DXVec3Normalize(&direction, &direction);
-
-	//視野角?
-	float angle = toPlayer.x * direction.x + toPlayer.y * direction.y + toPlayer.z * direction.z;
-	angle = acos(angle);
-
-	return angle;
+	Enemy::Damage(dm);
 }

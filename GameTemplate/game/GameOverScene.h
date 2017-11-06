@@ -33,5 +33,6 @@ private:
 	Sprite			cursor;
 	bool			sceneEnd = false;	//シーン終了フラグ
 	SelectState 	state;				//選択状態
+	Pad					pad;
 };
 

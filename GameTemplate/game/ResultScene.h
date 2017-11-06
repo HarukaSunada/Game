@@ -1,6 +1,7 @@
 #pragma once
 #include "SceneBase.h"
 #include "Sprite.h"
+#include "Number.h"
 
 /*
 	リザルト画面クラス
@@ -19,7 +20,16 @@ public:
 	//描画
 	void Render();
 
+	void SetScore(int scr)
+	{
+		score = scr;
+	}
+
 private:
 	Sprite			back;
 	bool			sceneEnd = false;
+	int				score = 0;
+
+	Sprite			sp;
+	Number			num[4];
 };

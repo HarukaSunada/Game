@@ -53,6 +53,7 @@ void Game::Init()
 
 	//HPゲージの初期化
 	gauge.Init();
+	s_score.Init();
 
 	state = GameRun;
 }
@@ -89,6 +90,9 @@ void Game::Update()
 
 	//HPゲージ更新
 	gauge.Update();
+
+	//スコア表示更新
+	s_score.Update();
 }
 
 /*!
@@ -100,6 +104,7 @@ void Game::Render()
 	enemyManager.Draw();
 	map.Draw();
 	gauge.Draw();
+	s_score.Render();
 }
 
 void Game::Release()

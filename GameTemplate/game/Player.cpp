@@ -210,6 +210,11 @@ float Player::Angle(D3DXVECTOR3 enemyPos)
 	return angle;
 }
 
+void Player::addScore(int add)
+{
+	state.score += add;
+}
+
 void Player::Release()
 {
 	//„‘Ìœ‹

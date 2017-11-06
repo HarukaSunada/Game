@@ -13,6 +13,7 @@
 #include "Enemy/Skelton.h"
 #include "Enemy/EnemyManager.h"
 #include "SceneBase.h"
+#include "ShowScore.h"
 
 /*!
  * @brief	ゲームクラス。
@@ -114,6 +115,7 @@ private:
 	Player			player;				//プレイヤー
 	Map				map;				//マップ
 	Pad				pad;				//ゲームパッド
+	ShowScore		s_score;
 
 	HPGauge			gauge;				//HPゲージ
 	EnemyManager	enemyManager;		//エネミー管理

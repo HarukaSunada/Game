@@ -31,7 +31,7 @@ void GameOverScene::Init()
 
 	//テクスチャ読み込み
 	cursor.SetFileName("Assets/Sprite/cursor.png");
-	cursor.SetPosition(D3DXVECTOR2(820, 500));
+	cursor.SetPosition(D3DXVECTOR2(840, 500));
 	cursor.Init();
 
 	state = Continue;
@@ -39,27 +39,22 @@ void GameOverScene::Init()
 
 void GameOverScene::Update()
 {
-	Pad* pad = game->GetPad();
-	float input = pad->GetLStickYF();
+	pad.Update();
+	//Pad* pad = game->GetPad();
+	float input = pad.GetLStickYF();
 
-	////上選択(つづける)
-	//if (input > 0.0 || Pad(0).IsTrigger(enButtonUp)) {
-	//	if (state == enEnd) {
-	//		CSoundSource* SE = NewGO<CSoundSource>(0);
-	//		SE->Init("Assets/sound/Choice.wav");
-	//		SE->Play(false);
-	//		state = enContinue;
-	//	}
-	//}
-	////下選択(おわる)
-	//else if (input < 0.0 || Pad(0).IsTrigger(enButtonDown)) {
-	//	if (state == enContinue) {
-	//		CSoundSource* SE = NewGO<CSoundSource>(0);
-	//		SE->Init("Assets/sound/Choice.wav");
-	//		SE->Play(false);
-	//		state = enEnd;
-	//	}
-	//}
+	//つづける(上)
+	if (input > 0.0 || pad.IsTrigger(Pad::enButtonUp)) {
+		state = Continue;
+		cursor.SetPosition(D3DXVECTOR2(840, 500));
+		cursor.SetupMatrices();
+	}
+	//やめる(下)
+	else if (input < 0.0|| pad.IsTrigger(Pad::enButtonDown)) {
+		state = End;
+		cursor.SetPosition(D3DXVECTOR2(840, 600));
+		cursor.SetupMatrices();
+	}
 
 	////決定
 	//if (Pad(0).IsTrigger(enButtonA)) {

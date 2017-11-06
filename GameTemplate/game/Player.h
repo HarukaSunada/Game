@@ -41,6 +41,9 @@ public:
 	//dm　ダメージ数
 	void Damage(int dm);
 
+	//スコア加算
+	void addScore(int add);
+
 	//解放
 	void Release();
 

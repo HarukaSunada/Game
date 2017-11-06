@@ -120,12 +120,15 @@ void SceneManager::SceneChange()
 	//ゲームシーン
 	case stateGame:
 		if (game->GetState() == Game::GameClear) {
-			//タイトルへ切り替え
+			//リザルトへ切り替え
 			state = stateResult;
-			scene = new ResultScene();
+			ResultScene* rs= new ResultScene();
+			
+			scene = rs;
+			rs->SetScore(game->GetPlayer()->GetStatus().score);
 		}
 		else{
-			//タイトルへ切り替え
+			//ゲームオーバーへ切り替え
 			state = stateGameOver;
 			scene = new GameOverScene();
 		}

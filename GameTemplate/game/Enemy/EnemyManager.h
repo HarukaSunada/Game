@@ -7,7 +7,7 @@
 
 //エネミーの種類
 enum EnemyType {
-	skelton,
+	skelton,	//スケルトン
 };
 
 class EnemyManager

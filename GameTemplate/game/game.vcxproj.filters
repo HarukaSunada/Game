@@ -144,8 +144,11 @@
     <ClCompile Include="myEngine\Physics\SphereCollider.cpp">
       <Filter>ソース ファイル\myEngine\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="SpringCamera.cpp">
-      <Filter>ソース ファイル\myEngine</Filter>
+    <ClCompile Include="ShowScore.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Number.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -263,8 +266,11 @@
     <ClInclude Include="myEngine\Physics\SphereCollider.h">
       <Filter>ソース ファイル\myEngine\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="SpringCamera.h">
-      <Filter>ソース ファイル\myEngine</Filter>
+    <ClInclude Include="ShowScore.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Number.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,5 @@
 #pragma once
 #include "myEngine/Physics/CameraCollisionSolver.h"
-#include "SpringCamera.h"
 
 /*
 	ゲームカメラクラス

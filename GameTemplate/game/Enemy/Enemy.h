@@ -38,6 +38,7 @@ public:
 	};
 
 	//初期化
+	//pos:初期位置、mData:モデルデータ
 	virtual void Init(D3DXVECTOR3 pos, SkinModelData& mData);
 
 	//更新
@@ -46,7 +47,14 @@ public:
 	//行動
 	virtual void Action() = 0;
 
+	//ダメージ
 	virtual void Damage(int dm);
+
+	//プレイヤーとの距離計算
+	float Length();
+
+	//視野角計算
+	float Angle();
 
 	//描画
 	void Draw();
@@ -83,11 +91,12 @@ protected:
 	AnimNo				anim;				//アニメーション番号
 	Act					act;				//現在の行動
 
+	//const float			MoveSpeed = 3.0f;		//移動速度
 	float				timer		= 0.0f;		//タイマー
-
-	const float			MoveSpeed	= 2.0f;		//移動速度
-	bool				isDamage	= false;	//ダメージフラグ
 	float				damageTimer = 0.0f;		//無敵のタイマー
+
+	bool				isDamage = false;	//ダメージフラグ
+	bool				isDead		= false;	//死亡フラグ
 };
 
 

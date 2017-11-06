@@ -16,13 +16,10 @@ public:
 	//行動
 	void Action() override;
 
-	//プレイヤーとの距離計算
-	float Length();
-
-	//視野角計算
-	float Angle();
-
 	//ダメージ
 	void Damage(int dm) override;
+
+private:
+	const float			MoveSpeed = 2.5f;		//移動速度
 };
 

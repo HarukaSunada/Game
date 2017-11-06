@@ -179,6 +179,7 @@
     <ClCompile Include="myEngine\Physics\RigidBody.cpp" />
     <ClCompile Include="myEngine\Physics\SphereCollider.cpp" />
     <ClCompile Include="myEngine\System.cpp" />
+    <ClCompile Include="Number.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RenderTarget.cpp" />
     <ClCompile Include="ResultScene.cpp" />
@@ -187,7 +188,7 @@
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
     <ClCompile Include="ShadowMap.cpp" />
-    <ClCompile Include="SpringCamera.cpp" />
+    <ClCompile Include="ShowScore.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -225,6 +226,7 @@
     <ClInclude Include="myEngine\Physics\RigidBody.h" />
     <ClInclude Include="myEngine\Physics\SphereCollider.h" />
     <ClInclude Include="myEngine\system.h" />
+    <ClInclude Include="Number.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="ResultScene.h" />
@@ -233,7 +235,7 @@
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="ShadowMap.h" />
-    <ClInclude Include="SpringCamera.h" />
+    <ClInclude Include="ShowScore.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

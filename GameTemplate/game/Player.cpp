@@ -42,8 +42,10 @@ void Player::Init()
 
 void Player::Update()
 {
-	Action();
-
+	if (state.HP > 0) {
+		Action();
+	}
+	
 	//無敵状態
 	if (isDamage)
 	{
@@ -53,6 +55,11 @@ void Player::Update()
 	{
 		timer = 0.0f;
 		isDamage = false;
+	}
+
+	if (characterController.GetPosition().y < -10.0f)
+	{
+		state.HP = 0;
 	}
 
 	//キャラクタコントローラーの実行
@@ -128,7 +135,7 @@ void Player::Action()
 	//ジャンプする
 	if (pad->IsTrigger(Pad::enButtonA) && !characterController.IsJump()) {
 		//ジャンプ
-		moveSpeed.y = 10.0f;
+		moveSpeed.y = 8.5f;
 		//ジャンプしたことをキャラクタコントローラーに通知。
 		characterController.Jump();
 	}
@@ -219,4 +226,17 @@ void Player::Release()
 {
 	//剛体除去
 	g_physicsWorld->RemoveRigidBody(characterController.GetRigidBody());
+}
+
+float Player::Length(D3DXVECTOR3 pos)
+{
+	//プレイヤーへのベクトル
+	D3DXVECTOR3 diff;
+	diff = characterController.GetPosition() - pos;
+
+	//ベクトルの大きさ
+	float length = diff.x * diff.x + diff.y * diff.y + diff.z * diff.z;
+	sqrt(length);
+
+	return length;
 }

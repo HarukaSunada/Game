@@ -168,6 +168,8 @@
     <ClCompile Include="myEngine\Graphics\Animation.cpp" />
     <ClCompile Include="myEngine\Graphics\Camera.cpp" />
     <ClCompile Include="myEngine\Graphics\EffectManager.cpp" />
+    <ClCompile Include="myEngine\Graphics\RenderTarget.cpp" />
+    <ClCompile Include="myEngine\Graphics\ShadowMap.cpp" />
     <ClCompile Include="myEngine\Graphics\SkinModel.cpp" />
     <ClCompile Include="myEngine\Graphics\SkinModelData.cpp" />
     <ClCompile Include="myEngine\HID\Pad.cpp" />
@@ -181,13 +183,11 @@
     <ClCompile Include="myEngine\System.cpp" />
     <ClCompile Include="Number.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="RenderTarget.cpp" />
     <ClCompile Include="ResultScene.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
-    <ClCompile Include="ShadowMap.cpp" />
     <ClCompile Include="ShowScore.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -213,6 +213,8 @@
     <ClInclude Include="myEngine\Graphics\Camera.h" />
     <ClInclude Include="myEngine\Graphics\EffectManager.h" />
     <ClInclude Include="myEngine\Graphics\Light.h" />
+    <ClInclude Include="myEngine\Graphics\RenderTarget.h" />
+    <ClInclude Include="myEngine\Graphics\ShadowMap.h" />
     <ClInclude Include="myEngine\Graphics\SkinModel.h" />
     <ClInclude Include="myEngine\Graphics\SkinModelData.h" />
     <ClInclude Include="myEngine\HID\Pad.h" />
@@ -228,13 +230,11 @@
     <ClInclude Include="myEngine\system.h" />
     <ClInclude Include="Number.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="ResultScene.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\TitleScene.h" />
-    <ClInclude Include="ShadowMap.h" />
     <ClInclude Include="ShowScore.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stdafx.h" />

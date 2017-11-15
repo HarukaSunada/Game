@@ -55,6 +55,7 @@ void MapChip::Update()
 }
 void MapChip::Draw()
 {
+	if (game->GetPlayer()->Length(position)> 10000.0f) { return; }
 	model.Draw(&game->GetCamera()->GetViewMatrix(), &game->GetCamera()->GetProjectionMatrix());
 }
 

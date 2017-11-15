@@ -52,7 +52,7 @@ void Enemy::Update()
 
 
 	//一定以上の距離離れたときは非処理
-	if (Length() > 600.0f) { return; }
+	if (Length() > 3000.0f) { return; }
 	//行動
 	Action();
 
@@ -74,7 +74,7 @@ void Enemy::Damage(int dm)
 void Enemy::Draw()
 {
 	//死んだ、または一定以上の距離離れたときは非表示
-	if (isDead|| Length() > 600.0f) { return; }
+	if (isDead|| Length() > 5000.0f) { return; }
 
 	model.Draw(&game->GetCamera()->GetViewMatrix(), &game->GetCamera()->GetProjectionMatrix());
 }
@@ -88,15 +88,7 @@ void Enemy::Remove()
 
 float Enemy::Length()
 {
-	//プレイヤーへのベクトル
-	D3DXVECTOR3 diff;
-	diff = game->GetPlayer()->GetPosition() - characterController.GetPosition();
-
-	//ベクトルの大きさ
-	float length = diff.x * diff.x + diff.y * diff.y + diff.z * diff.z;
-	sqrt(length);
-
-	return length;
+	return game->GetPlayer()->Length(characterController.GetPosition());
 }
 
 float Enemy::Angle()

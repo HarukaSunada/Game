@@ -123,9 +123,6 @@
     <ClCompile Include="GameOverScene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="RenderTarget.cpp">
-      <Filter>ソース ファイル\myEngine</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\SceneManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -134,9 +131,6 @@
     </ClCompile>
     <ClCompile Include="ResultScene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="ShadowMap.cpp">
-      <Filter>ソース ファイル\myEngine</Filter>
     </ClCompile>
     <ClCompile Include="myEngine\Physics\CameraCollisionSolver.cpp">
       <Filter>ソース ファイル\myEngine\Physics</Filter>
@@ -149,6 +143,12 @@
     </ClCompile>
     <ClCompile Include="Number.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="myEngine\Graphics\RenderTarget.cpp">
+      <Filter>ソース ファイル\myEngine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="myEngine\Graphics\ShadowMap.cpp">
+      <Filter>ソース ファイル\myEngine\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -239,9 +239,6 @@
     <ClInclude Include="LoadingScene.h">
       <Filter>ソース ファイル\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="RenderTarget.h">
-      <Filter>ソース ファイル\myEngine</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\SceneManager.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
@@ -257,9 +254,6 @@
     <ClInclude Include="Scene\GameScene.h">
       <Filter>ソース ファイル\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="ShadowMap.h">
-      <Filter>ソース ファイル\myEngine</Filter>
-    </ClInclude>
     <ClInclude Include="myEngine\Physics\CameraCollisionSolver.h">
       <Filter>ソース ファイル\myEngine\Physics</Filter>
     </ClInclude>
@@ -271,6 +265,12 @@
     </ClInclude>
     <ClInclude Include="Number.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="myEngine\Graphics\RenderTarget.h">
+      <Filter>ソース ファイル\myEngine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="myEngine\Graphics\ShadowMap.h">
+      <Filter>ソース ファイル\myEngine\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

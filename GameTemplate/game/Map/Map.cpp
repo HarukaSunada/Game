@@ -4,7 +4,7 @@
 
 
 static SMapChipLocInfo mapChipInfo[] = {
-#include "locationInfo.h"
+#include "test.h"
 };
 
 Map::Map()
@@ -52,7 +52,9 @@ void Map::Draw()
 	for (int i = 0; i < mapChipList.size(); i++) {
 		mapChipList[i]->Draw();
 	}
-	marker.Draw();
+
+	////ƒeƒXƒg
+	//marker.Draw();
 }
 
 void Map::Update()

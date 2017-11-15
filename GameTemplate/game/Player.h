@@ -47,6 +47,8 @@ public:
 	//‰ð•ú
 	void Release();
 
+	float Length(D3DXVECTOR3 pos);
+
 	//ˆÊ’u‚ðŽæ“¾
 	D3DXVECTOR3 GetPosition()
 	{

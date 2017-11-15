@@ -14,8 +14,8 @@ Enemy\EnemyManager.cpp(61): warning C4018: '<': signed と unsigned の数値を
   main.cpp
   Map.cpp
 Map\Map.cpp(52): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-Map\Map.cpp(62): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-Map\Map.cpp(71): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+Map\Map.cpp(64): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+Map\Map.cpp(73): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
   MapChip.cpp
   Sky.cpp
   Animation.cpp
@@ -50,9 +50,7 @@ myEngine\Graphics\SkinModelData.cpp(726): warning C4316: 'D3DXFRAME_DERIVED': �
   Sprite.cpp
 Sprite.cpp(28): warning C4838: 'UINT' から 'LONG' への変換には縮小変換が必要です
   コード生成しています。
-  728 of 1085 functions (67.1%) were compiled, the rest were copied from previous compilation.
-    122 functions were new in current compilation
-    29 functions had inline decision re-evaluated but remain unchanged
+  All 1096 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   コード生成が終了しました。
   game.vcxproj -> C:\Users\kbc16b18\Documents\DirectX\DirectXⅡ\GameTemplate\Release\game.exe
   game.vcxproj -> C:\Users\kbc16b18\Documents\DirectX\DirectXⅡ\GameTemplate\Release\game.pdb (Full PDB)

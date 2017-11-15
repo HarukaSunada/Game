@@ -31,6 +31,10 @@ void GameCamera::Init()
 
 void GameCamera::Update()
 {
+	if (game->GetPlayer()->GetStatus().HP == 0) {
+		return;
+	}
+
 	//ƒpƒbƒh“ü—Í
 	Pad* pad = game->GetPad();
 

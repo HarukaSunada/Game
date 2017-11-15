@@ -28,9 +28,6 @@ namespace {
 		pd3dDevice->GetDeviceCaps(&d3dCaps);
 		D3DXMATRIX viewProj;
 		D3DXMatrixMultiply(&viewProj, viewMatrix, projMatrix);
-
-		D3DXVECTOR3 eyePos;
-		eyePos = g_camera->GetEyePt();
 		
 		//テクニックを設定。
 		{
@@ -51,8 +48,6 @@ namespace {
 				light,
 				sizeof(Light)
 			);
-			//視点を送る
-			pEffect->SetVector("g_eyePos", (D3DXVECTOR4*)&eyePos);
 		}
 		if (pMeshContainer->pSkinInfo != NULL)
 		{

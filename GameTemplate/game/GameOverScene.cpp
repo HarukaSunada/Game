@@ -56,14 +56,10 @@ void GameOverScene::Update()
 		cursor.SetupMatrices();
 	}
 
-	////Œˆ’è
-	//if (Pad(0).IsTrigger(enButtonA)) {
-	//	//ƒTƒEƒ“ƒh
-	//	CSoundSource* SE = NewGO<CSoundSource>(0);
-	//	SE->Init("Assets/sound/Decision.wav");
-	//	SE->Play(false);
-	//	isChoice = true;
-	//}
+	if (pad.IsTrigger(Pad::enButtonA))
+	{
+		sceneEnd = true;
+	}
 }
 
 void GameOverScene::Render()

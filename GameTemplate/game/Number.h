@@ -21,7 +21,7 @@ public:
 	void NumSet(int n);
 
 	//•`‰æ
-	void Render();
+	void Draw();
 
 private:
 	Sprite		number[10];

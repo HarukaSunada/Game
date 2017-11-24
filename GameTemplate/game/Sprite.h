@@ -18,6 +18,8 @@ public:
 	//ワールド行列の設定
 	void SetupMatrices();
 
+	void Release();
+
 	//位置の設定
 	void SetPosition(D3DXVECTOR2 p)
 	{
@@ -55,8 +57,8 @@ public:
 	}
 
 protected:
-	LPD3DXSPRITE		g_pSprite = NULL;	//テクスチャ
-	LPDIRECT3DTEXTURE9	g_pTexture = NULL;	//スプライト
+	LPD3DXSPRITE		g_pSprite = nullptr;	//テクスチャ
+	LPDIRECT3DTEXTURE9	g_pTexture = nullptr;	//スプライト
 
 	D3DXVECTOR2			m_position= D3DXVECTOR2(0, 0);		//位置情報
 	float				m_angle;			//回転情報

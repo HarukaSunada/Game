@@ -8,12 +8,11 @@
 #include "Player.h"
 #include "Map/Map.h"
 #include "GameCamera.h"
-#include "HPGauge.h"
 #include "Enemy/Enemy.h"
 #include "Enemy/Skelton.h"
 #include "Enemy/EnemyManager.h"
 #include "SceneBase.h"
-#include "ShowScore.h"
+#include "Interface.h"
 
 /*!
  * @brief	ゲームクラス。
@@ -21,10 +20,11 @@
 class Game : public SceneBase
 {
 public:
+	//ゲームの状態
 	enum GameState {
-		GameRun,
-		GameOver,
-		GameClear,
+		GameRun,	//実行
+		GameOver,	//ゲームオーバー
+		GameClear,	//クリア
 	};
 	/*!
 	 * @brief	コンストラクタ。
@@ -92,12 +92,6 @@ public:
 		return frameDeltaTime;
 	}
 
-	//シーンが終わったかどうか
-	bool isSceneEnd()
-	{
-		return sceneEnd;
-	}
-
 	//テスト用
 	void setEnd()
 	{
@@ -105,6 +99,7 @@ public:
 		state = GameClear;
 	}
 
+	//ゲームの状態を取得
 	GameState GetState()
 	{
 		return state;
@@ -115,13 +110,9 @@ private:
 	Player			player;				//プレイヤー
 	Map				map;				//マップ
 	Pad				pad;				//ゲームパッド
-	ShowScore		s_score;
-
-	HPGauge			gauge;				//HPゲージ
 	EnemyManager	enemyManager;		//エネミー管理
-
-	bool			sceneEnd = false;	//シーン終了フラグ
 	GameState		state;
+	UserInterface	ui;
 
 	const float		frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。
 

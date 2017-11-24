@@ -47,11 +47,11 @@ void ShowScore::Update()
 }
 
 //•`‰æ
-void ShowScore::Render()
+void ShowScore::Draw()
 {
 	sp.Draw();
 
 	for (int i = 0; i < 4; i++) {
-		num[i].Render();
+		num[i].Draw();
 	}
 }

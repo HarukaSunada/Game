@@ -47,6 +47,7 @@ public:
 	//解放
 	void Release();
 
+	//距離を返す
 	float Length(D3DXVECTOR3 pos);
 
 	//位置を取得
@@ -72,15 +73,15 @@ public:
 	float Angle(D3DXVECTOR3 enemyPos);
 
 private:
-	SkinModel			model;				//モデル
-	SkinModelData		modelData;			//モデルデータ
-	Animation			animation;			//アニメーション
-	D3DXQUATERNION		rotation;			//回転
+	SkinModel			model;					//モデル
+	SkinModelData		modelData;				//モデルデータ
+	Animation			animation;				//アニメーション
+	D3DXQUATERNION		rotation;				//回転
 	CharacterController characterController;	//キャラクタコントローラ
 
-	AnimNo				anim;				//アニメーション番号
-	D3DXVECTOR3			dir;				//キャラの方向
-	Status				state;				//ステータス
+	AnimNo				anim;					//アニメーション番号
+	D3DXVECTOR3			dir;					//キャラの方向
+	Status				state;					//ステータス
 
 	float				fMoveSpeed;				//移動速度
 	float				timer = 0.0f;			//タイマー

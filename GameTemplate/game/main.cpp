@@ -4,10 +4,8 @@
 #include "stdafx.h"
 #include "myEngine/Graphics/Camera.h"
 #include "myEngine/Graphics/Light.h"
-//#include "game.h"
 #include "Scene/SceneManager.h"
 
-//Game* game;
 SceneManager* scene;
 
 //-----------------------------------------------------------------------------
@@ -15,9 +13,6 @@ SceneManager* scene;
 //-----------------------------------------------------------------------------
 void Init()
 {
-	//game = new Game;
-	//game->Start();
-
 	scene = new SceneManager;
 	scene->Start();
 }
@@ -31,7 +26,6 @@ VOID Render()
 	//シーンの描画開始。
 	g_pd3dDevice->BeginScene();
 
-	//game->Render();
 	scene->Render();
 
 	// シーンの描画終了。
@@ -44,7 +38,6 @@ VOID Render()
  -----------------------------------------------------------------------------*/
 void Update()
 {
-	//game->Update();
 	scene->Update();
 }
 //-----------------------------------------------------------------------------
@@ -52,9 +45,9 @@ void Update()
 //-----------------------------------------------------------------------------
 void Terminate()
 {
-	//delete game;
 	delete scene;
 	delete g_effectManager;
+
 	g_pd3dDevice->Release();
 	g_pD3D->Release();
 }

@@ -50,6 +50,7 @@ private:
 	SceneState			state;		//現在のシーン
 	Pad					pad;		//ゲームパッド
 	SceneBase*			scene;		//現在のシーンのポインタ
+	GameOverScene*		g_over;		//ゲームオーバーシーン
 	LoadingScene		loading;	//ローディング画面
 	LoadStep			load;		//現在のローディング段階
 };

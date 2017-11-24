@@ -1,5 +1,10 @@
+/*
+	シャドウマップクラス
+*/
+
 #pragma once
 #include "RenderTarget.h"
+#include "myEngine/Graphics/SkinModel.h"
 
 class ShadowMap
 {
@@ -7,11 +12,19 @@ public:
 	ShadowMap();
 	~ShadowMap();
 
-	void Init();
+	void Init();	//初期化
+
+	//シャドウキャスターの登録
+	//caster:登録するモデルのポインタ
+	void Entry(SkinModel* caster);	
+
 	void Update();	//更新
 	void Draw();	//描画
 
-					//ライトビューの視点を設定
+	//リムーブ
+	void Remove();
+
+	//ライトビューの視点を設定
 	void SetLightViewPosition(const D3DXVECTOR3& lightViewPosition)
 	{
 		viewPosition = lightViewPosition;
@@ -37,10 +50,12 @@ public:
 		return renderTarget.GetTexture();
 	}
 private:
-	RenderTarget renderTarget;		//レンダリングターゲット
-	D3DXMATRIX  lightViewMatrix;	//ライトビューマトリクス
-	D3DXMATRIX	lightProjMatrix;	//ライトプロジェクションマトリクス
-	D3DXVECTOR3 viewPosition;		//ライトビューの視点
-	D3DXVECTOR3 viewTarget;			//ライトビューの注視点
+	RenderTarget					renderTarget;		//レンダリングターゲット
+	D3DXMATRIX						lightViewMatrix;	//ライトビューマトリクス
+	D3DXMATRIX						lightProjMatrix;	//ライトプロジェクションマトリクス
+	D3DXVECTOR3						viewPosition;		//ライトビューの視点
+	D3DXVECTOR3						viewTarget;			//ライトビューの注視点
+	std::vector<SkinModel*>			m_shadowCaster;		//シャドウキャスター
 };
 
+extern ShadowMap*				g_shadowMap;

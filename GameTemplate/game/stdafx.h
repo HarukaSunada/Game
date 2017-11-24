@@ -17,6 +17,7 @@
 #include "myEngine/Graphics/Camera.h"
 #include "myEngine/Graphics/SkinModel.h"
 #include "myEngine/Graphics/SkinModelData.h"
+#include "myEngine/Graphics/ShadowMap.h"
 #include "myEngine/Graphics/Animation.h"
 #include "myEngine/Graphics/Light.h"
 #include "myEngine/HID/Pad.h"

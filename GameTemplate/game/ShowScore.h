@@ -18,7 +18,7 @@ public:
 	void Update();
 
 	//•`‰æ
-	void Render();
+	void Draw();
 
 private:
 	Sprite			sp;

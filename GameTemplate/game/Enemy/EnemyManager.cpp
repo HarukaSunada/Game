@@ -58,9 +58,11 @@ void EnemyManager::Damage(int dm)
 void EnemyManager::Release()
 {
 	//エネミーを一個ずつ削除
+	//	for (auto enemy : enemyList) 
 	for (int i = 0; i < enemyList.size(); i++) {
 		enemyList[i]->Remove();
 		delete enemyList[i];
+		enemyList[i] = NULL;
 	}
 	enemyList.clear();
 	enemyList.shrink_to_fit();

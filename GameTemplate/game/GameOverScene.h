@@ -5,14 +5,15 @@
 /*
 	ゲームオーバー画面クラス
 */
+
+//選択肢
+enum SelectState {
+	Continue,	//続ける
+	End,		//やめる
+};
 class GameOverScene : public SceneBase
 {
 public:
-	//選択肢
-	enum SelectState {
-		Continue,	//続ける
-		End,		//やめる
-	};
 
 	GameOverScene();
 	~GameOverScene();
@@ -26,12 +27,16 @@ public:
 	//描画
 	void Render();
 
+
+	SelectState GetSelect()
+	{
+		return state;
+	}
 private:
 	Sprite			back;
 	Sprite			conti;
 	Sprite			end;
 	Sprite			cursor;
-	bool			sceneEnd = false;	//シーン終了フラグ
 	SelectState 	state;				//選択状態
 	Pad					pad;
 };

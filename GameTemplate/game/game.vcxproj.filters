@@ -34,6 +34,9 @@
     <Filter Include="ソース ファイル\Scene">
       <UniqueIdentifier>{5ab29fdc-106f-4870-a71f-1fc3e2d1a18e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\UI">
+      <UniqueIdentifier>{61b10a22-202c-4de6-9640-2357ee9a2570}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -87,9 +90,6 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>ソース ファイル\myEngine</Filter>
     </ClCompile>
-    <ClCompile Include="HPGauge.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Enemy\Enemy.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
@@ -138,17 +138,23 @@
     <ClCompile Include="myEngine\Physics\SphereCollider.cpp">
       <Filter>ソース ファイル\myEngine\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="ShowScore.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Number.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="myEngine\Graphics\RenderTarget.cpp">
       <Filter>ソース ファイル\myEngine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="myEngine\Graphics\ShadowMap.cpp">
       <Filter>ソース ファイル\myEngine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Number.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowScore.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="HPGauge.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,9 +215,6 @@
     <ClInclude Include="Sprite.h">
       <Filter>ソース ファイル\myEngine</Filter>
     </ClInclude>
-    <ClInclude Include="HPGauge.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy\Enemy.h">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
@@ -260,17 +263,23 @@
     <ClInclude Include="myEngine\Physics\SphereCollider.h">
       <Filter>ソース ファイル\myEngine\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="ShowScore.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Number.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="myEngine\Graphics\RenderTarget.h">
       <Filter>ソース ファイル\myEngine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="myEngine\Graphics\ShadowMap.h">
       <Filter>ソース ファイル\myEngine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Number.h">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ShowScore.h">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="HPGauge.h">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

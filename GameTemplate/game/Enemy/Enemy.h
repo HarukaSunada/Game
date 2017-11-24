@@ -17,8 +17,8 @@ public:
 	//ステータス
 	struct Status
 	{
-		int HP;
-		int score;
+		int HP;		//体力
+		int score;	//倒したとき獲得するスコア
 	};
 
 	//アニメーション番号
@@ -86,16 +86,14 @@ protected:
 	D3DXQUATERNION		rotation;			//回転
 	CharacterController characterController;//キャラクタコントローラ
 
-	//D3DXVECTOR3			dir;
 	Status				state;				//エネミーのステータス
 	AnimNo				anim;				//アニメーション番号
 	Act					act;				//現在の行動
 
-	//const float			MoveSpeed = 3.0f;		//移動速度
 	float				timer		= 0.0f;		//タイマー
 	float				damageTimer = 0.0f;		//無敵のタイマー
 
-	bool				isDamage = false;	//ダメージフラグ
+	bool				isDamage = false;		//ダメージフラグ
 	bool				isDead		= false;	//死亡フラグ
 };
 

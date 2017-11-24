@@ -12,7 +12,10 @@ float		g_numBone;			//骨の数。
 
 float4x4	g_worldMatrix;			//!<ワールド行列。
 float4x4	g_rotationMatrix;		//!<回転行列。
-float4x4	g_viewMatrixRotInv;		//!<カメラの回転行列の逆行列。
+
+int g_isShadowReciever;				//シャドウレシーバー。１ならシャドウレシーバー
+float4x4 g_lightViewMatrix;			//ライトビュー行列。
+float4x4 g_lightProjectionMatrix;	//ライトプロジェクション行列。
 
 bool g_isHasNormalMap;			//法線マップ保持している？
 
@@ -26,6 +29,18 @@ sampler_state
     MagFilter = NONE;
     AddressU = Wrap;
 	AddressV = Wrap;
+};
+
+texture g_shadowMapTexture;		//シャドウマップテクスチャ。
+sampler g_shadowMapTextureSampler =
+sampler_state
+{
+	Texture = <g_shadowMapTexture>;
+	MipFilter = LINEAR;
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	AddressU = CLAMP;
+	AddressV = CLAMP;
 };
 
 //法線マップ
@@ -64,6 +79,7 @@ struct VS_OUTPUT
     float3  Normal			: NORMAL;
     float2  Tex0   			: TEXCOORD0;
     float3	Tangent			: TEXCOORD1;	//接ベクトル
+	float4	lightViewPos 	: TEXCOORD2;	//ワールド空間->ライトビュー空間->ライト射影空間に変換された座標。
 };
 /*!
  *@brief	ワールド座標とワールド法線をスキン行列から計算する。
@@ -119,6 +135,10 @@ void CalcWorldPosAndNormal( VS_INPUT In, out float3 Pos, out float3 Normal, out 
 VS_OUTPUT VSMain( VS_INPUT In, uniform bool hasSkin )
 {
 	VS_OUTPUT o = (VS_OUTPUT)0;
+
+	float4 worldPos;
+	worldPos = mul(In.Pos, g_worldMatrix);		//モデルのローカル空間からワールド空間に変換。
+
 	float3 Pos, Normal, Tangent;
 	if(hasSkin){
 		//スキンあり。
@@ -131,28 +151,16 @@ VS_OUTPUT VSMain( VS_INPUT In, uniform bool hasSkin )
     o.Normal = normalize(Normal);
     o.Tangent = normalize(Tangent);
     o.Tex0 = In.Tex0;
+
+	if (g_isShadowReciever == 1) {
+		//シャドウレシーバー。
+		//ワールド座標をライトカメラから見た射影空間に変換する。
+		o.lightViewPos = mul(worldPos, g_lightViewMatrix);
+		o.lightViewPos = mul(o.lightViewPos, g_lightProjectionMatrix);
+	}
 	return o;
 }
 
-/*!
-	スペキュラライトを計算
-	worldPos		ワールド頂点座標
-	normal			法線
-*/
-float3 SpecularLight(float3 worldPos, float3 normal)
-{
-	float3 eyePos = 0.0f;
-
-	//視点へのベクトル
-	float3 E = normalize(eyePos - worldPos);
-	//反射ベクトル
-	float3  R = -g_light.diffuseLightDir[0] + 2 * dot(normal, g_light.diffuseLightDir[0])*normal;
-	//スペキュラの強さを求める
-	float3 t = max(0.0f, dot(R, E));
-	t = pow(t, 50.0f);
-
-	return t;
-}
 /*!
  * @brief	ピクセルシェーダー。
  */
@@ -164,8 +172,32 @@ float4 PSMain( VS_OUTPUT In ) : COLOR
 	float4 lig = DiffuseLight(normal);
 
 	color *= lig;
+
+	if (g_isShadowReciever == 1) {
+		//射影空間(スクリーン座標系)に変換された座標はw成分で割ってやると(-1.0f～1.0)の範囲の正規化座標系になる。
+		//これをUV座標系(0.0～1.0)に変換して、シャドウマップをフェッチするためのUVとして活用する。
+		float2 shadowMapUV = In.lightViewPos.xy / In.lightViewPos.w;	//この計算で(-1.0～1.0)の範囲になる。
+		shadowMapUV *= float2(0.5f, -0.5f);								//この計算で(-0.5～0.5)の範囲になる。
+		shadowMapUV += float2(0.5f, 0.5f);								//そしてこれで(0.0～1.0)の範囲になってＵＶ座標系に変換できた。やったね。
+		if(shadowMapUV.x >= 0.0f 
+			&& shadowMapUV.x <= 1.0f 
+			&& shadowMapUV.y >= 0.0f 
+			&& shadowMapUV.y <= 1.0f
+		){
+			float4 shadowVal = tex2D(g_shadowMapTextureSampler, shadowMapUV);	//シャドウマップは影が落ちているところはグレースケールになっている。
+			color *= shadowVal;
+		}
+	}
 	
 	return color;
+}
+
+/*
+	シャドウマップ書き込み用ピクセルシェーダー
+*/
+float4 PSRenderToShadowMapMain(VS_OUTPUT In) : COLOR
+{
+	return float4(0.5f, 0.5f, 0.5f, 1.0f);
 }
 /*!
  *@brief	スキンありモデル用のテクニック。
@@ -174,8 +206,8 @@ technique SkinModel
 {
     pass p0
     {
-        VertexShader = compile vs_3_0 VSMain(true);
-        PixelShader = compile ps_3_0 PSMain();
+        VertexShader	= compile vs_3_0 VSMain(true);
+        PixelShader		= compile ps_3_0 PSMain();
     }
 }
 /*!
@@ -185,7 +217,19 @@ technique NoSkinModel
 {
 	pass p0
 	{
-		VertexShader = compile vs_3_0 VSMain(false);
-		PixelShader = compile ps_3_0 PSMain();
+		VertexShader	= compile vs_3_0 VSMain(false);
+		PixelShader		= compile ps_3_0 PSMain();
+	}
+}
+
+/*
+	シャドウマップ書き込み用のテクニック
+*/
+technique SkinModelRenderToShadowMap
+{
+	pass p0
+	{
+		VertexShader	= compile vs_3_0 VSMain(true);
+		PixelShader		= compile ps_3_0 PSRenderToShadowMapMain();
 	}
 }

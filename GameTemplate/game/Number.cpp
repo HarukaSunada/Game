@@ -34,7 +34,7 @@ void Number::Update()
 }
 
 //•`‰æ
-void Number::Render()
+void Number::Draw()
 {
 	number[num].Draw();
 }

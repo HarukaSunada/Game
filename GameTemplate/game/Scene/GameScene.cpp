@@ -4,7 +4,6 @@
 #include "stdafx.h"
 #include "GameScene.h"
 
-Camera* g_camera;
 /*!
  * @brief	コンストラクタ。
  */
@@ -19,6 +18,10 @@ Game::~Game()
 	//物理ワールド消去
 	delete g_physicsWorld;
 	g_physicsWorld = NULL;
+
+	//物理ワールド消去
+	delete g_shadowMap;
+	g_shadowMap = NULL;
 }
 /*!
  * @brief	ゲームが起動してから一度だけ呼ばれる関数。
@@ -28,6 +31,9 @@ void Game::Init()
 	//物理ワールドを初期化
 	g_physicsWorld = new PhysicsWorld;
 	g_physicsWorld->Init();
+
+	g_shadowMap = new ShadowMap;
+	g_shadowMap->Init();
 
 	//ライトの設定
 	light.SetDiffuseLightDirection(0, D3DXVECTOR4(0.707f, 0.0f, -0.707f, 1.0f));
@@ -43,7 +49,6 @@ void Game::Init()
 
 	//カメラを初期化
 	camera.Init();
-	g_camera = camera.GetCamera();
 
 	//プレイヤーを初期化
 	player.Init();
@@ -51,9 +56,8 @@ void Game::Init()
 	//マップの初期化
 	map.Init(&enemyManager);
 
-	//HPゲージの初期化
-	gauge.Init();
-	s_score.Init();
+	//UIの初期化
+	ui.Init();
 
 	state = GameRun;
 }
@@ -72,6 +76,7 @@ void Game::Update()
 	if (player.GetStatus().HP <= 0) {
 		state = GameOver;
 	}
+	//ゲームオーバーの時
 	if (state == GameOver) {
 		timer += frameDeltaTime;
 		if (timer > 3.0f) {
@@ -88,11 +93,18 @@ void Game::Update()
 	//マップ更新
 	map.Update();
 
-	//HPゲージ更新
-	gauge.Update();
+	//ライトビューの注視点はプレイヤー、視点はプレイヤーの座標からY方向に+10
+	D3DXVECTOR3 target = player.GetPosition();
+	D3DXVECTOR3 viewPos = target;
+	viewPos.y += 30.0f;
 
-	//スコア表示更新
-	s_score.Update();
+	g_shadowMap->SetLightViewPosition(viewPos);
+	g_shadowMap->SetLightViewTarget(target);
+
+	//シャドウマップ更新
+	g_shadowMap->Update();
+
+	ui.Update();
 }
 
 /*!
@@ -100,11 +112,11 @@ void Game::Update()
  */
 void Game::Render()
 {
+	g_shadowMap->Draw();
 	player.Draw();
 	enemyManager.Draw();
 	map.Draw();
-	gauge.Draw();
-	s_score.Render();
+	ui.Render();
 }
 
 void Game::Release()
@@ -112,4 +124,5 @@ void Game::Release()
 	player.Release();
 	enemyManager.Release();
 	map.Release();
+	g_shadowMap->Remove();
 }

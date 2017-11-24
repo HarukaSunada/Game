@@ -22,15 +22,16 @@ void Player::Init()
 	modelData.LoadModelData("Assets/modelData/char.X", &animation);
 	model.Init(&modelData);
 	model.SetLight(game->GetLight());	//ライトの設定
+	model.SetShadowCasterFlag(true);	//シャドウキャスター
+
+	//アニメーションを設定
 	anim = animStand;
 	animation.PlayAnimation(anim);
 
-	//速さ
-	fMoveSpeed = 0.0f;
-	dir = { 0.0f,0.0f,0.0f };
+	fMoveSpeed = 0.0f;			//速さ
+	dir = { 0.0f,0.0f,0.0f };	//向き
 
 	//ステータス初期化
-	//state.HP = 10;
 	state.HP = 5;
 	state.score = 0;
 
@@ -42,9 +43,7 @@ void Player::Init()
 
 void Player::Update()
 {
-	if (state.HP > 0) {
-		Action();
-	}
+	Action();
 	
 	//無敵状態
 	if (isDamage)
@@ -57,6 +56,7 @@ void Player::Update()
 		isDamage = false;
 	}
 
+	//落下した
 	if (characterController.GetPosition().y < -10.0f)
 	{
 		state.HP = 0;
@@ -66,7 +66,7 @@ void Player::Update()
 	characterController.Execute();	
 
 	animation.Update(1.0f / 60.0f);
-	model.UpdateWorldMatrix(characterController.GetPosition(), rotation, D3DXVECTOR3(0.6f, 0.6f, 0.6f));
+	model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(0.6f, 0.6f, 0.6f));
 }
 
 //アクション
@@ -131,6 +131,11 @@ void Player::Action()
 	//移動
 	moveSpeed.x = dir.x * fMoveSpeed;
 	moveSpeed.z = dir.z * fMoveSpeed;
+
+	if (state.HP <= 0) {
+		moveSpeed.x = 0.0f;
+		moveSpeed.z = 0.0f;
+	}
 
 	//ジャンプする
 	if (pad->IsTrigger(Pad::enButtonA) && !characterController.IsJump()) {

@@ -10,6 +10,7 @@ HPGauge::HPGauge()
 
 HPGauge::~HPGauge()
 {
+	showGauge = NULL;
 }
 
 void HPGauge::Init()

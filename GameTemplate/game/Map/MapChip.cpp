@@ -15,15 +15,23 @@ MapChip::~MapChip()
 
 }
 
-void MapChip::Init(SMapChipLocInfo& locInfo)
+void MapChip::Init(SMapChipLocInfo& locInfo, SkinModelData* mData)
 {
-	//読み込むモデルのファイルパス作成
-	char modelPath[256];
-	sprintf(modelPath, "Assets/modelData/%s.x", locInfo.modelName);
-	//モデルをロード
-	modelData.LoadModelData(modelPath, NULL);
+	if (mData == NULL) {
+		//読み込むモデルのファイルパス作成
+		char modelPath[256];
+		sprintf(modelPath, "Assets/modelData/%s.x", locInfo.modelName);
+		//モデルをロード
+		modelData.LoadModelData(modelPath, NULL);
+	}
+	else {
+		modelData.CloneModelData(*mData, NULL);
+	}
 	//モデルデータでSkinModel初期化
 	model.Init(&modelData);
+
+	//シャドウレシーブ
+	model.SetRecieveShadowFlag(true);
 
 	//ライト
 	model.SetLight(game->GetLight());
@@ -32,7 +40,7 @@ void MapChip::Init(SMapChipLocInfo& locInfo)
 	this->position = locInfo.position;
 	this->rotation = locInfo.rotation;
 
-	model.UpdateWorldMatrix(position, rotation, { 1.0f, 1.0f, 1.0f });
+	model.Update(position, rotation, { 1.0f, 1.0f, 1.0f });
 
 	//衝突判定絡みの初期化
 	D3DXMATRIX* rootBoneMatrix = modelData.GetRootBoneWorldMatrix();

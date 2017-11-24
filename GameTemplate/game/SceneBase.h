@@ -19,5 +19,14 @@ public:
 	* @brief	描画。
 	*/
 	virtual void Render() = 0;
+
+	//シーンが終わったかどうか
+	bool isSceneEnd()
+	{
+		return sceneEnd;
+	}
+
+protected:
+	bool			sceneEnd = false;	//シーン終了フラグ
 };
 

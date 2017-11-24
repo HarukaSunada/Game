@@ -36,7 +36,7 @@ void Sky::Init()
 	rotation.w = cos(halfAngle);
 	rotation.y = 1 * s;
 
-	model.UpdateWorldMatrix(position, rotation, { 1.0f, 1.0f, 1.0f });
+	model.Update(position, rotation, { 1.0f, 1.0f, 1.0f });
 }
 
 void Sky::Update()
@@ -47,7 +47,7 @@ void Sky::Update()
 	D3DXVECTOR3 pos= game->GetPlayer()->GetPosition();
 	position.x = pos.x;
 	position.z = pos.z;
-	model.UpdateWorldMatrix(position, rotation, { 1.0f, 1.0f, 1.0f });
+	model.Update(position, rotation, { 1.0f, 1.0f, 1.0f });
 }
 void Sky::Draw()
 {

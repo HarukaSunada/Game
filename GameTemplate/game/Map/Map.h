@@ -25,4 +25,5 @@ private:
 	std::vector<MapChip*>	mapChipList;	//マップチップのリスト
 	Sky sky;
 	ClearMarker marker;
+	SkinModelData modelData[2];
 };

@@ -160,6 +160,7 @@
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="HPGauge.cpp" />
+    <ClCompile Include="Interface.cpp" />
     <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map\Map.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="HPGauge.h" />
+    <ClInclude Include="Interface.h" />
     <ClInclude Include="LoadingScene.h" />
     <ClInclude Include="Map\Map.h" />
     <ClInclude Include="Map\MapChip.h" />

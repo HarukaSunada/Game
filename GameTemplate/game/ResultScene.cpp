@@ -58,6 +58,6 @@ void ResultScene::Render()
 	sp.Draw();
 
 	for (int i = 0; i < 4; i++) {
-		num[i].Render();
+		num[i].Draw();
 	}
 }

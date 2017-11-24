@@ -11,8 +11,6 @@ Enemy::Enemy()
 
 Enemy::~Enemy()
 {
-	////剛体除去
-	//g_physicsWorld->RemoveRigidBody(characterController.GetRigidBody());
 }
 
 void Enemy::Init(D3DXVECTOR3 pos, SkinModelData& mData)
@@ -22,6 +20,7 @@ void Enemy::Init(D3DXVECTOR3 pos, SkinModelData& mData)
 	//モデルの初期化
 	model.Init(&modelData);
 	model.SetLight(game->GetLight());	//ライトの設定
+	model.SetShadowCasterFlag(true);
 
 	//アニメーションの設定
 	animation.PlayAnimation(animStand);
@@ -31,6 +30,8 @@ void Enemy::Init(D3DXVECTOR3 pos, SkinModelData& mData)
 	//キャラクタコントローラを初期化。
 	characterController.Init(0.3f, 1.0f, pos);
 	characterController.SetGravity(-20.0f);		//重力設定
+
+	model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(1.0f, 1.0f, 1.0f));
 }
 
 void Enemy::Update()
@@ -40,6 +41,7 @@ void Enemy::Update()
 		return;
 	}
 
+	//ダメージを受けた
 	if (isDamage)
 	{
 		damageTimer += game->GetDeltaTime();	//プレイ時間カウント
@@ -60,7 +62,7 @@ void Enemy::Update()
 	characterController.Execute();
 
 	animation.Update(1.0f / 60.0f);
-	model.UpdateWorldMatrix(characterController.GetPosition(), rotation, D3DXVECTOR3(1.0f, 1.0f, 1.0f));
+	model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(1.0f, 1.0f, 1.0f));
 }
 
 void Enemy::Damage(int dm)
@@ -79,7 +81,6 @@ void Enemy::Draw()
 	model.Draw(&game->GetCamera()->GetViewMatrix(), &game->GetCamera()->GetProjectionMatrix());
 }
 
-//削除時の処理
 void Enemy::Remove()
 {
 	//剛体除去

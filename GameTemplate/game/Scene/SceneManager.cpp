@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "SceneManager.h"
 
-Game* game;
+Game* game = nullptr;
 
 SceneManager::SceneManager()
 {
@@ -10,6 +10,7 @@ SceneManager::SceneManager()
 
 SceneManager::~SceneManager()
 {
+	scene = NULL;
 }
 
 void SceneManager::Start()
@@ -84,7 +85,7 @@ void SceneManager::Update()
 			SceneChange();
 		}
 		//仮
-		else if (pad.IsTrigger(Pad::enButtonStart)) {
+		else if (scene->isSceneEnd()) {
 			load = LoadStart;
 		}
 		break;
@@ -93,11 +94,12 @@ void SceneManager::Update()
 
 void SceneManager::Render()
 {
-	//シーンの描画
-	scene->Render();
 	if (load != Wait) {
 		loading.Draw();
+		return;
 	}
+	//シーンの描画
+	scene->Render();
 }
 
 void SceneManager::SceneChange()
@@ -130,11 +132,13 @@ void SceneManager::SceneChange()
 		else{
 			//ゲームオーバーへ切り替え
 			state = stateGameOver;
-			scene = new GameOverScene();
+			g_over = new GameOverScene();
+			scene = g_over;
 		}
 
 		game->Release();
 		delete game;
+		game = NULL;
 
 		scene->Init();
 
@@ -142,7 +146,6 @@ void SceneManager::SceneChange()
 
 	//リザルトシーン
 	case stateResult:
-	case stateGameOver:
 		delete scene;
 
 		//タイトルへ切り替え
@@ -150,6 +153,22 @@ void SceneManager::SceneChange()
 		scene = new TitleScene();
 		scene->Init();
 
+		break;
+	case stateGameOver:
+		if (g_over->GetSelect() == SelectState::End) {
+			//タイトルへ切り替え
+			state = stateTitel;
+			scene = new TitleScene();
+		}
+		else{
+			//ゲームシーンへ切り替え
+			state = stateGame;
+			game = new Game();
+			scene = game;
+		}
+		scene->Init();
+		delete g_over;
+		g_over = NULL;
 		break;
 	}
 

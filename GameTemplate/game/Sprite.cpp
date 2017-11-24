@@ -9,6 +9,7 @@ Sprite::Sprite()
 
 Sprite::~Sprite()
 {
+	Release();
 }
 
 void Sprite::Init()
@@ -52,4 +53,13 @@ void Sprite::SetupMatrices()
 	D3DXMatrixIdentity(&this->m_transformMatrix);	//ワールド行列初期化
 	D3DXMatrixTransformation2D(&this->m_transformMatrix, NULL, 0.0f, 
 		&this->m_scale,NULL, D3DXToRadian(this->m_angle), &this->m_position);	//変換行列作成
+}
+
+void Sprite::Release()
+{
+	g_pSprite->Release();
+	g_pSprite = nullptr;
+
+	g_pTexture->Release();
+	g_pTexture = nullptr;
 }

@@ -15,7 +15,9 @@ namespace {
 		D3DXMATRIX* rotationMatrix,
 		D3DXMATRIX* viewMatrix,
 		D3DXMATRIX* projMatrix,
-		Light* light
+		Light* light,
+		bool isDrawShadowMap,
+		bool isRecieveShadow
 	)
 	{
 		D3DXMESHCONTAINER_DERIVED* pMeshContainer = (D3DXMESHCONTAINER_DERIVED*)pMeshContainerBase;
@@ -31,8 +33,12 @@ namespace {
 		
 		//テクニックを設定。
 		{
-			if (pMeshContainer->pSkinInfo != NULL) {
+			if (pMeshContainer->pSkinInfo != NULL && !isDrawShadowMap) {
 				pEffect->SetTechnique("SkinModel");
+			}
+			else if(isDrawShadowMap){
+				//シャドウマップへの書き込みテクニック
+				pEffect->SetTechnique("SkinModelRenderToShadowMap");
 			}
 			else {
 				pEffect->SetTechnique("NoSkinModel");
@@ -42,12 +48,21 @@ namespace {
 		{
 			//ビュープロジェクション
 			pEffect->SetMatrix("g_mViewProj", &viewProj);
+			//シャドウレシーバーフラグを転送。
+			pEffect->SetInt("g_isShadowReciever", isRecieveShadow);
 			//ライト
 			pEffect->SetValue(
 				"g_light",
 				light,
 				sizeof(Light)
 			);
+
+			//シャドウレシーバー
+			if (isRecieveShadow) {
+				pEffect->SetTexture("g_shadowMapTexture", g_shadowMap->GetTexture());
+				pEffect->SetMatrix("g_lightViewMatrix", &g_shadowMap->GetLightViewMatrix());
+				pEffect->SetMatrix("g_lightProjectionMatrix", &g_shadowMap->GetLightProjectionMatrix());
+			}
 		}
 		if (pMeshContainer->pSkinInfo != NULL)
 		{
@@ -78,15 +93,7 @@ namespace {
 
 				// ボーン数。
 				pEffect->SetInt("CurNumBones", pMeshContainer->NumInfl - 1);
-				D3DXMATRIX viewRotInv;
-				D3DXMatrixInverse(&viewRotInv, NULL, viewMatrix);
 
-				viewRotInv.m[3][0] = 0.0f;
-				viewRotInv.m[3][1] = 0.0f;
-				viewRotInv.m[3][2] = 0.0f;
-				viewRotInv.m[3][3] = 1.0f;
-				D3DXMatrixTranspose(&viewRotInv, &viewRotInv);
-				pEffect->SetMatrix("g_viewMatrixRotInv", &viewRotInv);
 				pEffect->Begin(0, D3DXFX_DONOTSAVESTATE);
 				pEffect->BeginPass(0);
 
@@ -131,7 +138,9 @@ namespace {
 		D3DXMATRIX* rotationMatrix,
 		D3DXMATRIX* viewMatrix, 
 		D3DXMATRIX* projMatrix,
-		Light* light)
+		Light* light,
+		bool isDrawShadowMap, 
+		bool isRecieveShadow)
 	{
 		LPD3DXMESHCONTAINER pMeshContainer;
 
@@ -147,7 +156,9 @@ namespace {
 				rotationMatrix,
 				viewMatrix,
 				projMatrix,
-				light
+				light,
+				isDrawShadowMap,
+				isRecieveShadow
 				);
 
 			pMeshContainer = pMeshContainer->pNextMeshContainer;
@@ -163,7 +174,9 @@ namespace {
 				rotationMatrix,
 				viewMatrix,
 				projMatrix,
-				light
+				light,
+				isDrawShadowMap,
+				isRecieveShadow
 				);
 		}
 
@@ -177,7 +190,9 @@ namespace {
 				rotationMatrix,
 				viewMatrix,
 				projMatrix,
-				light
+				light,
+				isDrawShadowMap,
+				isRecieveShadow
 				);
 		}
 	}
@@ -198,8 +213,13 @@ void SkinModel::Init(SkinModelData* modelData)
 	pEffect = g_effectManager->LoadEffect("Assets/Shader/Model.fx");
 	skinModelData = modelData;
 }
-void SkinModel::UpdateWorldMatrix(const D3DXVECTOR3& trans, const D3DXQUATERNION& rot, const D3DXVECTOR3& scale)
+void SkinModel::Update(const D3DXVECTOR3& trans, const D3DXQUATERNION& rot, const D3DXVECTOR3& scale)
 {
+	if (isShadowCaster) {
+		//シャドウキャスター登録
+		SkinModel* caster = this;
+		g_shadowMap->Entry(this);
+	}
 	D3DXMATRIX mTrans, mScale;
 	D3DXMatrixScaling(&mScale, scale.x, scale.y, scale.z);
 	D3DXMatrixTranslation(&mTrans, trans.x, trans.y, trans.z);
@@ -212,7 +232,7 @@ void SkinModel::UpdateWorldMatrix(const D3DXVECTOR3& trans, const D3DXQUATERNION
 	}
 }
 
-void SkinModel::Draw(D3DXMATRIX* viewMatrix, D3DXMATRIX* projMatrix)
+void SkinModel::Draw(D3DXMATRIX* viewMatrix, D3DXMATRIX* projMatrix ,bool isDrawShadowMap)
 {
 	if (skinModelData) {
 		DrawFrame(
@@ -223,7 +243,9 @@ void SkinModel::Draw(D3DXMATRIX* viewMatrix, D3DXMATRIX* projMatrix)
 			&rotationMatrix,
 			viewMatrix,
 			projMatrix,
-			light
+			light,
+			isDrawShadowMap,
+			isRecieveShadow
 		);
 	}
 }

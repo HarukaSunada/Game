@@ -17,7 +17,7 @@ public:
 	void Update();
 
 	//•`‰æ
-	void Render();
+	void PostRender();
 
 private:
 	Sprite			back;

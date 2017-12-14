@@ -24,7 +24,7 @@ void TitleScene::Update()
 
 }
 
-void TitleScene::Render()
+void TitleScene::PostRender()
 {
 	back.Draw();
 }

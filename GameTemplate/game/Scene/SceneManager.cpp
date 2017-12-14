@@ -95,11 +95,20 @@ void SceneManager::Update()
 void SceneManager::Render()
 {
 	if (load != Wait) {
-		loading.Draw();
 		return;
 	}
 	//ƒV[ƒ“‚Ì•`‰æ
 	scene->Render();
+}
+
+void SceneManager::PostRender()
+{
+	if (load != Wait) {
+		loading.Draw();
+		return;
+	}
+	//ƒV[ƒ“‚Ì•`‰æ
+	scene->PostRender();
 }
 
 void SceneManager::SceneChange()

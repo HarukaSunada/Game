@@ -61,4 +61,7 @@ void RenderTarget::Create(
 		NULL
 	);
 	m_texture->GetSurfaceLevel(0, &m_surface);
+
+	m_width = w;
+	m_height = h;
 }

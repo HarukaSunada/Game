@@ -18,7 +18,9 @@ public:
 	/*!
 	* @brief	描画。
 	*/
-	virtual void Render() = 0;
+	virtual void Render();
+
+	virtual void PostRender();
 
 	//シーンが終わったかどうか
 	bool isSceneEnd()

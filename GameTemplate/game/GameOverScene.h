@@ -25,7 +25,7 @@ public:
 	void Update();
 
 	//•`‰æ
-	void Render();
+	void PostRender();
 
 
 	SelectState GetSelect()

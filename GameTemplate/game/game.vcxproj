@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bloom.cpp" />
     <ClCompile Include="ClearMarker.cpp" />
     <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="Enemy\EnemyManager.cpp" />
@@ -160,9 +161,13 @@
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="HPGauge.cpp" />
+    <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="ParticleEmitter.cpp" />
+    <ClCompile Include="PostEffect.cpp" />
     <ClCompile Include="Map\Map.cpp" />
     <ClCompile Include="Map\MapChip.cpp" />
     <ClCompile Include="Map\Sky.cpp" />
@@ -184,6 +189,7 @@
     <ClCompile Include="myEngine\System.cpp" />
     <ClCompile Include="Number.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="ResultScene.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
@@ -197,8 +203,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bloom.h" />
     <ClInclude Include="ClearMarker.h" />
     <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="Enemy\EnemyManager.h" />
@@ -206,8 +214,12 @@
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="HPGauge.h" />
+    <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="LoadingScene.h" />
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="ParticleEmitter.h" />
+    <ClInclude Include="PostEffect.h" />
     <ClInclude Include="Map\Map.h" />
     <ClInclude Include="Map\MapChip.h" />
     <ClInclude Include="Map\Sky.h" />
@@ -232,6 +244,7 @@
     <ClInclude Include="myEngine\system.h" />
     <ClInclude Include="Number.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Primitive.h" />
     <ClInclude Include="ResultScene.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="Scene\GameScene.h" />
@@ -240,6 +253,7 @@
     <ClInclude Include="ShowScore.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="VertexBuffer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

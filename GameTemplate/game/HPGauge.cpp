@@ -10,91 +10,50 @@ HPGauge::HPGauge()
 
 HPGauge::~HPGauge()
 {
-	showGauge = NULL;
+	//showGauge = NULL;
 }
 
 void HPGauge::Init()
 {
-	//ゲージのバック
-	back.SetFileName("Assets/Sprite/HPtestB.png");
-	back.SetPosition(D3DXVECTOR2(10, 680));
-	back.Init();
+	//バックの初期化
+	for (int i = 0; i < 3; i++) {
+		backHeart[i].SetFileName("Assets/Sprite/HP/heart04.png");
+		backHeart[i].SetPosition(D3DXVECTOR2((i * 125 + 50), 670));
+		backHeart[i].SetScale(D3DXVECTOR2(0.25f, 0.25f));
+		backHeart[i].Init();
+	}
 
-	//3分の1以下時用
-	gauge.SetFileName("Assets/Sprite/HPtestA.png");
-	gauge.SetPosition(D3DXVECTOR2(15, 680));
-	gauge.Init();
+	//ハートの初期化
+	for (int i = 0; i < 3; i++) {
+		int tmp = i * 2;
+		heart[tmp].SetFileName("Assets/Sprite/HP/heart01L.png");
+		heart[tmp].SetPosition(D3DXVECTOR2((i * 125 + 50), 670));
+		heart[tmp].SetScale(D3DXVECTOR2(0.25f, 0.25f));
+		heart[tmp].Init();
 
-	//3分の1以上時用
-	gauge2.SetFileName("Assets/Sprite/HPtestA2.png");
-	gauge2.SetPosition(D3DXVECTOR2(15, 680));
-	gauge2.Init();
-
-	//3分の2以上時用
-	gauge3.SetFileName("Assets/Sprite/HPtestA3.png");
-	gauge3.SetPosition(D3DXVECTOR2(15, 680));
-	gauge3.Init();
-
-	//テスト用
-	sp.SetFileName("Assets/Sprite/GameOver.png");
-	sp.SetPosition(D3DXVECTOR2(480, 300));
-	sp.Init();
-
-	showGauge = &gauge3;
+		heart[tmp+1].SetFileName("Assets/Sprite/HP/heart01R.png");
+		heart[tmp+1].SetPosition(D3DXVECTOR2((i * 125 + 50), 670));
+		heart[tmp+1].SetScale(D3DXVECTOR2(0.25f, 0.25f));
+		heart[tmp+1].Init();
+	}
 }
 
 void HPGauge::Update()
 {
-	D3DXVECTOR2 scale = gauge.GetScale();
-	int HP = game->GetPlayer()->GetStatus().HP;
 
-	////6以上の時は青
-	//if (HP >= 6) {
-	//	showGauge = &gauge3;
-	//}
-	////3以上の時は黄
-	//else if (HP >= 3) {
-	//	showGauge = &gauge2;
-	//}
-	////3以下は赤
-	//else
-	//{
-	//	showGauge = &gauge;
-	//}
-	//6以上の時は青
-	if (HP >= 4) {
-		showGauge = &gauge3;
-	}
-	//3以上の時は黄
-	else if (HP >= 2) {
-		showGauge = &gauge2;
-	}
-	//3以下は赤
-	else
-	{
-		showGauge = &gauge;
-	}
-
-	////スケールセット
-	//scale.x = (float)HP / 10.0f;
-	//スケールセット
-	scale.x = (float)HP / 5.0f;
-	showGauge->SetScale(scale);
-	showGauge->SetupMatrices();
-
-	if (HP <= 0) {
-		flag = true;
-	}
 }
 
 void HPGauge::Draw()
 {
-	back.Draw();
-	showGauge->Draw();
+	int HP = game->GetPlayer()->GetStatus().HP;
 
-	//テスト
-	if (flag)
-	{
-		sp.Draw();
+	//バックの描画
+	for (int i = 0; i < 3; i++) {
+		backHeart[i].Draw();
+	}
+
+	//ハートの描画
+	for (int i = 0; i < HP; i++) {
+		heart[i].Draw();
 	}
 }

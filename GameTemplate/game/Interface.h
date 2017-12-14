@@ -19,5 +19,8 @@ public:
 private:
 	ShowScore		s_score;			//スコア表示
 	HPGauge			gauge;				//HPゲージ
+
+	Sprite			sp;					//テスト用(GameOver)
+	bool			flag = false;		//テスト用
 };
 

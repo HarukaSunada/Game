@@ -18,7 +18,7 @@ public:
 	void Update();
 
 	//•`‰æ
-	void Render();
+	void PostRender();
 
 	void SetScore(int scr)
 	{

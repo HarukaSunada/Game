@@ -116,6 +116,14 @@ void Game::Render()
 	player.Draw();
 	enemyManager.Draw();
 	map.Draw();
+
+	//‚±‚±‚©‚çƒuƒ‹[ƒ€
+	bloom.Render();
+}
+
+//•`‰æ
+void Game::PostRender()
+{
 	ui.Render();
 }
 

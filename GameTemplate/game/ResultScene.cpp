@@ -19,10 +19,10 @@ void ResultScene::Init()
 	back.Init();
 
 
-	num[0].Init(D3DXVECTOR2(240.0f, 300.0f));
-	num[1].Init(D3DXVECTOR2(285.0f, 300.0f));
-	num[2].Init(D3DXVECTOR2(330.0f, 300.0f));
-	num[3].Init(D3DXVECTOR2(375.0f, 300.0f));
+	num[0].Init(D3DXVECTOR2(300.0f, 300.0f));
+	num[1].Init(D3DXVECTOR2(350.0f, 300.0f));
+	num[2].Init(D3DXVECTOR2(400.0f, 300.0f));
+	num[3].Init(D3DXVECTOR2(450.0f, 300.0f));
 
 	num[1].NumSet(7);
 	num[2].NumSet(5);
@@ -30,6 +30,7 @@ void ResultScene::Init()
 
 	sp.SetFileName("Assets/sprite/score.png");
 	sp.SetPosition(D3DXVECTOR2(50.0f, 300.0f));
+	sp.SetScale(D3DXVECTOR2(0.8f, 0.8f));
 	sp.Init();
 
 	int tmp = score;
@@ -51,7 +52,7 @@ void ResultScene::Update()
 
 }
 
-void ResultScene::Render()
+void ResultScene::PostRender()
 {
 	back.Draw();
 

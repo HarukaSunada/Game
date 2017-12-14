@@ -10,3 +10,13 @@ SceneBase::SceneBase()
 SceneBase::~SceneBase()
 {
 }
+
+void SceneBase::Render()
+{
+
+}
+
+void SceneBase::PostRender()
+{
+
+}

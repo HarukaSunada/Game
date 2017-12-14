@@ -20,13 +20,7 @@ public:
 	void Draw();
 
 private:
-	Sprite			gauge;		//赤のゲージ
-	Sprite			gauge2;		//黄のゲージ
-	Sprite			gauge3;		//青のゲージ
-	Sprite*			showGauge;	//表示するスプライト
-	Sprite			back;		//ゲージのバック
-
-	Sprite			sp;			//テスト用(GameOver)
-	bool flag = false;			//テスト用
+	Sprite			backHeart[3];
+	Sprite			heart[6];
 };
 

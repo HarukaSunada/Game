@@ -17,6 +17,7 @@ void Number::Init(D3DXVECTOR2 numPos) {
 		sprintf(filePath, "Assets/sprite/num/%d.png", i);
 		number[i].SetFileName(filePath);
 		number[i].SetPosition(numPos);
+		number[i].SetScale(D3DXVECTOR2(0.8f, 0.8f));
 		number[i].Init();
 	}
 }

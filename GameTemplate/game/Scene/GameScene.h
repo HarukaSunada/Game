@@ -13,6 +13,7 @@
 #include "Enemy/EnemyManager.h"
 #include "SceneBase.h"
 #include "Interface.h"
+#include "bloom.h"
 
 /*!
  * @brief	ゲームクラス。
@@ -46,6 +47,8 @@ public:
 	 * @brief	描画。
 	 */
 	void Render();
+	//描画
+	void PostRender();
 
 	//解放
 	void Release();
@@ -105,14 +108,15 @@ public:
 		return state;
 	}
 private:	
-	Light			light;				//ライト
-	GameCamera		camera;				//カメラ
-	Player			player;				//プレイヤー
-	Map				map;				//マップ
-	Pad				pad;				//ゲームパッド
-	EnemyManager	enemyManager;		//エネミー管理
-	GameState		state;
-	UserInterface	ui;
+	Light				light;				//ライト
+	GameCamera			camera;				//カメラ
+	Player				player;				//プレイヤー
+	Map					map;				//マップ
+	Pad					pad;				//ゲームパッド
+	EnemyManager		enemyManager;		//エネミー管理
+	GameState			state;
+	UserInterface		ui;
+	Bloom				bloom;
 
 	const float		frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。
 

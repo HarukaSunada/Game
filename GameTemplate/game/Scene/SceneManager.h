@@ -24,6 +24,9 @@ public:
 	//•`‰æŠÖ”
 	void Render();
 
+	//•`‰æŠÖ”
+	void PostRender();
+
 	void SceneChange();
 
 	//ƒV[ƒ“ó‘Ô

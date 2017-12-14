@@ -32,7 +32,7 @@ void Player::Init()
 	dir = { 0.0f,0.0f,0.0f };	//向き
 
 	//ステータス初期化
-	state.HP = 5;
+	state.HP = 6;
 	state.score = 0;
 
 	//キャラクタコントローラを初期化。

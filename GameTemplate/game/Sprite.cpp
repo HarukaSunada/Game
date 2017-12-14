@@ -4,6 +4,9 @@
 
 Sprite::Sprite()
 {
+	m_angle = 0;
+	m_scale = D3DXVECTOR2(1, 1);
+	m_backColor = D3DCOLOR_ARGB(255, 255, 255, 255);
 }
 
 
@@ -28,10 +31,6 @@ void Sprite::Init()
 
 	RECT rec = { 0, 0, imgInfo.Width, imgInfo.Height };			//•`‰æ—Ìˆæ
 	memcpy(&this->m_rect, &rec, sizeof(RECT));					//•`‰æ—ÌˆæƒZƒbƒg
-
-	m_angle		= 0;
-	m_scale		= D3DXVECTOR2(1, 1);
-	m_backColor = D3DCOLOR_ARGB(255, 255, 255, 255);
 
 	SetupMatrices();
 }

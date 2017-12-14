@@ -73,6 +73,9 @@ void ShadowMap::Draw()
 	g_pd3dDevice->SetRenderTarget(0, renderTargetBackup);
 	g_pd3dDevice->SetDepthStencilSurface(depthBufferBackup);
 
+	renderTargetBackup->Release();
+	depthBufferBackup->Release();
+
 	//ƒŠƒXƒg‚Ì‰Šú‰»
 	m_shadowCaster.clear();
 	m_shadowCaster.shrink_to_fit();

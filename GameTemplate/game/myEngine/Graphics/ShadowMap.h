@@ -4,7 +4,7 @@
 
 #pragma once
 #include "RenderTarget.h"
-#include "myEngine/Graphics/SkinModel.h"
+#include "SkinModel.h"
 
 class ShadowMap
 {

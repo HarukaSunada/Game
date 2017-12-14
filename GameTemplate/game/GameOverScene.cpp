@@ -35,6 +35,8 @@ void GameOverScene::Init()
 	cursor.Init();
 
 	state = Continue;
+
+	ChangeEffect(1);
 }
 
 void GameOverScene::Update()
@@ -62,7 +64,7 @@ void GameOverScene::Update()
 	}
 }
 
-void GameOverScene::Render()
+void GameOverScene::PostRender()
 {
 	back.Draw();
 	conti.Draw();

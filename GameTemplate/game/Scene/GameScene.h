@@ -14,6 +14,7 @@
 #include "SceneBase.h"
 #include "Interface.h"
 #include "bloom.h"
+#include "ParticleEmitter.h"
 
 /*!
  * @brief	ゲームクラス。
@@ -117,6 +118,7 @@ private:
 	GameState			state;
 	UserInterface		ui;
 	Bloom				bloom;
+	ParticleEmitter		g_particleEmitter;	//パーティクルエミッター
 
 	const float		frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。
 

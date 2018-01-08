@@ -6,6 +6,7 @@
 
 #include "myEngine/Graphics/RenderTarget.h"
 #include "Primitive.h"
+#include "SoundEngine.h"
 
 SceneManager* scene;
 
@@ -37,6 +38,9 @@ void Init()
 
 	scene = new SceneManager;
 	scene->Start();
+
+	//g_soundEngine = new CSoundEngine;
+	//g_soundEngine->Init();
 }
 //-----------------------------------------------------------------------------
 // Name: •`‰æˆ—B
@@ -91,6 +95,7 @@ VOID Render()
 void Update()
 {
 	scene->Update();
+	//g_soundEngine->Update();
 }
 //-----------------------------------------------------------------------------
 //ƒQ[ƒ€‚ªI—¹‚·‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éˆ—B
@@ -102,6 +107,8 @@ void Terminate()
 
 	delete mainRenderTarget;	//18-2
 	delete quadPrimitive;		//18-3
+
+	//delete g_soundEngine;
 
 	g_pd3dDevice->Release();
 	g_pD3D->Release();

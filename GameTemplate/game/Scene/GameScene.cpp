@@ -60,6 +60,14 @@ void Game::Init()
 	ui.Init();
 
 	state = GameRun;
+
+	SParicleEmitParameter param;
+	param.texturePath = "Assets/Sprite/star.png";
+	param.w = 0.5f;
+	param.h = 0.5f;
+	param.intervalTime = 0.2f;
+	param.initSpeed = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+	g_particleEmitter.Init(param);
 }
 /*!
  * @brief	更新。
@@ -93,6 +101,8 @@ void Game::Update()
 	//マップ更新
 	map.Update();
 
+	g_particleEmitter.Update();
+
 	//ライトビューの注視点はプレイヤー、視点はプレイヤーの座標からY方向に+10
 	D3DXVECTOR3 target = player.GetPosition();
 	D3DXVECTOR3 viewPos = target;
@@ -116,6 +126,8 @@ void Game::Render()
 	player.Draw();
 	enemyManager.Draw();
 	map.Draw();
+
+	g_particleEmitter.Render(camera.GetCamera()->GetViewMatrix(), camera.GetCamera()->GetProjectionMatrix());
 
 	//ここからブルーム
 	bloom.Render();

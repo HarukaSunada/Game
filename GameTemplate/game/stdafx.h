@@ -9,6 +9,12 @@
 #include <vector>
 #include <map>
 
+#include <xaudio2.h>
+#include <x3daudio.h>
+#include <xaudio2fx.h>
+#pragma comment(lib, "winmm.lib")
+#pragma comment(lib,"xaudio2.lib")
+
 #include "btBulletDynamicsCommon.h"
 #include "BulletCollision\CollisionDispatch\btGhostObject.h"
 
@@ -25,3 +31,5 @@
 extern RenderTarget* mainRenderTarget;	//!<18-2 メインレンダリングターゲット。
 extern void DrawQuadPrimitive();
 extern void ChangeEffect(int ef);
+
+const float		frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。

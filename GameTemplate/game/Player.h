@@ -1,6 +1,7 @@
 #pragma once
 
 #include "myEngine/Physics/CharacterController.h"
+#include "ParticleEmitter.h"
 
 /*
 	プレイヤークラス

@@ -32,4 +32,5 @@ private:
 
 	Sprite			sp;
 	Number			num[4];
+	CSoundSource		bgmSource;
 };

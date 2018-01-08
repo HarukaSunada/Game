@@ -45,11 +45,14 @@ void ResultScene::Init()
 	tmp %= 10;
 
 	num[3].NumSet(tmp);
+
+	bgmSource.Init("Assets/sound/result.wav");
+	bgmSource.Play(true);
 }
 
 void ResultScene::Update()
 {
-
+	//bgmSource.Update();
 }
 
 void ResultScene::PostRender()

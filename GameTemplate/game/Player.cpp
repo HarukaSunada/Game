@@ -50,7 +50,7 @@ void Player::Update()
 	{
 		timer += game->GetDeltaTime();	//プレイ時間カウント
 	}
-	if (timer > 1.00f)
+	if (timer > 2.00f)
 	{
 		timer = 0.0f;
 		isDamage = false;
@@ -120,10 +120,6 @@ void Player::Action()
 		rotation.w = cos(halfAngle);
 		rotation.y = 1 * s;
 
-		//ベクトルの大きさ
-		float length = pad_x*pad_x + pad_y*pad_y;
-		sqrt(length);
-
 		//アニメーション
 		anim = animRun;
 	}
@@ -148,6 +144,13 @@ void Player::Action()
 	if (isAttack == false && pad->IsTrigger(Pad::enButtonB)) {
 		//攻撃状態に遷移
 		isAttack = true;
+
+		SParicleEmitParameter param;
+		param.texturePath = "Assets/Sprite/star.png";
+		param.w = 0.5f;
+		param.h = 0.5f;
+		param.intervalTime = 0.2f;
+		param.initSpeed = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	}
 
 	//攻撃状態の時

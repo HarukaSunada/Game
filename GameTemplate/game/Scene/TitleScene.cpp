@@ -21,7 +21,6 @@ void TitleScene::Init()
 
 void TitleScene::Update()
 {
-
 }
 
 void TitleScene::PostRender()

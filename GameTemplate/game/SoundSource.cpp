@@ -92,7 +92,6 @@
 		}
 		Remove3DSound();
 		//DeleteGO(this);
-		delete this;
 	}
 	void CSoundSource::Play(char* buff, unsigned int bufferSize)
 	{
@@ -177,7 +176,6 @@
 							//çƒê∂èIóπÅB
 							m_isPlaying = false;
 							//DeleteGO(this);
-							delete this;
 							Remove3DSound();
 						}
 					}
@@ -212,7 +210,6 @@
 			}
 			else {
 				//DeleteGO(this);
-				delete this;
 				Remove3DSound();
 			}
 		}

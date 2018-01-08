@@ -70,6 +70,7 @@ void Skelton::Action()
 		if (length < 4.0f) {
 			anim = animAttack;
 			act = actAttack;
+			timer = 0.0f;
 		}
 		else if (length > 60.f) {
 			anim = animStand;
@@ -84,6 +85,15 @@ void Skelton::Action()
 		moveSpeed.x = 0.0f;
 		moveSpeed.z = 0.0f;
 		timer += game->GetDeltaTime();	//プレイ時間カウント
+					//視野角?
+		float angle = Angle();
+
+		//視野に入った、かつ近い
+		if (timer > 1.0f && fabsf(angle) < D3DXToRadian(45.0f) && length < 6.0f) {
+			//発見した
+			game->GetPlayer()->Damage(1);
+		}
+
 		if (timer > 2.0f) {
 			//発見した
 			act = actFound;

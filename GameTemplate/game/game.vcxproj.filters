@@ -37,6 +37,9 @@
     <Filter Include="ソース ファイル\UI">
       <UniqueIdentifier>{61b10a22-202c-4de6-9640-2357ee9a2570}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\myEngine\Sound">
+      <UniqueIdentifier>{fdbbc18b-b229-4a24-b438-54ee84ff00b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -171,23 +174,23 @@
     <ClCompile Include="bloom.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Particle.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleEmitter.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="SoundEngine.cpp">
+      <Filter>ソース ファイル\myEngine\Sound</Filter>
     </ClCompile>
     <ClCompile Include="SoundSource.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\myEngine\Sound</Filter>
     </ClCompile>
     <ClCompile Include="WaveFile.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundEngine.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\myEngine\Sound</Filter>
     </ClCompile>
     <ClCompile Include="WaveFileBank.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\myEngine\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleEmitter.cpp">
+      <Filter>ソース ファイル\myEngine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>ソース ファイル\myEngine\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -329,26 +332,26 @@
     <ClInclude Include="bloom.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Particle.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleEmitter.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundSource.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="WaveFile.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundEngine.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="WaveFileBank.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Util.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine.h">
+      <Filter>ソース ファイル\myEngine\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundSource.h">
+      <Filter>ソース ファイル\myEngine\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="WaveFile.h">
+      <Filter>ソース ファイル\myEngine\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="WaveFileBank.h">
+      <Filter>ソース ファイル\myEngine\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>ソース ファイル\myEngine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleEmitter.h">
+      <Filter>ソース ファイル\myEngine\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

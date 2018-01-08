@@ -36,11 +36,12 @@ void Init()
 	copyEffect = g_effectManager->LoadEffect("Assets/Shader/Copy.fx");
 	shader = copyEffect;
 
+	g_soundEngine = new CSoundEngine;
+	g_soundEngine->Init();
+	g_soundEngine->Update();
+
 	scene = new SceneManager;
 	scene->Start();
-
-	//g_soundEngine = new CSoundEngine;
-	//g_soundEngine->Init();
 }
 //-----------------------------------------------------------------------------
 // Name: •`‰æˆ—B
@@ -95,7 +96,7 @@ VOID Render()
 void Update()
 {
 	scene->Update();
-	//g_soundEngine->Update();
+	g_soundEngine->Update();
 }
 //-----------------------------------------------------------------------------
 //ƒQ[ƒ€‚ªI—¹‚·‚é‚Æ‚«‚ÉŒÄ‚Î‚ê‚éˆ—B
@@ -108,7 +109,7 @@ void Terminate()
 	delete mainRenderTarget;	//18-2
 	delete quadPrimitive;		//18-3
 
-	//delete g_soundEngine;
+	delete g_soundEngine;
 
 	g_pd3dDevice->Release();
 	g_pD3D->Release();

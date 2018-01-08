@@ -53,6 +53,9 @@ void Map::Init(EnemyManager* en)
 			mapChipList.push_back(mapChip);
 		}
 	}
+
+	bgmSource.Init("Assets/sound/stage1.wav");
+	bgmSource.Play(true);
 }
 
 void Map::Draw()
@@ -69,6 +72,7 @@ void Map::Draw()
 
 void Map::Update()
 {
+	bgmSource.Update();
 	sky.Update();
 	//マップチップを一個ずつ更新
 	for (int i = 0; i < mapChipList.size(); i++) {

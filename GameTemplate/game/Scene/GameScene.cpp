@@ -123,9 +123,10 @@ void Game::Update()
 void Game::Render()
 {
 	g_shadowMap->Draw();
-	player.Draw();
-	enemyManager.Draw();
+
 	map.Draw();
+	enemyManager.Draw();
+	player.Draw();
 
 	g_particleEmitter.Render(camera.GetCamera()->GetViewMatrix(), camera.GetCamera()->GetProjectionMatrix());
 

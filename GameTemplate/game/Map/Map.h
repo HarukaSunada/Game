@@ -26,4 +26,5 @@ private:
 	Sky sky;
 	ClearMarker marker;
 	SkinModelData modelData[2];
+	CSoundSource		bgmSource;
 };

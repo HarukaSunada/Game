@@ -40,6 +40,9 @@
     <Filter Include="ソース ファイル\myEngine\Sound">
       <UniqueIdentifier>{fdbbc18b-b229-4a24-b438-54ee84ff00b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\myEngine\Particle">
+      <UniqueIdentifier>{b96ed5d2-1a34-43d3-9458-9e0edf017eb1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -171,9 +174,6 @@
     <ClCompile Include="PostEffect.cpp">
       <Filter>ソース ファイル\myEngine</Filter>
     </ClCompile>
-    <ClCompile Include="bloom.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="SoundEngine.cpp">
       <Filter>ソース ファイル\myEngine\Sound</Filter>
     </ClCompile>
@@ -187,9 +187,15 @@
       <Filter>ソース ファイル\myEngine\Sound</Filter>
     </ClCompile>
     <ClCompile Include="ParticleEmitter.cpp">
-      <Filter>ソース ファイル\myEngine\Graphics</Filter>
+      <Filter>ソース ファイル\myEngine\Particle</Filter>
     </ClCompile>
     <ClCompile Include="Particle.cpp">
+      <Filter>ソース ファイル\myEngine\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Recovery.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="bloom.cpp">
       <Filter>ソース ファイル\myEngine\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
@@ -329,9 +335,6 @@
     <ClInclude Include="PostEffect.h">
       <Filter>ソース ファイル\myEngine</Filter>
     </ClInclude>
-    <ClInclude Include="bloom.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Util.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
@@ -348,9 +351,15 @@
       <Filter>ソース ファイル\myEngine\Sound</Filter>
     </ClInclude>
     <ClInclude Include="Particle.h">
-      <Filter>ソース ファイル\myEngine\Graphics</Filter>
+      <Filter>ソース ファイル\myEngine\Particle</Filter>
     </ClInclude>
     <ClInclude Include="ParticleEmitter.h">
+      <Filter>ソース ファイル\myEngine\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Recovery.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="bloom.h">
       <Filter>ソース ファイル\myEngine\Graphics</Filter>
     </ClInclude>
   </ItemGroup>

@@ -115,10 +115,12 @@ private:
 	Map					map;				//マップ
 	Pad					pad;				//ゲームパッド
 	EnemyManager		enemyManager;		//エネミー管理
+
 	GameState			state;
 	UserInterface		ui;
 	Bloom				bloom;
 	ParticleEmitter		g_particleEmitter;	//パーティクルエミッター
+	CSoundSource		bgmSource;
 
 	const float		frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。
 

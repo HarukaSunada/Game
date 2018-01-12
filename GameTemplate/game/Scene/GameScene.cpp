@@ -61,13 +61,17 @@ void Game::Init()
 
 	state = GameRun;
 
+	bgmSource.Init("Assets/sound/stage1.wav");
+	bgmSource.Play(true);
+
 	SParicleEmitParameter param;
 	param.texturePath = "Assets/Sprite/star.png";
+	param.life = 5.0f;
 	param.w = 0.5f;
 	param.h = 0.5f;
 	param.intervalTime = 0.2f;
 	param.initSpeed = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	g_particleEmitter.Init(param);
+	g_particleEmitter.Init(param, D3DXVECTOR3(0.0f, 0.0f, -10.0f));
 }
 /*!
  * @brief	更新。
@@ -76,6 +80,9 @@ void Game::Update()
 {
 	//パッド更新
 	pad.Update();
+
+	//BGM更新
+	bgmSource.Update();
 
 	//プレイヤー更新
 	player.Update();

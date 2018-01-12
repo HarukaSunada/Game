@@ -1,6 +1,7 @@
 #include "Enemy/EnemyManager.h"
 #include "Sky.h"
 #include "ClearMarker.h"
+#include "Recovery.h"
 class MapChip;
 
 class Map
@@ -26,5 +27,5 @@ private:
 	Sky sky;
 	ClearMarker marker;
 	SkinModelData modelData[2];
-	CSoundSource		bgmSource;
+	Recovery	rec;
 };

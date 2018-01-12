@@ -21,6 +21,7 @@ void Map::Init(EnemyManager* en)
 	modelData[0].LoadModelData("Assets/modelData/Floor-Wood-Model-02.X", NULL);
 	modelData[1].LoadModelData("Assets/modelData/Wall-Wood-Model-02.X", NULL);
 	sky.Init();
+	rec.Init(D3DXVECTOR3(0.0f, 6.0f, -40.0f));
 
 	//配置オブジェクト個数を計算
 	int numObject = sizeof(mapChipInfo) / sizeof(mapChipInfo[0]);
@@ -53,9 +54,6 @@ void Map::Init(EnemyManager* en)
 			mapChipList.push_back(mapChip);
 		}
 	}
-
-	bgmSource.Init("Assets/sound/stage1.wav");
-	bgmSource.Play(true);
 }
 
 void Map::Draw()
@@ -68,17 +66,18 @@ void Map::Draw()
 
 	////テスト用
 	//marker.Draw();
+	rec.Draw();
 }
 
 void Map::Update()
 {
-	bgmSource.Update();
 	sky.Update();
 	//マップチップを一個ずつ更新
 	for (int i = 0; i < mapChipList.size(); i++) {
 		mapChipList[i]->Update();
 	}
 	marker.Update();
+	rec.Update();
 }
 
 void Map::Release()

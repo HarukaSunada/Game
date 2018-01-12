@@ -13,7 +13,10 @@ Player::Player()
 
 Player::~Player()
 {
-
+	//ハンズオン 1-3
+	if (normalMap != NULL) {
+		normalMap->Release();
+	}
 }
 
 void Player::Init()
@@ -23,6 +26,14 @@ void Player::Init()
 	model.Init(&modelData);
 	model.SetLight(game->GetLight());	//ライトの設定
 	model.SetShadowCasterFlag(true);	//シャドウキャスター
+
+	D3DXCreateTextureFromFileA(
+		g_pd3dDevice,
+		"Assets/modelData/face off elf lv3_normal.tga",
+		&normalMap
+	);
+	//モデルに法線マップを設定
+	model.SetNormalMap(normalMap);
 
 	//アニメーションを設定
 	anim = animStand;
@@ -43,6 +54,10 @@ void Player::Init()
 
 void Player::Update()
 {
+	if (particle != nullptr) {
+		particle->Update();
+	}
+
 	Action();
 	
 	//無敵状態
@@ -145,12 +160,7 @@ void Player::Action()
 		//攻撃状態に遷移
 		isAttack = true;
 
-		SParicleEmitParameter param;
-		param.texturePath = "Assets/Sprite/star.png";
-		param.w = 0.5f;
-		param.h = 0.5f;
-		param.intervalTime = 0.2f;
-		param.initSpeed = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+		Perticle();
 	}
 
 	//攻撃状態の時
@@ -162,6 +172,10 @@ void Player::Action()
 	if (attackTimer > 0.75f)
 	{
 		attackTimer = 0.0f;
+		if (particle != nullptr) {
+			delete particle;
+			particle = nullptr;
+		}
 		isAttack = false;
 	}
 
@@ -184,6 +198,10 @@ void Player::Draw()
 		}
 	}
 	model.Draw(&game->GetCamera()->GetViewMatrix(), &game->GetCamera()->GetProjectionMatrix());
+
+	if (particle != nullptr) {
+		particle->Render(game->GetCamera()->GetViewMatrix(), game->GetCamera()->GetProjectionMatrix());
+	}
 }
 
 void Player::Damage(int dm)
@@ -234,6 +252,10 @@ void Player::Release()
 {
 	//剛体除去
 	g_physicsWorld->RemoveRigidBody(characterController.GetRigidBody());
+
+	if (particle != nullptr) {
+		delete particle;
+	}
 }
 
 float Player::Length(D3DXVECTOR3 pos)
@@ -247,4 +269,28 @@ float Player::Length(D3DXVECTOR3 pos)
 	sqrt(length);
 
 	return length;
+}
+
+void Player::Perticle()
+{
+	particle = new ParticleEmitter();
+
+	//前方向
+	D3DXVECTOR3 direction;
+	D3DXMATRIX wMatrix = model.GetWorldMatrix();
+	direction.x = wMatrix.m[2][0];
+	direction.y = wMatrix.m[2][1];
+	direction.z = wMatrix.m[2][2];
+	D3DXVec3Normalize(&direction, &direction);
+
+	D3DXVECTOR3 speed = direction*5.0f;
+
+	SParicleEmitParameter param;
+	param.texturePath = "Assets/Sprite/star.png";
+	param.life = 0.75f;
+	param.w = 0.5f;
+	param.h = 0.5f;
+	param.intervalTime = 0.1f;
+	param.initSpeed = speed;
+	particle->Init(param, characterController.GetPosition());
 }

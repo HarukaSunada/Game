@@ -51,6 +51,9 @@ public:
 	//距離を返す
 	float Length(D3DXVECTOR3 pos);
 
+	//パーティクル発生
+	void Perticle();
+
 	//位置を取得
 	D3DXVECTOR3 GetPosition()
 	{
@@ -64,9 +67,11 @@ public:
 	}
 
 	//HPを設定
-	void SetHP(int hp)
+	bool AddHP(int hp)
 	{
-		state.HP = hp;
+		if (state.HP <= 0 || state.HP >= 6) { return false; }
+		state.HP += hp;
+		return true;
 	}
 
 	//視野角計算
@@ -80,6 +85,8 @@ private:
 	D3DXQUATERNION		rotation;				//回転
 	CharacterController characterController;	//キャラクタコントローラ
 
+	ParticleEmitter*	particle=nullptr;
+
 	AnimNo				anim;					//アニメーション番号
 	D3DXVECTOR3			dir;					//キャラの方向
 	Status				state;					//ステータス
@@ -90,4 +97,6 @@ private:
 
 	bool				isAttack = false;		//攻撃フラグ
 	bool				isDamage = false;		//ダメージフラグ
+
+	LPDIRECT3DTEXTURE9	normalMap = NULL;		//法線マップ
 };

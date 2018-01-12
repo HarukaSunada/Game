@@ -52,7 +52,7 @@ void ResultScene::Init()
 
 void ResultScene::Update()
 {
-	//bgmSource.Update();
+	bgmSource.Update();
 }
 
 void ResultScene::PostRender()

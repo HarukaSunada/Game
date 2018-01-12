@@ -16,6 +16,7 @@ namespace {
 		D3DXMATRIX* viewMatrix,
 		D3DXMATRIX* projMatrix,
 		Light* light,
+		LPDIRECT3DTEXTURE9 normalMap,
 		bool isDrawShadowMap,
 		bool isRecieveShadow
 	)
@@ -64,6 +65,19 @@ namespace {
 				pEffect->SetMatrix("g_lightProjectionMatrix", &g_shadowMap->GetLightProjectionMatrix());
 			}
 		}
+
+		if (normalMap != NULL) {
+			//法線マップをシェーダに転送
+			pEffect->SetTexture("g_nomalTexture", normalMap);
+
+			//法線マップあり
+			pEffect->SetBool("g_isHasNomalMap", true);
+		}
+		else {
+			//法線マップなし
+			pEffect->SetBool("g_isHasNomalMap", false);
+		}
+
 		if (pMeshContainer->pSkinInfo != NULL)
 		{
 			//スキン情報有り。
@@ -139,6 +153,7 @@ namespace {
 		D3DXMATRIX* viewMatrix, 
 		D3DXMATRIX* projMatrix,
 		Light* light,
+		LPDIRECT3DTEXTURE9 normalMap,
 		bool isDrawShadowMap, 
 		bool isRecieveShadow)
 	{
@@ -157,6 +172,7 @@ namespace {
 				viewMatrix,
 				projMatrix,
 				light,
+				normalMap,
 				isDrawShadowMap,
 				isRecieveShadow
 				);
@@ -175,6 +191,7 @@ namespace {
 				viewMatrix,
 				projMatrix,
 				light,
+				normalMap,
 				isDrawShadowMap,
 				isRecieveShadow
 				);
@@ -191,6 +208,7 @@ namespace {
 				viewMatrix,
 				projMatrix,
 				light,
+				normalMap,
 				isDrawShadowMap,
 				isRecieveShadow
 				);
@@ -244,6 +262,7 @@ void SkinModel::Draw(D3DXMATRIX* viewMatrix, D3DXMATRIX* projMatrix ,bool isDraw
 			viewMatrix,
 			projMatrix,
 			light,
+			normalMap,
 			isDrawShadowMap,
 			isRecieveShadow
 		);

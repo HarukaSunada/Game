@@ -55,6 +55,11 @@ public:
 		return worldMatrix;
 	}
 
+	//法線マップを設定
+	void SetNormalMap(LPDIRECT3DTEXTURE9 normalMap) {
+		this->normalMap = normalMap;
+	}
+
 	/*!
 	* @brief	シャドウキャスターのフラグを設定。
 	*@param[in]	flag	シャドウキャスターのフラグ。
@@ -86,6 +91,7 @@ private:
 	ID3DXEffect*		pEffect = nullptr;			//!<エフェクト。
 	Animation			animation;					//!<アニメーション。
 	Light*				light = nullptr;			//!<ライト。
+	LPDIRECT3DTEXTURE9	normalMap = NULL;			//法線マップ
 	bool				isShadowCaster = false;
 	bool				isRecieveShadow = false;
 };

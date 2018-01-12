@@ -13,14 +13,14 @@ float		g_numBone;			//骨の数。
 float4x4	g_worldMatrix;			//!<ワールド行列。
 float4x4	g_rotationMatrix;		//!<回転行列。
 
-int g_isShadowReciever;				//シャドウレシーバー。１ならシャドウレシーバー
-float4x4 g_lightViewMatrix;			//ライトビュー行列。
-float4x4 g_lightProjectionMatrix;	//ライトプロジェクション行列。
+int			g_isShadowReciever;				//シャドウレシーバー。１ならシャドウレシーバー
+float4x4	g_lightViewMatrix;			//ライトビュー行列。
+float4x4	g_lightProjectionMatrix;	//ライトプロジェクション行列。
 
-bool g_isHasNormalMap;			//法線マップ保持している？
+int			g_isHasNormalMap;			//法線マップ保持している？
 
-texture g_diffuseTexture;		//ディフューズテクスチャ。
-sampler g_diffuseTextureSampler = 
+texture		g_diffuseTexture;		//ディフューズテクスチャ。
+sampler	g_diffuseTextureSampler = 
 sampler_state
 {
 	Texture = <g_diffuseTexture>;
@@ -49,9 +49,9 @@ sampler g_normalMapSampler =
 sampler_state
 {
 	Texture = <g_normalTexture>;
-    MipFilter = NONE;
-    MinFilter = NONE;
-    MagFilter = NONE;
+	MipFilter = LINEAR;
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
     AddressU = Wrap;
 	AddressV = Wrap;
 };
@@ -168,6 +168,22 @@ float4 PSMain( VS_OUTPUT In ) : COLOR
 {
 	float4 color = tex2D(g_diffuseTextureSampler, In.Tex0);
 	float3 normal = In.Normal;
+
+	if (g_isHasNormalMap == 1) {
+		//法線マップがある
+		float3 localNormal = tex2D(g_normalMapSampler, In.Tex0);
+
+		//-1.0～1.0の範囲にマッピング
+		localNormal = (localNormal*2.0f) - 1.0f;
+		//法線とタンジェントから従法線を求める
+		float3 tangent = normalize(In.Tangent);
+		float3 biNormal = cross(tangent, normal);
+
+		biNormal = normalize(biNormal);
+
+		//ワールド空間の法線を求める。
+		normal = tangent*localNormal.x + biNormal*localNormal.y + normal*localNormal.z;
+	}
 	
 	float4 lig = DiffuseLight(normal);
 
@@ -231,5 +247,17 @@ technique SkinModelRenderToShadowMap
 	{
 		VertexShader	= compile vs_3_0 VSMain(true);
 		PixelShader		= compile ps_3_0 PSRenderToShadowMapMain();
+	}
+}
+
+/*
+	スキンなしモデル用のシャドウマップ書き込み用のテクニック
+*/
+technique NoSkinModelRenderToShadowMap
+{
+	pass p0
+	{
+		VertexShader = compile vs_3_0 VSMain(false);
+		PixelShader = compile ps_3_0 PSRenderToShadowMapMain();
 	}
 }

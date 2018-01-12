@@ -32,7 +32,7 @@ Particle::~Particle()
 	}
 }
 
-void Particle::Init(const SParicleEmitParameter& param)
+void Particle::Init(const SParicleEmitParameter& param, const D3DXVECTOR3& emitPosition)
 {
 	float halfW = param.w * 0.5f;
 	float halfH = param.h * 0.5f;
@@ -40,7 +40,11 @@ void Particle::Init(const SParicleEmitParameter& param)
 	D3DXVECTOR4 uv(0.0f, 0.0f, 1.0f, 1.0f);
 	moveSpeed = param.initSpeed;
 
-	position = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	position = emitPosition;
+
+	timer = 0.0f;
+	life = param.life;
+
 	float add = ((rand() % 255) - 128) / 128.0f;
 	moveSpeed.x += add * 0.3f;
 	moveSpeed.y += add * 0.3f;
@@ -103,9 +107,18 @@ void Particle::Update()
 	float deltaTime = 1.0f / 60.0f;
 	D3DXVECTOR3 add = moveSpeed * deltaTime;
 	position += add;
+
+	if (timer > life) {
+		//€–S
+		isDead = true;
+	}
+
+	timer += deltaTime;
 }
 void Particle::Render(const D3DXMATRIX& viewMatrix, const D3DXMATRIX& projMatrix)
 {
+	//if (isDead) { return; }
+
 	//•½sˆÚ“®s—ñ
 	D3DXMATRIX m, mTrans;
 	D3DXMatrixTranslation(&mTrans, position.x, position.y, position.z);

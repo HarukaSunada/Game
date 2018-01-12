@@ -8,6 +8,7 @@
 #include <memory>
 #include <vector>
 #include <map>
+#include <algorithm>
 
 #include <xaudio2.h>
 #include <x3daudio.h>

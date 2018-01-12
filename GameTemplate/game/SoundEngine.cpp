@@ -164,10 +164,6 @@ CSoundEngine* g_soundEngine = nullptr;
 	{
 		//波形データバンクを解放。
 		m_waveFileBank.ReleaseAll();
-		if (m_xAudio2 != nullptr) {
-			m_xAudio2->Release();
-			m_xAudio2 = nullptr;
-		}
 		if (m_masteringVoice != nullptr) {
 			m_masteringVoice->DestroyVoice();
 			m_masteringVoice = nullptr;
@@ -179,6 +175,10 @@ CSoundEngine* g_soundEngine = nullptr;
 		if (m_submixVoice != nullptr) {
 			m_submixVoice->DestroyVoice();
 			m_submixVoice = nullptr;
+		}
+		if (m_xAudio2 != nullptr) {
+			m_xAudio2->Release();
+			m_xAudio2 = nullptr;
 		}
 		CoUninitialize();
 	}

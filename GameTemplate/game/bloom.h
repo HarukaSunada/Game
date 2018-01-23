@@ -16,10 +16,11 @@ public:
 	void UpdateWeight(float dispersion);
 
 private:
-	LPD3DXEFFECT effect;						//!<シェーダーエフェクト。											
-	RenderTarget luminanceRenderTarget;			//輝度を抽出するためのレンダリングターゲットを追加。
-	RenderTarget downSamplingRenderTarget[2];	//!<ブラーをかけるためのダウンサンプリング用のレンダリングターゲット。
-	static const int NUM_WEIGHTS = 8;			//!<ガウスブラーの重み。
-	float weights[NUM_WEIGHTS];					//!<ガウスブラーで使う重みテーブル。
+	static const int MGF_DOWN_SAMPLE_COUNT = 9;							//!<MGFダウンサンプリングの回数。
+	LPD3DXEFFECT effect;												//!<シェーダーエフェクト。
+	RenderTarget luminanceRenderTarget;								//!<輝度を抽出するためのレンダリングターゲット。
+	RenderTarget downSamplingRenderTarget[MGF_DOWN_SAMPLE_COUNT][2];	//!<MGFダウンサンプリング用のレンダリングターゲット。
+	static const int NUM_WEIGHTS = 8;									//!<ガウスブラーの重み。
+	float weights[NUM_WEIGHTS];
 };
 

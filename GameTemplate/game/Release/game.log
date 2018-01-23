@@ -1,76 +1,8 @@
-﻿  stdafx.cpp
-c:\users\kbc16b18\documents\directx\directxⅱ\gametemplate\game\myengine\graphics\SkinModel.h(77): warning C4101: 'isShadowCaster': ローカル変数は 1 度も使われていません。
-  ClearMarker.cpp
-  Enemy.cpp
-  EnemyManager.cpp
-Enemy\EnemyManager.cpp(37): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-Enemy\EnemyManager.cpp(44): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-Enemy\EnemyManager.cpp(52): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-Enemy\EnemyManager.cpp(62): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-  Skelton.cpp
-  GameCamera.cpp
-  GameOverScene.cpp
-  HPGauge.cpp
-HPGauge.cpp(21): warning C4244: '引数': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
-HPGauge.cpp(30): warning C4244: '引数': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
-HPGauge.cpp(35): warning C4244: '引数': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
-  IndexBuffer.cpp
-  Interface.cpp
-  LoadingScene.cpp
-  Map.cpp
-Map\Map.cpp(63): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-Map\Map.cpp(76): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-Map\Map.cpp(86): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-  MapChip.cpp
-  Sky.cpp
-  Number.cpp
-  Particle.cpp
-  ParticleEmitter.cpp
-  Player.cpp
-  PostEffect.cpp
-  Primitive.cpp
-  Recovery.cpp
-  コンパイル中...
-  ResultScene.cpp
-  SceneBase.cpp
-  GameScene.cpp
-  SceneManager.cpp
-  TitleScene.cpp
-  ShowScore.cpp
-  SoundEngine.cpp
-  SoundSource.cpp
-  Sprite.cpp
-Sprite.cpp(32): warning C4838: 'UINT' から 'LONG' への変換には縮小変換が必要です
-  VertexBuffer.cpp
-  WaveFile.cpp
-  WaveFileBank.cpp
-  bloom.cpp
-  main.cpp
-  Animation.cpp
-  Camera.cpp
-  EffectManager.cpp
-  RenderTarget.cpp
-  ShadowMap.cpp
-  SkinModel.cpp
-  コンパイル中...
-  SkinModelData.cpp
-myEngine\Graphics\SkinModelData.cpp(320): warning C4316: 'D3DXFRAME_DERIVED': ヒープで割り当てられたオブジェクトが 16 にアラインメントされていない可能性があります
-myEngine\Graphics\SkinModelData.cpp(677): warning C4316: 'D3DXFRAME_DERIVED': ヒープで割り当てられたオブジェクトが 16 にアラインメントされていない可能性があります
-myEngine\Graphics\SkinModelData.cpp(717): warning C4316: 'D3DXFRAME_DERIVED': ヒープで割り当てられたオブジェクトが 16 にアラインメントされていない可能性があります
-myEngine\Graphics\SkinModelData.cpp(726): warning C4316: 'D3DXFRAME_DERIVED': ヒープで割り当てられたオブジェクトが 16 にアラインメントされていない可能性があります
-  Pad.cpp
-  CameraCollisionSolver.cpp
-  CapsuleCollider.cpp
-  CharacterController.cpp
-  MeshCollider.cpp
-  Physics.cpp
-  RigidBody.cpp
-  SphereCollider.cpp
-  System.cpp
+﻿  ParticleManager.cpp
   コード生成しています。
-  2 of 1847 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+  0 of 1847 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    2 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
   game.vcxproj -> C:\Users\kbc16b18\Documents\DirectX\DirectXⅡ\GameTemplate\Release\game.exe
   game.vcxproj -> C:\Users\kbc16b18\Documents\DirectX\DirectXⅡ\GameTemplate\Release\game.pdb (Full PDB)

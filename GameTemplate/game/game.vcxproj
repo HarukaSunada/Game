@@ -153,21 +153,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="bloom.cpp" />
-    <ClCompile Include="ClearMarker.cpp" />
     <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="Enemy\EnemyManager.cpp" />
     <ClCompile Include="Enemy\Skelton.cpp" />
     <ClCompile Include="GameCamera.cpp" />
-    <ClCompile Include="GameOverScene.cpp" />
-    <ClCompile Include="HPGauge.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
-    <ClCompile Include="Interface.cpp" />
-    <ClCompile Include="LoadingScene.cpp" />
+    <ClCompile Include="Item\Recovery.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Particle.cpp" />
-    <ClCompile Include="ParticleEmitter.cpp" />
-    <ClCompile Include="ParticleManager.cpp" />
+    <ClCompile Include="Map\ClearMarker.cpp" />
+    <ClCompile Include="myEngine\Graphics\bloom.cpp" />
+    <ClCompile Include="myEngine\Particle\Particle.cpp" />
+    <ClCompile Include="myEngine\Particle\ParticleEmitter.cpp" />
+    <ClCompile Include="myEngine\Particle\ParticleManager.cpp" />
+    <ClCompile Include="myEngine\Sound\SoundEngine.cpp" />
+    <ClCompile Include="myEngine\Sound\SoundSource.cpp" />
+    <ClCompile Include="myEngine\Sound\WaveFile.cpp" />
+    <ClCompile Include="myEngine\Sound\WaveFileBank.cpp" />
     <ClCompile Include="PostEffect.cpp" />
     <ClCompile Include="Map\Map.cpp" />
     <ClCompile Include="Map\MapChip.cpp" />
@@ -188,18 +189,15 @@
     <ClCompile Include="myEngine\Physics\RigidBody.cpp" />
     <ClCompile Include="myEngine\Physics\SphereCollider.cpp" />
     <ClCompile Include="myEngine\System.cpp" />
-    <ClCompile Include="Number.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Primitive.cpp" />
-    <ClCompile Include="Recovery.cpp" />
-    <ClCompile Include="ResultScene.cpp" />
-    <ClCompile Include="SceneBase.cpp" />
+    <ClCompile Include="Scene\GameOverScene.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
+    <ClCompile Include="Scene\LoadingScene.cpp" />
+    <ClCompile Include="Scene\ResultScene.cpp" />
+    <ClCompile Include="Scene\SceneBase.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
-    <ClCompile Include="ShowScore.cpp" />
-    <ClCompile Include="SoundEngine.cpp" />
-    <ClCompile Include="SoundSource.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -207,25 +205,29 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="UI\HPGauge.cpp" />
+    <ClCompile Include="UI\Interface.cpp" />
+    <ClCompile Include="UI\Number.cpp" />
+    <ClCompile Include="UI\ShowScore.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
-    <ClCompile Include="WaveFile.cpp" />
-    <ClCompile Include="WaveFileBank.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bloom.h" />
-    <ClInclude Include="ClearMarker.h" />
     <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="Enemy\EnemyManager.h" />
     <ClInclude Include="Enemy\Skelton.h" />
     <ClInclude Include="GameCamera.h" />
-    <ClInclude Include="GameOverScene.h" />
-    <ClInclude Include="HPGauge.h" />
     <ClInclude Include="IndexBuffer.h" />
-    <ClInclude Include="Interface.h" />
-    <ClInclude Include="LoadingScene.h" />
-    <ClInclude Include="Particle.h" />
-    <ClInclude Include="ParticleEmitter.h" />
-    <ClInclude Include="ParticleManager.h" />
+    <ClInclude Include="Item\Recovery.h" />
+    <ClInclude Include="Map\ClearMarker.h" />
+    <ClInclude Include="myEngine\Graphics\bloom.h" />
+    <ClInclude Include="myEngine\Particle\Particle.h" />
+    <ClInclude Include="myEngine\Particle\ParticleEmitter.h" />
+    <ClInclude Include="myEngine\Particle\ParticleManager.h" />
+    <ClInclude Include="myEngine\Sound\SoundEngine.h" />
+    <ClInclude Include="myEngine\Sound\SoundSource.h" />
+    <ClInclude Include="myEngine\Sound\WaveFile.h" />
+    <ClInclude Include="myEngine\Sound\WaveFileBank.h" />
+    <ClInclude Include="myEngine\Util.h" />
     <ClInclude Include="PostEffect.h" />
     <ClInclude Include="Map\Map.h" />
     <ClInclude Include="Map\MapChip.h" />
@@ -249,24 +251,22 @@
     <ClInclude Include="myEngine\Physics\RigidBody.h" />
     <ClInclude Include="myEngine\Physics\SphereCollider.h" />
     <ClInclude Include="myEngine\system.h" />
-    <ClInclude Include="Number.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Primitive.h" />
-    <ClInclude Include="Recovery.h" />
-    <ClInclude Include="ResultScene.h" />
-    <ClInclude Include="SceneBase.h" />
+    <ClInclude Include="Scene\GameOverScene.h" />
     <ClInclude Include="Scene\GameScene.h" />
+    <ClInclude Include="Scene\LoadingScene.h" />
+    <ClInclude Include="Scene\ResultScene.h" />
+    <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\TitleScene.h" />
-    <ClInclude Include="ShowScore.h" />
-    <ClInclude Include="SoundEngine.h" />
-    <ClInclude Include="SoundSource.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Util.h" />
+    <ClInclude Include="UI\HPGauge.h" />
+    <ClInclude Include="UI\Interface.h" />
+    <ClInclude Include="UI\Number.h" />
+    <ClInclude Include="UI\ShowScore.h" />
     <ClInclude Include="VertexBuffer.h" />
-    <ClInclude Include="WaveFile.h" />
-    <ClInclude Include="WaveFileBank.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

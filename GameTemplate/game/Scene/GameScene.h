@@ -5,16 +5,17 @@
 #pragma once
 
 #include "myEngine/Physics/Physics.h"
-#include "Player.h"
+#include "myEngine/Graphics/bloom.h"
+#include "myEngine/Particle/ParticleEmitter.h"
+#include "myEngine/Particle/ParticleManager.h"
 #include "Map/Map.h"
 #include "GameCamera.h"
 #include "Enemy/Enemy.h"
 #include "Enemy/Skelton.h"
 #include "Enemy/EnemyManager.h"
+#include "UI/Interface.h"
 #include "SceneBase.h"
-#include "Interface.h"
-#include "bloom.h"
-#include "ParticleEmitter.h"
+#include "Player.h"
 
 /*!
  * @brief	ゲームクラス。
@@ -108,6 +109,13 @@ public:
 	{
 		return state;
 	}
+
+	//パーティクル管理クラスの取得
+	ParticleManager* GetPManager()
+	{
+		return &g_particleManager;
+	}
+
 private:	
 	Light				light;				//ライト
 	GameCamera			camera;				//カメラ
@@ -120,6 +128,8 @@ private:
 	UserInterface		ui;
 	Bloom				bloom;
 	ParticleEmitter		g_particleEmitter;	//パーティクルエミッター
+	ParticleManager		g_particleManager;
+
 	CSoundSource		bgmSource;
 
 	const float		frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。

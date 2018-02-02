@@ -287,10 +287,10 @@ void Player::Perticle()
 
 	SParicleEmitParameter param;
 	param.texturePath = "Assets/Sprite/star.png";
-	param.life = 0.75f;
-	param.w = 0.5f;
-	param.h = 0.5f;
-	param.intervalTime = 0.1f;
+	param.life = 0.5f;
+	param.w = 0.3f;
+	param.h = 0.3f;
+	param.intervalTime = 0.05f;
 	param.initSpeed = speed;
-	particle->Init(param, characterController.GetPosition());
+	particle->Init(param, characterController.GetPosition(),game->GetPManager());
 }

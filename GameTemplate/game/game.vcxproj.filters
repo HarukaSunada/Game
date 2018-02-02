@@ -43,6 +43,9 @@
     <Filter Include="ソース ファイル\myEngine\Particle">
       <UniqueIdentifier>{b96ed5d2-1a34-43d3-9458-9e0edf017eb1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Item">
+      <UniqueIdentifier>{8ae86624-b339-4050-a590-fca074359053}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -120,23 +123,8 @@
     <ClCompile Include="Scene\GameScene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="SceneBase.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadingScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOverScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\SceneManager.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ClearMarker.cpp">
-      <Filter>ソース ファイル\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="ResultScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
     <ClCompile Include="myEngine\Physics\CameraCollisionSolver.cpp">
       <Filter>ソース ファイル\myEngine\Physics</Filter>
@@ -150,23 +138,11 @@
     <ClCompile Include="myEngine\Graphics\ShadowMap.cpp">
       <Filter>ソース ファイル\myEngine\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Number.cpp">
-      <Filter>ソース ファイル\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="ShowScore.cpp">
-      <Filter>ソース ファイル\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="HPGauge.cpp">
-      <Filter>ソース ファイル\UI</Filter>
-    </ClCompile>
     <ClCompile Include="IndexBuffer.cpp">
       <Filter>ソース ファイル\myEngine</Filter>
     </ClCompile>
     <ClCompile Include="Primitive.cpp">
       <Filter>ソース ファイル\myEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="Interface.cpp">
-      <Filter>ソース ファイル\UI</Filter>
     </ClCompile>
     <ClCompile Include="VertexBuffer.cpp">
       <Filter>ソース ファイル</Filter>
@@ -174,32 +150,59 @@
     <ClCompile Include="PostEffect.cpp">
       <Filter>ソース ファイル\myEngine</Filter>
     </ClCompile>
-    <ClCompile Include="SoundEngine.cpp">
-      <Filter>ソース ファイル\myEngine\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundSource.cpp">
-      <Filter>ソース ファイル\myEngine\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="WaveFile.cpp">
-      <Filter>ソース ファイル\myEngine\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="WaveFileBank.cpp">
-      <Filter>ソース ファイル\myEngine\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleEmitter.cpp">
-      <Filter>ソース ファイル\myEngine\Particle</Filter>
-    </ClCompile>
-    <ClCompile Include="Particle.cpp">
-      <Filter>ソース ファイル\myEngine\Particle</Filter>
-    </ClCompile>
-    <ClCompile Include="Recovery.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="bloom.cpp">
+    <ClCompile Include="myEngine\Graphics\bloom.cpp">
       <Filter>ソース ファイル\myEngine\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Map\ClearMarker.cpp">
+      <Filter>ソース ファイル\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\LoadingScene.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\HPGauge.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Interface.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Number.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\ShowScore.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="myEngine\Particle\Particle.cpp">
+      <Filter>ソース ファイル\myEngine\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="myEngine\Particle\ParticleEmitter.cpp">
+      <Filter>ソース ファイル\myEngine\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="myEngine\Particle\ParticleManager.cpp">
+      <Filter>ソース ファイル\myEngine\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="myEngine\Sound\SoundEngine.cpp">
+      <Filter>ソース ファイル\myEngine\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="myEngine\Sound\SoundSource.cpp">
+      <Filter>ソース ファイル\myEngine\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="myEngine\Sound\WaveFile.cpp">
+      <Filter>ソース ファイル\myEngine\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="myEngine\Sound\WaveFileBank.cpp">
+      <Filter>ソース ファイル\myEngine\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\GameOverScene.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\ResultScene.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneBase.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Item\Recovery.cpp">
+      <Filter>ソース ファイル\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -281,23 +284,8 @@
     <ClInclude Include="Map\Sky.h">
       <Filter>ソース ファイル\Map</Filter>
     </ClInclude>
-    <ClInclude Include="SceneBase.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadingScene.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\SceneManager.h">
       <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ClearMarker.h">
-      <Filter>ソース ファイル\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="ResultScene.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOverScene.h">
-      <Filter>ソース ファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Scene\GameScene.h">
       <Filter>ソース ファイル\Scene</Filter>
@@ -314,59 +302,74 @@
     <ClInclude Include="myEngine\Graphics\ShadowMap.h">
       <Filter>ソース ファイル\myEngine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Number.h">
-      <Filter>ソース ファイル\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="ShowScore.h">
-      <Filter>ソース ファイル\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="HPGauge.h">
-      <Filter>ソース ファイル\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Primitive.h">
       <Filter>ソース ファイル\myEngine</Filter>
     </ClInclude>
     <ClInclude Include="IndexBuffer.h">
       <Filter>ソース ファイル\myEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Interface.h">
-      <Filter>ソース ファイル\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexBuffer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="PostEffect.h">
       <Filter>ソース ファイル\myEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Util.h">
+    <ClInclude Include="VertexBuffer.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SoundEngine.h">
-      <Filter>ソース ファイル\myEngine\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundSource.h">
-      <Filter>ソース ファイル\myEngine\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="WaveFile.h">
-      <Filter>ソース ファイル\myEngine\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="WaveFileBank.h">
-      <Filter>ソース ファイル\myEngine\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="Particle.h">
-      <Filter>ソース ファイル\myEngine\Particle</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleEmitter.h">
-      <Filter>ソース ファイル\myEngine\Particle</Filter>
-    </ClInclude>
-    <ClInclude Include="Recovery.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="bloom.h">
+    <ClInclude Include="myEngine\Graphics\bloom.h">
       <Filter>ソース ファイル\myEngine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleManager.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Map\ClearMarker.h">
+      <Filter>ソース ファイル\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\LoadingScene.h">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\HPGauge.h">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Interface.h">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Number.h">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\ShowScore.h">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="myEngine\Particle\Particle.h">
+      <Filter>ソース ファイル\myEngine\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="myEngine\Particle\ParticleEmitter.h">
+      <Filter>ソース ファイル\myEngine\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="myEngine\Particle\ParticleManager.h">
+      <Filter>ソース ファイル\myEngine\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="myEngine\Sound\SoundEngine.h">
+      <Filter>ソース ファイル\myEngine\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="myEngine\Sound\SoundSource.h">
+      <Filter>ソース ファイル\myEngine\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="myEngine\Sound\WaveFile.h">
+      <Filter>ソース ファイル\myEngine\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="myEngine\Sound\WaveFileBank.h">
+      <Filter>ソース ファイル\myEngine\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\GameOverScene.h">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\ResultScene.h">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneBase.h">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="myEngine\Util.h">
+      <Filter>ソース ファイル\myEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Item\Recovery.h">
+      <Filter>ソース ファイル\Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

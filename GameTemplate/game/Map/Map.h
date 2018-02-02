@@ -1,7 +1,7 @@
 #include "Enemy/EnemyManager.h"
 #include "Sky.h"
 #include "ClearMarker.h"
-#include "Recovery.h"
+#include "Item/Recovery.h"
 class MapChip;
 
 class Map

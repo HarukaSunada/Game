@@ -71,7 +71,7 @@ void Game::Init()
 	param.h = 0.5f;
 	param.intervalTime = 0.2f;
 	param.initSpeed = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	g_particleEmitter.Init(param, D3DXVECTOR3(0.0f, 0.0f, -10.0f));
+	g_particleEmitter.Init(param, D3DXVECTOR3(0.0f, 0.0f, -10.0f), &g_particleManager);
 }
 /*!
  * @brief	更新。
@@ -109,6 +109,7 @@ void Game::Update()
 	map.Update();
 
 	g_particleEmitter.Update();
+	g_particleManager.Update();
 
 	//ライトビューの注視点はプレイヤー、視点はプレイヤーの座標からY方向に+10
 	D3DXVECTOR3 target = player.GetPosition();
@@ -135,10 +136,11 @@ void Game::Render()
 	enemyManager.Draw();
 	player.Draw();
 
-	g_particleEmitter.Render(camera.GetCamera()->GetViewMatrix(), camera.GetCamera()->GetProjectionMatrix());
+	//g_particleEmitter.Render(camera.GetCamera()->GetViewMatrix(), camera.GetCamera()->GetProjectionMatrix());
+	g_particleManager.Render(camera.GetCamera()->GetViewMatrix(), camera.GetCamera()->GetProjectionMatrix());
 
 	//ここからブルーム
-	bloom.Render();
+	//bloom.Render();
 }
 
 //描画
@@ -153,4 +155,5 @@ void Game::Release()
 	enemyManager.Release();
 	map.Release();
 	g_shadowMap->Remove();
+	g_particleManager.Release();
 }

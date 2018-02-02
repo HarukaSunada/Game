@@ -5,8 +5,8 @@
 #include "Scene/SceneManager.h"
 
 #include "myEngine/Graphics/RenderTarget.h"
+#include "myEngine/Sound/SoundEngine.h"
 #include "Primitive.h"
-#include "SoundEngine.h"
 
 SceneManager* scene;
 

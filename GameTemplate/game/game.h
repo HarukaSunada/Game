@@ -8,7 +8,7 @@
 #include "Player.h"
 #include "Map/Map.h"
 #include "GameCamera.h"
-#include "HPGauge.h"
+#include "UI/HPGauge.h"
 #include "Enemy/Enemy.h"
 #include "Enemy/Skelton.h"
 #include "Enemy/EnemyManager.h"

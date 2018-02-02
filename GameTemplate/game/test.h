@@ -810,7 +810,8 @@
 },
 //Skeleton@Skin
 {
-	"Skeleton@Skin",
+	//"Skeleton@Skin",
+	"Penguin",
 	D3DXVECTOR3(21.64f, -1.23f, -172.52f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },

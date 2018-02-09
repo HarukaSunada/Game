@@ -26,5 +26,6 @@ private:
 	SkinModelData	modelData;		//モデルデータ
 	D3DXVECTOR3		position;		//位置
 	D3DXQUATERNION	rotation;		//回転
+	bool			flag=false;
 };
 

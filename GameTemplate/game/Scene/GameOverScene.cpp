@@ -37,30 +37,45 @@ void GameOverScene::Init()
 	state = Continue;
 
 	ChangeEffect(1);
+
+	bgmSource.Init("Assets/sound/game_over.wav");
+	bgmSource.Play(true);
 }
 
 void GameOverScene::Update()
 {
+	bgmSource.Update();
 	pad.Update();
 	//Pad* pad = game->GetPad();
 	float input = pad.GetLStickYF();
 
 	//‚Â‚Ã‚¯‚é(ã)
-	if (input > 0.0 || pad.IsTrigger(Pad::enButtonUp)) {
+	if (state != Continue&& (input > 0.0 || pad.IsTrigger(Pad::enButtonUp))) {
 		state = Continue;
 		cursor.SetPosition(D3DXVECTOR2(840, 500));
 		cursor.SetupMatrices();
+
+		se = new CSoundSource;
+		se->Init("Assets/sound/se/cursor.wav");
+		se->Play(false);
 	}
 	//‚â‚ß‚é(‰º)
-	else if (input < 0.0|| pad.IsTrigger(Pad::enButtonDown)) {
+	else if (state != End && (input < 0.0|| pad.IsTrigger(Pad::enButtonDown))) {
 		state = End;
 		cursor.SetPosition(D3DXVECTOR2(840, 600));
 		cursor.SetupMatrices();
+
+		se = new CSoundSource;
+		se->Init("Assets/sound/se/cursor.wav");
+		se->Play(false);
 	}
 
 	if (pad.IsTrigger(Pad::enButtonA))
 	{
 		sceneEnd = true;
+		se = new CSoundSource;
+		se->Init("Assets/sound/se/decision2.wav");
+		se->Play(false);
 	}
 }
 

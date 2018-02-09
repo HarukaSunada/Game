@@ -24,6 +24,11 @@ void UserInterface::Init()
 	sp.SetFileName("Assets/Sprite/GameOver.png");
 	sp.SetPosition(D3DXVECTOR2(480, 300));
 	sp.Init();
+
+	//テスト用
+	clear.SetFileName("Assets/Sprite/clear.png");
+	clear.SetPosition(D3DXVECTOR2(480, 300));
+	clear.Init();
 }
 
 void UserInterface::Update()
@@ -50,6 +55,9 @@ void UserInterface::Render()
 	if (flag)
 	{
 		sp.Draw();
+	}
+	else if (game->GetState() == Game::GameClear) {
+		clear.Draw();
 	}
 	gauge.Draw();
 	s_score.Draw();

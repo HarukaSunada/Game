@@ -21,8 +21,9 @@ public:
 
 private:
 	Sprite			back;
-	bool			sceneEnd = false;
 
 	CSoundSource		bgmSource;
+	CSoundSource*		se;
+	Pad					pad;
 };
 

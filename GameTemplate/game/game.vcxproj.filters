@@ -96,9 +96,6 @@
     <ClCompile Include="GameCamera.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>ソース ファイル\myEngine</Filter>
-    </ClCompile>
     <ClCompile Include="Enemy\Enemy.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
@@ -141,14 +138,8 @@
     <ClCompile Include="IndexBuffer.cpp">
       <Filter>ソース ファイル\myEngine</Filter>
     </ClCompile>
-    <ClCompile Include="Primitive.cpp">
-      <Filter>ソース ファイル\myEngine</Filter>
-    </ClCompile>
     <ClCompile Include="VertexBuffer.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="PostEffect.cpp">
-      <Filter>ソース ファイル\myEngine</Filter>
     </ClCompile>
     <ClCompile Include="myEngine\Graphics\bloom.cpp">
       <Filter>ソース ファイル\myEngine\Graphics</Filter>
@@ -203,6 +194,21 @@
     </ClCompile>
     <ClCompile Include="Item\Recovery.cpp">
       <Filter>ソース ファイル\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Item\ItemBase.cpp">
+      <Filter>ソース ファイル\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="myEngine\Graphics\ModelDataManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="PostEffect.cpp">
+      <Filter>ソース ファイル\myEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitive.cpp">
+      <Filter>ソース ファイル\myEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>ソース ファイル\myEngine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -260,9 +266,6 @@
     <ClInclude Include="GameCamera.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>ソース ファイル\myEngine</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy\Enemy.h">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
@@ -302,13 +305,7 @@
     <ClInclude Include="myEngine\Graphics\ShadowMap.h">
       <Filter>ソース ファイル\myEngine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Primitive.h">
-      <Filter>ソース ファイル\myEngine</Filter>
-    </ClInclude>
     <ClInclude Include="IndexBuffer.h">
-      <Filter>ソース ファイル\myEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="PostEffect.h">
       <Filter>ソース ファイル\myEngine</Filter>
     </ClInclude>
     <ClInclude Include="VertexBuffer.h">
@@ -370,6 +367,21 @@
     </ClInclude>
     <ClInclude Include="Item\Recovery.h">
       <Filter>ソース ファイル\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Item\ItemBase.h">
+      <Filter>ソース ファイル\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="myEngine\Graphics\ModelDataManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="PostEffect.h">
+      <Filter>ソース ファイル\myEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitive.h">
+      <Filter>ソース ファイル\myEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>ソース ファイル\myEngine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

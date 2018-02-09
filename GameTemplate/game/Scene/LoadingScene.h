@@ -16,5 +16,7 @@ public:
 
 private:
 	Sprite			sprite;
+	//Sprite			indicator;
+	//float			angle;			//‰ñ“]î•ñ
 };
 

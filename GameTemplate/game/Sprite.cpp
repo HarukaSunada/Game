@@ -21,6 +21,8 @@ void Sprite::Init()
 
 	D3DXIMAGE_INFO imgInfo;		//画像情報格納用構造体
 
+	m_angle = 0.0f;
+
 	//テクスチャ読込
 	D3DXCreateTextureFromFileEx(g_pd3dDevice, this->m_texFileName, 0, 0, 0, 0, D3DFMT_UNKNOWN,
 		D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_DEFAULT, 0xff000000, &imgInfo, NULL, &this->g_pTexture);

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Skelton.h"
-#include "game.h"
+#include "Scene/GameScene.h"
 
 Skelton::Skelton()
 {
@@ -94,7 +94,7 @@ void Skelton::Action()
 			game->GetPlayer()->Damage(1);
 		}
 
-		if (timer > 2.0f) {
+		if (timer >= 2.0f) {
 			//発見した
 			act = actFound;
 			timer = 0.0f;
@@ -120,6 +120,11 @@ void Skelton::Action()
 	//プレイヤーが動く速度を設定
 	characterController.SetMoveSpeed(moveSpeed);
 
+	if (game->GetState() == Game::GameOver) {
+		anim = animStand;
+		act = actWait;
+	}
+
 	//モーション変更
 	if (anim != prevAnim) {
 		animation.PlayAnimation(anim, 0.3f);
@@ -137,7 +142,7 @@ void Skelton::Damage(int dm)
 	float angle = game->GetPlayer()->Angle(characterController.GetPosition());
 
 	//視野に入った、かつ近い
-	if (fabsf(angle) < D3DXToRadian(45.0f) && length < 6.0f) {
+	if (fabsf(angle) < D3DXToRadian(45.0f) && length < 8.0f) {
 		isDamage = true;
 		act = actDamage;
 		state.HP -= dm;

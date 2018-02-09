@@ -1,7 +1,7 @@
 #include "Enemy/EnemyManager.h"
 #include "Sky.h"
 #include "ClearMarker.h"
-#include "Item/Recovery.h"
+#include "Item/ItemBase.h"
 class MapChip;
 
 class Map
@@ -27,5 +27,5 @@ private:
 	Sky sky;
 	ClearMarker marker;
 	SkinModelData modelData[2];
-	Recovery	rec;
+	std::vector<ItemBase*>	ItemList;
 };

@@ -6,7 +6,6 @@
 
 #include "myEngine/Physics/Physics.h"
 #include "myEngine/Graphics/bloom.h"
-#include "myEngine/Particle/ParticleEmitter.h"
 #include "myEngine/Particle/ParticleManager.h"
 #include "Map/Map.h"
 #include "GameCamera.h"
@@ -104,6 +103,9 @@ public:
 		state = GameClear;
 	}
 
+	//クリア状態のセット
+	void setClear();
+
 	//ゲームの状態を取得
 	GameState GetState()
 	{
@@ -127,14 +129,16 @@ private:
 	GameState			state;
 	UserInterface		ui;
 	Bloom				bloom;
-	ParticleEmitter		g_particleEmitter;	//パーティクルエミッター
 	ParticleManager		g_particleManager;
 
 	CSoundSource		bgmSource;
+	CSoundSource*		Jingle;
 
 	const float		frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。
 
 	float timer = 0.0f;
+
+	bool stopFlag=false;
 };
 
 extern Game* game;		//ゲームのインスタンス

@@ -168,6 +168,11 @@ void Player::Action()
 		attackTimer += game->GetDeltaTime();	//プレイ時間カウント
 		game->GetEnemyManager()->Damage(1);
 		anim = animAttack;
+
+		//前方向
+		D3DXVECTOR3 direction = Direction();
+		D3DXVECTOR3 pos = characterController.GetPosition() + (direction*0.5);
+		particle->SetPosition(pos);
 	}
 	if (attackTimer > 0.75f)
 	{
@@ -276,6 +281,25 @@ void Player::Perticle()
 	particle = new ParticleEmitter();
 
 	//前方向
+	D3DXVECTOR3 direction = Direction();
+
+	D3DXVECTOR3 speed = direction*4.0f;
+
+	SParicleEmitParameter param;
+	param.texturePath = "Assets/Sprite/simple_star.png";
+	param.life = 0.5f;
+	param.w = 1.0f;
+	param.h = 1.0f;
+	param.intervalTime = 0.2f;
+	param.initSpeed = speed;
+	D3DXVECTOR3 pos = characterController.GetPosition() + (direction*0.5);
+
+	particle->Init(param, pos, game->GetPManager());
+}
+
+D3DXVECTOR3 Player::Direction()
+{
+	//前方向
 	D3DXVECTOR3 direction;
 	D3DXMATRIX wMatrix = model.GetWorldMatrix();
 	direction.x = wMatrix.m[2][0];
@@ -283,14 +307,5 @@ void Player::Perticle()
 	direction.z = wMatrix.m[2][2];
 	D3DXVec3Normalize(&direction, &direction);
 
-	D3DXVECTOR3 speed = direction*5.0f;
-
-	SParicleEmitParameter param;
-	param.texturePath = "Assets/Sprite/star.png";
-	param.life = 0.5f;
-	param.w = 0.3f;
-	param.h = 0.3f;
-	param.intervalTime = 0.05f;
-	param.initSpeed = speed;
-	particle->Init(param, characterController.GetPosition(),game->GetPManager());
+	return direction;
 }

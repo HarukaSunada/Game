@@ -27,7 +27,7 @@ struct VS_OUTPUT{
 };
 
 
-VS_OUTPUT VSSamplingLuminance( VS_INPUT In )
+VS_OUTPUT VSMain( VS_INPUT In )
 {
 	VS_OUTPUT Out;
 	Out.pos = In.pos;		//トランスフォーム済み頂点なのでそのまま
@@ -66,11 +66,14 @@ sampler_state
     MipFilter = LINEAR;
     MinFilter = LINEAR;
     MagFilter = LINEAR;
+	AddressU = CLAMP;
+	AddressV = CLAMP;
 };
 
 float2 g_luminanceTexSize;		//輝度テクスチャのサイズ。
 float2 g_offset;				//オフセット
 float  g_weight[8];				//ガウスフィルタの重み。
+float2 g_renderTargetSize;		//レンダリングターゲットのサイズ。
 /*!
  * @brief	Xブラー頂点シェーダー。
  */
@@ -159,6 +162,77 @@ float4 PSYBlur( VS_BlurOutput In ) : COLOR
 	                 + tex2D( g_blurSampler, In.tex0 + g_offset ));
 	return Color;
 }
+
+//合成テクスチャ。
+texture g_combineTex00;
+sampler g_combineSampler00 = 
+sampler_state
+{
+    Texture = <g_combineTex00>;
+    MipFilter = LINEAR;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    AddressU = CLAMP;
+    AddressV = CLAMP;
+};
+texture g_combineTex01;
+sampler g_combineSampler01 = 
+sampler_state
+{
+    Texture = <g_combineTex01>;
+    MipFilter = LINEAR;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    AddressU = CLAMP;
+    AddressV = CLAMP;
+};
+texture g_combineTex02;
+sampler g_combineSampler02 = 
+sampler_state
+{
+    Texture = <g_combineTex02>;
+    MipFilter = LINEAR;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    AddressU = CLAMP;
+    AddressV = CLAMP;
+};
+texture g_combineTex03;
+sampler g_combineSampler03 = 
+sampler_state
+{
+    Texture = <g_combineTex03>;
+    MipFilter = LINEAR;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    AddressU = CLAMP;
+    AddressV = CLAMP;
+};
+
+texture g_combineTex04;
+sampler g_combineSampler04 = 
+sampler_state
+{
+    Texture = <g_combineTex04>;
+    MipFilter = LINEAR;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    AddressU = CLAMP;
+    AddressV = CLAMP;
+};
+
+float4 PSCombine( VS_OUTPUT In ) : COLOR
+{
+	float2 uv = In.tex;
+	uv += g_offset;
+	float4 combineColor = tex2D(g_combineSampler00, uv);
+	combineColor += tex2D(g_combineSampler01, uv);
+	combineColor += tex2D(g_combineSampler02, uv);
+	combineColor += tex2D(g_combineSampler03, uv);
+	combineColor += tex2D(g_combineSampler04, uv);
+	combineColor /= 5.0f;
+	return combineColor;
+}
 /*!
  * @brief	ファイナル。
  */
@@ -183,7 +257,7 @@ technique SamplingLuminance
 {
 	pass p0
 	{
-		VertexShader = compile vs_3_0 VSSamplingLuminance();
+		VertexShader = compile vs_3_0 VSMain();
 		PixelShader = compile ps_3_0 PSSamplingLuminance();
 	}
 }
@@ -209,6 +283,17 @@ technique YBlur
 	{
 		VertexShader = compile vs_3_0 VSYBlur();
 		PixelShader = compile ps_3_0 PSYBlur();
+	}
+}
+/*!
+ * @brief	合成。
+ */
+technique Combine
+{
+	pass p0
+	{
+		VertexShader = compile vs_3_0 VSMain();
+		PixelShader = compile ps_3_0 PSCombine();
 	}
 }
 technique Final

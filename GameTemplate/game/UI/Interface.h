@@ -21,6 +21,7 @@ private:
 	HPGauge			gauge;				//HPゲージ
 
 	Sprite			sp;					//テスト用(GameOver)
+	Sprite			clear;
 	bool			flag = false;		//テスト用
 };
 

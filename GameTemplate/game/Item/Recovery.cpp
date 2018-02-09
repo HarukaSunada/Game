@@ -20,21 +20,21 @@ void Recovery::Init(D3DXVECTOR3 pos)
 
 	model.Init(&modelData);	//モデルデータでSkinModel初期化
 	model.SetLight(game->GetLight());	//ライトの設定
-	model.SetShadowCasterFlag(true);	//シャドウキャスター
+	//model.SetShadowCasterFlag(true);	//シャドウキャスター
 	
 	//情報を記録
 	this->position = pos;
-	position.y += 0.5f;
+	position.y += 0.3f;
 	rotation = D3DXQUATERNION(0.0f, 0.0f, 0.0f, 1.0f);
 
 	angle = 0.0f;
 
-	model.Update(position, rotation, { 0.5f, 0.5f, 0.5f });
+	model.Update(position, rotation, { 0.7f, 0.7f, 0.7f });
 }
 
 void Recovery::Update()
 {
-	if (isRecovery) { return; }
+	if (isGet) { return; }
 
 	float len = game->GetPlayer()->Length(position);
 
@@ -46,30 +46,8 @@ void Recovery::Update()
 
 	//クリアフラグを立てる
 	if (len < 1.5f) {
-		isRecovery = game->GetPlayer()->AddHP(1);
+		isGet = game->GetPlayer()->AddHP(1);
 	}
 
 	model.Update(position, rotation, { 0.5f, 0.5f, 0.5f });
-}
-
-void Recovery::Draw()
-{
-	if (isRecovery) { return; }
-	model.Draw(&game->GetCamera()->GetViewMatrix(), &game->GetCamera()->GetProjectionMatrix());
-}
-
-float Recovery::Length()
-{
-	return game->GetPlayer()->Length(position);
-}
-
-void Recovery::SetRotationY(float angle)
-{
-	float PI = 3.14159265358979323846f;
-
-	float s;
-	float halfAngle = angle * (PI / 180.0f) * 0.5f;
-	s = sin(halfAngle);
-	rotation.w = cos(halfAngle);
-	rotation.y = 1 * s;
 }

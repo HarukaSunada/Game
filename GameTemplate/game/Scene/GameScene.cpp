@@ -63,15 +63,6 @@ void Game::Init()
 
 	bgmSource.Init("Assets/sound/stage1.wav");
 	bgmSource.Play(true);
-
-	SParicleEmitParameter param;
-	param.texturePath = "Assets/Sprite/star.png";
-	param.life = 5.0f;
-	param.w = 0.5f;
-	param.h = 0.5f;
-	param.intervalTime = 0.2f;
-	param.initSpeed = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	g_particleEmitter.Init(param, D3DXVECTOR3(0.0f, 0.0f, -10.0f), &g_particleManager);
 }
 /*!
  * @brief	更新。
@@ -88,13 +79,24 @@ void Game::Update()
 	player.Update();
 
 	//HPが0なのでゲームオーバー
-	if (player.GetStatus().HP <= 0) {
+	if (state != GameOver && player.GetStatus().HP <= 0) {
 		state = GameOver;
+		bgmSource.Stop();
+		Jingle = new CSoundSource;
+		Jingle->Init("Assets/sound/se/missed.wav");
+		Jingle->Play(false);
 	}
 	//ゲームオーバーの時
 	if (state == GameOver) {
 		timer += frameDeltaTime;
 		if (timer > 3.0f) {
+			sceneEnd = true;
+		}
+	}
+	//クリアの時
+	else if (state == GameClear) {
+		timer += frameDeltaTime;
+		if (timer > 5.0f) {
 			sceneEnd = true;
 		}
 	}
@@ -108,7 +110,6 @@ void Game::Update()
 	//マップ更新
 	map.Update();
 
-	g_particleEmitter.Update();
 	g_particleManager.Update();
 
 	//ライトビューの注視点はプレイヤー、視点はプレイヤーの座標からY方向に+10
@@ -136,11 +137,10 @@ void Game::Render()
 	enemyManager.Draw();
 	player.Draw();
 
-	//g_particleEmitter.Render(camera.GetCamera()->GetViewMatrix(), camera.GetCamera()->GetProjectionMatrix());
 	g_particleManager.Render(camera.GetCamera()->GetViewMatrix(), camera.GetCamera()->GetProjectionMatrix());
 
 	//ここからブルーム
-	//bloom.Render();
+	bloom.Render();
 }
 
 //描画
@@ -156,4 +156,14 @@ void Game::Release()
 	map.Release();
 	g_shadowMap->Remove();
 	g_particleManager.Release();
+	bloom.Release();
+}
+
+void Game::setClear()
+{
+	state = GameClear;
+	bgmSource.Stop();
+	Jingle = new CSoundSource;
+	Jingle->Init("Assets/sound/clear.wav");
+	Jingle->Play(false);
 }

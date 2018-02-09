@@ -38,9 +38,14 @@ public:
 	//パーティクル生成
 	void Create();
 	void Render(const D3DXMATRIX& viewMatrix, const D3DXMATRIX& projMatrix);
+
+	void SetPosition(D3DXVECTOR3 pos)
+	{
+		emitPosition = pos;
+	}
 private:
 	SParicleEmitParameter	param;			//!<パラメータ。
-	std::list<Particle*>	particleList;	//!<パーティクルのリスト。
+	//std::list<Particle*>	particleList;	//!<パーティクルのリスト。
 	float					timer;			//!<タイマー
 	D3DXVECTOR3				emitPosition;			//エミッタの座標
 	ParticleManager*		PManager;

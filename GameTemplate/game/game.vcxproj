@@ -158,10 +158,12 @@
     <ClCompile Include="Enemy\Skelton.cpp" />
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
+    <ClCompile Include="Item\ItemBase.cpp" />
     <ClCompile Include="Item\Recovery.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map\ClearMarker.cpp" />
     <ClCompile Include="myEngine\Graphics\bloom.cpp" />
+    <ClCompile Include="myEngine\Graphics\ModelDataManager.cpp" />
     <ClCompile Include="myEngine\Particle\Particle.cpp" />
     <ClCompile Include="myEngine\Particle\ParticleEmitter.cpp" />
     <ClCompile Include="myEngine\Particle\ParticleManager.cpp" />
@@ -169,7 +171,6 @@
     <ClCompile Include="myEngine\Sound\SoundSource.cpp" />
     <ClCompile Include="myEngine\Sound\WaveFile.cpp" />
     <ClCompile Include="myEngine\Sound\WaveFileBank.cpp" />
-    <ClCompile Include="PostEffect.cpp" />
     <ClCompile Include="Map\Map.cpp" />
     <ClCompile Include="Map\MapChip.cpp" />
     <ClCompile Include="Map\Sky.cpp" />
@@ -190,6 +191,7 @@
     <ClCompile Include="myEngine\Physics\SphereCollider.cpp" />
     <ClCompile Include="myEngine\System.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PostEffect.cpp" />
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="Scene\GameOverScene.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
@@ -217,9 +219,11 @@
     <ClInclude Include="Enemy\Skelton.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="IndexBuffer.h" />
+    <ClInclude Include="Item\ItemBase.h" />
     <ClInclude Include="Item\Recovery.h" />
     <ClInclude Include="Map\ClearMarker.h" />
     <ClInclude Include="myEngine\Graphics\bloom.h" />
+    <ClInclude Include="myEngine\Graphics\ModelDataManager.h" />
     <ClInclude Include="myEngine\Particle\Particle.h" />
     <ClInclude Include="myEngine\Particle\ParticleEmitter.h" />
     <ClInclude Include="myEngine\Particle\ParticleManager.h" />
@@ -228,7 +232,6 @@
     <ClInclude Include="myEngine\Sound\WaveFile.h" />
     <ClInclude Include="myEngine\Sound\WaveFileBank.h" />
     <ClInclude Include="myEngine\Util.h" />
-    <ClInclude Include="PostEffect.h" />
     <ClInclude Include="Map\Map.h" />
     <ClInclude Include="Map\MapChip.h" />
     <ClInclude Include="Map\Sky.h" />
@@ -252,6 +255,7 @@
     <ClInclude Include="myEngine\Physics\SphereCollider.h" />
     <ClInclude Include="myEngine\system.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PostEffect.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="Scene\GameOverScene.h" />
     <ClInclude Include="Scene\GameScene.h" />

@@ -51,9 +51,9 @@ public:
 	}
 
 	//‰ñ“]‚ğİ’è
-	void SetAngle()
+	void SetAngle(float angle)
 	{
-
+		m_angle = angle;
 	}
 
 protected:

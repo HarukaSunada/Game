@@ -1,11 +1,16 @@
 #include "stdafx.h"
 #include "bloom.h"
 
+#define		s_cast		static_cast
 
 Bloom::Bloom()
 {
 	//ブルームのシェーダーをロード
 	effect = g_effectManager->LoadEffect("Assets/Shader/bloom.fx");
+
+	int w = FRAME_BUFFER_WIDTH;
+	int h = FRAME_BUFFER_HEIGHT;
+
 	//輝度抽出用のレンダリングターゲットを作成する。
 	luminanceRenderTarget.Create(
 		FRAME_BUFFER_WIDTH,		//幅と高さはフレームバッファと同じにしておく。
@@ -17,35 +22,37 @@ Bloom::Bloom()
 		0						//マルチサンプリングの品質レベル。今回はマルチサンプリングは行わないので0でいい。
 	);
 
-	int w = FRAME_BUFFER_WIDTH;
-	int h = FRAME_BUFFER_HEIGHT;
 	//MGF用のレンダリングターゲットを作成。
 	for (int i = 0; i < MGF_DOWN_SAMPLE_COUNT; i++) {
-		//ブラーをかけるためのダウンサンプリング用のレンダリングターゲットを作成。
-		//横ブラー用。
-		w /= 2;	//横の解像度を半分にする。
-		downSamplingRenderTarget[i][0].Create(
-			w,
-			h,
-			1,
-			D3DFMT_A16B16G16R16F,	//ここも浮動小数点バッファにする。
-			D3DFMT_D16,				//使わないので16bit。本来は作成する必要もない。
-			D3DMULTISAMPLE_NONE,	//マルチサンプリングの種類。今回はマルチサンプリングは行わないのでD3DMULTISAMPLE_NONEでいい。
-			0						//マルチサンプリングの品質レベル。今回はマルチサンプリングは行わないので0でいい。
-		);
-		//縦ブラー用。
-		h /= 2;	//縦の解像度を半分にする。
-		downSamplingRenderTarget[i][1].Create(
-			w,	//縦と横の解像度をフレームバッファの半分にする。
-			h,
-			1,
-			D3DFMT_A16B16G16R16F,	//ここも浮動小数点バッファにする。
-			D3DFMT_D16,				//使わないので16bit。本来は作成する必要もない。
-			D3DMULTISAMPLE_NONE,	//マルチサンプリングの種類。今回はマルチサンプリングは行わないのでD3DMULTISAMPLE_NONEでいい。
-			0						//マルチサンプリングの品質レベル。今回はマルチサンプリングは行わないので0でいい。
-		);
-	}
+		////ブラーをかけるためのダウンサンプリング用のレンダリングターゲットを作成。
+		////横ブラー用。
+		//w /= 2;	//横の解像度を半分にする。
+		//downSamplingRenderTarget[i][0].Create(
+		//	w,
+		//	h,
+		//	1,
+		//	D3DFMT_A16B16G16R16F,	//ここも浮動小数点バッファにする。
+		//	D3DFMT_D16,				//使わないので16bit。本来は作成する必要もない。
+		//	D3DMULTISAMPLE_NONE,	//マルチサンプリングの種類。今回はマルチサンプリングは行わないのでD3DMULTISAMPLE_NONEでいい。
+		//	0						//マルチサンプリングの品質レベル。今回はマルチサンプリングは行わないので0でいい。
+		//);
+		////縦ブラー用。
+		//h /= 2;	//縦の解像度を半分にする。
+		//downSamplingRenderTarget[i][1].Create(
+		//	w,	//縦と横の解像度をフレームバッファの半分にする。
+		//	h,
+		//	1,
+		//	D3DFMT_A16B16G16R16F,	//ここも浮動小数点バッファにする。
+		//	D3DFMT_D16,				//使わないので16bit。本来は作成する必要もない。
+		//	D3DMULTISAMPLE_NONE,	//マルチサンプリングの種類。今回はマルチサンプリングは行わないのでD3DMULTISAMPLE_NONEでいい。
+		//	0						//マルチサンプリングの品質レベル。今回はマルチサンプリングは行わないので0でいい。
+		//);
 
+		int shift = i + 1;
+		downSamplingRenderTarget[i][0].Create(w >> shift, h >> (shift - 1), 1, D3DFMT_A16B16G16R16F, D3DFMT_UNKNOWN, D3DMULTISAMPLE_NONE, 0);			//横ブラー用。
+		downSamplingRenderTarget[i][1].Create(w >> shift, h >> shift, 1, D3DFMT_A16B16G16R16F, D3DFMT_UNKNOWN, D3DMULTISAMPLE_NONE, 0);	//縦ブラー用。
+	}
+	m_combineRenderTarget.Create(w >> 2, h >> 2, 1, D3DFMT_A16B16G16R16F, D3DFMT_UNKNOWN, D3DMULTISAMPLE_NONE, 0);				//ぼかし合成用
 }
 
 
@@ -103,7 +110,8 @@ void Bloom::Render()
 	int luminanceTexH = luminanceRenderTarget.GetHeight();
 	LPDIRECT3DTEXTURE9 blurTexture = luminanceRenderTarget.GetTexture();
 	for (int i = 0; i < MGF_DOWN_SAMPLE_COUNT; i++) {
-		//輝度を抽出したテクスチャをXブラー
+	//輝度を抽出したテクスチャをXブラー
+
 		g_pd3dDevice->SetRenderTarget(0, downSamplingRenderTarget[i][0].GetRenderTarget());
 
 		effect->SetTechnique("XBlur");
@@ -136,7 +144,7 @@ void Bloom::Render()
 		effect->EndPass();
 		effect->End();
 
-		//輝度を抽出したテクスチャをYブラー
+	//輝度を抽出したテクスチャをYブラー
 
 		g_pd3dDevice->SetRenderTarget(0, downSamplingRenderTarget[i][1].GetRenderTarget());
 
@@ -174,10 +182,72 @@ void Bloom::Render()
 		luminanceTexH = downSamplingRenderTarget[i][1].GetHeight();
 		blurTexture = downSamplingRenderTarget[i][1].GetTexture();
 
-		//加算合成。
-		offset[0] = 0.5f / downSamplingRenderTarget[i][1].GetWidth();
-		offset[1] = 0.5f / downSamplingRenderTarget[i][1].GetHeight();
+
+	//ここから
+
+		////加算合成。
+		//offset[0] = 0.5f / downSamplingRenderTarget[i][1].GetWidth();
+		//offset[1] = 0.5f / downSamplingRenderTarget[i][1].GetHeight();
+		////メインレンダリングターゲットに戻す。
+		//g_pd3dDevice->SetRenderTarget(0, mainRenderTarget->GetRenderTarget());
+		//g_pd3dDevice->SetDepthStencilSurface(mainRenderTarget->GetDepthStencilBuffer());
+		////加算合成。
+		//g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+		//g_pd3dDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
+		//g_pd3dDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ONE);
+		//effect->SetTechnique("Final");
+		//effect->Begin(NULL, D3DXFX_DONOTSAVESHADERSTATE);
+		//effect->BeginPass(0);
+		//effect->SetTexture("g_blur", blurTexture);
+		//effect->SetValue("g_offset", offset, sizeof(offset));
+		//effect->CommitChanges();
+		//DrawQuadPrimitive();
+
+		//effect->EndPass();
+		//effect->End();
+
+		//g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+		//g_pd3dDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+		//g_pd3dDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+		//ここまで
+	}
+
+	{
+		//ボケフィルターの合成。
+		g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+		g_pd3dDevice->SetRenderTarget(0, m_combineRenderTarget.GetRenderTarget());
+		g_pd3dDevice->Clear(0, nullptr, D3DCLEAR_TARGET, 0, 1.0f, 0);
+		float offset[] = {
+			0.5f / s_cast<float>(m_combineRenderTarget.GetWidth()),
+			0.5f / s_cast<float>(m_combineRenderTarget.GetHeight()),
+		};
+		effect->SetTechnique("Combine");
+		effect->Begin(NULL, D3DXFX_DONOTSAVESHADERSTATE);
+		effect->BeginPass(0);
+
+		effect->SetTexture("g_combineTex00", downSamplingRenderTarget[0][1].GetTexture());
+		effect->SetTexture("g_combineTex01", downSamplingRenderTarget[1][1].GetTexture());
+		effect->SetTexture("g_combineTex02", downSamplingRenderTarget[2][1].GetTexture());
+		effect->SetTexture("g_combineTex03", downSamplingRenderTarget[3][1].GetTexture());
+		effect->SetTexture("g_combineTex04", downSamplingRenderTarget[4][1].GetTexture());
+		effect->SetValue("g_offset", offset, sizeof(offset));
+
+		effect->CommitChanges();
+
+		//postEffect->RenderFullScreen(renderContext);
+		DrawQuadPrimitive();
+
+		effect->EndPass();
+		effect->End();
+	}
+
+	{
+		float offset[] = {
+			0.5f / m_combineRenderTarget.GetWidth() ,
+			0.5f / m_combineRenderTarget.GetHeight()
+		};
 		//メインレンダリングターゲットに戻す。
+		//g_pd3dDevice->SetRenderTarget(0, rt);
 		g_pd3dDevice->SetRenderTarget(0, mainRenderTarget->GetRenderTarget());
 		g_pd3dDevice->SetDepthStencilSurface(mainRenderTarget->GetDepthStencilBuffer());
 		//加算合成。
@@ -187,9 +257,11 @@ void Bloom::Render()
 		effect->SetTechnique("Final");
 		effect->Begin(NULL, D3DXFX_DONOTSAVESHADERSTATE);
 		effect->BeginPass(0);
-		effect->SetTexture("g_blur", blurTexture);
+		effect->SetTexture("g_blur", m_combineRenderTarget.GetTexture());
 		effect->SetValue("g_offset", offset, sizeof(offset));
 		effect->CommitChanges();
+
+		//postEffect->RenderFullScreen(renderContext);
 		DrawQuadPrimitive();
 
 		effect->EndPass();
@@ -201,4 +273,17 @@ void Bloom::Render()
 	}
 
 	g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, TRUE);
+}
+
+/*!
+* @brief	開放。
+*/
+void Bloom::Release()
+{
+	luminanceRenderTarget.Release();
+	for (int i = 0; i < MGF_DOWN_SAMPLE_COUNT; i++) {
+		downSamplingRenderTarget[i][0].Release();
+		downSamplingRenderTarget[i][1].Release();
+	}
+	m_combineRenderTarget.Release();
 }

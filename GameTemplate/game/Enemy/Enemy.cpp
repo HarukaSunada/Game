@@ -55,6 +55,7 @@ void Enemy::Update()
 
 	//ˆê’èˆÈã‚Ì‹——£—£‚ê‚½‚Æ‚«‚Í”ñˆ—
 	if (Length() > 3000.0f) { return; }
+
 	//s“®
 	Action();
 

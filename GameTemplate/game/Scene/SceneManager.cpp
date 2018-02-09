@@ -32,6 +32,10 @@ void SceneManager::Update()
 	//シーンの更新
 	scene->Update();
 
+	//if (load != Wait) {
+	//	loading.Update();
+	//}
+
 	switch (state)
 	{
 	//タイトルシーン
@@ -42,7 +46,7 @@ void SceneManager::Update()
 		else if (load == LoadStart) {
 			SceneChange();
 		}
-		else if (pad.IsTrigger(Pad::enButtonA)) {
+		else if (scene->isSceneEnd()) {
 			load = LoadStart;
 		}
 
@@ -51,7 +55,7 @@ void SceneManager::Update()
 	case stateGame:
 		//テスト用
 		if (pad.IsTrigger(Pad::enButtonStart)) {
-			game->setEnd();
+			game->setClear();
 		}
 
 		if (load == LoadEnd) {

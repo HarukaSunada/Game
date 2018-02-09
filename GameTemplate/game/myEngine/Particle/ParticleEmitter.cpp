@@ -26,26 +26,7 @@ void ParticleEmitter::Update()
 		Create();
 	}
 	timer += 1.0f / 60.0f;
-	//for (auto p : particleList) {
-	//	p->Update();
-	//	//if (p->GetIsDead()) {
-	//	//	deleteParticleList.push_back(p);
-	//	//}
-	//}
-	////remove-eraseイディオム。
-	//auto delIt = remove_if(
-	//	particleList.begin(),
-	//	particleList.end(),
-	//	[](Particle* p)->bool { 
-	//	//return p->GetIsDead(); 
-	//		if (p->GetIsDead()) {
-	//			delete p;
-	//			return true;
-	//		}
-	//		return false;
-	//	}
-	//);
-	//particleList.erase(delIt, particleList.end());
+
 }
 
 void ParticleEmitter::Create() {
@@ -59,7 +40,7 @@ void ParticleEmitter::Create() {
 
 void ParticleEmitter::Render(const D3DXMATRIX& viewMatrix, const D3DXMATRIX& projMatrix)
 {
-	for (auto p : particleList) {
-		p->Render(viewMatrix, projMatrix);
-	}
+	//for (auto p : particleList) {
+	//	p->Render(viewMatrix, projMatrix);
+	//}
 }

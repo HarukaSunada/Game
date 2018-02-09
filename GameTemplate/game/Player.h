@@ -78,6 +78,10 @@ public:
 	//引数nemyPos　対象のポジション
 	float Angle(D3DXVECTOR3 enemyPos);
 
+	//前方向
+	D3DXVECTOR3 Direction();
+
+
 private:
 	SkinModel			model;					//モデル
 	SkinModelData		modelData;				//モデルデータ

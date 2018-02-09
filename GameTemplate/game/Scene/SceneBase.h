@@ -3,7 +3,7 @@ class SceneBase
 {
 public:
 	SceneBase();
-	~SceneBase();
+	virtual ~SceneBase();
 	/*!
 	* @brief	ゲームが起動してから一度だけ呼ばれる関数。
 	*/

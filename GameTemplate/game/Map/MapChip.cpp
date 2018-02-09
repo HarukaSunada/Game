@@ -30,8 +30,10 @@ void MapChip::Init(SMapChipLocInfo& locInfo, SkinModelData* mData)
 	//モデルデータでSkinModel初期化
 	model.Init(&modelData);
 
-	//シャドウレシーブ
-	model.SetRecieveShadowFlag(true);
+	if (strncmp("Floor", locInfo.modelName, 5) == 0) {
+		//シャドウレシーブ
+		model.SetRecieveShadowFlag(true);
+	}
 
 	//ライト
 	model.SetLight(game->GetLight());

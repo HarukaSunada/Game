@@ -36,8 +36,9 @@ void ClearMarker::Update()
 	float len = game->GetPlayer()->Length(position);
 
 	//クリアフラグを立てる
-	if (len < 3.0f) {
-		game->setEnd();
+	if (!flag && len < 3.0f) {
+		game->setClear();
+		flag = true;
 	}
 }
 

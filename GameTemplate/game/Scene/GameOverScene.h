@@ -39,5 +39,7 @@ private:
 	Sprite			cursor;
 	SelectState 	state;				//‘I‘ğó‘Ô
 	Pad					pad;
+	CSoundSource		bgmSource;
+	CSoundSource*		se;
 };
 

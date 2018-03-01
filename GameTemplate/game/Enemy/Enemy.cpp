@@ -13,9 +13,10 @@ Enemy::~Enemy()
 {
 }
 
-void Enemy::Init(D3DXVECTOR3 pos, SkinModelData& mData)
+void Enemy::Init(SMapChipLocInfo& locInfo)
 {
-	modelData.CloneModelData(mData, &animation);
+	//modelData.CloneModelData(mData, &animation);
+	modelData.CloneModelData(*g_modelManager->LoadModelData(locInfo.modelName), &animation);
 
 	//モデルの初期化
 	model.Init(&modelData);
@@ -28,8 +29,10 @@ void Enemy::Init(D3DXVECTOR3 pos, SkinModelData& mData)
 	act = actWait;
 
 	//キャラクタコントローラを初期化。
-	characterController.Init(0.3f, 1.0f, pos);
+	characterController.Init(0.3f, 1.0f, locInfo.position);
 	characterController.SetGravity(-20.0f);		//重力設定
+
+	rotation = locInfo.rotation;
 
 	model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(1.0f, 1.0f, 1.0f));
 }

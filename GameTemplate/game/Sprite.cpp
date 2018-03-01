@@ -5,7 +5,7 @@
 Sprite::Sprite()
 {
 	m_angle = 0;
-	m_scale = D3DXVECTOR2(1, 1);
+	m_scale = D3DXVECTOR2(1.0f, 1.0f);
 	m_backColor = D3DCOLOR_ARGB(255, 255, 255, 255);
 }
 

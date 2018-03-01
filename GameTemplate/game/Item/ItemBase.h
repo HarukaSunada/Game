@@ -10,7 +10,7 @@ public:
 	virtual ~ItemBase();
 
 	//初期化
-	virtual void Init(D3DXVECTOR3 pos);
+	virtual void Init(D3DXVECTOR3 pos) = 0;
 
 	//更新
 	virtual void Update();
@@ -27,6 +27,7 @@ public:
 protected:
 	SkinModel		model;			//モデル
 	SkinModelData	modelData;		//モデルデータ
+	D3DXVECTOR3		scale = {1.0f,1.0f,1.0f};	//モデルのスケール
 	D3DXVECTOR3		position;		//位置
 	D3DXQUATERNION	rotation;		//回転
 	float			angle;

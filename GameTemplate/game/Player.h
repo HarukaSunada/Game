@@ -22,6 +22,7 @@ public:
 	{
 		int HP;
 		int score;
+		bool isGetKey;
 	};
 
 	Player();
@@ -45,6 +46,12 @@ public:
 	//スコア加算
 	void addScore(int add);
 
+	//HPを増やす
+	bool AddHP(int hp);
+
+	//鍵獲得
+	void GetKey();
+
 	//解放
 	void Release();
 
@@ -64,14 +71,6 @@ public:
 	Status GetStatus()
 	{
 		return state;
-	}
-
-	//HPを設定
-	bool AddHP(int hp)
-	{
-		if (state.HP <= 0 || state.HP >= 6) { return false; }
-		state.HP += hp;
-		return true;
 	}
 
 	//視野角計算
@@ -103,4 +102,5 @@ private:
 	bool				isDamage = false;		//ダメージフラグ
 
 	LPDIRECT3DTEXTURE9	normalMap = NULL;		//法線マップ
+	CSoundSource*		se;
 };

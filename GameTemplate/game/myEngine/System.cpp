@@ -4,6 +4,7 @@
 LPDIRECT3D9             g_pD3D = NULL;		
 LPDIRECT3DDEVICE9       g_pd3dDevice = NULL;
 EffectManager*			g_effectManager = NULL;
+ModelDataManager*		g_modelManager = NULL;
 
 extern void Init();
 extern void Render();
@@ -31,6 +32,7 @@ void InitD3D(HWND hWnd)
 		&d3dpp, &g_pd3dDevice);
 
 	g_effectManager = new EffectManager;
+	g_modelManager = new ModelDataManager;
 }
 //-----------------------------------------------------------------------------
 // メッセージプロシージャ。

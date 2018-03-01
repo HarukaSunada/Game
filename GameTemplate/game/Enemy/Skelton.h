@@ -11,7 +11,7 @@ public:
 	~Skelton();
 
 	//‰Šú‰»
-	void Init(D3DXVECTOR3 pos, SkinModelData& mData) override;
+	void Init(SMapChipLocInfo& locInfo) override;
 
 	//s“®
 	void Action() override;
@@ -21,5 +21,6 @@ public:
 
 private:
 	const float			MoveSpeed = 2.5f;		//ˆÚ“®‘¬“x
+	bool				seFlag = false;
 };
 

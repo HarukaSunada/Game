@@ -2,6 +2,7 @@
 #include "Sky.h"
 #include "ClearMarker.h"
 #include "Item/ItemBase.h"
+#include "myEngine/Graphics/ModelDataManager.h"
 class MapChip;
 
 class Map
@@ -22,10 +23,10 @@ public:
 
 	//ダメージ処理
 	void Release();
+
 private:
 	std::vector<MapChip*>	mapChipList;	//マップチップのリスト
+	std::vector<ItemBase*>	ItemList;		//アイテムのリスト
 	Sky sky;
 	ClearMarker marker;
-	SkinModelData modelData[2];
-	std::vector<ItemBase*>	ItemList;
 };

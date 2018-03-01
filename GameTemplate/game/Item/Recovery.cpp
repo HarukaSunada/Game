@@ -16,7 +16,8 @@ void Recovery::Init(D3DXVECTOR3 pos)
 {
 	
 	//モデルをロード
-	modelData.LoadModelData("Assets/modelData/Apple.X", NULL);
+	//modelData.LoadModelData("Assets/modelData/Apple.X", NULL);
+	modelData.CloneModelData(*g_modelManager->LoadModelData("Apple"), NULL);
 
 	model.Init(&modelData);	//モデルデータでSkinModel初期化
 	model.SetLight(game->GetLight());	//ライトの設定
@@ -29,7 +30,8 @@ void Recovery::Init(D3DXVECTOR3 pos)
 
 	angle = 0.0f;
 
-	model.Update(position, rotation, { 0.7f, 0.7f, 0.7f });
+	scale = D3DXVECTOR3(0.6f, 0.6f, 0.6f);
+	model.Update(position, rotation, scale);
 }
 
 void Recovery::Update()
@@ -38,16 +40,11 @@ void Recovery::Update()
 
 	float len = game->GetPlayer()->Length(position);
 
-	angle += 1.5f;
-	if (angle >= 360.0f) {
-		angle = 0.0;
-	}
-	SetRotationY(angle);
-
-	//クリアフラグを立てる
+	//取得
 	if (len < 1.5f) {
+		//HPを1回復
 		isGet = game->GetPlayer()->AddHP(1);
 	}
 
-	model.Update(position, rotation, { 0.5f, 0.5f, 0.5f });
+	ItemBase::Update();
 }

@@ -4,10 +4,18 @@
 
 #pragma once
 #include "myEngine/Physics/CharacterController.h"
+#include "Map/MapChip.h"
 
 /*
 	エネミーの基本クラス
 */
+
+//struct SMapChipLocInfo {
+//	const char* modelName;		//モデル
+//	D3DXVECTOR3	position;			//座標
+//	D3DXQUATERNION	rotation;	//回転
+//};
+
 class Enemy
 {
 public:
@@ -39,7 +47,7 @@ public:
 
 	//初期化
 	//pos:初期位置、mData:モデルデータ
-	virtual void Init(D3DXVECTOR3 pos, SkinModelData& mData);
+	virtual void Init(SMapChipLocInfo& locInfo);
 
 	//更新
 	void Update();
@@ -85,6 +93,8 @@ protected:
 	Animation			animation;			//アニメーション
 	D3DXQUATERNION		rotation;			//回転
 	CharacterController characterController;//キャラクタコントローラ
+
+	CSoundSource*		se;					//サウンド
 
 	Status				state;				//エネミーのステータス
 	AnimNo				anim;				//アニメーション番号

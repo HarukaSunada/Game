@@ -105,6 +105,7 @@ void Terminate()
 {
 	delete scene;
 	delete g_effectManager;
+	delete g_modelManager;
 
 	delete mainRenderTarget;	//18-2
 	delete quadPrimitive;		//18-3

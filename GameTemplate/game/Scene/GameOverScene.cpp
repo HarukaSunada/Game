@@ -38,7 +38,7 @@ void GameOverScene::Init()
 
 	ChangeEffect(1);
 
-	bgmSource.Init("Assets/sound/game_over.wav");
+	bgmSource.InitStreaming("Assets/sound/game_over.wav");
 	bgmSource.Play(true);
 }
 

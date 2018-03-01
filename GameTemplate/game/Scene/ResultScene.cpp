@@ -46,7 +46,7 @@ void ResultScene::Init()
 
 	num[3].NumSet(tmp);
 
-	bgmSource.Init("Assets/sound/result.wav");
+	bgmSource.InitStreaming("Assets/sound/result.wav");
 	bgmSource.Play(true);
 }
 

@@ -181,35 +181,6 @@ void Bloom::Render()
 		luminanceTexW = downSamplingRenderTarget[i][1].GetWidth();
 		luminanceTexH = downSamplingRenderTarget[i][1].GetHeight();
 		blurTexture = downSamplingRenderTarget[i][1].GetTexture();
-
-
-	//ここから
-
-		////加算合成。
-		//offset[0] = 0.5f / downSamplingRenderTarget[i][1].GetWidth();
-		//offset[1] = 0.5f / downSamplingRenderTarget[i][1].GetHeight();
-		////メインレンダリングターゲットに戻す。
-		//g_pd3dDevice->SetRenderTarget(0, mainRenderTarget->GetRenderTarget());
-		//g_pd3dDevice->SetDepthStencilSurface(mainRenderTarget->GetDepthStencilBuffer());
-		////加算合成。
-		//g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-		//g_pd3dDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
-		//g_pd3dDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ONE);
-		//effect->SetTechnique("Final");
-		//effect->Begin(NULL, D3DXFX_DONOTSAVESHADERSTATE);
-		//effect->BeginPass(0);
-		//effect->SetTexture("g_blur", blurTexture);
-		//effect->SetValue("g_offset", offset, sizeof(offset));
-		//effect->CommitChanges();
-		//DrawQuadPrimitive();
-
-		//effect->EndPass();
-		//effect->End();
-
-		//g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
-		//g_pd3dDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-		//g_pd3dDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-		//ここまで
 	}
 
 	{

@@ -20,15 +20,21 @@ void UserInterface::Init()
 	//スコア表示の初期化
 	s_score.Init();
 
-	//テスト用
+	//ゲームオーバー
 	sp.SetFileName("Assets/Sprite/GameOver.png");
 	sp.SetPosition(D3DXVECTOR2(480, 300));
 	sp.Init();
 
-	//テスト用
+	//クリア
 	clear.SetFileName("Assets/Sprite/clear.png");
 	clear.SetPosition(D3DXVECTOR2(480, 300));
 	clear.Init();
+
+	//鍵アイコン
+	keyIcon.SetFileName("Assets/Sprite/keyIcon.png");
+	keyIcon.SetPosition(D3DXVECTOR2(430, 670));
+	keyIcon.SetScale(D3DXVECTOR2(0.4f, 0.4f));
+	keyIcon.Init();
 }
 
 void UserInterface::Update()
@@ -58,6 +64,10 @@ void UserInterface::Render()
 	}
 	else if (game->GetState() == Game::GameClear) {
 		clear.Draw();
+	}
+	
+	if (game->GetPlayer()->GetStatus().isGetKey) {
+		keyIcon.Draw();
 	}
 	gauge.Draw();
 	s_score.Draw();

@@ -16,7 +16,7 @@ public:
 	MapChip();
 	~MapChip();
 
-	void Init(SMapChipLocInfo& locInfo,SkinModelData* mData=NULL);
+	void Init(SMapChipLocInfo& locInfo);
 	void Update();
 	void Draw();
 

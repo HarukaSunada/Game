@@ -61,7 +61,7 @@ void Game::Init()
 
 	state = GameRun;
 
-	bgmSource.Init("Assets/sound/stage1.wav");
+	bgmSource.InitStreaming("Assets/sound/stage1.wav");
 	bgmSource.Play(true);
 }
 /*!

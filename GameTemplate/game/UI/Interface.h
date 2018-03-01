@@ -22,6 +22,7 @@ private:
 
 	Sprite			sp;					//テスト用(GameOver)
 	Sprite			clear;
+	Sprite			keyIcon;
 	bool			flag = false;		//テスト用
 };
 

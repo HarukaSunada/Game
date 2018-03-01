@@ -12,21 +12,15 @@ EnemyManager::~EnemyManager()
 {
 }
 
-void EnemyManager::CreateEnemy(D3DXVECTOR3 pos,EnemyType type)
+void EnemyManager::CreateEnemy(SMapChipLocInfo& locInfo,EnemyType type)
 {
 	//作成
 	Enemy* enemy = nullptr;
 	if (type == skelton) {
-		if (!enData.isLoad) {
-			//モデル読み込み
-			enData.model.LoadModelData("Assets/modelData/enemy_00.X", NULL);
-			enData.isLoad = true;
-		}
-		//作成
 		enemy = new Skelton;
 	}
 
-	enemy->Init(pos, enData.model);
+	enemy->Init(locInfo);
 
 	//リストにプッシュ
 	enemyList.push_back(enemy);
@@ -34,35 +28,32 @@ void EnemyManager::CreateEnemy(D3DXVECTOR3 pos,EnemyType type)
 
 void EnemyManager::Update()
 {
-	for (int i = 0; i < enemyList.size(); i++)
+	for (auto enemy : enemyList)
 	{
-		enemyList[i]->Update();
+		enemy->Update();
 	}
 }
 void EnemyManager::Draw()
 {
-	for (int i = 0; i < enemyList.size(); i++)
+	for (auto enemy : enemyList)
 	{
-		enemyList[i]->Draw();
+		enemy->Draw();
 	}
 }
 
 void EnemyManager::Damage(int dm)
 {
-	for (int i = 0; i < enemyList.size(); i++)
+	for (auto enemy : enemyList)
 	{
-		enemyList[i]->Damage(dm);
+		enemy->Damage(dm);
 	}
 }
 
 void EnemyManager::Release()
 {
 	//エネミーを一個ずつ削除
-	//	for (auto enemy : enemyList) 
-	for (int i = 0; i < enemyList.size(); i++) {
-		enemyList[i]->Remove();
-		delete enemyList[i];
-		enemyList[i] = NULL;
+	for (auto enemy : enemyList) {
+		enemy->Remove();
 	}
 	enemyList.clear();
 	enemyList.shrink_to_fit();

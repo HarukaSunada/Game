@@ -159,6 +159,7 @@
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="Item\ItemBase.cpp" />
+    <ClCompile Include="Item\KeyItem.cpp" />
     <ClCompile Include="Item\Recovery.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map\ClearMarker.cpp" />
@@ -191,6 +192,7 @@
     <ClCompile Include="myEngine\Physics\SphereCollider.cpp" />
     <ClCompile Include="myEngine\System.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerAttack.cpp" />
     <ClCompile Include="PostEffect.cpp" />
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="Scene\GameOverScene.cpp" />
@@ -220,6 +222,7 @@
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="Item\ItemBase.h" />
+    <ClInclude Include="Item\KeyItem.h" />
     <ClInclude Include="Item\Recovery.h" />
     <ClInclude Include="Map\ClearMarker.h" />
     <ClInclude Include="myEngine\Graphics\bloom.h" />
@@ -255,6 +258,7 @@
     <ClInclude Include="myEngine\Physics\SphereCollider.h" />
     <ClInclude Include="myEngine\system.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerAttack.h" />
     <ClInclude Include="PostEffect.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="Scene\GameOverScene.h" />

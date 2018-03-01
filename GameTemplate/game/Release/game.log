@@ -1,2 +1,28 @@
-﻿  game.vcxproj -> C:\Users\kbc16b18\Documents\DirectX\DirectXⅡ\GameTemplate\Release\game.exe
+﻿  Enemy.cpp
+  Skelton.cpp
+  GameCamera.cpp
+  ItemBase.cpp
+  KeyItem.cpp
+  Recovery.cpp
+  ClearMarker.cpp
+  MapChip.cpp
+  Sky.cpp
+  Player.cpp
+  PlayerAttack.cpp
+  GameOverScene.cpp
+  GameScene.cpp
+  SceneManager.cpp
+  HPGauge.cpp
+UI\HPGauge.cpp(21): warning C4244: '引数': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+UI\HPGauge.cpp(30): warning C4244: '引数': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+UI\HPGauge.cpp(35): warning C4244: '引数': 'int' から 'FLOAT' への変換です。データが失われる可能性があります。
+  Interface.cpp
+  ShowScore.cpp
+  main.cpp
+  コード生成しています。
+  13 of 2108 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    34 functions had inline decision re-evaluated but remain unchanged
+  コード生成が終了しました。
+  game.vcxproj -> C:\Users\kbc16b18\Documents\DirectX\DirectXⅡ\GameTemplate\Release\game.exe
   game.vcxproj -> C:\Users\kbc16b18\Documents\DirectX\DirectXⅡ\GameTemplate\Release\game.pdb (Full PDB)

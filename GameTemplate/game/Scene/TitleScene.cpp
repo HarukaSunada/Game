@@ -18,7 +18,7 @@ void TitleScene::Init()
 	back.SetPosition(D3DXVECTOR2(0, 410));
 	back.Init();
 
-	bgmSource.Init("Assets/sound/title.wav");
+	bgmSource.InitStreaming("Assets/sound/title.wav");
 	bgmSource.Play(true);
 }
 

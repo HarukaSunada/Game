@@ -2,6 +2,7 @@
 #include "Map.h"
 #include "MapChip.h"
 #include "Item/Recovery.h"
+#include "Item/KeyItem.h"
 
 
 static SMapChipLocInfo mapChipInfo[] = {
@@ -19,8 +20,6 @@ Map::~Map()
 
 void Map::Init(EnemyManager* en)
 {
-	modelData[0].LoadModelData("Assets/modelData/Floor-Wood-Model-02.X", NULL);
-	modelData[1].LoadModelData("Assets/modelData/Wall-Wood-Model-02.X", NULL);
 	sky.Init();
 
 	//配置オブジェクト個数を計算
@@ -30,14 +29,22 @@ void Map::Init(EnemyManager* en)
 	for (int i = 0; i < numObject; i++) {
 		//スケルトン
 		if (strcmp("Skeleton@Skin", mapChipInfo[i].modelName) == 0) {
-			en->CreateEnemy(mapChipInfo[i].position, skelton);
+			en->CreateEnemy(mapChipInfo[i], skelton);
 		}
 		//クリアマーカーテスト
 		else if (strcmp("test", mapChipInfo[i].modelName) == 0) {
 			marker.Init(mapChipInfo[i].position);
 		}
 		else if (strcmp("apple", mapChipInfo[i].modelName) == 0) {
+			//Recoveryのインスタンスを動的に生成
 			Recovery* mapChip = new Recovery;
+			mapChip->Init(mapChipInfo[i].position);
+			//動的配列にプッシュ
+			ItemList.push_back(mapChip);
+		}
+		else if (strcmp("Key", mapChipInfo[i].modelName) == 0) {
+			//KeyItemのインスタンスを動的に生成
+			KeyItem* mapChip = new KeyItem;
 			mapChip->Init(mapChipInfo[i].position);
 			//動的配列にプッシュ
 			ItemList.push_back(mapChip);
@@ -47,15 +54,7 @@ void Map::Init(EnemyManager* en)
 			//MapChipのインスタンスを動的に生成
 			MapChip* mapChip = new MapChip;
 			//マップチップの情報を渡して初期化する
-			if (strcmp("Floor-Wood-Model-02", mapChipInfo[i].modelName) == 0) {
-				mapChip->Init(mapChipInfo[i],&modelData[0]);
-			}
-			else if (strcmp("Wall-Wood-Model-02", mapChipInfo[i].modelName) == 0) {
-				mapChip->Init(mapChipInfo[i], &modelData[1]);
-			}
-			else {
-				mapChip->Init(mapChipInfo[i]);
-			}
+			mapChip->Init(mapChipInfo[i]);
 			//動的配列にプッシュ
 			mapChipList.push_back(mapChip);
 		}
@@ -66,13 +65,13 @@ void Map::Draw()
 {
 	sky.Draw();
 	//マップチップを一個ずつ描画
-	for (int i = 0; i < mapChipList.size(); i++) {
-		mapChipList[i]->Draw();
+	for (auto mapChip : mapChipList) {
+		mapChip->Draw();
 	}
 
 	//アイテムを一個ずつ描画
-	for (int i = 0; i < ItemList.size(); i++) {
-		ItemList[i]->Draw();
+	for (auto Item : ItemList) {
+		Item->Draw();
 	}
 
 	////テスト用
@@ -83,13 +82,13 @@ void Map::Update()
 {
 	sky.Update();
 	//マップチップを一個ずつ更新
-	for (int i = 0; i < mapChipList.size(); i++) {
-		mapChipList[i]->Update();
+	for (auto mapChip : mapChipList) {
+		mapChip->Update();
 	}
 
 	//アイテムを一個ずつ更新
-	for (int i = 0; i < ItemList.size(); i++) {
-		ItemList[i]->Update();
+	for (auto Item : ItemList) {
+		Item->Update();
 	}
 	marker.Update();
 }
@@ -97,14 +96,13 @@ void Map::Update()
 void Map::Release()
 {
 	//マップチップを一個ずつ削除
-	for (int i = 0; i < mapChipList.size(); i++) {
-		mapChipList[i]->Remove();
-		delete mapChipList[i];
-		mapChipList[i] = NULL;
+	for (auto mapChip : mapChipList) {
+		mapChip->Remove();
 	}
 	mapChipList.clear();
 	mapChipList.shrink_to_fit();
 
+	//アイテムの消去
 	ItemList.clear();
 	ItemList.shrink_to_fit();
 }

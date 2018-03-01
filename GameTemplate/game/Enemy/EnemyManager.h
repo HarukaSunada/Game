@@ -23,7 +23,7 @@ public:
 	void Draw();
 
 	//エネミー生成
-	void CreateEnemy(D3DXVECTOR3 pos, EnemyType type);
+	void CreateEnemy(SMapChipLocInfo& locInfo, EnemyType type);
 
 	//ダメージ処理
 	void Damage(int dm);
@@ -32,13 +32,5 @@ public:
 	void Release();
 
 private:
-	//エネミーのデータ
-	struct EnemyData
-	{
-		SkinModelData	model;	//モデルデータ
-		bool			isLoad;	//すでにロードしたか
-	};
-
-	EnemyData enData;
 	std::vector<Enemy*>	enemyList;	//敵のリスト
 };

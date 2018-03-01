@@ -45,6 +45,7 @@ void Player::Init()
 	//ステータス初期化
 	state.HP = 6;
 	state.score = 0;
+	state.isGetKey = false;
 
 	//キャラクタコントローラを初期化。
 	D3DXVECTOR3 pos = D3DXVECTOR3(0.0f, 5.0f, 0.0f);
@@ -98,90 +99,101 @@ void Player::Action()
 	moveSpeed.x = 0.0f;
 	moveSpeed.z = 0.0f;
 
-	//パッド入力
-	Pad* pad = game->GetPad();
-	float pad_x = pad->GetLStickXF();
-	float pad_y = pad->GetLStickYF();
+	//通常時
+	if (game->GetState() == Game::GameRun) {
 
-	//キャラの進行方向の計算
-	D3DXVECTOR3 cameraX = game->GetGameCamera()->GetCameraDirX();
-	D3DXVECTOR3 cameraZ = game->GetGameCamera()->GetCameraDirZ();
+		//パッド入力
+		Pad* pad = game->GetPad();
+		float pad_x = pad->GetLStickXF();
+		float pad_y = pad->GetLStickYF();
 
-	//パッド入力無し
-	if ((pad_x == 0.0f) && (pad_y == 0.0f)) {
+		//キャラの進行方向の計算
+		D3DXVECTOR3 cameraX = game->GetGameCamera()->GetCameraDirX();
+		D3DXVECTOR3 cameraZ = game->GetGameCamera()->GetCameraDirZ();
 
-		anim = animStand;
+		//パッド入力無し
+		if ((pad_x == 0.0f) && (pad_y == 0.0f)) {
 
-		if (fMoveSpeed > MoveSpeedMin) {
-			//減速
-			fMoveSpeed -= 0.2f;
+			anim = animStand;
+
+			if (fMoveSpeed > MoveSpeedMin) {
+				//減速
+				fMoveSpeed -= 0.2f;
+			}
+		}
+		//パッド入力有り
+		else {
+			dir.x = cameraX.x * pad_x + cameraZ.x * pad_y;
+			dir.y = 0.0f;	//Y方向は不要
+			dir.z = cameraX.z * pad_x + cameraZ.z * pad_y;
+
+			if (fMoveSpeed < MoveSpeedMax) {
+				//加速
+				fMoveSpeed += 0.2f;
+			}
+
+			//キャラ方向変更
+			float s;
+			float halfAngle = atan2f(dir.x, dir.z) * 0.5f;
+			s = sin(halfAngle);
+			rotation.w = cos(halfAngle);
+			rotation.y = 1 * s;
+
+			//アニメーション
+			anim = animRun;
+		}
+
+		//移動
+		moveSpeed.x = dir.x * fMoveSpeed;
+		moveSpeed.z = dir.z * fMoveSpeed;
+
+		//ジャンプする
+		if (pad->IsTrigger(Pad::enButtonA) && !characterController.IsJump()) {
+			//ジャンプ
+			moveSpeed.y = 8.5f;
+			//ジャンプしたことをキャラクタコントローラーに通知。
+			characterController.Jump();
+		}
+		//攻撃(Bボタン)
+		if (isAttack == false && pad->IsTrigger(Pad::enButtonB)) {
+			//攻撃状態に遷移
+			isAttack = true;
+
+			se = new CSoundSource();
+			se->Init("Assets/sound/se/magic.wav", true);
+			se->Play(false);
+
+			Perticle();
+		}
+
+		//攻撃状態の時
+		if (isAttack) {
+			se->SetPosition(characterController.GetPosition());
+
+			attackTimer += game->GetDeltaTime();	//プレイ時間カウント
+			game->GetEnemyManager()->Damage(1);
+			anim = animAttack;
+
+			//パーティクル発生位置調整
+			D3DXVECTOR3 direction = Direction();
+			D3DXVECTOR3 pos = characterController.GetPosition() + (direction*0.5);
+			particle->SetPosition(pos);
+		}
+		if (attackTimer > 0.75f)
+		{
+			attackTimer = 0.0f;
+			if (particle != nullptr) {
+				delete particle;
+				particle = nullptr;
+			}
+			isAttack = false;
 		}
 	}
-	//パッド入力有り
-	else {
-		dir.x = cameraX.x * pad_x + cameraZ.x * pad_y;
-		dir.y = 0.0f;	//Y方向は不要
-		dir.z = cameraX.z * pad_x + cameraZ.z * pad_y;
-
-		if (fMoveSpeed < MoveSpeedMax) {
-			//加速
-			fMoveSpeed += 0.2f;
-		}
-
-		//キャラ方向変更
-		float s;
-		float halfAngle = atan2f(dir.x, dir.z) * 0.5f;
-		s = sin(halfAngle);
-		rotation.w = cos(halfAngle);
-		rotation.y = 1 * s;
-
-		//アニメーション
-		anim = animRun;
-	}
-
-	//移動
-	moveSpeed.x = dir.x * fMoveSpeed;
-	moveSpeed.z = dir.z * fMoveSpeed;
-
-	if (state.HP <= 0) {
+	//それ以外
+	else{
 		moveSpeed.x = 0.0f;
 		moveSpeed.z = 0.0f;
-	}
-
-	//ジャンプする
-	if (pad->IsTrigger(Pad::enButtonA) && !characterController.IsJump()) {
-		//ジャンプ
-		moveSpeed.y = 8.5f;
-		//ジャンプしたことをキャラクタコントローラーに通知。
-		characterController.Jump();
-	}
-	//攻撃(Bボタン)
-	if (isAttack == false && pad->IsTrigger(Pad::enButtonB)) {
-		//攻撃状態に遷移
-		isAttack = true;
-
-		Perticle();
-	}
-
-	//攻撃状態の時
-	if (isAttack) {
-		attackTimer += game->GetDeltaTime();	//プレイ時間カウント
-		game->GetEnemyManager()->Damage(1);
-		anim = animAttack;
-
-		//前方向
-		D3DXVECTOR3 direction = Direction();
-		D3DXVECTOR3 pos = characterController.GetPosition() + (direction*0.5);
-		particle->SetPosition(pos);
-	}
-	if (attackTimer > 0.75f)
-	{
-		attackTimer = 0.0f;
-		if (particle != nullptr) {
-			delete particle;
-			particle = nullptr;
-		}
-		isAttack = false;
+		anim = animStand;
 	}
 
 	//モーション変更
@@ -203,10 +215,6 @@ void Player::Draw()
 		}
 	}
 	model.Draw(&game->GetCamera()->GetViewMatrix(), &game->GetCamera()->GetProjectionMatrix());
-
-	if (particle != nullptr) {
-		particle->Render(game->GetCamera()->GetViewMatrix(), game->GetCamera()->GetProjectionMatrix());
-	}
 }
 
 void Player::Damage(int dm)
@@ -234,12 +242,7 @@ float Player::Angle(D3DXVECTOR3 enemyPos)
 	D3DXVec3Normalize(&toEnemy, &diff);
 
 	//前方向
-	D3DXVECTOR3 direction;
-	D3DXMATRIX wMatrix = model.GetWorldMatrix();
-	direction.x = wMatrix.m[2][0];
-	direction.y = wMatrix.m[2][1];
-	direction.z = wMatrix.m[2][2];
-	D3DXVec3Normalize(&direction, &direction);
+	D3DXVECTOR3 direction = Direction();
 
 	//視野角?
 	float angle = toEnemy.x * direction.x + toEnemy.y * direction.y + toEnemy.z * direction.z;
@@ -251,6 +254,27 @@ float Player::Angle(D3DXVECTOR3 enemyPos)
 void Player::addScore(int add)
 {
 	state.score += add;
+}
+
+bool Player::AddHP(int hp)
+{
+	if (state.HP <= 0 || state.HP >= 6) { return false; }
+
+	state.HP += hp;
+
+	CSoundSource* sound = new CSoundSource();
+	sound->Init("Assets/sound/se/healing.wav");
+	sound->Play(false);
+
+	return true;
+}
+
+void Player::GetKey()
+{
+	state.isGetKey = true;
+	CSoundSource* sound = new CSoundSource();
+	sound->Init("Assets/sound/se/kira2.wav");
+	sound->Play(false);
 }
 
 void Player::Release()

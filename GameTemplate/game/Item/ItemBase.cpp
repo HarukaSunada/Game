@@ -19,7 +19,14 @@ void ItemBase::Init(D3DXVECTOR3 pos)
 
 void ItemBase::Update()
 {
+	if (isGet) { return; }
+	angle += 1.5f;
+	if (angle >= 360.0f) {
+		angle = 0.0;
+	}
+	SetRotationY(angle);
 
+	model.Update(position, rotation, { scale });
 }
 
 void ItemBase::Draw()

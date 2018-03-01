@@ -757,14 +757,14 @@
 //Skeleton@Skin
 {
 	"Skeleton@Skin",
-	D3DXVECTOR3(-16.14f, 5.75f, -96.70f),             //平行移動
-	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+	D3DXVECTOR3(-20.77f, 5.75f, -96.28f),             //平行移動
+	D3DXQUATERNION(0.00f, -1.00f, 0.00f, 0.01f ),  //回転
 },
 //Skeleton@Skin
 {
 	"Skeleton@Skin",
-	D3DXVECTOR3(-29.00f, 5.75f, -96.70f),             //平行移動
-	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+	D3DXVECTOR3(-24.86f, 5.75f, -96.17f),             //平行移動
+	D3DXQUATERNION(0.00f, -1.00f, 0.00f, 0.06f ),  //回転
 },
 //Skeleton@Skin
 {
@@ -1183,37 +1183,37 @@
 //Wall-Wood-Model-02
 {
 	"Wall-Wood-Model-02",
-	D3DXVECTOR3(-11.40f, 6.65f, -81.08f),             //平行移動
+	D3DXVECTOR3(-11.40f, 6.89f, -81.08f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
 },
 //Wall-Wood-Model-02
 {
 	"Wall-Wood-Model-02",
-	D3DXVECTOR3(-11.40f, 6.65f, -90.08f),             //平行移動
+	D3DXVECTOR3(-11.40f, 6.89f, -90.08f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
 },
 //Wall-Wood-Model-02
 {
 	"Wall-Wood-Model-02",
-	D3DXVECTOR3(-11.40f, 6.65f, -85.58f),             //平行移動
+	D3DXVECTOR3(-11.40f, 6.89f, -85.58f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
 },
 //Wall-Wood-Model-02
 {
 	"Wall-Wood-Model-02",
-	D3DXVECTOR3(-11.40f, 6.65f, -99.19f),             //平行移動
+	D3DXVECTOR3(-11.40f, 6.89f, -99.19f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
 },
 //Wall-Wood-Model-02
 {
 	"Wall-Wood-Model-02",
-	D3DXVECTOR3(-11.40f, 6.65f, -94.67f),             //平行移動
+	D3DXVECTOR3(-11.40f, 6.89f, -94.67f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
 },
 //Wall-Wood-Model-02
 {
 	"Wall-Wood-Model-02",
-	D3DXVECTOR3(-11.40f, 6.65f, -103.72f),             //平行移動
+	D3DXVECTOR3(-11.40f, 6.89f, -103.72f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
 },
 //Wall-Wood-Model-02
@@ -1675,19 +1675,19 @@
 //Door-Wood-Model-01
 {
 	"Door-Wood-Model-01",
-	D3DXVECTOR3(-22.80f, 7.21f, -106.18f),             //平行移動
+	D3DXVECTOR3(-22.80f, 7.11f, -106.18f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //Door-Wood-Model-01
 {
 	"Door-Wood-Model-01",
-	D3DXVECTOR3(-22.74f, 7.20f, -78.78f),             //平行移動
+	D3DXVECTOR3(-22.74f, 7.15f, -78.78f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //apple
 {
 	"apple",
-	D3DXVECTOR3(1.40f, 6.53f, -37.10f),             //平行移動
+	D3DXVECTOR3(1.40f, 6.27f, -37.10f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //apple
@@ -1723,24 +1723,30 @@
 //Wall-Wood-Model-02
 {
 	"Wall-Wood-Model-02",
-	D3DXVECTOR3(-20.76f, 6.45f, -92.70f),             //平行移動
+	D3DXVECTOR3(-20.76f, 7.23f, -92.70f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //Wall-Wood-Model-02
 {
 	"Wall-Wood-Model-02",
-	D3DXVECTOR3(-16.27f, 6.45f, -92.70f),             //平行移動
+	D3DXVECTOR3(-16.27f, 7.23f, -92.70f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //Wall-Wood-Model-02
 {
 	"Wall-Wood-Model-02",
-	D3DXVECTOR3(-25.22f, 6.45f, -92.70f),             //平行移動
+	D3DXVECTOR3(-25.22f, 7.23f, -92.70f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //Wall-Wood-Model-02
 {
 	"Wall-Wood-Model-02",
-	D3DXVECTOR3(-29.69f, 6.45f, -92.70f),             //平行移動
+	D3DXVECTOR3(-29.69f, 7.24f, -92.70f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+},
+//Key
+{
+	"Key",
+	D3DXVECTOR3(-22.83f, 6.52f, -94.02f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },

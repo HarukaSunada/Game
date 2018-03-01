@@ -19,6 +19,10 @@ public:
 	bool GetIsDead() {
 		return isDead;
 	}
+
+	bool GetPosition() {
+		return isDead;
+	}
 private:
 	Primitive			primitive;			//!<プリミティブ。
 	LPDIRECT3DTEXTURE9	texture;			//!<テクスチャ。

@@ -1,8 +1,9 @@
 /*
 	モデルデータ管理クラス
 */
-
 #pragma once
+#include "myEngine/Graphics/SkinModelData.h"
+
 class ModelDataManager
 {
 public:
@@ -10,12 +11,16 @@ public:
 	~ModelDataManager();
 
 	//モデルデータ読み込み
-	void LoadModelData();
+	SkinModelData* LoadModelData(const char* modelName);
 
-	//指定のモデルデータを返す
-	void GetModelData();
+	//解放
+	void Release();
 
 private:
-	std::vector<SkinModelData*>	modelData;
+	//std::vector<SkinModelData*>	modelData;
+
+	//SkinModelDataのインスタンスのディクショナリ。
+	//ファイルパスのハッシュ値をキーに持ち、SkinModelDataのインスタンスを値に持つ。
+	std::map<int, SkinModelData*>	modelDataDictinary;
 };
 

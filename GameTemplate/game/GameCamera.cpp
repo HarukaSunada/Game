@@ -14,7 +14,7 @@ GameCamera::~GameCamera()
 
 void GameCamera::Init()
 {
-	D3DXVECTOR3 initCamraPos = D3DXVECTOR3(0.0f, 5.0f, 10.0f);
+	D3DXVECTOR3 initCamraPos = D3DXVECTOR3(0.0f, 4.5f, 9.5f);
 
 	//カメラを初期化
 	camera.Init();
@@ -27,6 +27,17 @@ void GameCamera::Init()
 	cameraCollisionSolver.Init(0.2f);
 
 	toEyePos = camera.GetEyePt() - camera.GetLookatPt();
+
+	//カメラの方向ベクトル
+	D3DXVECTOR3 toEyePosDir;
+	D3DXVec3Normalize(&toEyePosDir, &toEyePos);
+
+	//3Dサウンドリスナー
+	g_soundEngine->SetListenerPosition(game->GetPlayer()->GetPosition());	//プレイヤー位置を渡す
+
+	g_soundEngine->SetListenerPosition(camera.GetEyePt());	//カメラ位置を渡す
+	g_soundEngine->SetListenerUp(D3DXVECTOR3(0.0f, 1.0f, 0.0f));	//上方向
+	g_soundEngine->SetListenerFront(toEyePosDir);	//カメラの向きを渡す
 }
 
 void GameCamera::Update()
@@ -34,7 +45,6 @@ void GameCamera::Update()
 	if (game->GetPlayer()->GetStatus().HP == 0) {
 		return;
 	}
-
 	//パッド入力
 	Pad* pad = game->GetPad();
 
@@ -77,11 +87,11 @@ void GameCamera::Update()
 		D3DXVECTOR3 toEyePosDir;
 		D3DXVec3Normalize(&toEyePosDir, &toEyePos);		
 		if (toEyePosDir.y < -0.10f) {
-			//上向きすぎるから止める
+			//下向きすぎるから止める
 			toEyePos = toEyePosOld;
 		}
 		else if (toEyePosDir.y > 0.70f) {
-			//下向きすぎるから止める
+			//上向きすぎるから止める
 			toEyePos = toEyePosOld;
 		}
 	}
@@ -116,4 +126,13 @@ void GameCamera::Update()
 
 	//カメラ更新
 	camera.Update();
+
+	//カメラの方向ベクトル
+	D3DXVECTOR3 toEyePosDir;
+	D3DXVec3Normalize(&toEyePosDir, &toEyePos);
+
+	//3Dサウンドリスナー
+	//g_soundEngine->SetListenerPosition(game->GetPlayer()->GetPosition());	//プレイヤー位置を渡す
+	g_soundEngine->SetListenerPosition(camera.GetEyePt());	//カメラの位置を渡す
+	g_soundEngine->SetListenerFront(toEyePosDir);	//カメラの向きを渡す
 }

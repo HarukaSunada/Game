@@ -4,21 +4,8 @@
 
 #include "stdafx.h"
 #include "myEngine/Graphics/EffectManager.h"
+#include "myEngine/Util.h"
 
-namespace{
-	/*!
-	 * @brief	文字列から32bitのハッシュ値を作成。
-	 */
-	int MakeHash( const char* string )
-	{
-		int hash = 0;
-		int l = (int)strlen(string);
-		for( int i = 0; i < l; i++ ){
-			hash = hash * 37 + string[i];
-		}
-		return hash;
-	}
-}
 /*!
  * @brief	コンストラクタ。
  */
@@ -44,7 +31,7 @@ LPD3DXEFFECT EffectManager::LoadEffect( const char* filePath )
 {
 	
 	LPD3DXEFFECT effect = nullptr;
-	int hash = MakeHash(filePath);
+	int hash = CUtil::MakeHash(filePath);
 	
 	auto it = effectDictinary.find(hash);
 	if (it == effectDictinary.end()) {

@@ -52,6 +52,9 @@ public:
 	//Œ®Šl“¾
 	void GetKey();
 
+	//Œ®Žg—p
+	void UseKey();
+
 	//‰ð•ú
 	void Release();
 

@@ -46,6 +46,12 @@
     <Filter Include="ソース ファイル\Item">
       <UniqueIdentifier>{8ae86624-b339-4050-a590-fca074359053}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Enemy\Boss">
+      <UniqueIdentifier>{bef4bf30-a895-4ef8-b1ee-c72887427554}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Enemy\Mob">
+      <UniqueIdentifier>{9a39268d-58e5-4094-9c57-3caa497d9e36}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -95,15 +101,6 @@
     </ClCompile>
     <ClCompile Include="GameCamera.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy\Enemy.cpp">
-      <Filter>ソース ファイル\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy\EnemyManager.cpp">
-      <Filter>ソース ファイル\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy\Skelton.cpp">
-      <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Map\Map.cpp">
       <Filter>ソース ファイル\Map</Filter>
@@ -216,6 +213,27 @@
     <ClCompile Include="PlayerAttack.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>ソース ファイル\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Map\LockedDoor.cpp">
+      <Filter>ソース ファイル\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy\BossBase.cpp">
+      <Filter>ソース ファイル\Enemy\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy\FirstBoss.cpp">
+      <Filter>ソース ファイル\Enemy\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy\Enemy.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy\EnemyManager.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy\Skelton.cpp">
+      <Filter>ソース ファイル\Enemy\Mob</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -272,13 +290,7 @@
     <ClInclude Include="GameCamera.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy\Enemy.h">
-      <Filter>ソース ファイル\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy\EnemyManager.h">
-      <Filter>ソース ファイル\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy\Skelton.h">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Map\Map.h">
@@ -394,6 +406,24 @@
     </ClInclude>
     <ClInclude Include="PlayerAttack.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>ソース ファイル\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\LockedDoor.h">
+      <Filter>ソース ファイル\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\BossBase.h">
+      <Filter>ソース ファイル\Enemy\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\FirstBoss.h">
+      <Filter>ソース ファイル\Enemy\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\Enemy.h">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\Skelton.h">
+      <Filter>ソース ファイル\Enemy\Mob</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

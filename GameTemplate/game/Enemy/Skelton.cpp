@@ -17,6 +17,8 @@ void Skelton::Init(SMapChipLocInfo& locInfo)
 	state.HP = 3;
 	state.score = 100;
 
+	damageLength = 8.0f;
+
 	Enemy::Init(locInfo);
 }
 
@@ -128,6 +130,7 @@ void Skelton::Action()
 		if (act != actDamage && length < 0.60f) {
 			if (game->GetPlayer()->GetStatus().HP > 0) {
 				game->GetPlayer()->Damage(1);
+				act = actFound;
 			}
 		}
 	}
@@ -147,29 +150,29 @@ void Skelton::Action()
 	}
 }
 
-void Skelton::Damage(int dm)
-{
-	if (isDamage) { return; }
-
-	//ベクトルの大きさ
-	float length = Length();
-
-	//視野角?
-	float angle = game->GetPlayer()->Angle(characterController.GetPosition());
-
-	//視野に入った、かつ近い
-	if (fabsf(angle) < D3DXToRadian(45.0f) && length < 8.0f) {
-		isDamage = true;
-		act = actDamage;
-		state.HP -= dm;
-	}
-
-	////視野に入った、かつ近い
-	//if (length < 3.0f) {
-	//	isDamage = true;
-	//	act = actDamage;
-	//	state.HP -= dm;
-	//}
-
-	Enemy::Damage(dm);
-}
+//void Skelton::Damage(int dm)
+//{
+//	//if (isDamage) { return; }
+//
+//	////ベクトルの大きさ
+//	//float length = Length();
+//
+//	////視野角?
+//	//float angle = game->GetPlayer()->Angle(characterController.GetPosition());
+//
+//	////視野に入った、かつ近い
+//	//if (fabsf(angle) < D3DXToRadian(45.0f) && length < 8.0f) {
+//	//	isDamage = true;
+//	//	act = actDamage;
+//	//	state.HP -= dm;
+//	//}
+//
+//	////視野に入った、かつ近い
+//	//if (length < 3.0f) {
+//	//	isDamage = true;
+//	//	act = actDamage;
+//	//	state.HP -= dm;
+//	//}
+//
+//	Enemy::Damage(dm);
+//}

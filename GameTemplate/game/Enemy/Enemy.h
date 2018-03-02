@@ -10,12 +10,6 @@
 	エネミーの基本クラス
 */
 
-//struct SMapChipLocInfo {
-//	const char* modelName;		//モデル
-//	D3DXVECTOR3	position;			//座標
-//	D3DXQUATERNION	rotation;	//回転
-//};
-
 class Enemy
 {
 public:
@@ -102,6 +96,8 @@ protected:
 
 	float				timer		= 0.0f;		//タイマー
 	float				damageTimer = 0.0f;		//無敵のタイマー
+
+	float				damageLength = 0.0f;
 
 	bool				isDamage = false;		//ダメージフラグ
 	bool				isDead		= false;	//死亡フラグ

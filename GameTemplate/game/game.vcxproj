@@ -153,16 +153,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Enemy\BossBase.cpp" />
     <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="Enemy\EnemyManager.cpp" />
+    <ClCompile Include="Enemy\FirstBoss.cpp" />
     <ClCompile Include="Enemy\Skelton.cpp" />
     <ClCompile Include="GameCamera.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="Item\ItemBase.cpp" />
     <ClCompile Include="Item\KeyItem.cpp" />
     <ClCompile Include="Item\Recovery.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map\ClearMarker.cpp" />
+    <ClCompile Include="Map\LockedDoor.cpp" />
     <ClCompile Include="myEngine\Graphics\bloom.cpp" />
     <ClCompile Include="myEngine\Graphics\ModelDataManager.cpp" />
     <ClCompile Include="myEngine\Particle\Particle.cpp" />
@@ -216,15 +220,19 @@
     <ClCompile Include="VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Enemy\BossBase.h" />
     <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="Enemy\EnemyManager.h" />
+    <ClInclude Include="Enemy\FirstBoss.h" />
     <ClInclude Include="Enemy\Skelton.h" />
     <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="Item\ItemBase.h" />
     <ClInclude Include="Item\KeyItem.h" />
     <ClInclude Include="Item\Recovery.h" />
     <ClInclude Include="Map\ClearMarker.h" />
+    <ClInclude Include="Map\LockedDoor.h" />
     <ClInclude Include="myEngine\Graphics\bloom.h" />
     <ClInclude Include="myEngine\Graphics\ModelDataManager.h" />
     <ClInclude Include="myEngine\Particle\Particle.h" />

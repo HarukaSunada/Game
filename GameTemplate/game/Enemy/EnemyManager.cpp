@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "EnemyManager.h"
 #include "Skelton.h"
+#include "FirstBoss.h"
 
 
 EnemyManager::EnemyManager()
@@ -18,6 +19,9 @@ void EnemyManager::CreateEnemy(SMapChipLocInfo& locInfo,EnemyType type)
 	Enemy* enemy = nullptr;
 	if (type == skelton) {
 		enemy = new Skelton;
+	}
+	else if (type == Boss1) {
+		enemy = new FirstBoss;
 	}
 
 	enemy->Init(locInfo);

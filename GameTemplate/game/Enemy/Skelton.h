@@ -16,8 +16,8 @@ public:
 	//行動
 	void Action() override;
 
-	//ダメージ
-	void Damage(int dm) override;
+	////ダメージ
+	//void Damage(int dm) override;
 
 private:
 	const float			MoveSpeed = 2.5f;		//移動速度

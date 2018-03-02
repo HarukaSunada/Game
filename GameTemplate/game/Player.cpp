@@ -277,6 +277,14 @@ void Player::GetKey()
 	sound->Play(false);
 }
 
+void Player::UseKey()
+{
+	state.isGetKey = false;
+	CSoundSource* sound = new CSoundSource();
+	sound->Init("Assets/sound/se/unlock.wav");
+	sound->Play(false);
+}
+
 void Player::Release()
 {
 	//„‘Ìœ‹

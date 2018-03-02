@@ -1750,3 +1750,9 @@
 	D3DXVECTOR3(-22.83f, 6.52f, -94.02f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
+//close
+{
+	"close",
+	D3DXVECTOR3(-22.80f, 7.11f, -106.18f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+},

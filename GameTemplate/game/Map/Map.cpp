@@ -31,6 +31,10 @@ void Map::Init(EnemyManager* en)
 		if (strcmp("Skeleton@Skin", mapChipInfo[i].modelName) == 0) {
 			en->CreateEnemy(mapChipInfo[i], skelton);
 		}
+		//ボス
+		else if (strcmp("penguin", mapChipInfo[i].modelName) == 0) {
+			en->CreateEnemy(mapChipInfo[i], Boss1);
+		}
 		//クリアマーカーテスト
 		else if (strcmp("test", mapChipInfo[i].modelName) == 0) {
 			marker.Init(mapChipInfo[i].position);
@@ -48,6 +52,13 @@ void Map::Init(EnemyManager* en)
 			mapChip->Init(mapChipInfo[i].position);
 			//動的配列にプッシュ
 			ItemList.push_back(mapChip);
+		}
+		else if (strcmp("close", mapChipInfo[i].modelName) == 0) {
+			//KeyItemのインスタンスを動的に生成
+			LockedDoor* mapChip = new LockedDoor;
+			mapChip->Init(mapChipInfo[i]);
+			//動的配列にプッシュ
+			DoorList.push_back(mapChip);
 		}
 		//マップチップ
 		else {
@@ -74,6 +85,11 @@ void Map::Draw()
 		Item->Draw();
 	}
 
+	//アイテムを一個ずつ描画
+	for (auto Door : DoorList) {
+		Door->Draw();
+	}
+
 	////テスト用
 	//marker.Draw();
 }
@@ -90,6 +106,11 @@ void Map::Update()
 	for (auto Item : ItemList) {
 		Item->Update();
 	}
+
+	//アイテムを一個ずつ描画
+	for (auto Door : DoorList) {
+		Door->Update();
+	}
 	marker.Update();
 }
 
@@ -101,6 +122,13 @@ void Map::Release()
 	}
 	mapChipList.clear();
 	mapChipList.shrink_to_fit();
+
+	//アイテムを一個ずつ描画
+	for (auto Door : DoorList) {
+		Door->Remove();
+	}
+	DoorList.clear();
+	DoorList.shrink_to_fit();
 
 	//アイテムの消去
 	ItemList.clear();

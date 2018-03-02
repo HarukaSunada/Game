@@ -3,6 +3,7 @@
 #include "ClearMarker.h"
 #include "Item/ItemBase.h"
 #include "myEngine/Graphics/ModelDataManager.h"
+#include "LockedDoor.h"
 class MapChip;
 
 class Map
@@ -27,6 +28,7 @@ public:
 private:
 	std::vector<MapChip*>	mapChipList;	//マップチップのリスト
 	std::vector<ItemBase*>	ItemList;		//アイテムのリスト
+	std::vector<LockedDoor*>	DoorList;	//アイテムのリスト
 	Sky sky;
 	ClearMarker marker;
 };

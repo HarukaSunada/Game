@@ -21,7 +21,7 @@ void Enemy::Init(SMapChipLocInfo& locInfo)
 	//モデルの初期化
 	model.Init(&modelData);
 	model.SetLight(game->GetLight());	//ライトの設定
-	model.SetShadowCasterFlag(true);
+	model.SetShadowCasterFlag(false);
 
 	//アニメーションの設定
 	animation.PlayAnimation(animStand);
@@ -71,6 +71,28 @@ void Enemy::Update()
 
 void Enemy::Damage(int dm)
 {
+	if (isDamage) { return; }
+
+	//ベクトルの大きさ
+	float length = Length();
+
+	//視野角?
+	float angle = game->GetPlayer()->Angle(characterController.GetPosition());
+
+	//視野に入った、かつ近い
+	if (fabsf(angle) < D3DXToRadian(45.0f) && length < damageLength) {
+		isDamage = true;
+		act = actDamage;
+		state.HP -= dm;
+	}
+
+	////視野に入った、かつ近い
+	//if (length < 3.0f) {
+	//	isDamage = true;
+	//	act = actDamage;
+	//	state.HP -= dm;
+	//}
+
 	if (state.HP <= 0) {
 		isDead = true;
 		game->GetPlayer()->addScore(state.score);

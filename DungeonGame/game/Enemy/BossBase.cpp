@@ -1,0 +1,25 @@
+#include "stdafx.h"
+#include "BossBase.h"
+#include "Scene/GameScene.h"
+
+
+BossBase::BossBase()
+{
+}
+
+
+BossBase::~BossBase()
+{
+}
+
+//èâä˙âª
+void BossBase::Init(SMapChipLocInfo& locInfo)
+{
+	
+}
+
+//çsìÆ
+void BossBase::Action()
+{
+
+}

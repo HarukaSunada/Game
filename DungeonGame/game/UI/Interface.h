@@ -1,6 +1,7 @@
 #pragma once
 
 #include "HPGauge.h"
+#include "BossHPGauge.h"
 #include "ShowScore.h"
 
 /*
@@ -16,13 +17,20 @@ public:
 	void Update();
 	void Render();
 
+	void SetBoss(FirstBoss* boss);
+
 private:
 	ShowScore		s_score;			//スコア表示
 	HPGauge			gauge;				//HPゲージ
+	BossHPGauge		bossGauge;			//ボスのHPゲージ
 
 	Sprite			sp;					//テスト用(GameOver)
 	Sprite			clear;
+	Sprite			start;
 	Sprite			keyIcon;
-	bool			flag = false;		//テスト用
+	bool			flag = false;		//テスト
+	bool			bossFlag = false;
+
+	float			timer = 0.0f;
 };
 

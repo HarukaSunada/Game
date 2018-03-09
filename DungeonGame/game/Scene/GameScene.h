@@ -12,6 +12,7 @@
 #include "Enemy/Enemy.h"
 #include "Enemy/Skelton.h"
 #include "Enemy/EnemyManager.h"
+#include "Enemy/FirstBoss.h"
 #include "UI/Interface.h"
 #include "SceneBase.h"
 #include "Player.h"
@@ -27,6 +28,7 @@ public:
 		GameRun,	//実行
 		GameOver,	//ゲームオーバー
 		GameClear,	//クリア
+		GameStop,	//中断
 	};
 	/*!
 	 * @brief	コンストラクタ。
@@ -124,6 +126,14 @@ public:
 		return &g_particleManager;
 	}
 
+	void SetBoss(FirstBoss* boss);
+
+	void GameReStart();
+
+	bool GetBossCameraFlag()
+	{
+		return BossCameraFlag;
+	}
 private:	
 	Light				light;				//ライト
 	GameCamera			camera;				//カメラ
@@ -145,6 +155,7 @@ private:
 	float timer = 0.0f;
 
 	bool stopFlag=false;
+	bool BossCameraFlag = false;
 };
 
 extern Game* game;		//ゲームのインスタンス

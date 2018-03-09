@@ -98,6 +98,11 @@ void GameCamera::Update()
 
 	//プレイヤー追従カメラ
 	D3DXVECTOR3 targetPos = game->GetPlayer()->GetPosition();
+
+	if (game->GetBossCameraFlag()) {
+		targetPos = BossPos;
+	}
+
 	//注視点調整
 	targetPos.y += 1.5f;
 

@@ -19,9 +19,12 @@ public:
 	//É_ÉÅÅ[ÉW
 	void Damage(int dm,D3DXVECTOR3 position) override;
 
+	void SetRotationY(float angle);
+
 private:
 	float moveTimer = 0.0f;
 	D3DXVECTOR3 firstPos;
 	D3DXVECTOR3 moveDir;
+	bool		flag;
 };
 

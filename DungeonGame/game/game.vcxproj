@@ -213,6 +213,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="UI\BossHPGauge.cpp" />
     <ClCompile Include="UI\HPGauge.cpp" />
     <ClCompile Include="UI\Interface.cpp" />
     <ClCompile Include="UI\Number.cpp" />
@@ -278,6 +279,7 @@
     <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="UI\BossHPGauge.h" />
     <ClInclude Include="UI\HPGauge.h" />
     <ClInclude Include="UI\Interface.h" />
     <ClInclude Include="UI\Number.h" />

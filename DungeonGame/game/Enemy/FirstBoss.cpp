@@ -18,7 +18,7 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 {
 	//ステータス初期化
 	state.HP = 3;
-	state.score = 100;
+	state.score = 300;
 
 	damageLength = 20.0f;
 
@@ -36,6 +36,9 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 	anim = animStand;
 	act = actWait;
 
+	timer = 0.0f;
+	flag = false;
+
 	moveDir = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
 
 	//キャラクタコントローラを初期化。
@@ -43,6 +46,7 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 	characterController.SetGravity(-20.0f);		//重力設定
 
 	rotation = locInfo.rotation;
+	SetRotationY(180);
 
 	model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(1.0f, 1.0f, 1.0f));
 }
@@ -54,8 +58,21 @@ void FirstBoss::Action()
 	float length = Length();
 
 	if (act == actWait) {
-		if (length < 230){
-			act = actFound;
+		//if (length < 200){
+		//	act = actFound;
+		//	game->SetBoss(this);
+		//}
+
+		if (!flag && length < 200) {
+			game->SetBoss(this);
+			flag = true;
+		}
+		else if (flag) {
+			timer += game->GetDeltaTime();
+			if (timer > 3.0f) {
+				act = actFound;
+				game->GameReStart();
+			}
 		}
 
 		//if (!flag) {
@@ -85,15 +102,19 @@ void FirstBoss::Action()
 		D3DXVECTOR3 movePos = characterController.GetPosition() - firstPos;
 		if (moveDir.z==-1.0 && movePos.z <-3.0f) {
 			moveDir = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
+			SetRotationY(270.0f);
 		}
 		else if (moveDir.x == 1.0 && movePos.x > 3.0f) {
 			moveDir = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
+			SetRotationY(180.0f);
 		}
 		else if(moveDir.z == 1.0 && movePos.z > 3.0f) {
 			moveDir = D3DXVECTOR3(-1.0f, 0.0f, 0.0f);
+			SetRotationY(90.0f);
 		}
 		else if(moveDir.x == -1.0 && movePos.x < -3.0f) {
 			moveDir = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
+			SetRotationY(0.0f);
 		}
 
 		characterController.SetMoveSpeed(moveDir*SPEED);
@@ -120,4 +141,15 @@ void FirstBoss::Damage(int dm, D3DXVECTOR3 pos)
 	if (state.HP <= 0) {
 		game->GetMap()->CreateKey(characterController.GetPosition());
 	}
+}
+
+void FirstBoss::SetRotationY(float angle)
+{
+	float PI = 3.14159265358979323846f;
+
+	float s;
+	float halfAngle = angle * (PI / 180.0f) * 0.5f;
+	s = sin(halfAngle);
+	rotation.w = cos(halfAngle);
+	rotation.y = 1 * s;
 }

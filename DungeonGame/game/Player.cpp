@@ -92,9 +92,12 @@ void Player::Update()
 	}
 
 	//落下した
-	if (characterController.GetPosition().y < -10.0f)
+	if (state.HP>0 && characterController.GetPosition().y < -10.0f)
 	{
 		state.HP = 0;
+		CSoundSource* sound = new CSoundSource();
+		sound->Init("Assets/sound/se/damage2.wav");
+		sound->Play(false);
 	}
 
 	//キャラクタコントローラーの実行
@@ -245,10 +248,22 @@ void Player::Damage(int dm)
 
 	//HP減算
 	state.HP -= dm;
+
 	if (state.HP < 0)
 	{
 		state.HP = 0;
 	}
+
+	CSoundSource* sound = new CSoundSource();
+
+	if (state.HP > 0) {
+		sound->Init("Assets/sound/se/damage.wav");
+	}
+	else {
+		sound->Init("Assets/sound/se/damage2.wav");
+	}
+	sound->Play(false);
+
 	isDamage = true;
 }
 

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Interface.h"
 #include "Scene/GameScene.h"
+#include "Enemy/FirstBoss.h"
 
 
 UserInterface::UserInterface()
@@ -17,6 +18,9 @@ void UserInterface::Init()
 	//HPゲージの初期化
 	gauge.Init();
 
+	//ボスHPゲージの初期化
+	bossGauge.Init();
+
 	//スコア表示の初期化
 	s_score.Init();
 
@@ -28,7 +32,13 @@ void UserInterface::Init()
 	//クリア
 	clear.SetFileName("Assets/Sprite/clear.png");
 	clear.SetPosition(D3DXVECTOR2(480, 300));
+	clear.SetScale(D3DXVECTOR2(0.8f, 0.8f));
 	clear.Init();
+
+	//クリア
+	start.SetFileName("Assets/Sprite/start.png");
+	start.SetPosition(D3DXVECTOR2(480, 300));
+	start.Init();
 
 	//鍵アイコン
 	keyIcon.SetFileName("Assets/Sprite/keyIcon.png");
@@ -40,8 +50,12 @@ void UserInterface::Init()
 void UserInterface::Update()
 {
 	//HPゲージ更新
-
 	gauge.Update();
+
+	//ボスHPゲージ更新
+	if (bossFlag) {
+		bossGauge.Update();
+	}
 
 	//スコア表示更新
 	s_score.Update();
@@ -69,6 +83,20 @@ void UserInterface::Render()
 	if (game->GetPlayer()->GetStatus().isGetKey) {
 		keyIcon.Draw();
 	}
+	if (timer < 2.0f) {
+		start.Draw();
+		timer += game->GetDeltaTime();
+	}
+
 	gauge.Draw();
+	if (bossFlag) {
+		bossGauge.Draw();
+	}
 	s_score.Draw();
+}
+
+void UserInterface::SetBoss(FirstBoss* boss)
+{
+	bossFlag = true;
+	bossGauge.SetBoss(boss);
 }

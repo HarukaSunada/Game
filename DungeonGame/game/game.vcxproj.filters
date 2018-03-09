@@ -234,6 +234,9 @@
     <ClCompile Include="Enemy\Skelton.cpp">
       <Filter>ソース ファイル\Enemy\Mob</Filter>
     </ClCompile>
+    <ClCompile Include="UI\BossHPGauge.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -424,6 +427,9 @@
     </ClInclude>
     <ClInclude Include="Enemy\Skelton.h">
       <Filter>ソース ファイル\Enemy\Mob</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\BossHPGauge.h">
+      <Filter>ソース ファイル\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -167,3 +167,24 @@ void Game::setClear()
 	Jingle->Init("Assets/sound/clear.wav");
 	Jingle->Play(false);
 }
+
+void Game::SetBoss(FirstBoss* boss)
+{
+	BossCameraFlag = true;
+	camera.SetBossPos(boss->GetPosition());
+	ui.SetBoss(boss);
+	state = GameStop;
+	bgmSource.Stop();
+	CSoundSource* se = new CSoundSource();
+	se->Init("Assets/sound/warning.wav");
+	se->Play(false);
+}
+
+void Game::GameReStart() {
+	state = GameRun;
+	BossCameraFlag = false;
+	bgmSource.Play(true);
+	bgmSource.Release();
+	bgmSource.InitStreaming("Assets/sound/boss.wav");
+	bgmSource.Play(true);
+}

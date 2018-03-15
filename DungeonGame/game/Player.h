@@ -65,6 +65,8 @@ public:
 	//攻撃開始
 	void AttackStart();
 
+	void Reset(bool isReStart);
+
 	//位置を取得
 	D3DXVECTOR3 GetPosition()
 	{
@@ -84,6 +86,17 @@ public:
 	//前方向
 	D3DXVECTOR3 Direction();
 
+	//トータルスコアの加算
+	void AddTotalScore()
+	{
+		totalScore += state.score;
+	}
+
+	//合計スコア取得
+	int GetTotalScore()
+	{
+		return totalScore;
+	}
 
 private:
 	SkinModel			model;					//モデル
@@ -97,6 +110,7 @@ private:
 	AnimNo				anim;					//アニメーション番号
 	D3DXVECTOR3			dir;					//キャラの方向
 	Status				state;					//ステータス
+	int					totalScore=0;				//合計スコア
 
 	float				fMoveSpeed;				//移動速度
 	float				timer = 0.0f;			//タイマー

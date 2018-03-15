@@ -9,7 +9,7 @@ public:
 	Sky();
 	~Sky();
 
-	void Init();
+	void Init(int stageNum);
 	void Update();
 	void Draw();
 

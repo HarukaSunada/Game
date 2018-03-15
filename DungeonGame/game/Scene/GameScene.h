@@ -17,6 +17,8 @@
 #include "SceneBase.h"
 #include "Player.h"
 
+
+
 /*!
  * @brief	ゲームクラス。
  */
@@ -27,8 +29,17 @@ public:
 	enum GameState {
 		GameRun,	//実行
 		GameOver,	//ゲームオーバー
+		GameWait,
 		GameClear,	//クリア
 		GameStop,	//中断
+		GameLoad,	//ロード中
+	};
+
+	//ステージ番号
+	enum state_stage {
+		en_Stage1,		//ステージ1
+		en_Stage2,		//ステージ2
+		en_end,			//ゲームクリア処理用のダミー
 	};
 	/*!
 	 * @brief	コンストラクタ。
@@ -55,6 +66,11 @@ public:
 
 	//解放
 	void Release();
+
+	void Reset();
+
+	//ステージ生成
+	void CreateStage(state_stage stage);
 
 	//カメラのインスタンス取得
 	Camera* GetCamera()
@@ -142,20 +158,23 @@ private:
 	Pad					pad;				//ゲームパッド
 	EnemyManager		enemyManager;		//エネミー管理
 
-	GameState			state;
-	UserInterface		ui;
-	Bloom				bloom;
-	ParticleManager		g_particleManager;
+	state_stage			currentStage;	//現在のステージ
+	state_stage			nextStage;		//次のステージ
+
+	GameState			state;				//保持ステータス
+	UserInterface		ui;					//UI
+	Bloom				bloom;				//ブルーム
+	ParticleManager		g_particleManager;	//パーティクル管理関数
 
 	CSoundSource		bgmSource;
 	CSoundSource*		Jingle;
 
-	const float		frameDeltaTime = 1.0f / 60.0f;		//1フレームの経過時間。
-
 	float timer = 0.0f;
 
-	bool stopFlag=false;
-	bool BossCameraFlag = false;
+	bool stopFlag=false;				//一時停止フラグ
+	bool BossCameraFlag = false;		//ボスカメラに切り替えるか?
+
+	const float		frameDeltaTime = 1.0f / 60.0f;	//1フレームの経過時間。
 };
 
 extern Game* game;		//ゲームのインスタンス

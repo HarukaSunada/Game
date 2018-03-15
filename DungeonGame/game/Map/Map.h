@@ -4,6 +4,7 @@
 #include "Item/ItemBase.h"
 #include "myEngine/Graphics/ModelDataManager.h"
 #include "LockedDoor.h"
+
 class MapChip;
 
 class Map
@@ -15,6 +16,8 @@ public:
 	//初期化
 	//en　敵管理クラスのインスタンス
 	void Init(EnemyManager* en);
+
+	void Create(EnemyManager* en, int stageNum);
 
 	//描画
 	void Draw();
@@ -32,6 +35,7 @@ private:
 	std::vector<MapChip*>	mapChipList;	//マップチップのリスト
 	std::vector<ItemBase*>	ItemList;		//アイテムのリスト
 	std::vector<LockedDoor*>	DoorList;	//アイテムのリスト
-	Sky sky;
-	ClearMarker marker;
+	Sky* sky;
+	ClearMarker* marker;
+
 };

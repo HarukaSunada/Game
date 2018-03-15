@@ -19,6 +19,13 @@ public:
 
 	void SetBoss(FirstBoss* boss);
 
+	void Reset()
+	{
+		timer = 0.0f;
+		flag = false;		//テスト
+		bossFlag = false;
+	}
+
 private:
 	ShowScore		s_score;			//スコア表示
 	HPGauge			gauge;				//HPゲージ

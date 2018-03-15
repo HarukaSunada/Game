@@ -53,22 +53,27 @@ void Game::Init()
 	//プレイヤーを初期化
 	player.Init();
 
+	currentStage = en_Stage1;
+	nextStage = en_Stage2;
+
+	////マップの初期化
+	//map.Init(&enemyManager);
+
 	//マップの初期化
-	map.Init(&enemyManager);
+	CreateStage(currentStage);
 
 	//UIの初期化
 	ui.Init();
 
 	state = GameRun;
-
-	bgmSource.InitStreaming("Assets/sound/stage1.wav");
-	bgmSource.Play(true);
 }
 /*!
  * @brief	更新。
  */
 void Game::Update()
 {
+	if (state == GameWait) { return; }
+
 	//パッド更新
 	pad.Update();
 
@@ -90,15 +95,26 @@ void Game::Update()
 	if (state == GameOver) {
 		timer += frameDeltaTime;
 		if (timer > 3.0f) {
+			nextStage = currentStage;
 			sceneEnd = true;
+			state = GameWait;
 		}
 	}
 	//クリアの時
 	else if (state == GameClear) {
 		timer += frameDeltaTime;
 		if (timer > 5.0f) {
-			sceneEnd = true;
+			if (nextStage == en_end) {
+				sceneEnd = true;
+			}
+			else {
+				state = GameLoad;
+			}
 		}
+	}
+	else if (state == GameLoad)
+	{
+		Reset();
 	}
 
 	//エネミー更新
@@ -131,6 +147,8 @@ void Game::Update()
  */
 void Game::Render()
 {
+	if (state == GameWait) { return; }
+
 	g_shadowMap->Draw();
 
 	map.Draw();
@@ -146,6 +164,8 @@ void Game::Render()
 //描画
 void Game::PostRender()
 {
+	if (state == GameWait) { return; }
+
 	ui.Render();
 }
 
@@ -159,9 +179,22 @@ void Game::Release()
 	bloom.Release();
 }
 
+void Game::Reset()
+{
+	map.Release();
+	enemyManager.Release();
+	ui.Reset();
+	CreateStage(nextStage);
+	player.Reset(true);
+	timer = 0.0f;
+	sceneEnd = false;
+	state = GameRun;
+}
+
 void Game::setClear()
 {
 	state = GameClear;
+	player.AddTotalScore();
 	bgmSource.Stop();
 	Jingle = new CSoundSource;
 	Jingle->Init("Assets/sound/clear.wav");
@@ -187,4 +220,34 @@ void Game::GameReStart() {
 	bgmSource.Release();
 	bgmSource.InitStreaming("Assets/sound/boss.wav");
 	bgmSource.Play(true);
+}
+
+void Game::CreateStage(state_stage stage)
+{
+	currentStage = stage;
+
+	switch (stage) {
+	case en_Stage1:
+
+		map.Create(&enemyManager, en_Stage1);
+
+		nextStage = en_Stage2;
+
+		bgmSource.Release();
+		bgmSource.InitStreaming("Assets/sound/stage1.wav");
+		bgmSource.Play(true);
+		break;
+	case en_Stage2:
+
+		map.Create(&enemyManager, en_Stage2);
+
+		nextStage = en_end;
+
+		//仮BGM
+		bgmSource.Release();
+		bgmSource.InitStreaming("Assets/sound/stage2.wav");
+		bgmSource.Play(true);
+		break;
+	}
+	state = GameLoad;
 }

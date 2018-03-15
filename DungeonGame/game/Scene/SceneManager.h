@@ -49,6 +49,11 @@ public:
 		return state;
 	}
 
+	void SetLoad(LoadStep step)
+	{
+		load = step;
+	}
+
 private:
 	SceneState			state;		//現在のシーン
 	Pad					pad;		//ゲームパッド

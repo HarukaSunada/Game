@@ -32,10 +32,6 @@ void SceneManager::Update()
 	//シーンの更新
 	scene->Update();
 
-	//if (load != Wait) {
-	//	loading.Update();
-	//}
-
 	switch (state)
 	{
 	//タイトルシーン
@@ -53,7 +49,7 @@ void SceneManager::Update()
 		break;
 	//ゲームシーン
 	case stateGame:
-		//テスト用
+		//デバッグ用
 		if (pad.IsTrigger(Pad::enButtonStart)) {
 			game->setClear();
 		}
@@ -64,11 +60,13 @@ void SceneManager::Update()
 		else if (load == LoadStart) {
 			SceneChange();
 		}
-		//ゲームオーバー(仮)
+		//ゲーム終了
 		else if (game->isSceneEnd()) {
 			load = LoadStart;
 		}
 		break;
+
+	//リザルト
 	case stateResult:
 		if (load == LoadEnd) {
 			load = Wait;
@@ -81,6 +79,8 @@ void SceneManager::Update()
 			load = LoadStart;
 		}
 		break;
+
+	//ゲームオーバー
 	case stateGameOver:
 		if (load == LoadEnd) {
 			load = Wait;
@@ -107,6 +107,12 @@ void SceneManager::Render()
 
 void SceneManager::PostRender()
 {
+	if (state == stateGame && game->GetState() == Game::GameLoad)
+	{
+		loading.Draw();
+		return;
+	}
+
 	if (load != Wait) {
 		loading.Draw();
 		return;
@@ -140,7 +146,11 @@ void SceneManager::SceneChange()
 			ResultScene* rs= new ResultScene();
 			
 			scene = rs;
-			rs->SetScore(game->GetPlayer()->GetStatus().score);
+			rs->SetScore(game->GetPlayer()->GetTotalScore());
+
+			game->Release();
+			delete game;
+			game = NULL;
 		}
 		else{
 			//ゲームオーバーへ切り替え
@@ -149,9 +159,9 @@ void SceneManager::SceneChange()
 			scene = g_over;
 		}
 
-		game->Release();
-		delete game;
-		game = NULL;
+		//game->Release();
+		//delete game;
+		//game = NULL;
 
 		scene->Init();
 
@@ -167,19 +177,28 @@ void SceneManager::SceneChange()
 		scene->Init();
 
 		break;
+
+	//ゲームオーバーシーン
 	case stateGameOver:
 		if (g_over->GetSelect() == SelectState::End) {
+			game->Release();
+			delete game;
+			game = NULL;
+
 			//タイトルへ切り替え
 			state = stateTitel;
 			scene = new TitleScene();
+
+			scene->Init();
 		}
 		else{
 			//ゲームシーンへ切り替え
 			state = stateGame;
-			game = new Game();
+			//game = new Game();
+			game->Reset();
 			scene = game;
 		}
-		scene->Init();
+
 		delete g_over;
 		g_over = NULL;
 		break;

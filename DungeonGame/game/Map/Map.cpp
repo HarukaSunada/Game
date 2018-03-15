@@ -4,9 +4,12 @@
 #include "Item/Recovery.h"
 #include "Item/KeyItem.h"
 
-
-static SMapChipLocInfo mapChipInfo[] = {
+static SMapChipLocInfo Stage1[] = {
 #include "stage1.h"
+};
+
+static SMapChipLocInfo Stage2[] = {
+#include "stage2.h"
 };
 
 Map::Map()
@@ -20,10 +23,13 @@ Map::~Map()
 
 void Map::Init(EnemyManager* en)
 {
-	sky.Init();
+	SMapChipLocInfo* mapChipInfo = Stage1;
+
+	sky = new Sky();
+	sky->Init(0);
 
 	//配置オブジェクト個数を計算
-	int numObject = sizeof(mapChipInfo) / sizeof(mapChipInfo[0]);
+	int numObject = sizeof(Stage1) / sizeof(Stage1[0]);
 
 	//オブジェクトを一個ずつロード
 	for (int i = 0; i < numObject; i++) {
@@ -37,7 +43,77 @@ void Map::Init(EnemyManager* en)
 		}
 		//クリアマーカーテスト
 		else if (strcmp("test", mapChipInfo[i].modelName) == 0) {
-			marker.Init(mapChipInfo[i].position);
+			marker = new ClearMarker();
+			marker->Init(mapChipInfo[i].position);
+		}
+		else if (strcmp("apple", mapChipInfo[i].modelName) == 0) {
+			//Recoveryのインスタンスを動的に生成
+			Recovery* mapChip = new Recovery;
+			mapChip->Init(mapChipInfo[i].position);
+			//動的配列にプッシュ
+			ItemList.push_back(mapChip);
+		}
+		else if (strcmp("Key", mapChipInfo[i].modelName) == 0) {
+			//KeyItemのインスタンスを動的に生成
+			KeyItem* mapChip = new KeyItem;
+			mapChip->Init(mapChipInfo[i].position);
+			//動的配列にプッシュ
+			ItemList.push_back(mapChip);
+		}
+		else if (strcmp("close", mapChipInfo[i].modelName) == 0) {
+			//KeyItemのインスタンスを動的に生成
+			LockedDoor* mapChip = new LockedDoor;
+			mapChip->Init(mapChipInfo[i]);
+			//動的配列にプッシュ
+			DoorList.push_back(mapChip);
+		}
+		//マップチップ
+		else {
+			//MapChipのインスタンスを動的に生成
+			MapChip* mapChip = new MapChip;
+			//マップチップの情報を渡して初期化する
+			mapChip->Init(mapChipInfo[i]);
+			//動的配列にプッシュ
+			mapChipList.push_back(mapChip);
+		}
+	}
+}
+
+void Map::Create(EnemyManager* en, int stageNum)
+{
+	SMapChipLocInfo* mapChipInfo = nullptr;
+	marker= nullptr;
+	int numObject = 0;
+
+	sky = new Sky();
+
+	if (stageNum == 0) {
+		mapChipInfo = Stage1;
+		//配置オブジェクト個数を計算
+		numObject = sizeof(Stage1) / sizeof(Stage1[0]);
+		sky->Init(0);
+	}
+	else if (stageNum == 1) {
+		mapChipInfo = Stage2;
+		//配置オブジェクト個数を計算
+		numObject = sizeof(Stage2) / sizeof(Stage2[0]);
+		sky->Init(1);
+	}
+
+	//オブジェクトを一個ずつロード
+	for (int i = 0; i < numObject; i++) {
+		//スケルトン
+		if (strcmp("Skeleton@Skin", mapChipInfo[i].modelName) == 0) {
+			en->CreateEnemy(mapChipInfo[i], skelton);
+		}
+		//ボス
+		else if (strcmp("penguin", mapChipInfo[i].modelName) == 0) {
+			en->CreateEnemy(mapChipInfo[i], Boss1);
+		}
+		//クリアマーカーテスト
+		else if (strcmp("test", mapChipInfo[i].modelName) == 0) {
+			marker = new ClearMarker();
+			marker->Init(mapChipInfo[i].position);
 		}
 		else if (strcmp("apple", mapChipInfo[i].modelName) == 0) {
 			//Recoveryのインスタンスを動的に生成
@@ -74,7 +150,7 @@ void Map::Init(EnemyManager* en)
 
 void Map::Draw()
 {
-	sky.Draw();
+	sky->Draw();
 	//マップチップを一個ずつ描画
 	for (auto mapChip : mapChipList) {
 		mapChip->Draw();
@@ -91,12 +167,12 @@ void Map::Draw()
 	}
 
 	//テスト用
-	marker.Draw();
+	marker->Draw();
 }
 
 void Map::Update()
 {
-	sky.Update();
+	sky->Update();
 	//マップチップを一個ずつ更新
 	for (auto mapChip : mapChipList) {
 		mapChip->Update();
@@ -111,7 +187,7 @@ void Map::Update()
 	for (auto Door : DoorList) {
 		Door->Update();
 	}
-	marker.Update();
+	marker->Update();
 }
 
 void Map::Release()
@@ -134,7 +210,8 @@ void Map::Release()
 	ItemList.clear();
 	ItemList.shrink_to_fit();
 
-
+	delete sky;
+	delete marker;
 }
 
 void Map::CreateKey(D3DXVECTOR3 pos)

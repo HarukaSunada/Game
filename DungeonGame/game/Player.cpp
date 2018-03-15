@@ -47,6 +47,8 @@ void Player::Init()
 	state.score = 0;
 	state.isGetKey = false;
 
+	totalScore = 0;
+
 	//キャラクタコントローラを初期化。
 	D3DXVECTOR3 position = D3DXVECTOR3(0.0f, 5.0f, 0.0f);
 	characterController.Init(0.3f, 1.0f, position);
@@ -363,4 +365,19 @@ D3DXVECTOR3 Player::Direction()
 	D3DXVec3Normalize(&direction, &direction);
 
 	return direction;
+}
+
+void Player::Reset(bool isReStart)
+{
+	if(isReStart)
+	{
+		state.HP = 6;
+		state.score = 0;
+	}
+
+	state.isGetKey = false;
+	characterController.SetPosition(D3DXVECTOR3(0.0f, 5.0f, 0.0f));
+	characterController.Execute();
+	rotation = D3DXQUATERNION(0.0f, 0.0f, 0.0f, 1.0f);
+	model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(0.6f, 0.6f, 0.6f));
 }

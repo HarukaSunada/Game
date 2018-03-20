@@ -185,7 +185,9 @@ void Game::Reset()
 	enemyManager.Release();
 	ui.Reset();
 	CreateStage(nextStage);
-	player.Reset(true);
+
+	player.Reset(sceneEnd);
+	camera.Reset();
 	timer = 0.0f;
 	sceneEnd = false;
 	state = GameRun;

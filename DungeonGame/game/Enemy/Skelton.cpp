@@ -25,6 +25,15 @@ void Skelton::Init(SMapChipLocInfo& locInfo)
 //アクション
 void Skelton::Action()
 {
+	//仮
+	float player_y = game->GetPlayer()->GetPosition().y;
+	if (fabs(characterController.GetPosition().y - player_y) > 3.0f) {
+		model.SetShadowCasterFlag(false);
+	}
+	else {
+		model.SetShadowCasterFlag(true);
+	}
+
 	//前のモーション
 	AnimNo prevAnim = anim;
 	D3DXVECTOR3 moveSpeed = characterController.GetMoveSpeed();

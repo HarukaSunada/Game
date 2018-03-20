@@ -49,6 +49,19 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 	SetRotationY(180);
 
 	model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(1.0f, 1.0f, 1.0f));
+
+	//パラメータ
+	SParicleEmitParameter param;
+	param.texturePath = "Assets/Sprite/enemy_star.png";
+	param.life = 0.8f;
+	param.w = 1.0f;
+	param.h = 1.0f;
+	param.intervalTime = 0.2f;
+	D3DXVECTOR3 pos = characterController.GetPosition();
+	//攻撃用クラスの初期化
+	bossAttack.Init(param, pos, game->GetPManager());
+
+	attackTimer = 0.0f;
 }
 
 
@@ -62,8 +75,9 @@ void FirstBoss::Action()
 		//	act = actFound;
 		//	game->SetBoss(this);
 		//}
+		float player_y = game->GetPlayer()->GetPosition().y;
 
-		if (!flag && length < 200) {
+		if (!flag && length < 200 && player_y < 5.0f) {
 			game->SetBoss(this);
 			flag = true;
 		}
@@ -74,28 +88,6 @@ void FirstBoss::Action()
 				game->GameReStart();
 			}
 		}
-
-		//if (!flag) {
-		//	CVector3 pos = g_player->GetPosition();
-		//	float r = pos.x - position.x;
-		//	if (r < 30.0f) {
-		//		scene->setBossFlag(true);
-		//		g_player->setStop(true);
-		//		flag = true;
-		//	}
-		//}
-
-		//if (flag) {
-		//	timer += GameTime().GetFrameDeltaTime();
-		//	if (timer > 3.0f) {
-		//		CSoundSource* SE = NewGO<CSoundSource>(0);
-		//		SE->Init("Assets/sound/boss_start.wav");
-		//		SE->Play(false);
-		//		g_player->setStop(false);
-		//		info = isWork;
-		//		currentAnimSetNo = AnimationRun;
-		//	}
-		//}
 	}
 	else if (act == actFound||act== actDamage){
 		//最初の位置から移動した量
@@ -118,6 +110,15 @@ void FirstBoss::Action()
 		}
 
 		characterController.SetMoveSpeed(moveDir*SPEED);
+
+		D3DXVECTOR3 pos = characterController.GetPosition();
+		bossAttack.SetPosition(pos);
+		if (attackTimer > 0.8f) {
+			bossAttack.SetBullet();
+			attackTimer = 0.0f;
+		}
+		bossAttack.Update();
+		attackTimer += game->GetDeltaTime();
 	}
 	else{
 	}

@@ -13,7 +13,6 @@ Player::Player()
 
 Player::~Player()
 {
-	//ハンズオン 1-3
 	if (normalMap != NULL) {
 		normalMap->Release();
 	}
@@ -29,7 +28,7 @@ void Player::Init()
 
 	D3DXCreateTextureFromFileA(
 		g_pd3dDevice,
-		"Assets/modelData/face off elf lv3_normal.tga",
+		"Assets/modelData/face off elf lv3_normal.png",
 		&normalMap
 	);
 	//モデルに法線マップを設定
@@ -57,7 +56,7 @@ void Player::Init()
 	//攻撃用クラスの準備	
 	D3DXVECTOR3 direction = Direction();//前方向
 
-	D3DXVECTOR3 speed = direction*4.0f;
+	D3DXVECTOR3 speed = direction*4.5f;
 
 	//パラメータ
 	SParicleEmitParameter param;
@@ -204,6 +203,9 @@ void Player::Action()
 			//particle->SetPosition(pos);
 
 			playerAttack.SetPosition(pos);
+
+			D3DXVECTOR3 speed = direction*4.5f;
+			playerAttack.SetSpeed(speed);
 		}
 		if (attackTimer > 0.75f)
 		{
@@ -372,9 +374,9 @@ void Player::Reset(bool isReStart)
 	if(isReStart)
 	{
 		state.HP = 6;
-		state.score = 0;
 	}
 
+	state.score = 0;
 	state.isGetKey = false;
 	characterController.SetPosition(D3DXVECTOR3(0.0f, 5.0f, 0.0f));
 	characterController.Execute();

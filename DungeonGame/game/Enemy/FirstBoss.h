@@ -3,6 +3,7 @@
 */
 #pragma once
 #include "Enemy.h"
+#include "BossAttack.h"
 
 class FirstBoss : public Enemy
 {
@@ -26,5 +27,7 @@ private:
 	D3DXVECTOR3 firstPos;
 	D3DXVECTOR3 moveDir;
 	bool		flag;
+	BossAttack bossAttack;
+	float attackTimer = 0.0f;
 };
 

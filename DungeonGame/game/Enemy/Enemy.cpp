@@ -59,7 +59,15 @@ void Enemy::Update()
 
 
 	//àÍíËà»è„ÇÃãóó£ó£ÇÍÇΩÇ∆Ç´ÇÕîÒèàóù
-	if (Length() > 3000.0f) { return; }
+	if (Length() > 5000.0f) { return; }
+
+	//float player_y = game->GetPlayer()->GetPosition().y;
+	//if ((characterController.GetPosition().y - player_y) > 3.0f) {
+	//	model.SetShadowCasterFlag(false); 
+	//}
+	//else{
+	//	model.SetShadowCasterFlag(true); 
+	//}
 
 	//çsìÆ
 	Action();

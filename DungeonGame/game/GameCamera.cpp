@@ -14,7 +14,8 @@ GameCamera::~GameCamera()
 
 void GameCamera::Init()
 {
-	D3DXVECTOR3 initCamraPos = D3DXVECTOR3(0.0f, 4.5f, 9.5f);
+	//D3DXVECTOR3 initCamraPos = D3DXVECTOR3(0.0f, 4.5f, 9.5f);
+	D3DXVECTOR3 initCamraPos = D3DXVECTOR3(0.0f, 3.0f, 8.0f);
 
 	//カメラを初期化
 	camera.Init();
@@ -90,7 +91,7 @@ void GameCamera::Update()
 			//下向きすぎるから止める
 			toEyePos = toEyePosOld;
 		}
-		else if (toEyePosDir.y > 0.70f) {
+		else if (toEyePosDir.y > 0.4f) {
 			//上向きすぎるから止める
 			toEyePos = toEyePosOld;
 		}
@@ -140,4 +141,18 @@ void GameCamera::Update()
 	//g_soundEngine->SetListenerPosition(game->GetPlayer()->GetPosition());	//プレイヤー位置を渡す
 	g_soundEngine->SetListenerPosition(camera.GetEyePt());	//カメラの位置を渡す
 	g_soundEngine->SetListenerFront(toEyePosDir);	//カメラの向きを渡す
+}
+
+void GameCamera::Reset()
+{
+	D3DXVECTOR3 initCamraPos = D3DXVECTOR3(0.0f, 3.0f, 8.0f);
+
+	//カメラを初期化
+	camera.SetEyePt(initCamraPos);
+	camera.SetLookatPt(D3DXVECTOR3(0.0f, 2.5f, 0.0f));
+
+	//カメラ更新
+	camera.Update();
+
+	toEyePos = camera.GetEyePt() - camera.GetLookatPt();
 }

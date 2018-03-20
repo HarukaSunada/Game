@@ -16,6 +16,9 @@ public:
 	//更新
 	void Update();
 
+	//リセット
+	void Reset();
+
 	//カメラのインスタンス取得
 	Camera* GetCamera()
 	{

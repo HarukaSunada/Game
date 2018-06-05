@@ -14,5 +14,8 @@ public:
 
 	//行動
 	void Action() override;
+
+	//ダメージ
+	void Damage(int dm, D3DXVECTOR3 position) override;
 };
 

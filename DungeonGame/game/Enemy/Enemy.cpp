@@ -166,3 +166,14 @@ float Enemy::Angle()
 	//プレイヤーへの角度を返す
 	return angle;
 }
+
+void Enemy::SetRotationY(float angle)
+{
+	float PI = 3.14159265358979323846f;
+
+	float s;
+	float halfAngle = angle * (PI / 180.0f) * 0.5f;
+	s = sin(halfAngle);
+	rotation.w = cos(halfAngle);
+	rotation.y = 1 * s;
+}

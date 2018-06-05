@@ -2,10 +2,10 @@
 	1番目のボスのクラス
 */
 #pragma once
-#include "Enemy.h"
+#include "BossBase.h"
 #include "BossAttack.h"
 
-class FirstBoss : public Enemy
+class FirstBoss : public BossBase
 {
 public:
 	FirstBoss();
@@ -17,10 +17,10 @@ public:
 	//行動
 	void Action() override;
 
-	//ダメージ
-	void Damage(int dm,D3DXVECTOR3 position) override;
+	////ダメージ
+	//void Damage(int dm,D3DXVECTOR3 position) override;
 
-	void SetRotationY(float angle);
+	//void SetRotationY(float angle);
 
 private:
 	float moveTimer = 0.0f;

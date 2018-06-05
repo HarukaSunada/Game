@@ -395,9 +395,6 @@
     <ClInclude Include="Item\ItemBase.h">
       <Filter>ソース ファイル\Item</Filter>
     </ClInclude>
-    <ClInclude Include="myEngine\Graphics\ModelDataManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="PostEffect.h">
       <Filter>ソース ファイル\myEngine</Filter>
     </ClInclude>
@@ -435,7 +432,10 @@
       <Filter>ソース ファイル\UI</Filter>
     </ClInclude>
     <ClInclude Include="Enemy\BossAttack.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="myEngine\Graphics\ModelDataManager.h">
+      <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

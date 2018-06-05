@@ -58,6 +58,9 @@ public:
 	//‹–ìŠpŒvZ
 	float Angle();
 
+	//‰ñ“]‚ÌƒZƒbƒg
+	void SetRotationY(float angle);
+
 	//•`‰æ
 	void Draw();
 

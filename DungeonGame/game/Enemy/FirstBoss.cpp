@@ -71,13 +71,11 @@ void FirstBoss::Action()
 	float length = Length();
 
 	if (act == actWait) {
-		//if (length < 200){
-		//	act = actFound;
-		//	game->SetBoss(this);
-		//}
+
 		float player_y = game->GetPlayer()->GetPosition().y;
 
-		if (!flag && length < 200 && player_y < 5.0f) {
+		//‹ß‹——£‚©‚Â‚’á·‚ª¬‚³‚¢
+		if (!flag && length < 200 && abs(player_y - characterController.GetPosition().y) < 3.0f) {
 			game->SetBoss(this);
 			flag = true;
 		}
@@ -133,24 +131,24 @@ void FirstBoss::Action()
 }
 
 
-void FirstBoss::Damage(int dm, D3DXVECTOR3 pos)
-{
-	if (isDead || isDamage) { return; }
+//void FirstBoss::Damage(int dm, D3DXVECTOR3 pos)
+//{
+//	if (isDead || isDamage) { return; }
+//
+//	Enemy::Damage(dm,pos);
+//
+//	if (state.HP <= 0) {
+//		game->GetMap()->CreateKey(characterController.GetPosition());
+//	}
+//}
 
-	Enemy::Damage(dm,pos);
-
-	if (state.HP <= 0) {
-		game->GetMap()->CreateKey(characterController.GetPosition());
-	}
-}
-
-void FirstBoss::SetRotationY(float angle)
-{
-	float PI = 3.14159265358979323846f;
-
-	float s;
-	float halfAngle = angle * (PI / 180.0f) * 0.5f;
-	s = sin(halfAngle);
-	rotation.w = cos(halfAngle);
-	rotation.y = 1 * s;
-}
+//void FirstBoss::SetRotationY(float angle)
+//{
+//	float PI = 3.14159265358979323846f;
+//
+//	float s;
+//	float halfAngle = angle * (PI / 180.0f) * 0.5f;
+//	s = sin(halfAngle);
+//	rotation.w = cos(halfAngle);
+//	rotation.y = 1 * s;
+//}

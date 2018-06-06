@@ -12,7 +12,7 @@
 #include "Enemy/Enemy.h"
 #include "Enemy/Skelton.h"
 #include "Enemy/EnemyManager.h"
-#include "Enemy/FirstBoss.h"
+#include "Enemy/BossBase.h"
 #include "UI/Interface.h"
 #include "SceneBase.h"
 #include "Player.h"
@@ -142,7 +142,7 @@ public:
 		return &g_particleManager;
 	}
 
-	void SetBoss(FirstBoss* boss);
+	void SetBoss(BossBase* boss);
 
 	void GameReStart();
 

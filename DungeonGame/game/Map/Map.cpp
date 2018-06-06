@@ -21,64 +21,6 @@ Map::~Map()
 {
 }
 
-void Map::Init(EnemyManager* en)
-{
-	SMapChipLocInfo* mapChipInfo = Stage1;
-
-	sky = new Sky();
-	sky->Init(0);
-
-	//配置オブジェクト個数を計算
-	int numObject = sizeof(Stage1) / sizeof(Stage1[0]);
-
-	//オブジェクトを一個ずつロード
-	for (int i = 0; i < numObject; i++) {
-		//スケルトン
-		if (strcmp("Skeleton@Skin", mapChipInfo[i].modelName) == 0) {
-			en->CreateEnemy(mapChipInfo[i], skelton);
-		}
-		//ボス
-		else if (strcmp("penguin", mapChipInfo[i].modelName) == 0) {
-			en->CreateEnemy(mapChipInfo[i], Boss1);
-		}
-		//クリアマーカーテスト
-		else if (strcmp("test", mapChipInfo[i].modelName) == 0) {
-			marker = new ClearMarker();
-			marker->Init(mapChipInfo[i].position);
-		}
-		else if (strcmp("apple", mapChipInfo[i].modelName) == 0) {
-			//Recoveryのインスタンスを動的に生成
-			Recovery* mapChip = new Recovery;
-			mapChip->Init(mapChipInfo[i].position);
-			//動的配列にプッシュ
-			ItemList.push_back(mapChip);
-		}
-		else if (strcmp("Key", mapChipInfo[i].modelName) == 0) {
-			//KeyItemのインスタンスを動的に生成
-			KeyItem* mapChip = new KeyItem;
-			mapChip->Init(mapChipInfo[i].position);
-			//動的配列にプッシュ
-			ItemList.push_back(mapChip);
-		}
-		else if (strcmp("close", mapChipInfo[i].modelName) == 0) {
-			//KeyItemのインスタンスを動的に生成
-			LockedDoor* mapChip = new LockedDoor;
-			mapChip->Init(mapChipInfo[i]);
-			//動的配列にプッシュ
-			DoorList.push_back(mapChip);
-		}
-		//マップチップ
-		else {
-			//MapChipのインスタンスを動的に生成
-			MapChip* mapChip = new MapChip;
-			//マップチップの情報を渡して初期化する
-			mapChip->Init(mapChipInfo[i]);
-			//動的配列にプッシュ
-			mapChipList.push_back(mapChip);
-		}
-	}
-}
-
 void Map::Create(EnemyManager* en, int stageNum)
 {
 	SMapChipLocInfo* mapChipInfo = nullptr;
@@ -109,6 +51,10 @@ void Map::Create(EnemyManager* en, int stageNum)
 		//ボス
 		else if (strcmp("penguin", mapChipInfo[i].modelName) == 0) {
 			en->CreateEnemy(mapChipInfo[i], Boss1);
+		}
+		//ボス2
+		else if (strcmp("mole", mapChipInfo[i].modelName) == 0) {
+			en->CreateEnemy(mapChipInfo[i], Boss2);
 		}
 		//クリアマーカーテスト
 		else if (strcmp("test", mapChipInfo[i].modelName) == 0) {

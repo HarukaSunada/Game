@@ -15,8 +15,6 @@ public:
 
 	//初期化
 	//en　敵管理クラスのインスタンス
-	void Init(EnemyManager* en);
-
 	void Create(EnemyManager* en, int stageNum);
 
 	//描画

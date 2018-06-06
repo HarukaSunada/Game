@@ -1,6 +1,6 @@
 #pragma once
 #include "Sprite.h"
-#include "Enemy/FirstBoss.h"
+#include "Enemy/BossBase.h"
 class BossHPGauge
 {
 public:
@@ -16,7 +16,7 @@ public:
 	//•`‰æ
 	void Draw();
 
-	void SetBoss(FirstBoss* b)
+	void SetBoss(BossBase* b)
 	{
 		boss = b;
 	}
@@ -24,6 +24,6 @@ public:
 private:
 	Sprite			backHeart[3];
 	Sprite			heart[3];
-	FirstBoss*		boss;
+	BossBase*		boss;
 };
 

@@ -3,7 +3,6 @@
 */
 #pragma once
 #include "BossBase.h"
-#include "BossAttack.h"
 
 class FirstBoss : public BossBase
 {
@@ -17,17 +16,9 @@ public:
 	//行動
 	void Action() override;
 
-	////ダメージ
-	//void Damage(int dm,D3DXVECTOR3 position) override;
-
-	//void SetRotationY(float angle);
-
 private:
 	float moveTimer = 0.0f;
 	D3DXVECTOR3 firstPos;
 	D3DXVECTOR3 moveDir;
-	bool		flag;
-	BossAttack bossAttack;
-	float attackTimer = 0.0f;
 };
 

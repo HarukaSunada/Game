@@ -2170,9 +2170,9 @@
 	D3DXVECTOR3(-5.18f, 0.00f, -175.49f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
-//penguin
+//mole
 {
-	"penguin",
+	"mole",
 	D3DXVECTOR3(-1.19f, 0.44f, -167.04f),             //平行移動
 	D3DXQUATERNION(0.00f, -0.71f, 0.00f, 0.71f ),  //回転
 },

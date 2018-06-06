@@ -203,7 +203,7 @@ void Game::setClear()
 	Jingle->Play(false);
 }
 
-void Game::SetBoss(FirstBoss* boss)
+void Game::SetBoss(BossBase* boss)
 {
 	BossCameraFlag = true;
 	camera.SetBossPos(boss->GetPosition());

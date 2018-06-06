@@ -67,30 +67,12 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 
 void FirstBoss::Action()
 {
-	//ベクトルの大きさ
-	float length = Length();
+	BossBase::Action();
 
-	if (act == actWait) {
-
-		float player_y = game->GetPlayer()->GetPosition().y;
-
-		//近距離かつ高低差が小さい
-		if (!flag && length < 200 && abs(player_y - characterController.GetPosition().y) < 3.0f) {
-			game->SetBoss(this);
-			flag = true;
-		}
-		else if (flag) {
-			timer += game->GetDeltaTime();
-			if (timer > 3.0f) {
-				act = actFound;
-				game->GameReStart();
-			}
-		}
-	}
-	else if (act == actFound||act== actDamage){
+	if (act == actFound || act == actDamage) {
 		//最初の位置から移動した量
 		D3DXVECTOR3 movePos = characterController.GetPosition() - firstPos;
-		if (moveDir.z==-1.0 && movePos.z <-3.0f) {
+		if (moveDir.z == -1.0 && movePos.z <-3.0f) {
 			moveDir = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
 			SetRotationY(270.0f);
 		}
@@ -98,11 +80,11 @@ void FirstBoss::Action()
 			moveDir = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
 			SetRotationY(180.0f);
 		}
-		else if(moveDir.z == 1.0 && movePos.z > 3.0f) {
+		else if (moveDir.z == 1.0 && movePos.z > 3.0f) {
 			moveDir = D3DXVECTOR3(-1.0f, 0.0f, 0.0f);
 			SetRotationY(90.0f);
 		}
-		else if(moveDir.x == -1.0 && movePos.x < -3.0f) {
+		else if (moveDir.x == -1.0 && movePos.x < -3.0f) {
 			moveDir = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
 			SetRotationY(0.0f);
 		}
@@ -118,37 +100,4 @@ void FirstBoss::Action()
 		bossAttack.Update();
 		attackTimer += game->GetDeltaTime();
 	}
-	else{
-	}
-
-	//当たった
-	if (act != actDamage && length < 3.0f) {
-		if (game->GetPlayer()->GetStatus().HP > 0) {
-			game->GetPlayer()->Damage(1);
-			act = actFound;
-		}
-	}
 }
-
-
-//void FirstBoss::Damage(int dm, D3DXVECTOR3 pos)
-//{
-//	if (isDead || isDamage) { return; }
-//
-//	Enemy::Damage(dm,pos);
-//
-//	if (state.HP <= 0) {
-//		game->GetMap()->CreateKey(characterController.GetPosition());
-//	}
-//}
-
-//void FirstBoss::SetRotationY(float angle)
-//{
-//	float PI = 3.14159265358979323846f;
-//
-//	float s;
-//	float halfAngle = angle * (PI / 180.0f) * 0.5f;
-//	s = sin(halfAngle);
-//	rotation.w = cos(halfAngle);
-//	rotation.y = 1 * s;
-//}

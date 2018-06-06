@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Interface.h"
 #include "Scene/GameScene.h"
-#include "Enemy/FirstBoss.h"
+#include "Enemy/BossBase.h"
 
 
 UserInterface::UserInterface()
@@ -95,7 +95,7 @@ void UserInterface::Render()
 	s_score.Draw();
 }
 
-void UserInterface::SetBoss(FirstBoss* boss)
+void UserInterface::SetBoss(BossBase* boss)
 {
 	bossFlag = true;
 	bossGauge.SetBoss(boss);

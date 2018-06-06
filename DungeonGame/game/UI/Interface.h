@@ -17,7 +17,7 @@ public:
 	void Update();
 	void Render();
 
-	void SetBoss(FirstBoss* boss);
+	void SetBoss(BossBase* boss);
 
 	void Reset()
 	{

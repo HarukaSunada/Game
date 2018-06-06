@@ -3,6 +3,7 @@
 */
 #pragma once
 #include "Enemy.h"
+#include "BossAttack.h"
 
 class BossBase : public Enemy
 {
@@ -17,5 +18,10 @@ public:
 
 	//É_ÉÅÅ[ÉW
 	void Damage(int dm, D3DXVECTOR3 position) override;
+
+protected:
+	bool		flag;
+	BossAttack bossAttack;
+	float attackTimer = 0.0f;
 };
 

@@ -52,6 +52,9 @@
     <Filter Include="ソース ファイル\Enemy\Mob">
       <UniqueIdentifier>{9a39268d-58e5-4094-9c57-3caa497d9e36}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Player">
+      <UniqueIdentifier>{29bfeb65-45f4-4e04-bcb2-f70ab5ffe247}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -95,9 +98,6 @@
     </ClCompile>
     <ClCompile Include="myEngine\HID\Pad.cpp">
       <Filter>ソース ファイル\myEngine\HID</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameCamera.cpp">
       <Filter>ソース ファイル</Filter>
@@ -210,9 +210,6 @@
     <ClCompile Include="Item\KeyItem.cpp">
       <Filter>ソース ファイル\Item</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerAttack.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>ソース ファイル\Map</Filter>
     </ClCompile>
@@ -237,8 +234,17 @@
     <ClCompile Include="UI\BossHPGauge.cpp">
       <Filter>ソース ファイル\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy\SecondBoss.cpp">
+      <Filter>ソース ファイル\Enemy\Boss</Filter>
+    </ClCompile>
     <ClCompile Include="Enemy\BossAttack.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Enemy\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAttack.cpp">
+      <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -289,9 +295,6 @@
     </ClInclude>
     <ClInclude Include="myEngine\HID\Pad.h">
       <Filter>ソース ファイル\myEngine\HID</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameCamera.h">
       <Filter>ソース ファイル</Filter>
@@ -407,9 +410,6 @@
     <ClInclude Include="Item\KeyItem.h">
       <Filter>ソース ファイル\Item</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerAttack.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>ソース ファイル\Map</Filter>
     </ClInclude>
@@ -431,11 +431,20 @@
     <ClInclude Include="UI\BossHPGauge.h">
       <Filter>ソース ファイル\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy\BossAttack.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="myEngine\Graphics\ModelDataManager.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\SecondBoss.h">
+      <Filter>ソース ファイル\Enemy\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\BossAttack.h">
+      <Filter>ソース ファイル\Enemy\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAttack.h">
+      <Filter>ソース ファイル\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

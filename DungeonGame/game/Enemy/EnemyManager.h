@@ -9,6 +9,7 @@
 enum EnemyType {
 	skelton,	//スケルトン
 	Boss1,		//ボス
+	Boss2,		//ボス2
 };
 
 class EnemyManager

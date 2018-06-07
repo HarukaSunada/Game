@@ -1858,3 +1858,10 @@
 	D3DXVECTOR3(-10.10f, 5.75f, -117.56f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.64f, 0.00f, -0.77f ),  //回転
 },
+
+//Skeleton@Skin
+{
+	"sheep",
+	D3DXVECTOR3(0.0f, 0.0f, -5.56f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.64f, 0.00f, -0.77f),  //回転
+},

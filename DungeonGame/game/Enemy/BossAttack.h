@@ -16,7 +16,7 @@ public:
 	*@param[in]	camera		パーティクルの描画で使用するカメラ。
 	*@param[in]	param		パーティクル生成用のパラメータ。
 	*/
-	void Init(const SParicleEmitParameter& param, const D3DXVECTOR3& emitPosition, ParticleManager* pm);
+	void Init(const SParicleEmitParameter& param, ParticleManager* pm, int type);
 	void Update();
 
 	//弾生成
@@ -24,7 +24,7 @@ public:
 
 	void SetPosition(D3DXVECTOR3 pos)
 	{
-		emitPosition = pos;
+		param.emitPosition = pos;
 	}
 
 	void SetSpeed(D3DXVECTOR3 speed)
@@ -38,13 +38,13 @@ public:
 		bulletCount = 0;
 		timer = 0.0f;
 	}
-private:
+protected:
 	SParicleEmitParameter	param;			//!<パラメータ。
 	std::list<Particle*>	bulletList;		//攻撃の弾のリスト
 	float					timer;			//!<タイマー
-	D3DXVECTOR3				emitPosition;	//エミッタの座標
 	ParticleManager*		PManager;
 	int						bulletCount;
-	const int				MaxBulletNum = 4;
+	int						MaxBulletNum = 4;
+	int						bossType;
 	bool					isCreate;
 };

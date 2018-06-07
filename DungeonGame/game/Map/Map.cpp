@@ -48,6 +48,9 @@ void Map::Create(EnemyManager* en, int stageNum)
 		if (strcmp("Skeleton@Skin", mapChipInfo[i].modelName) == 0) {
 			en->CreateEnemy(mapChipInfo[i], skelton);
 		}
+		else if (strcmp("sheep", mapChipInfo[i].modelName) == 0) {
+			en->CreateEnemy(mapChipInfo[i], sheep);
+		}
 		//ƒ{ƒX
 		else if (strcmp("penguin", mapChipInfo[i].modelName) == 0) {
 			en->CreateEnemy(mapChipInfo[i], Boss1);

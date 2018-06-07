@@ -5,7 +5,7 @@
 
 class Particle;
 
-class PlayerAttack
+class PlayerAttack : public ParticleEmitter
 {
 public:
 	PlayerAttack();
@@ -16,16 +16,16 @@ public:
 		*@param[in]	camera		パーティクルの描画で使用するカメラ。
 		*@param[in]	param		パーティクル生成用のパラメータ。
 		*/
-		void Init(const SParicleEmitParameter& param, const D3DXVECTOR3& emitPosition, ParticleManager* pm);
-		void Update();
+		void Init(const SParicleEmitParameter& param, ParticleManager* pm) override;
+		void Update() override;
 
 		//弾生成
-		void Create();
+		void Create() override;
 
-		void SetPosition(D3DXVECTOR3 pos)
-		{
-			emitPosition = pos;
-		}
+		//void SetPosition(D3DXVECTOR3 pos)
+		//{
+		//	param.emitPosition = pos;
+		//}
 
 		void SetSpeed(D3DXVECTOR3 speed)
 		{
@@ -39,11 +39,7 @@ public:
 			timer = 0.0f;
 		}
 	private:
-		SParicleEmitParameter	param;			//!<パラメータ。
 		std::list<Particle*>	bulletList;		//攻撃の弾のリスト
-		float					timer;			//!<タイマー
-		D3DXVECTOR3				emitPosition;	//エミッタの座標
-		ParticleManager*		PManager;
 		int						bulletCount;
 		const int				MaxBulletNum = 3;
 		bool					isCreate;

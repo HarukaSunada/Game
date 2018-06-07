@@ -12,7 +12,7 @@ class Particle
 public:
 	Particle();
 	~Particle();
-	void Init(const SParicleEmitParameter& param,const D3DXVECTOR3& emitPosition);
+	void Init(const SParicleEmitParameter& param);
 	void Update();
 	void Render(const D3DXMATRIX& viewMatrix, const D3DXMATRIX& projMatrix);
 

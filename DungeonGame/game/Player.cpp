@@ -67,8 +67,9 @@ void Player::Init()
 	param.intervalTime = 0.2f;
 	param.initSpeed = speed;
 	D3DXVECTOR3 pos = characterController.GetPosition() + (direction*0.5);
+	param.emitPosition = pos;
 	//UŒ‚—pƒNƒ‰ƒX‚Ì‰Šú‰»
-	playerAttack.Init(param, pos, game->GetPManager());
+	playerAttack.Init(param, game->GetPManager());
 }
 
 void Player::Update()

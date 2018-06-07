@@ -11,14 +11,12 @@ PlayerAttack::~PlayerAttack()
 {
 }
 
-void PlayerAttack::Init(const SParicleEmitParameter& param, const D3DXVECTOR3& emitPosition, ParticleManager* pm)
+void PlayerAttack::Init(const SParicleEmitParameter& param, ParticleManager* pm)
 {
-	this->param = param;
-	this->emitPosition = emitPosition;
-	timer = 0.0f;
+	ParticleEmitter::Init(param, pm);
+
 	bulletCount = 0;
 	isCreate = false;
-	PManager = pm;
 }
 
 void PlayerAttack::Update()
@@ -33,7 +31,6 @@ void PlayerAttack::Update()
 		bulletList.end(),
 		[](Particle* p)->bool {
 		return p->GetIsDead(); 
-		return false;
 	}
 	);
 	bulletList.erase(delIt, bulletList.end());
@@ -56,8 +53,8 @@ void PlayerAttack::Create()
 {
 	//パーティクルを生成。
 	Particle* p = new Particle;
-	p->Init(param, emitPosition);
+	p->Init(param);
 	timer = 0.0f;
-	bulletList.push_back(p);
 	PManager->EntryParticle(p);
+	bulletList.push_back(p);
 }

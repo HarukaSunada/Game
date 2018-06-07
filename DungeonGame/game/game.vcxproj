@@ -159,6 +159,7 @@
     <ClCompile Include="Enemy\EnemyManager.cpp" />
     <ClCompile Include="Enemy\FirstBoss.cpp" />
     <ClCompile Include="Enemy\SecondBoss.cpp" />
+    <ClCompile Include="Enemy\sheep.cpp" />
     <ClCompile Include="Enemy\Skelton.cpp" />
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -229,6 +230,7 @@
     <ClInclude Include="Enemy\EnemyManager.h" />
     <ClInclude Include="Enemy\FirstBoss.h" />
     <ClInclude Include="Enemy\SecondBoss.h" />
+    <ClInclude Include="Enemy\sheep.h" />
     <ClInclude Include="Enemy\Skelton.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameObject.h" />

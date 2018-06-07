@@ -15,7 +15,6 @@ Enemy::~Enemy()
 
 void Enemy::Init(SMapChipLocInfo& locInfo)
 {
-	//modelData.CloneModelData(mData, &animation);
 	modelData.CloneModelData(*g_modelManager->LoadModelData(locInfo.modelName), &animation);
 
 	//モデルの初期化
@@ -92,7 +91,8 @@ void Enemy::Damage(int dm,D3DXVECTOR3 pos)
 	sqrt(length);
 
 	//近い
-	if (length < 3.0f) {
+	//if (length < 3.0f) {
+	if (length < damageLength) {
 		isDamage = true;
 		act = actDamage;
 		state.HP -= dm;
@@ -142,14 +142,23 @@ float Enemy::Length()
 	return game->GetPlayer()->Length(characterController.GetPosition());
 }
 
-float Enemy::Angle()
+D3DXVECTOR3 Enemy::toPlayerDir()
 {
 	//プレイヤーへのベクトル
-	D3DXVECTOR3 diff = game->GetPlayer()->GetPosition() - characterController.GetPosition();
+	D3DXVECTOR3 diff;
+	diff = game->GetPlayer()->GetPosition() - characterController.GetPosition();
 
 	//プレイヤーへの向き
 	D3DXVECTOR3 toPlayer;
 	D3DXVec3Normalize(&toPlayer, &diff);
+
+	return toPlayer;
+}
+
+float Enemy::Angle()
+{
+	//プレイヤーへの向き
+	D3DXVECTOR3 toPlayer= toPlayerDir();
 
 	//前方向
 	D3DXVECTOR3 direction;
@@ -173,6 +182,19 @@ void Enemy::SetRotationY(float angle)
 
 	float s;
 	float halfAngle = angle * (PI / 180.0f) * 0.5f;
+	s = sin(halfAngle);
+	rotation.w = cos(halfAngle);
+	rotation.y = 1 * s;
+}
+
+void Enemy::TurnAroundToPlayer()
+{
+	//プレイヤーへの向き
+	D3DXVECTOR3 toPlayer = toPlayerDir();
+
+	//キャラ方向変更
+	float s;
+	float halfAngle = atan2f(toPlayer.x, toPlayer.z) * 0.5f;
 	s = sin(halfAngle);
 	rotation.w = cos(halfAngle);
 	rotation.y = 1 * s;

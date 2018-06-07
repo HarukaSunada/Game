@@ -55,11 +55,18 @@ public:
 	//プレイヤーとの距離計算
 	float Length();
 
+	//プレイヤーへの向きベクトル
+	D3DXVECTOR3 toPlayerDir();
+
 	//視野角計算
 	float Angle();
 
 	//回転のセット
+	//angle:角度
 	void SetRotationY(float angle);
+
+	//プレイヤーのほうへ向く
+	void TurnAroundToPlayer();
 
 	//描画
 	void Draw();
@@ -100,7 +107,7 @@ protected:
 	float				timer		= 0.0f;		//タイマー
 	float				damageTimer = 0.0f;		//無敵のタイマー
 
-	float				damageLength = 0.0f;
+	float				damageLength = 3.0f;
 
 	bool				isDamage = false;		//ダメージフラグ
 	bool				isDead		= false;	//死亡フラグ

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "SecondBoss.h"
 #include "Scene/GameScene.h"
-#define SPEED 5.0f
+#define SPEED 1.0f
 
 
 SecondBoss::SecondBoss()
@@ -19,7 +19,7 @@ void SecondBoss::Init(SMapChipLocInfo& locInfo)
 	state.HP = 3;
 	state.score = 300;
 
-	damageLength = 20.0f;
+	damageLength = 5.0f;
 
 	firstPos = locInfo.position;
 
@@ -44,21 +44,22 @@ void SecondBoss::Init(SMapChipLocInfo& locInfo)
 	characterController.Init(0.3f, 1.0f, locInfo.position);
 	characterController.SetGravity(-20.0f);		//重力設定
 
-	rotation = locInfo.rotation;
-	SetRotationY(180);
+	//rotation = locInfo.rotation;
+	SetRotationY(0.0f);
 
 	model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(1.0f, 1.0f, 1.0f));
 
 	//パラメータ
 	SParicleEmitParameter param;
 	param.texturePath = "Assets/Sprite/fire.png";
-	param.life = 0.8f;
+	param.life = 1.5f;
 	param.w = 1.0f;
 	param.h = 1.0f;
-	param.intervalTime = 0.2f;
+	param.intervalTime = 0.5f;
 	D3DXVECTOR3 pos = characterController.GetPosition();
+	param.emitPosition = pos;
 	//攻撃用クラスの初期化
-	bossAttack.Init(param, pos, game->GetPManager());
+	bossAttack.Init(param, game->GetPManager(), 2);
 
 	attackTimer = 0.0f;
 }
@@ -69,30 +70,16 @@ void SecondBoss::Action()
 	BossBase::Action();
 
 	if (act == actFound || act == actDamage) {
-		//最初の位置から移動した量
-		D3DXVECTOR3 movePos = characterController.GetPosition() - firstPos;
-		if (moveDir.z == -1.0 && movePos.z <-3.0f) {
-			moveDir = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
-			SetRotationY(270.0f);
-		}
-		else if (moveDir.x == 1.0 && movePos.x > 3.0f) {
-			moveDir = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
-			SetRotationY(180.0f);
-		}
-		else if (moveDir.z == 1.0 && movePos.z > 3.0f) {
-			moveDir = D3DXVECTOR3(-1.0f, 0.0f, 0.0f);
-			SetRotationY(90.0f);
-		}
-		else if (moveDir.x == -1.0 && movePos.x < -3.0f) {
-			moveDir = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
-			SetRotationY(0.0f);
-		}
+		D3DXVECTOR3 toPlayer = toPlayerDir();
 
-		characterController.SetMoveSpeed(moveDir*SPEED);
+		//キャラ方向変更
+		TurnAroundToPlayer();
+
+		characterController.SetMoveSpeed(toPlayer*SPEED);
 
 		D3DXVECTOR3 pos = characterController.GetPosition();
 		bossAttack.SetPosition(pos);
-		if (attackTimer > 0.8f) {
+		if (attackTimer > 2.0f) {
 			bossAttack.SetBullet();
 			attackTimer = 0.0f;
 		}

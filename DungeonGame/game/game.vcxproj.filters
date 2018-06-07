@@ -246,6 +246,9 @@
     <ClCompile Include="PlayerAttack.cpp">
       <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy\sheep.cpp">
+      <Filter>ソース ファイル\Enemy\Mob</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -445,6 +448,9 @@
     </ClInclude>
     <ClInclude Include="PlayerAttack.h">
       <Filter>ソース ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\sheep.h">
+      <Filter>ソース ファイル\Enemy\Mob</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

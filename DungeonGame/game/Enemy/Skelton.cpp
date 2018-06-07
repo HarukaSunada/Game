@@ -15,9 +15,9 @@ void Skelton::Init(SMapChipLocInfo& locInfo)
 {
 	//ステータス初期化
 	state.HP = 3;
-	state.score = 100;
+	state.score = 200;
 
-	damageLength = 8.0f;
+	damageLength = 2.5f;
 
 	Enemy::Init(locInfo);
 }
@@ -45,13 +45,8 @@ void Skelton::Action()
 	//ベクトルの大きさ
 	float length = Length();
 
-	//プレイヤーへのベクトル
-	D3DXVECTOR3 diff;
-	diff = game->GetPlayer()->GetPosition() - characterController.GetPosition();
-
 	//プレイヤーへの向き
-	D3DXVECTOR3 toPlayer;
-	D3DXVec3Normalize(&toPlayer, &diff);
+	D3DXVECTOR3 toPlayer = toPlayerDir();
 
 	if (game->GetState() == Game::GameRun) {
 		//待機時
@@ -75,12 +70,7 @@ void Skelton::Action()
 			moveSpeed.x = toPlayer.x * MoveSpeed;
 			moveSpeed.z = toPlayer.z * MoveSpeed;
 
-			//キャラ方向変更
-			float s;
-			float halfAngle = atan2f(toPlayer.x, toPlayer.z) * 0.5f;
-			s = sin(halfAngle);
-			rotation.w = cos(halfAngle);
-			rotation.y = 1 * s;
+			TurnAroundToPlayer();
 
 			//プレイヤーとの距離が近ければ攻撃
 			if (length < 4.0f) {

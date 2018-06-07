@@ -32,7 +32,7 @@ Particle::~Particle()
 	}
 }
 
-void Particle::Init(const SParicleEmitParameter& param, const D3DXVECTOR3& emitPosition)
+void Particle::Init(const SParicleEmitParameter& param)
 {
 	float halfW = param.w * 0.5f;
 	float halfH = param.h * 0.5f;
@@ -40,7 +40,7 @@ void Particle::Init(const SParicleEmitParameter& param, const D3DXVECTOR3& emitP
 	D3DXVECTOR4 uv(0.0f, 0.0f, 1.0f, 1.0f);
 	moveSpeed = param.initSpeed;
 
-	position = emitPosition;
+	position = param.emitPosition;
 
 	timer = 0.0f;
 	life = param.life;

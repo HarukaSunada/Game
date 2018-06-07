@@ -20,7 +20,7 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 	state.HP = 3;
 	state.score = 300;
 
-	damageLength = 20.0f;
+	damageLength = 5.0f;
 
 	firstPos = locInfo.position;
 
@@ -46,7 +46,7 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 	characterController.SetGravity(-20.0f);		//重力設定
 
 	rotation = locInfo.rotation;
-	SetRotationY(180);
+	SetRotationY(180.0f);
 
 	model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(1.0f, 1.0f, 1.0f));
 
@@ -58,8 +58,9 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 	param.h = 1.0f;
 	param.intervalTime = 0.2f;
 	D3DXVECTOR3 pos = characterController.GetPosition();
+	param.emitPosition = pos;
 	//攻撃用クラスの初期化
-	bossAttack.Init(param, pos, game->GetPManager());
+	bossAttack.Init(param, game->GetPManager(), 1);
 
 	attackTimer = 0.0f;
 }

@@ -17,6 +17,7 @@ struct SParicleEmitParameter {
 	float h;							//!<パーティクルの高さ。
 	float intervalTime;					//!<パーティクルの発生間隔。
 	D3DXVECTOR3 initSpeed;				//!<初速度
+	D3DXVECTOR3 emitPosition;			//発生位置
 
 };
 
@@ -32,21 +33,19 @@ public:
 	*@param[in]	camera		パーティクルの描画で使用するカメラ。
 	*@param[in]	param		パーティクル生成用のパラメータ。
 	*/
-	void Init(const SParicleEmitParameter& param, const D3DXVECTOR3& emitPosition, ParticleManager* pm);
-	void Update();
+	virtual void Init(const SParicleEmitParameter& param, ParticleManager* pm);
+	virtual void Update();
 
 	//パーティクル生成
-	void Create();
+	virtual void Create();
 
 	void SetPosition(D3DXVECTOR3 pos)
 	{
-		emitPosition = pos;
+		param.emitPosition = pos;
 	}
-private:
+protected:
 	SParicleEmitParameter	param;			//!<パラメータ。
-	//std::list<Particle*>	particleList;	//!<パーティクルのリスト。
 	float					timer;			//!<タイマー
-	D3DXVECTOR3				emitPosition;			//エミッタの座標
 	ParticleManager*		PManager;
 };
 

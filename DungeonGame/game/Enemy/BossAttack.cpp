@@ -12,14 +12,24 @@ BossAttack::~BossAttack()
 {
 }
 
-void BossAttack::Init(const SParicleEmitParameter& param, const D3DXVECTOR3& emitPosition, ParticleManager* pm)
+void BossAttack::Init(const SParicleEmitParameter& param, ParticleManager* pm,int type)
 {
 	this->param = param;
-	this->emitPosition = emitPosition;
 	timer = 0.0f;
 	bulletCount = 0;
 	isCreate = true;
 	PManager = pm;
+	bossType = type;
+
+	switch (type)
+	{
+	case 1:
+		MaxBulletNum = 4;
+		break;
+	case 2:
+		MaxBulletNum = 3;
+		break;
+	}
 }
 
 void BossAttack::Update()
@@ -36,9 +46,8 @@ void BossAttack::Update()
 		bulletList.begin(),
 		bulletList.end(),
 		[](Particle* p)->bool {
-		return p->GetIsDead();
-		return false;
-	}
+			return p->GetIsDead();
+		}
 	);
 	bulletList.erase(delIt, bulletList.end());
 
@@ -63,22 +72,34 @@ void BossAttack::Create()
 	//四方にパーティクル
 	int speed = 5.0f;
 
-	if (bulletCount == 0) {
-		param.initSpeed = D3DXVECTOR3(0.0f, 0.0f, -1.0f)*speed;
+	if (bossType == 1) {
+		if (bulletCount == 0) {
+			param.initSpeed = D3DXVECTOR3(0.0f, 0.0f, -1.0f)*speed;
+		}
+		else if (bulletCount == 1) {
+			param.initSpeed = D3DXVECTOR3(-1.0f, 0.0f, 0.0f)*speed;
+		}
+		else if (bulletCount == 2) {
+			param.initSpeed = D3DXVECTOR3(0.0f, 0.0f, 1.0f)*speed;
+		}
+		else if (bulletCount == 3) {
+			param.initSpeed = D3DXVECTOR3(1.0f, 0.0f, 0.0f)*speed;
+		}
 	}
-	else if (bulletCount == 1) {
-		param.initSpeed = D3DXVECTOR3(-1.0f, 0.0f, 0.0f)*speed;
-	}
-	else if (bulletCount == 2) {
-		param.initSpeed = D3DXVECTOR3(0.0f, 0.0f, 1.0f)*speed;
-	}
-	else if (bulletCount == 3) {
-		param.initSpeed = D3DXVECTOR3(1.0f, 0.0f, 0.0f)*speed;
+	else if (bossType == 2) {
+		speed = 7.5f;
+
+		D3DXVECTOR3 playerPos = game->GetPlayer()->GetPosition();
+		D3DXVECTOR3 dir = playerPos - param.emitPosition;
+
+		D3DXVec3Normalize(&dir, &dir);
+
+		param.initSpeed = dir * speed;
 	}
 
 	//パーティクルを生成。
 	Particle* p = new Particle;
-	p->Init(param, emitPosition);
+	p->Init(param);
 	bulletList.push_back(p);
 	PManager->EntryParticle(p);
 

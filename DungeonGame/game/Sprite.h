@@ -56,6 +56,11 @@ public:
 		m_angle = angle;
 	}
 
+	void SetAlpha(float a)
+	{
+		//m_backColor->
+	}
+
 protected:
 	LPD3DXSPRITE		g_pSprite = nullptr;	//テクスチャ
 	LPDIRECT3DTEXTURE9	g_pTexture = nullptr;	//スプライト
@@ -69,5 +74,7 @@ protected:
 	D3DXVECTOR2			m_texCenter;		//テクスチャの中点
 	RECT				m_rect;				//描画矩形
 	D3DXMATRIX			m_transformMatrix;	//変換行列
+
+	float			m_alpha = 1.0f;			//!<不透明度。
 };
 

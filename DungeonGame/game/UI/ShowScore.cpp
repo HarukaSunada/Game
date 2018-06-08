@@ -15,13 +15,15 @@ ShowScore::~ShowScore()
 //èâä˙âª
 void ShowScore::Init()
 {
-	num[0].Init(D3DXVECTOR2(250.0f, 70.0f));
-	num[1].Init(D3DXVECTOR2(300.0f, 70.0f));
-	num[2].Init(D3DXVECTOR2(350.0f, 70.0f));
-	num[3].Init(D3DXVECTOR2(400.0f, 70.0f));
+	float posY = 50.0f;
+
+	num[0].Init(D3DXVECTOR2(250.0f, posY));
+	num[1].Init(D3DXVECTOR2(300.0f, posY));
+	num[2].Init(D3DXVECTOR2(350.0f, posY));
+	num[3].Init(D3DXVECTOR2(400.0f, posY));
 
 	sp.SetFileName("Assets/sprite/score.png");
-	sp.SetPosition(D3DXVECTOR2(20.0f, 70.0f));
+	sp.SetPosition(D3DXVECTOR2(20.0f, posY));
 	sp.SetScale(D3DXVECTOR2(0.8f, 0.8f));
 	sp.Init();
 }

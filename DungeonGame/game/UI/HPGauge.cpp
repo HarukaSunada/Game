@@ -15,10 +15,12 @@ HPGauge::~HPGauge()
 
 void HPGauge::Init()
 {
+	float posY = 620.0f;
+
 	//ƒoƒbƒN‚Ì‰Šú‰»
 	for (int i = 0; i < 3; i++) {
 		backHeart[i].SetFileName("Assets/Sprite/HP/heart04.png");
-		backHeart[i].SetPosition(D3DXVECTOR2((i * 125 + 50), 670));
+		backHeart[i].SetPosition(D3DXVECTOR2((i * 125 + 40), posY));
 		backHeart[i].SetScale(D3DXVECTOR2(0.25f, 0.25f));
 		backHeart[i].Init();
 	}
@@ -27,12 +29,12 @@ void HPGauge::Init()
 	for (int i = 0; i < 3; i++) {
 		int tmp = i * 2;
 		heart[tmp].SetFileName("Assets/Sprite/HP/heart01L.png");
-		heart[tmp].SetPosition(D3DXVECTOR2((i * 125 + 50), 670));
+		heart[tmp].SetPosition(D3DXVECTOR2((i * 125 + 40), posY));
 		heart[tmp].SetScale(D3DXVECTOR2(0.25f, 0.25f));
 		heart[tmp].Init();
 
 		heart[tmp+1].SetFileName("Assets/Sprite/HP/heart01R.png");
-		heart[tmp+1].SetPosition(D3DXVECTOR2((i * 125 + 50), 670));
+		heart[tmp+1].SetPosition(D3DXVECTOR2((i * 125 + 40), posY));
 		heart[tmp+1].SetScale(D3DXVECTOR2(0.25f, 0.25f));
 		heart[tmp+1].Init();
 	}

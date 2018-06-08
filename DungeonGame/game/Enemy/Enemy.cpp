@@ -142,6 +142,19 @@ float Enemy::Length()
 	return game->GetPlayer()->Length(characterController.GetPosition());
 }
 
+D3DXVECTOR3 Enemy::FrontDirection()
+{
+	//前方向
+	D3DXVECTOR3 direction;
+	D3DXMATRIX wMatrix = model.GetWorldMatrix();
+	direction.x = wMatrix.m[2][0];
+	direction.y = wMatrix.m[2][1];
+	direction.z = wMatrix.m[2][2];
+	D3DXVec3Normalize(&direction, &direction);
+
+	return direction;
+}
+
 D3DXVECTOR3 Enemy::toPlayerDir()
 {
 	//プレイヤーへのベクトル
@@ -161,12 +174,7 @@ float Enemy::Angle()
 	D3DXVECTOR3 toPlayer= toPlayerDir();
 
 	//前方向
-	D3DXVECTOR3 direction;
-	D3DXMATRIX wMatrix = model.GetWorldMatrix();
-	direction.x = wMatrix.m[2][0];
-	direction.y = wMatrix.m[2][1];
-	direction.z = wMatrix.m[2][2];
-	D3DXVec3Normalize(&direction, &direction);
+	D3DXVECTOR3 direction = FrontDirection();
 
 	//視野角?
 	float angle = toPlayer.x * direction.x + toPlayer.y * direction.y + toPlayer.z * direction.z;
@@ -174,6 +182,16 @@ float Enemy::Angle()
 
 	//プレイヤーへの角度を返す
 	return angle;
+}
+
+void Enemy::TurnToDir(D3DXVECTOR3 dir)
+{
+	//キャラ方向変更
+	float s;
+	float halfAngle = atan2f(dir.x, dir.z) * 0.5f;
+	s = sin(halfAngle);
+	rotation.w = cos(halfAngle);
+	rotation.y = 1 * s;
 }
 
 void Enemy::SetRotationY(float angle)
@@ -190,12 +208,7 @@ void Enemy::SetRotationY(float angle)
 void Enemy::TurnAroundToPlayer()
 {
 	//プレイヤーへの向き
-	D3DXVECTOR3 toPlayer = toPlayerDir();
+	//D3DXVECTOR3 toPlayer = toPlayerDir();
 
-	//キャラ方向変更
-	float s;
-	float halfAngle = atan2f(toPlayer.x, toPlayer.z) * 0.5f;
-	s = sin(halfAngle);
-	rotation.w = cos(halfAngle);
-	rotation.y = 1 * s;
+	TurnToDir(toPlayerDir());
 }

@@ -19,5 +19,7 @@ public:
 private:
 	const float			MoveSpeed = 3.5f;		//移動速度
 	bool				seFlag = false;
+	D3DXVECTOR3			firstDir;				//最初の方向ベクトル
+	float				jumpTimer = 0.0f;
 };
 

@@ -19,7 +19,7 @@ void SecondBoss::Init(SMapChipLocInfo& locInfo)
 	state.HP = 3;
 	state.score = 300;
 
-	damageLength = 5.0f;
+	damageLength = 4.0f;
 
 	firstPos = locInfo.position;
 

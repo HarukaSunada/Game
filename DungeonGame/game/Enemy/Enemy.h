@@ -58,8 +58,13 @@ public:
 	//プレイヤーへの向きベクトル
 	D3DXVECTOR3 toPlayerDir();
 
+	D3DXVECTOR3 FrontDirection();
+
 	//視野角計算
 	float Angle();
+
+	//方向ベクトルで回転
+	void TurnToDir(D3DXVECTOR3 dir);
 
 	//回転のセット
 	//angle:角度

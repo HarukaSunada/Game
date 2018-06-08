@@ -220,6 +220,7 @@
     <ClCompile Include="UI\HPGauge.cpp" />
     <ClCompile Include="UI\Interface.cpp" />
     <ClCompile Include="UI\Number.cpp" />
+    <ClCompile Include="UI\performWarning.cpp" />
     <ClCompile Include="UI\ShowScore.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
   </ItemGroup>
@@ -289,6 +290,7 @@
     <ClInclude Include="UI\HPGauge.h" />
     <ClInclude Include="UI\Interface.h" />
     <ClInclude Include="UI\Number.h" />
+    <ClInclude Include="UI\performWarning.h" />
     <ClInclude Include="UI\ShowScore.h" />
     <ClInclude Include="VertexBuffer.h" />
   </ItemGroup>

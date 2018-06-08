@@ -22,11 +22,6 @@ public:
 		//íeê∂ê¨
 		void Create() override;
 
-		//void SetPosition(D3DXVECTOR3 pos)
-		//{
-		//	param.emitPosition = pos;
-		//}
-
 		void SetSpeed(D3DXVECTOR3 speed)
 		{
 			param.initSpeed = speed;

@@ -16,7 +16,8 @@ void GameOverScene::Init()
 {
 	//テクスチャ読み込み
 	back.SetFileName("Assets/Sprite/continue.png");
-	back.SetPosition(D3DXVECTOR2(0, 410));
+	back.SetPosition(D3DXVECTOR2(0, 340));
+	back.SetScale(D3DXVECTOR2(0.99f, 0.95f));
 	back.Init();
 
 	//テクスチャ読み込み

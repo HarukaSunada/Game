@@ -3,6 +3,7 @@
 #include "HPGauge.h"
 #include "BossHPGauge.h"
 #include "ShowScore.h"
+#include "performWarning.h"
 
 /*
 	ユーザーインターフェースのクラス
@@ -30,6 +31,7 @@ private:
 	ShowScore		s_score;			//スコア表示
 	HPGauge			gauge;				//HPゲージ
 	BossHPGauge		bossGauge;			//ボスのHPゲージ
+	PerformWarning	warning;
 
 	Sprite			sp;					//テスト用(GameOver)
 	Sprite			clear;

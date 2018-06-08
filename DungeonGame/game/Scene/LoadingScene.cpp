@@ -16,7 +16,8 @@ void LoadingScene::Init()
 {
 	//テクスチャ読み込み
 	sprite.SetFileName("Assets/Sprite/loading.png");
-	sprite.SetPosition(D3DXVECTOR2(0, 380));
+	sprite.SetPosition(D3DXVECTOR2(0, 340));
+	sprite.SetScale(D3DXVECTOR2(0.99f, 0.95f));
 	sprite.Init();
 
 	//indicator.SetFileName("Assets/Sprite/indicator.png");

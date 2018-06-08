@@ -739,13 +739,13 @@
 //Skeleton@Skin
 {
 	"Skeleton@Skin",
-	D3DXVECTOR3(1.97f, 5.75f, -53.60f),             //平行移動
+	D3DXVECTOR3(-0.47f, 5.75f, -53.60f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //Skeleton@Skin
 {
 	"Skeleton@Skin",
-	D3DXVECTOR3(-3.40f, 5.75f, -46.00f),             //平行移動
+	D3DXVECTOR3(-3.40f, 5.75f, -46.58f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //Skeleton@Skin
@@ -769,7 +769,7 @@
 //Skeleton@Skin
 {
 	"Skeleton@Skin",
-	D3DXVECTOR3(-25.24f, 5.75f, -89.14f),             //平行移動
+	D3DXVECTOR3(-23.79f, 5.75f, -89.14f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //Skeleton@Skin
@@ -1801,25 +1801,25 @@
 //Skeleton@Skin
 {
 	"Skeleton@Skin",
-	D3DXVECTOR3(-30.23f, 5.75f, -86.81f),             //平行移動
+	D3DXVECTOR3(-27.93f, 5.75f, -87.93f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //Skeleton@Skin
 {
 	"Skeleton@Skin",
-	D3DXVECTOR3(-17.30f, 5.75f, -84.50f),             //平行移動
-	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+	D3DXVECTOR3(-15.75f, 5.75f, -83.35f),             //平行移動
+	D3DXQUATERNION(0.00f, -0.43f, 0.00f, 0.90f ),  //回転
 },
 //Skeleton@Skin
 {
 	"Skeleton@Skin",
-	D3DXVECTOR3(-31.79f, 5.75f, -84.50f),             //平行移動
-	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+	D3DXVECTOR3(-30.24f, 5.75f, -83.35f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.49f, 0.00f, 0.87f ),  //回転
 },
 //Skeleton@Skin
 {
 	"Skeleton@Skin",
-	D3DXVECTOR3(2.03f, 5.75f, -46.00f),             //平行移動
+	D3DXVECTOR3(2.03f, 5.75f, -46.60f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
 //Skeleton@Skin
@@ -1849,19 +1849,72 @@
 //Skeleton@Skin
 {
 	"Skeleton@Skin",
-	D3DXVECTOR3(2.12f, 5.75f, -117.56f),             //平行移動
+	D3DXVECTOR3(2.12f, 5.75f, -117.40f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.64f, 0.00f, -0.77f ),  //回転
 },
 //Skeleton@Skin
 {
 	"Skeleton@Skin",
-	D3DXVECTOR3(-10.10f, 5.75f, -117.56f),             //平行移動
+	D3DXVECTOR3(-10.10f, 5.75f, -117.40f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.64f, 0.00f, -0.77f ),  //回転
 },
-
-//Skeleton@Skin
+//sheep
 {
 	"sheep",
-	D3DXVECTOR3(0.0f, 0.0f, -5.56f),             //平行移動
-	D3DXQUATERNION(0.00f, 0.64f, 0.00f, -0.77f),  //回転
+	D3DXVECTOR3(-0.73f, 4.41f, -29.15f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(-5.78f, 5.93f, -42.28f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(3.53f, 5.93f, -39.59f),             //平行移動
+	D3DXQUATERNION(0.00f, -0.71f, 0.00f, 0.71f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(-23.33f, 5.93f, -69.12f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(-13.12f, 5.93f, -97.75f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(-33.04f, 5.93f, -87.73f),             //平行移動
+	D3DXQUATERNION(0.00f, 1.00f, 0.00f, 0.00f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(-16.66f, 5.93f, -85.58f),             //平行移動
+	D3DXQUATERNION(0.00f, -0.71f, 0.00f, 0.71f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(-28.23f, 5.93f, -103.75f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(4.25f, 5.93f, -115.96f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(-5.72f, 5.93f, -118.60f),             //平行移動
+	D3DXQUATERNION(0.00f, -0.71f, 0.00f, 0.71f ),  //回転
 },

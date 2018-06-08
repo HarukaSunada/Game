@@ -249,6 +249,9 @@
     <ClCompile Include="Enemy\sheep.cpp">
       <Filter>ソース ファイル\Enemy\Mob</Filter>
     </ClCompile>
+    <ClCompile Include="UI\performWarning.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -451,6 +454,9 @@
     </ClInclude>
     <ClInclude Include="Enemy\sheep.h">
       <Filter>ソース ファイル\Enemy\Mob</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\performWarning.h">
+      <Filter>ソース ファイル\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

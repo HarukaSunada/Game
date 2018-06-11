@@ -87,15 +87,29 @@ public:
 	D3DXVECTOR3 Direction();
 
 	//トータルスコアの加算
-	void AddTotalScore()
-	{
-		totalScore += state.score;
-	}
+	void AddTotalScore();
 
 	//合計スコア取得
 	int GetTotalScore()
 	{
 		return totalScore;
+	}
+
+	int* GetAllScore()
+	{
+		return allScore;
+	}
+
+	void AddSP();
+
+	int GetSP()
+	{
+		return SP;
+	}
+
+	int GetSkillNum()
+	{
+		return Skill;
 	}
 
 private:
@@ -110,7 +124,8 @@ private:
 	AnimNo				anim;					//アニメーション番号
 	D3DXVECTOR3			dir;					//キャラの方向
 	Status				state;					//ステータス
-	int					totalScore=0;				//合計スコア
+	int					totalScore=0;			//合計スコア
+	int					allScore[2] = { 0,0 };	//各ステージのスコア
 
 	float				fMoveSpeed;				//移動速度
 	float				timer = 0.0f;			//タイマー
@@ -121,4 +136,7 @@ private:
 
 	LPDIRECT3DTEXTURE9	normalMap = NULL;		//法線マップ
 	CSoundSource*		se;
+
+	int					Skill = 0;
+	int					SP = 0;
 };

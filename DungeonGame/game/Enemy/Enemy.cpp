@@ -107,6 +107,8 @@ void Enemy::Damage(int dm,D3DXVECTOR3 pos)
 	if (state.HP <= 0) {
 		isDead = true;
 		game->GetPlayer()->addScore(state.score);	//スコア加算
+													
+		game->GetPlayer()->AddSP();		//スキルポイント追加
 		//剛体除去
 		g_physicsWorld->RemoveRigidBody(characterController.GetRigidBody());
 		isDelRigidBody = true;

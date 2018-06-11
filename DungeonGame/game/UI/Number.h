@@ -12,7 +12,8 @@ public:
 
 	//初期化
 	//numPos:表示位置
-	void Init(D3DXVECTOR2 numPos);
+	//文字タイプ
+	void Init(D3DXVECTOR2 numPos, int type = 1);
 
 	//更新
 	void Update();

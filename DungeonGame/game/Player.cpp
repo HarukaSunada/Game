@@ -384,3 +384,22 @@ void Player::Reset(bool isReStart)
 	rotation = D3DXQUATERNION(0.0f, 0.0f, 0.0f, 1.0f);
 	model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(0.6f, 0.6f, 0.6f));
 }
+
+//トータルスコアの加算
+void Player::AddTotalScore()
+{
+	totalScore += state.score;
+	allScore[game->GetStage()] = state.score;
+}
+
+void Player::AddSP()
+{
+	if (Skill < 3) {
+		SP++;
+	}
+	if (SP >= 7)
+	{
+		SP = 0;
+		Skill++;
+	}
+}

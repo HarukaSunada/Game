@@ -252,6 +252,9 @@
     <ClCompile Include="UI\performWarning.cpp">
       <Filter>ソース ファイル\UI</Filter>
     </ClCompile>
+    <ClCompile Include="UI\SkillGauge.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -456,6 +459,9 @@
       <Filter>ソース ファイル\Enemy\Mob</Filter>
     </ClInclude>
     <ClInclude Include="UI\performWarning.h">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\SkillGauge.h">
       <Filter>ソース ファイル\UI</Filter>
     </ClInclude>
   </ItemGroup>

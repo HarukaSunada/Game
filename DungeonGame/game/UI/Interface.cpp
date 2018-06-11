@@ -24,6 +24,8 @@ void UserInterface::Init()
 	//ボス演出の初期化
 	warning.Init();
 
+	skill.Init();
+
 	//スコア表示の初期化
 	s_score.Init();
 
@@ -46,7 +48,8 @@ void UserInterface::Init()
 
 	//鍵アイコン
 	keyIcon.SetFileName("Assets/Sprite/keyIcon.png");
-	keyIcon.SetPosition(D3DXVECTOR2(430, 620));
+	//keyIcon.SetPosition(D3DXVECTOR2(430, 620));
+	keyIcon.SetPosition(D3DXVECTOR2(620, 620));
 	keyIcon.SetScale(D3DXVECTOR2(0.4f, 0.4f));
 	keyIcon.Init();
 }
@@ -64,6 +67,8 @@ void UserInterface::Update()
 	if (game->GetBossCameraFlag()) {
 		warning.Update();
 	}
+
+	skill.Update();
 
 	//スコア表示更新
 	s_score.Update();
@@ -101,6 +106,7 @@ void UserInterface::Render()
 	}
 
 	gauge.Draw();
+	skill.Draw();
 	if (bossFlag && !game->GetBossCameraFlag()) {
 		bossGauge.Draw();
 	}

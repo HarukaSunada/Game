@@ -4,6 +4,7 @@
 #include "BossHPGauge.h"
 #include "ShowScore.h"
 #include "performWarning.h"
+#include "SkillGauge.h"
 
 /*
 	ユーザーインターフェースのクラス
@@ -31,7 +32,8 @@ private:
 	ShowScore		s_score;			//スコア表示
 	HPGauge			gauge;				//HPゲージ
 	BossHPGauge		bossGauge;			//ボスのHPゲージ
-	PerformWarning	warning;
+	PerformWarning	warning;			//ボス演出
+	SkillGauge		skill;				//スキルポイントゲージ
 
 	Sprite			sp;					//テスト用(GameOver)
 	Sprite			clear;

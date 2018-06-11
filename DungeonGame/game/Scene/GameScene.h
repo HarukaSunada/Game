@@ -72,6 +72,11 @@ public:
 	//ステージ生成
 	void CreateStage(state_stage stage);
 
+	int GetStage()
+	{
+		return currentStage;
+	}
+
 	//カメラのインスタンス取得
 	Camera* GetCamera()
 	{

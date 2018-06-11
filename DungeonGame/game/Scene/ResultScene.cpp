@@ -19,15 +19,13 @@ void ResultScene::Init()
 	back.SetScale(D3DXVECTOR2(0.99f, 0.95f));
 	back.Init();
 
+	int Type = 2;
+	float posY = 300.0f;
 
-	num[0].Init(D3DXVECTOR2(300.0f, 300.0f));
-	num[1].Init(D3DXVECTOR2(350.0f, 300.0f));
-	num[2].Init(D3DXVECTOR2(400.0f, 300.0f));
-	num[3].Init(D3DXVECTOR2(450.0f, 300.0f));
-
-	num[1].NumSet(7);
-	num[2].NumSet(5);
-	num[3].NumSet(3);
+	num[0].Init(D3DXVECTOR2(300.0f, posY),Type);
+	num[1].Init(D3DXVECTOR2(350.0f, posY), Type);
+	num[2].Init(D3DXVECTOR2(400.0f, posY), Type);
+	num[3].Init(D3DXVECTOR2(450.0f, posY), Type);
 
 	sp.SetFileName("Assets/sprite/score.png");
 	sp.SetPosition(D3DXVECTOR2(50.0f, 300.0f));

@@ -37,13 +37,24 @@ void PlayerAttack::Update()
 
 	//弾生成
 	if (isCreate && timer >= param.intervalTime) {
-		Create();
-		bulletCount++;
-	}
+		if (bulletType == 1) {
+			Create();
+			bulletCount++;
 
-	//最大数まで生成した。
-	if (bulletCount >= MaxBulletNum){
-		isCreate = false;
+			//最大数まで生成した。
+			if (bulletCount >= MaxBulletNum) {
+				isCreate = false;
+			}
+		}
+		else if(bulletType==2) {
+			Create();
+			bulletCount++;
+
+			//最大数まで生成した。
+			if (bulletCount >= MaxBulletNumSP) {
+				isCreate = false;
+			}
+		}
 	}
 
 	timer += 1.0f / 60.0f;
@@ -53,7 +64,18 @@ void PlayerAttack::Create()
 {
 	//パーティクルを生成。
 	Particle* p = new Particle;
-	p->Init(param);
+	if (bulletType == 1) {
+		p->Init(param);
+	}
+	else if (bulletType == 2) {
+		p->Init(SPParam);
+		SPParam.emitPosition = pos2;
+
+		Particle* p2 = new Particle;
+		p2->Init(SPParam);
+		PManager->EntryParticle(p2);
+		bulletList.push_back(p2);
+	}
 	timer = 0.0f;
 	PManager->EntryParticle(p);
 	bulletList.push_back(p);

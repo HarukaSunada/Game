@@ -25,5 +25,6 @@ private:
 	Sprite			gauge;
 
 	Sprite			skill[3];
+	Sprite			skill_b[3];
 };
 

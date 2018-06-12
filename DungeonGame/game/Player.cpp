@@ -70,14 +70,15 @@ void Player::Init()
 	param.emitPosition = pos;
 	//攻撃用クラスの初期化
 	playerAttack.Init(param, game->GetPManager());
+
+	param.texturePath = "Assets/Sprite/simple_star2.png";
+	param.life = 0.8f;
+
+	playerAttack.SetSPParam(param);
 }
 
 void Player::Update()
 {
-	//if (particle != nullptr) {
-	//	particle->Update();
-	//}
-
 	playerAttack.Update();
 
 	Action();
@@ -189,33 +190,84 @@ void Player::Action()
 
 			AttackStart();
 		}
+		//スペシャル攻撃(Yボタン)
+		if (isAttack == false && pad->IsTrigger(Pad::enButtonY) && Skill>0) {
+			//攻撃状態に遷移
+			isAttack = true;
+			isSPAttack = true;
+
+			se = new CSoundSource();
+			se->Init("Assets/sound/se/magic.wav", true);
+			se->Play(false);
+
+			AttackStart(2);
+
+			Skill--;
+		}
 
 		//攻撃状態の時
 		if (isAttack) {
-			se->SetPosition(characterController.GetPosition());
+			if (isSPAttack) {
+				se->SetPosition(characterController.GetPosition());
 
-			attackTimer += game->GetDeltaTime();	//プレイ時間カウント
-			//game->GetEnemyManager()->Damage(1);
-			anim = animAttack;
+				attackTimer += game->GetDeltaTime();	//プレイ時間カウント
 
-			//パーティクル発生位置調整
-			D3DXVECTOR3 direction = Direction();
-			D3DXVECTOR3 pos = characterController.GetPosition() + (direction*0.5);
-			//particle->SetPosition(pos);
+				if (attackTimer <= 0.75f)
+				{
+					anim = animAttack;
+				}
 
-			playerAttack.SetPosition(pos);
+				//パーティクル発生位置調整
+				D3DXVECTOR3 direction = Direction();
+				D3DXVECTOR3 pos = characterController.GetPosition() + (direction*0.5);
 
-			D3DXVECTOR3 speed = direction*4.5f;
-			playerAttack.SetSpeed(speed);
-		}
-		if (attackTimer > 0.75f)
-		{
-			attackTimer = 0.0f;
-			//if (particle != nullptr) {
-			//	delete particle;
-			//	particle = nullptr;
-			//}
-			isAttack = false;
+				D3DXVECTOR3 dirX;
+
+				dirX.x = direction.z;
+				dirX.z = -direction.x;
+				dirX.y = 0.0f;
+
+				pos.y += 0.5f;
+
+				D3DXVECTOR3 pos2 = pos;
+
+				pos += dirX * 0.5;
+				pos2 -= dirX * 0.5;
+
+
+				D3DXVECTOR3 speed = direction*8.0f;
+
+				playerAttack.SetSP(speed, pos, pos2);
+
+				if (attackTimer > 1.5f)
+				{
+					attackTimer = 0.0f;
+					isAttack = false;
+					isSPAttack = false;
+				}
+			}
+			else {
+				se->SetPosition(characterController.GetPosition());
+
+				attackTimer += game->GetDeltaTime();	//プレイ時間カウント
+				anim = animAttack;
+
+				//パーティクル発生位置調整
+				D3DXVECTOR3 direction = Direction();
+				D3DXVECTOR3 pos = characterController.GetPosition() + (direction*0.5);
+				pos.y += 0.5f;
+
+				playerAttack.SetPosition(pos);
+
+				D3DXVECTOR3 speed = direction*4.5f;
+				playerAttack.SetSpeed(speed);
+
+				if (attackTimer > 0.75f)
+				{
+					attackTimer = 0.0f;
+					isAttack = false;
+				}
+			}
 		}
 	}
 	//それ以外
@@ -345,7 +397,7 @@ float Player::Length(D3DXVECTOR3 pos)
 	return length;
 }
 
-void Player::AttackStart()
+void Player::AttackStart(int Type)
 {
 	//前方向
 	D3DXVECTOR3 direction = Direction();
@@ -354,7 +406,7 @@ void Player::AttackStart()
 
 	playerAttack.SetSpeed(speed);
 	playerAttack.SetPosition(pos);
-	playerAttack.SetBullet();
+	playerAttack.SetBullet(Type);
 }
 
 D3DXVECTOR3 Player::Direction()
@@ -375,6 +427,8 @@ void Player::Reset(bool isReStart)
 	if(isReStart)
 	{
 		state.HP = 6;
+		SP = 0;
+		Skill = 0;
 	}
 
 	state.score = 0;

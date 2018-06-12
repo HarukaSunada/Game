@@ -17,14 +17,19 @@ void ShowScore::Init()
 {
 	float posY = 50.0f;
 
-	num[0].Init(D3DXVECTOR2(250.0f, posY));
-	num[1].Init(D3DXVECTOR2(300.0f, posY));
-	num[2].Init(D3DXVECTOR2(350.0f, posY));
-	num[3].Init(D3DXVECTOR2(400.0f, posY));
+	num[0].Init(D3DXVECTOR2(220.0f, posY));
+	num[1].Init(D3DXVECTOR2(270.0f, posY));
+	num[2].Init(D3DXVECTOR2(320.0f, posY));
+	num[3].Init(D3DXVECTOR2(370.0f, posY));
+	//num[0].Init(D3DXVECTOR2(1020.0f, posY));
+	//num[1].Init(D3DXVECTOR2(1070.0f, posY));
+	//num[2].Init(D3DXVECTOR2(1120.0f, posY));
+	//num[3].Init(D3DXVECTOR2(1170.0f, posY));
 
 	sp.SetFileName("Assets/sprite/score.png");
 	sp.SetPosition(D3DXVECTOR2(20.0f, posY));
-	sp.SetScale(D3DXVECTOR2(0.8f, 0.8f));
+	//sp.SetPosition(D3DXVECTOR2(820.0f, posY));
+	sp.SetScale(D3DXVECTOR2(0.7f, 0.7f));
 	sp.Init();
 }
 

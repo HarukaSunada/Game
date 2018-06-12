@@ -22,20 +22,18 @@ void SkillGauge::Init()
 	gauge.SetPosition(D3DXVECTOR2(432.0f, 650));
 	gauge.Init();
 
-	skill[0].SetFileName("Assets/sprite/003.png");
-	skill[0].SetPosition(D3DXVECTOR2(430.0f, 600));
-	skill[0].SetScale(D3DXVECTOR2(0.6f, 0.6f));
-	skill[0].Init();
+	for (int i = 0; i < 3; i++)
+	{
+		skill[i].SetFileName("Assets/sprite/003.png");
+		skill[i].SetPosition(D3DXVECTOR2(440.0f + i * 60, 610));
+		skill[i].SetScale(D3DXVECTOR2(0.6f, 0.6f));
+		skill[i].Init();
 
-	skill[1].SetFileName("Assets/sprite/003.png");
-	skill[1].SetPosition(D3DXVECTOR2(490.0f, 600));
-	skill[1].SetScale(D3DXVECTOR2(0.6f, 0.6f));
-	skill[1].Init();
-
-	skill[2].SetFileName("Assets/sprite/003.png");
-	skill[2].SetPosition(D3DXVECTOR2(550.0f, 600));
-	skill[2].SetScale(D3DXVECTOR2(0.6f, 0.6f));
-	skill[2].Init();
+		skill_b[i].SetFileName("Assets/sprite/003b.png");
+		skill_b[i].SetPosition(D3DXVECTOR2(440.0f + i * 60, 610));
+		skill_b[i].SetScale(D3DXVECTOR2(0.6f, 0.6f));
+		skill_b[i].Init();
+	}
 }
 
 void SkillGauge::Update()
@@ -63,5 +61,9 @@ void SkillGauge::Draw()
 	for (int i = 0; i < sk; i++)
 	{
 		skill[i].Draw();
+	}
+	for (int i = 2; i >= sk; i--)
+	{
+		skill_b[i].Draw();
 	}
 }

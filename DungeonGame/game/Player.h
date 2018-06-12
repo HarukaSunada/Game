@@ -63,7 +63,7 @@ public:
 	float Length(D3DXVECTOR3 pos);
 
 	//攻撃開始
-	void AttackStart();
+	void AttackStart(int Type = 1);
 
 	void Reset(bool isReStart);
 
@@ -133,6 +133,7 @@ private:
 
 	bool				isAttack = false;		//攻撃フラグ
 	bool				isDamage = false;		//ダメージフラグ
+	bool				isSPAttack = false;		//スペシャル攻撃フラグ
 
 	LPDIRECT3DTEXTURE9	normalMap = NULL;		//法線マップ
 	CSoundSource*		se;

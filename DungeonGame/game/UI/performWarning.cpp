@@ -22,7 +22,7 @@ void PerformWarning::Init()
 
 	//テクスチャ読み込み
 	word.SetFileName("Assets/Sprite/bossBattle.png");
-	word.SetPosition(D3DXVECTOR2(400, 300));
+	word.SetPosition(D3DXVECTOR2(350, 200));
 	word.SetScale(D3DXVECTOR2(0.9f, 0.9f));
 	word.Init();
 }

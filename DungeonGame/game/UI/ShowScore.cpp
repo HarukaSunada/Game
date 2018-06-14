@@ -17,14 +17,8 @@ void ShowScore::Init()
 {
 	float posY = 50.0f;
 
-	num[0].Init(D3DXVECTOR2(220.0f, posY));
-	num[1].Init(D3DXVECTOR2(270.0f, posY));
-	num[2].Init(D3DXVECTOR2(320.0f, posY));
-	num[3].Init(D3DXVECTOR2(370.0f, posY));
-	//num[0].Init(D3DXVECTOR2(1020.0f, posY));
-	//num[1].Init(D3DXVECTOR2(1070.0f, posY));
-	//num[2].Init(D3DXVECTOR2(1120.0f, posY));
-	//num[3].Init(D3DXVECTOR2(1170.0f, posY));
+	scoDisplay.Init(D3DXVECTOR2(220.0f, posY));
+	scoDisplay.SetScore(0);
 
 	sp.SetFileName("Assets/sprite/score.png");
 	sp.SetPosition(D3DXVECTOR2(20.0f, posY));
@@ -38,16 +32,7 @@ void ShowScore::Update()
 {
 	int score = game->GetPlayer()->GetStatus().score;
 
-	num[0].NumSet((score / 1000));
-	score %= 1000;
-
-	num[1].NumSet((score / 100));
-	score %= 100;
-
-	num[2].NumSet(score / 10);
-	score %= 10;
-
-	num[3].NumSet(score);
+	scoDisplay.SetScore(score);
 }
 
 //•`‰æ
@@ -55,7 +40,5 @@ void ShowScore::Draw()
 {
 	sp.Draw();
 
-	for (int i = 0; i < 4; i++) {
-		num[i].Draw();
-	}
+	scoDisplay.Draw();
 }

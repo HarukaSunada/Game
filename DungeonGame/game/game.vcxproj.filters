@@ -55,6 +55,9 @@
     <Filter Include="ソース ファイル\Player">
       <UniqueIdentifier>{29bfeb65-45f4-4e04-bcb2-f70ab5ffe247}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\UI\Gauge">
+      <UniqueIdentifier>{445971a4-3069-4565-adff-e53c2f789eeb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -147,9 +150,6 @@
     <ClCompile Include="Scene\LoadingScene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="UI\HPGauge.cpp">
-      <Filter>ソース ファイル\UI</Filter>
-    </ClCompile>
     <ClCompile Include="UI\Interface.cpp">
       <Filter>ソース ファイル\UI</Filter>
     </ClCompile>
@@ -231,9 +231,6 @@
     <ClCompile Include="Enemy\Skelton.cpp">
       <Filter>ソース ファイル\Enemy\Mob</Filter>
     </ClCompile>
-    <ClCompile Include="UI\BossHPGauge.cpp">
-      <Filter>ソース ファイル\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Enemy\SecondBoss.cpp">
       <Filter>ソース ファイル\Enemy\Boss</Filter>
     </ClCompile>
@@ -252,8 +249,17 @@
     <ClCompile Include="UI\performWarning.cpp">
       <Filter>ソース ファイル\UI</Filter>
     </ClCompile>
-    <ClCompile Include="UI\SkillGauge.cpp">
+    <ClCompile Include="UI\ScoreDisplay.cpp">
       <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\BossHPGauge.cpp">
+      <Filter>ソース ファイル\UI\Gauge</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\HPGauge.cpp">
+      <Filter>ソース ファイル\UI\Gauge</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\SkillGauge.cpp">
+      <Filter>ソース ファイル\UI\Gauge</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -356,9 +362,6 @@
     <ClInclude Include="Scene\LoadingScene.h">
       <Filter>ソース ファイル\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="UI\HPGauge.h">
-      <Filter>ソース ファイル\UI</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Interface.h">
       <Filter>ソース ファイル\UI</Filter>
     </ClInclude>
@@ -437,9 +440,6 @@
     <ClInclude Include="Enemy\Skelton.h">
       <Filter>ソース ファイル\Enemy\Mob</Filter>
     </ClInclude>
-    <ClInclude Include="UI\BossHPGauge.h">
-      <Filter>ソース ファイル\UI</Filter>
-    </ClInclude>
     <ClInclude Include="myEngine\Graphics\ModelDataManager.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
@@ -461,8 +461,17 @@
     <ClInclude Include="UI\performWarning.h">
       <Filter>ソース ファイル\UI</Filter>
     </ClInclude>
-    <ClInclude Include="UI\SkillGauge.h">
+    <ClInclude Include="UI\ScoreDisplay.h">
       <Filter>ソース ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\BossHPGauge.h">
+      <Filter>ソース ファイル\UI\Gauge</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\HPGauge.h">
+      <Filter>ソース ファイル\UI\Gauge</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\SkillGauge.h">
+      <Filter>ソース ファイル\UI\Gauge</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

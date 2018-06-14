@@ -24,29 +24,6 @@ Bloom::Bloom()
 
 	//MGF用のレンダリングターゲットを作成。
 	for (int i = 0; i < MGF_DOWN_SAMPLE_COUNT; i++) {
-		////ブラーをかけるためのダウンサンプリング用のレンダリングターゲットを作成。
-		////横ブラー用。
-		//w /= 2;	//横の解像度を半分にする。
-		//downSamplingRenderTarget[i][0].Create(
-		//	w,
-		//	h,
-		//	1,
-		//	D3DFMT_A16B16G16R16F,	//ここも浮動小数点バッファにする。
-		//	D3DFMT_D16,				//使わないので16bit。本来は作成する必要もない。
-		//	D3DMULTISAMPLE_NONE,	//マルチサンプリングの種類。今回はマルチサンプリングは行わないのでD3DMULTISAMPLE_NONEでいい。
-		//	0						//マルチサンプリングの品質レベル。今回はマルチサンプリングは行わないので0でいい。
-		//);
-		////縦ブラー用。
-		//h /= 2;	//縦の解像度を半分にする。
-		//downSamplingRenderTarget[i][1].Create(
-		//	w,	//縦と横の解像度をフレームバッファの半分にする。
-		//	h,
-		//	1,
-		//	D3DFMT_A16B16G16R16F,	//ここも浮動小数点バッファにする。
-		//	D3DFMT_D16,				//使わないので16bit。本来は作成する必要もない。
-		//	D3DMULTISAMPLE_NONE,	//マルチサンプリングの種類。今回はマルチサンプリングは行わないのでD3DMULTISAMPLE_NONEでいい。
-		//	0						//マルチサンプリングの品質レベル。今回はマルチサンプリングは行わないので0でいい。
-		//);
 
 		int shift = i + 1;
 		downSamplingRenderTarget[i][0].Create(w >> shift, h >> (shift - 1), 1, D3DFMT_A16B16G16R16F, D3DFMT_UNKNOWN, D3DMULTISAMPLE_NONE, 0);			//横ブラー用。

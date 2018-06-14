@@ -2170,12 +2170,6 @@
 	D3DXVECTOR3(-5.18f, 0.00f, -175.49f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
-//mole
-{
-	"mole",
-	D3DXVECTOR3(-1.19f, 0.44f, -167.04f),             //平行移動
-	D3DXQUATERNION(0.00f, -0.71f, 0.00f, 0.71f ),  //回転
-},
 //Wall-Wood-Model-06
 {
 	"Wall-Wood-Model-06",
@@ -2516,5 +2510,125 @@
 {
 	"Door-Wood-Model-02",
 	D3DXVECTOR3(-18.65f, 14.73f, -140.84f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(12.50f, 0.00f, -59.30f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(-15.40f, 0.00f, -48.52f),             //平行移動
+	D3DXQUATERNION(0.00f, 1.00f, 0.00f, 0.00f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(-4.89f, 0.00f, -51.59f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(4.61f, 0.00f, -54.54f),             //平行移動
+	D3DXQUATERNION(0.00f, -0.71f, 0.00f, 0.71f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(9.96f, 0.00f, -70.82f),             //平行移動
+	D3DXQUATERNION(0.00f, -0.71f, 0.00f, 0.71f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(-12.23f, 0.00f, -70.82f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(-6.59f, 4.68f, -119.02f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(4.63f, 4.68f, -109.76f),             //平行移動
+	D3DXQUATERNION(0.00f, 1.00f, 0.00f, 0.00f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(17.09f, 11.38f, -132.52f),             //平行移動
+	D3DXQUATERNION(0.00f, 1.00f, 0.00f, 0.00f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(-18.02f, 11.38f, -132.52f),             //平行移動
+	D3DXQUATERNION(0.00f, 1.00f, 0.00f, 0.00f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(-18.46f, 13.57f, -143.16f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(3.39f, 13.57f, -143.16f),             //平行移動
+	D3DXQUATERNION(0.00f, -0.71f, 0.00f, 0.71f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(5.83f, 13.57f, -143.16f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(-10.30f, 13.57f, -157.10f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(7.74f, 13.57f, -156.21f),             //平行移動
+	D3DXQUATERNION(0.00f, -0.71f, 0.00f, 0.71f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(3.56f, 13.57f, -177.49f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(-6.00f, 13.57f, -165.14f),             //平行移動
+	D3DXQUATERNION(0.00f, 1.00f, 0.00f, 0.00f ),  //回転
+},
+//sheep
+{
+	"sheep",
+	D3DXVECTOR3(-10.30f, 13.57f, -178.45f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.71f, 0.00f, 0.71f ),  //回転
+},
+//mole
+{
+	"mole",
+	D3DXVECTOR3(0.00f, 0.50f, -167.00f),             //平行移動
+	D3DXQUATERNION(0.00f, -0.71f, 0.00f, 0.71f ),  //回転
+},
+//apple
+{
+	"apple",
+	D3DXVECTOR3(-1.13f, 0.70f, -142.87f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },

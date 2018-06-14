@@ -20,30 +20,31 @@ void ResultScene::Init()
 	back.Init();
 
 	int Type = 2;
-	float posY = 300.0f;
+	float posY = 350.0f;
 
-	num[0].Init(D3DXVECTOR2(300.0f, posY),Type);
-	num[1].Init(D3DXVECTOR2(350.0f, posY), Type);
-	num[2].Init(D3DXVECTOR2(400.0f, posY), Type);
-	num[3].Init(D3DXVECTOR2(450.0f, posY), Type);
+	scoDisplay[0].Init(D3DXVECTOR2(800.0f, 350.0f), Type);
+	scoDisplay[0].SetScore(totalScore);
 
-	sp.SetFileName("Assets/sprite/score.png");
-	sp.SetPosition(D3DXVECTOR2(50.0f, 300.0f));
+	scoDisplay[1].Init(D3DXVECTOR2(800.0f, 100.0f), Type);
+	scoDisplay[1].SetScore(stageScore[0]);
+
+	scoDisplay[2].Init(D3DXVECTOR2(800.0f, 200.0f), Type);
+	scoDisplay[2].SetScore(stageScore[1]);
+
+	sp.SetFileName("Assets/sprite/result/score_total.png");
+	sp.SetPosition(D3DXVECTOR2(580.0f, 350.0f));
 	sp.SetScale(D3DXVECTOR2(0.8f, 0.8f));
 	sp.Init();
 
-	int tmp = score;
+	stg[0].SetFileName("Assets/sprite/result/result_stage1.png");
+	stg[0].SetPosition(D3DXVECTOR2(550.0f, 100.0f));
+	stg[0].SetScale(D3DXVECTOR2(0.8f, 0.8f));
+	stg[0].Init();
 
-	num[0].NumSet((tmp / 1000));
-	tmp %= 1000;
-
-	num[1].NumSet((tmp / 100));
-	tmp %= 100;
-
-	num[2].NumSet(tmp / 10);
-	tmp %= 10;
-
-	num[3].NumSet(tmp);
+	stg[1].SetFileName("Assets/sprite/result/result_stage2.png");
+	stg[1].SetPosition(D3DXVECTOR2(550.0f, 200.0f));
+	stg[1].SetScale(D3DXVECTOR2(0.8f, 0.8f));
+	stg[1].Init();
 
 	bgmSource.InitStreaming("Assets/sound/result.wav");
 	bgmSource.Play(true);
@@ -60,7 +61,10 @@ void ResultScene::PostRender()
 
 	sp.Draw();
 
-	for (int i = 0; i < 4; i++) {
-		num[i].Draw();
+	for (auto disp : scoDisplay) {
+		disp.Draw();
 	}
+
+	stg[0].Draw();
+	stg[1].Draw();
 }

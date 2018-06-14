@@ -145,7 +145,8 @@ void Particle::Render(const D3DXMATRIX& viewMatrix, const D3DXMATRIX& projMatrix
 
 	shaderEffect->Begin(NULL, D3DXFX_DONOTSAVESHADERSTATE);
 	shaderEffect->BeginPass(0);
-	g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);
+	//Z
+	g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, TRUE);
 
 	shaderEffect->SetValue("g_mWVP", &m, sizeof(m));
 	shaderEffect->SetTexture("g_texture", texture);

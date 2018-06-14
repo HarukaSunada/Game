@@ -118,8 +118,7 @@ void Enemy::Damage(int dm,D3DXVECTOR3 pos)
 void Enemy::Draw()
 {
 	//死んだ、または一定以上の距離離れたときは非表示
-	if (isDead|| Length() > 5000.0f) { return; }
-
+	if (isDead|| Length() > 4000.0f) { return; }
 
 	//ダメージを受けているときに点滅
 	if (isDamage) {

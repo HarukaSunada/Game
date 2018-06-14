@@ -5,6 +5,7 @@
 #pragma once
 #include "Sprite.h"
 #include "Number.h"
+#include "ScoreDisplay.h"
 
 class ShowScore
 {
@@ -22,7 +23,7 @@ public:
 
 private:
 	Sprite			sp;
-	Number			num[4];
 	bool			sceneEnd = false;
+	ScoreDisplay	scoDisplay;
 };
 

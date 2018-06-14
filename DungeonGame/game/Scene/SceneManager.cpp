@@ -146,7 +146,7 @@ void SceneManager::SceneChange()
 			ResultScene* rs= new ResultScene();
 			
 			scene = rs;
-			rs->SetScore(game->GetPlayer()->GetTotalScore());
+			rs->SetScore(game->GetPlayer()->GetTotalScore(), game->GetPlayer()->GetAllScore());
 
 			game->Release();
 			delete game;

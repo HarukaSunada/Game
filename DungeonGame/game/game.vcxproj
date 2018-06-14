@@ -221,6 +221,7 @@
     <ClCompile Include="UI\Interface.cpp" />
     <ClCompile Include="UI\Number.cpp" />
     <ClCompile Include="UI\performWarning.cpp" />
+    <ClCompile Include="UI\ScoreDisplay.cpp" />
     <ClCompile Include="UI\ShowScore.cpp" />
     <ClCompile Include="UI\SkillGauge.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
@@ -292,6 +293,7 @@
     <ClInclude Include="UI\Interface.h" />
     <ClInclude Include="UI\Number.h" />
     <ClInclude Include="UI\performWarning.h" />
+    <ClInclude Include="UI\ScoreDisplay.h" />
     <ClInclude Include="UI\ShowScore.h" />
     <ClInclude Include="UI\SkillGauge.h" />
     <ClInclude Include="VertexBuffer.h" />

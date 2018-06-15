@@ -93,6 +93,7 @@ void FirstBoss::Action()
 		characterController.SetMoveSpeed(moveDir*SPEED);
 
 		D3DXVECTOR3 pos = characterController.GetPosition();
+		pos.y += 0.5f;
 		bossAttack.SetPosition(pos);
 		if (attackTimer > 0.8f) {
 			bossAttack.SetBullet();

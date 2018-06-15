@@ -261,6 +261,9 @@
     <ClCompile Include="UI\SkillGauge.cpp">
       <Filter>ソース ファイル\UI\Gauge</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy\lastBoss.cpp">
+      <Filter>ソース ファイル\Enemy\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -472,6 +475,9 @@
     </ClInclude>
     <ClInclude Include="UI\SkillGauge.h">
       <Filter>ソース ファイル\UI\Gauge</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\lastBoss.h">
+      <Filter>ソース ファイル\Enemy\Boss</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

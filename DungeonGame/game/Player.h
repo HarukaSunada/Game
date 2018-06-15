@@ -125,7 +125,7 @@ private:
 	D3DXVECTOR3			dir;					//キャラの方向
 	Status				state;					//ステータス
 	int					totalScore=0;			//合計スコア
-	int					allScore[2] = { 0,0 };	//各ステージのスコア
+	int					allScore[4] = { 0,0,0,0 };	//各ステージのスコア
 
 	float				fMoveSpeed;				//移動速度
 	float				timer = 0.0f;			//タイマー

@@ -243,6 +243,18 @@ void Game::CreateStage(state_stage stage)
 
 		map.Create(&enemyManager, en_Stage2);
 
+		//nextStage = en_end;
+		nextStage = en_StageEX;
+
+		//‰¼BGM
+		bgmSource.Release();
+		bgmSource.InitStreaming("Assets/sound/stage2.wav");
+		bgmSource.Play(true);
+		break;
+
+	case en_StageEX:
+		map.Create(&enemyManager, en_StageEX);
+
 		nextStage = en_end;
 
 		//‰¼BGM

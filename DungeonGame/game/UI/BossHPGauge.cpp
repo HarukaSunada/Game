@@ -39,7 +39,6 @@ void BossHPGauge::Update()
 
 void BossHPGauge::Draw()
 {
-	//int HP = game->GetPlayer()->GetStatus().HP;
 	int HP = boss->GetStatus().HP;
 
 	//ƒoƒbƒN‚Ì•`‰æ

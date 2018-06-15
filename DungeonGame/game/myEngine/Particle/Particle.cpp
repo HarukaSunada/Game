@@ -24,9 +24,6 @@ Particle::Particle() :
 
 Particle::~Particle()
 {
-	if (shaderEffect != nullptr) {
-		shaderEffect->Release();
-	}
 	if (texture != nullptr) {
 		texture->Release();
 	}
@@ -84,21 +81,7 @@ void Particle::Init(const SParicleEmitParameter& param)
 	);
 	HRESULT hr = D3DXCreateTextureFromFileA(g_pd3dDevice, param.texturePath, &texture);
 
-	LPD3DXBUFFER  compileErrorBuffer = NULL;
-	hr = D3DXCreateEffectFromFile(
-		g_pd3dDevice,
-		"Assets/Shader/ColorTexPrim.fx",
-		NULL,
-		NULL,
-#ifdef _DEBUG
-		D3DXSHADER_DEBUG,
-#else
-		D3DXSHADER_SKIPVALIDATION,
-#endif
-		NULL,
-		&shaderEffect,
-		&compileErrorBuffer
-	);
+	shaderEffect = g_effectManager->LoadEffect("Assets/Shader/ColorTexPrim.fx");
 }
 
 void Particle::Update()
@@ -146,7 +129,7 @@ void Particle::Render(const D3DXMATRIX& viewMatrix, const D3DXMATRIX& projMatrix
 	shaderEffect->Begin(NULL, D3DXFX_DONOTSAVESHADERSTATE);
 	shaderEffect->BeginPass(0);
 	//Z
-	g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, TRUE);
+	g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);
 
 	shaderEffect->SetValue("g_mWVP", &m, sizeof(m));
 	shaderEffect->SetTexture("g_texture", texture);

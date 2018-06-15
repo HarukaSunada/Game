@@ -26,7 +26,8 @@ public:
 private:
 	Primitive			primitive;			//!<プリミティブ。
 	LPDIRECT3DTEXTURE9	texture;			//!<テクスチャ。
-	ID3DXEffect*		shaderEffect;		//!<シェーダーエフェクト。
+	//ID3DXEffect*		shaderEffect;		//!<シェーダーエフェクト。
+	LPD3DXEFFECT		shaderEffect;		//!<シェーダーエフェクト。
 	D3DXVECTOR3			moveSpeed;			//!<速度。
 	D3DXVECTOR3			position;			//!<座標。
 	float				life;				//寿命

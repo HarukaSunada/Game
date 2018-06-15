@@ -65,6 +65,7 @@ void ResultScene::PostRender()
 		disp.Draw();
 	}
 
-	stg[0].Draw();
-	stg[1].Draw();
+	for (auto st : stg) {
+		st.Draw();
+	}
 }

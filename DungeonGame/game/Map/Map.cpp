@@ -12,6 +12,10 @@ static SMapChipLocInfo Stage2[] = {
 #include "stage2.h"
 };
 
+static SMapChipLocInfo StageEX[] = {
+#include "stage_test.h"
+};
+
 Map::Map()
 {
 }
@@ -40,6 +44,12 @@ void Map::Create(EnemyManager* en, int stageNum)
 		//配置オブジェクト個数を計算
 		numObject = sizeof(Stage2) / sizeof(Stage2[0]);
 		sky->Init(1);
+	}
+	else if (stageNum == 3) {
+		mapChipInfo = StageEX;
+		//配置オブジェクト個数を計算
+		numObject = sizeof(StageEX) / sizeof(StageEX[0]);
+		sky->Init(3);
 	}
 
 	//オブジェクトを一個ずつロード

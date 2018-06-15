@@ -91,6 +91,7 @@ void BossAttack::Create()
 
 		D3DXVECTOR3 playerPos = game->GetPlayer()->GetPosition();
 		D3DXVECTOR3 dir = playerPos - param.emitPosition;
+		dir.y = 0.0f;
 
 		D3DXVec3Normalize(&dir, &dir);
 

@@ -22,6 +22,14 @@ void Sky::Init(int stageNum)
 		//モデルをロード
 		modelData.LoadModelData("Assets/modelData/sky02.x", NULL);
 	}
+	else if (stageNum == 2) {
+		//モデルをロード
+		modelData.LoadModelData("Assets/modelData/sky03.x", NULL);
+	}
+	else if (stageNum == 3) {
+		//モデルをロード
+		modelData.LoadModelData("Assets/modelData/sky04.x", NULL);
+	}
 	//モデルデータでSkinModel初期化
 	model.Init(&modelData);
 

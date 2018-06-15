@@ -17,19 +17,9 @@ MapChip::~MapChip()
 
 void MapChip::Init(SMapChipLocInfo& locInfo)
 {
-	//if (mData == NULL) {
-	//	//読み込むモデルのファイルパス作成
-	//	char modelPath[256];
-	//	sprintf(modelPath, "Assets/modelData/%s.x", locInfo.modelName);
-	//	//モデルをロード
-	//	modelData.LoadModelData(modelPath, NULL);
-	//}
-	//else {
-		//読み込むモデルのファイルパス作成
-		//char modelPath[256];
-		//sprintf(modelPath, "Assets/modelData/%s.x", locInfo.modelName);
-		modelData.CloneModelData(*g_modelManager->LoadModelData(locInfo.modelName), NULL);
-	//}
+
+	modelData.CloneModelData(*g_modelManager->LoadModelData(locInfo.modelName), NULL);
+
 	//モデルデータでSkinModel初期化
 	model.Init(&modelData);
 

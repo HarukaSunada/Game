@@ -29,7 +29,7 @@ public:
 	enum GameState {
 		GameRun,	//実行
 		GameOver,	//ゲームオーバー
-		GameWait,
+		GameWait,	//待機
 		GameClear,	//クリア
 		GameStop,	//中断
 		GameLoad,	//ロード中
@@ -39,6 +39,8 @@ public:
 	enum state_stage {
 		en_Stage1,		//ステージ1
 		en_Stage2,		//ステージ2
+		en_Stage3,		//ステージ3
+		en_StageEX,		//ラスボス
 		en_end,			//ゲームクリア処理用のダミー
 	};
 	/*!

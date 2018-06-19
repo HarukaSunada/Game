@@ -21,6 +21,6 @@ public:
 	void Draw();
 
 private:
-	Number			num[4];		//”š
+	Number			num[5];		//”š
 };
 

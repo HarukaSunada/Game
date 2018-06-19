@@ -1,9 +1,12 @@
 #include "stdafx.h"
 #include "ParticleManager.h"
+#include "ParticleResources.h"
 
+ParticleResources* parResource;
 
 ParticleManager::ParticleManager()
 {
+	parResource = new ParticleResources();
 }
 
 
@@ -47,4 +50,5 @@ void ParticleManager::Render(const D3DXMATRIX& viewMatrix, const D3DXMATRIX& pro
 void ParticleManager::Release() {
 	//‚·‚×‚Äíœ
 	particleList.clear();
+	parResource->Release();
 }

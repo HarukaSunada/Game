@@ -31,7 +31,7 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 	//モデルの初期化
 	model.Init(&modelData);
 	model.SetLight(game->GetLight());	//ライトの設定
-	//model.SetShadowCasterFlag(true);
+	model.SetShadowCasterFlag(true);
 
 	anim = animStand;
 	act = actWait;
@@ -59,6 +59,9 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 	param.intervalTime = 0.2f;
 	D3DXVECTOR3 pos = characterController.GetPosition();
 	param.emitPosition = pos;
+	param.initAlpha = 1.0f;
+	param.isFade = true;
+	param.fadeTime = 0.3f;
 	//攻撃用クラスの初期化
 	bossAttack.Init(param, game->GetPManager(), 1);
 
@@ -69,6 +72,8 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 void FirstBoss::Action()
 {
 	BossBase::Action();
+
+	//model.SetShadowCasterFlag(false);
 
 	if (act == actFound || act == actDamage) {
 		//最初の位置から移動した量

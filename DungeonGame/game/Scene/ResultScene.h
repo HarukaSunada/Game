@@ -1,7 +1,6 @@
 #pragma once
 #include "SceneBase.h"
 #include "Sprite.h"
-#include "UI/Number.h"
 #include "UI/ScoreDisplay.h"
 
 /*
@@ -37,7 +36,6 @@ private:
 
 	Sprite			sp;
 	Sprite			stg[2];
-	Number			num[4];
 	CSoundSource	bgmSource;
 	ScoreDisplay	scoDisplay[3];
 };

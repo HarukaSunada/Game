@@ -17,7 +17,7 @@ void SecondBoss::Init(SMapChipLocInfo& locInfo)
 {
 	//ステータス初期化
 	state.HP = 3;
-	state.score = 300;
+	state.score = 400;
 
 	damageLength = 4.0f;
 
@@ -25,30 +25,12 @@ void SecondBoss::Init(SMapChipLocInfo& locInfo)
 
 	Enemy::Init(locInfo);
 
-	//modelData.CloneModelData(*g_modelManager->LoadModelData("mole"), &animation);
-
-	////モデルの初期化
-	//model.Init(&modelData);
-	//model.SetLight(game->GetLight());	//ライトの設定
-	//model.SetShadowCasterFlag(true);
-
-	////アニメーションの設定
-	//animation.PlayAnimation(animStand);
-	//anim = animStand;
-	//act = actWait;
-
 	timer = 0.0f;
 	flag = false;
 
 	moveDir = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
 
-	////キャラクタコントローラを初期化。
-	//characterController.Init(0.3f, 1.0f, locInfo.position);
-	//characterController.SetGravity(-20.0f);		//重力設定
-
 	SetRotationY(0.0f);
-
-	//model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(1.0f, 1.0f, 1.0f));
 
 	//パラメータ
 	SParicleEmitParameter param;
@@ -59,6 +41,9 @@ void SecondBoss::Init(SMapChipLocInfo& locInfo)
 	param.intervalTime = 0.5f;
 	D3DXVECTOR3 pos = characterController.GetPosition();
 	param.emitPosition = pos;
+	param.initAlpha = 1.0f;
+	param.isFade = true;
+	param.fadeTime = 0.3f;
 	//攻撃用クラスの初期化
 	bossAttack.Init(param, game->GetPManager(), 2);
 

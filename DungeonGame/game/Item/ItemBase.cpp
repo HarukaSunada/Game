@@ -27,6 +27,15 @@ void ItemBase::Update()
 	SetRotationY(angle);
 
 	model.Update(position, rotation, { scale });
+
+	//ˆê’èˆÈã—£‚ê‚½‚ç
+	float player_y = game->GetPlayer()->GetPosition().y;
+	if (fabs(position.y - player_y) > 3.0f) {
+		model.SetShadowCasterFlag(false);
+	}
+	else {
+		model.SetShadowCasterFlag(true);
+	}
 }
 
 void ItemBase::Draw()

@@ -69,6 +69,10 @@ void Map::Create(EnemyManager* en, int stageNum)
 		else if (strcmp("mole", mapChipInfo[i].modelName) == 0) {
 			en->CreateEnemy(mapChipInfo[i], Boss2);
 		}
+		//ボスEX
+		else if (strcmp("flower", mapChipInfo[i].modelName) == 0) {
+			en->CreateEnemy(mapChipInfo[i], BossEX);
+		}
 		//クリアマーカーテスト
 		else if (strcmp("test", mapChipInfo[i].modelName) == 0) {
 			marker = new ClearMarker();

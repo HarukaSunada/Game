@@ -176,6 +176,7 @@
     <ClCompile Include="myEngine\Particle\Particle.cpp" />
     <ClCompile Include="myEngine\Particle\ParticleEmitter.cpp" />
     <ClCompile Include="myEngine\Particle\ParticleManager.cpp" />
+    <ClCompile Include="myEngine\Particle\ParticleResources.cpp" />
     <ClCompile Include="myEngine\Sound\SoundEngine.cpp" />
     <ClCompile Include="myEngine\Sound\SoundSource.cpp" />
     <ClCompile Include="myEngine\Sound\WaveFile.cpp" />
@@ -250,6 +251,7 @@
     <ClInclude Include="myEngine\Particle\Particle.h" />
     <ClInclude Include="myEngine\Particle\ParticleEmitter.h" />
     <ClInclude Include="myEngine\Particle\ParticleManager.h" />
+    <ClInclude Include="myEngine\Particle\ParticleResources.h" />
     <ClInclude Include="myEngine\Sound\SoundEngine.h" />
     <ClInclude Include="myEngine\Sound\SoundSource.h" />
     <ClInclude Include="myEngine\Sound\WaveFile.h" />

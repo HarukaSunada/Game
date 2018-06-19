@@ -34,15 +34,23 @@ namespace {
 		
 		//テクニックを設定。
 		{
-			if (pMeshContainer->pSkinInfo != NULL && !isDrawShadowMap) {
-				pEffect->SetTechnique("SkinModel");
-			}
-			else if(isDrawShadowMap){
-				//シャドウマップへの書き込みテクニック
-				pEffect->SetTechnique("SkinModelRenderToShadowMap");
+			//スキンモデル
+			if (pMeshContainer->pSkinInfo != NULL) {
+				if (isDrawShadowMap) {
+					//シャドウマップへの書き込みテクニック
+					pEffect->SetTechnique("SkinModelRenderToShadowMap");
+				}
+				else {
+					pEffect->SetTechnique("SkinModel");
+				}
 			}
 			else {
-				pEffect->SetTechnique("NoSkinModel");
+				if (isDrawShadowMap) {
+					pEffect->SetTechnique("NoSkinModelRenderToShadowMap");
+				}
+				else {
+					pEffect->SetTechnique("NoSkinModel");
+				}
 			}
 		}
 		//共通の定数レジスタを設定

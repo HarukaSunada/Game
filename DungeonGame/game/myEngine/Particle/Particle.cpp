@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Particle.h"
 #include "ParticleEmitter.h"
+#include "ParticleResources.h"
 
 /*!
 *@brief	À•W‚ÆUVÀ•W
@@ -24,9 +25,9 @@ Particle::Particle() :
 
 Particle::~Particle()
 {
-	if (texture != nullptr) {
-		texture->Release();
-	}
+	//if (texture != nullptr) {
+	//	texture->Release();
+	//}
 }
 
 void Particle::Init(const SParicleEmitParameter& param)
@@ -41,6 +42,12 @@ void Particle::Init(const SParicleEmitParameter& param)
 
 	timer = 0.0f;
 	life = param.life;
+	initAlpha = param.initAlpha;
+	alpha = initAlpha;
+	isFade = param.isFade;
+	fadeTIme = param.fadeTime;
+
+	state = eStateRun;
 
 	float add = ((rand() % 255) - 128) / 128.0f;
 	moveSpeed.x += add * 0.3f;
@@ -79,7 +86,8 @@ void Particle::Init(const SParicleEmitParameter& param)
 		D3DFMT_INDEX16,
 		index
 	);
-	HRESULT hr = D3DXCreateTextureFromFileA(g_pd3dDevice, param.texturePath, &texture);
+
+	texture = parResource->LoadTexture(param.texturePath);
 
 	shaderEffect = g_effectManager->LoadEffect("Assets/Shader/ColorTexPrim.fx");
 }
@@ -91,12 +99,39 @@ void Particle::Update()
 	D3DXVECTOR3 add = moveSpeed * deltaTime;
 	position += add;
 
-	if (timer > life) {
-		//Ž€–S
-		isDead = true;
-	}
+	//if (timer > life) {
+	//	//Ž€–S
+	//	isDead = true;
+	//}
+
+	//timer += deltaTime;
 
 	timer += deltaTime;
+	switch (state) {
+	case eStateRun:
+		if (timer >= life) {
+			if (isFade) {
+				state = eStateFadeOut;
+				timer = 0.0f;
+			}
+			else {
+				state = eStateDead;
+			}
+		}
+		break;
+	case eStateFadeOut: {
+		float t = timer / fadeTIme;
+		timer += deltaTime;
+		alpha = initAlpha + (-initAlpha)*t;
+		if (alpha <= 0.0f) {
+			alpha = 0.0f;
+			state = eStateDead;	//Ž€–SB
+		}
+	}break;
+	case eStateDead:
+		isDead = true;
+		break;
+	}
 }
 void Particle::Render(const D3DXMATRIX& viewMatrix, const D3DXMATRIX& projMatrix)
 {
@@ -128,10 +163,12 @@ void Particle::Render(const D3DXMATRIX& viewMatrix, const D3DXMATRIX& projMatrix
 
 	shaderEffect->Begin(NULL, D3DXFX_DONOTSAVESHADERSTATE);
 	shaderEffect->BeginPass(0);
-	//Z
-	g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);
+	
+	g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, TRUE);
+	g_pd3dDevice->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
 
 	shaderEffect->SetValue("g_mWVP", &m, sizeof(m));
+	shaderEffect->SetValue("g_alpha", &alpha, sizeof(alpha));
 	shaderEffect->SetTexture("g_texture", texture);
 	shaderEffect->CommitChanges();
 
@@ -145,4 +182,5 @@ void Particle::Render(const D3DXMATRIX& viewMatrix, const D3DXMATRIX& projMatrix
 	g_pd3dDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
 	g_pd3dDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ZERO);
 	g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, TRUE);
+	g_pd3dDevice->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 }

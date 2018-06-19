@@ -243,8 +243,8 @@ void Game::CreateStage(state_stage stage)
 
 		map.Create(&enemyManager, en_Stage2);
 
-		//nextStage = en_end;
-		nextStage = en_StageEX;
+		nextStage = en_end;
+		//nextStage = en_StageEX;
 
 		//‰¼BGM
 		bgmSource.Release();

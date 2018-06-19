@@ -264,6 +264,9 @@
     <ClCompile Include="Enemy\lastBoss.cpp">
       <Filter>ソース ファイル\Enemy\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="myEngine\Particle\ParticleResources.cpp">
+      <Filter>ソース ファイル\myEngine\Particle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -478,6 +481,9 @@
     </ClInclude>
     <ClInclude Include="Enemy\lastBoss.h">
       <Filter>ソース ファイル\Enemy\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="myEngine\Particle\ParticleResources.h">
+      <Filter>ソース ファイル\myEngine\Particle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

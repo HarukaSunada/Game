@@ -21,7 +21,7 @@ void Recovery::Init(D3DXVECTOR3 pos)
 
 	model.Init(&modelData);	//モデルデータでSkinModel初期化
 	model.SetLight(game->GetLight());	//ライトの設定
-	//model.SetShadowCasterFlag(true);	//シャドウキャスター
+	model.SetShadowCasterFlag(true);	//シャドウキャスター
 	
 	//情報を記録
 	this->position = pos;

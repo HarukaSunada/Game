@@ -17,7 +17,6 @@ public:
 	void Action() override;
 
 private:
-	float moveTimer = 0.0f;
 	D3DXVECTOR3 firstPos;
 	D3DXVECTOR3 moveDir;
 };

@@ -61,11 +61,11 @@ void ResultScene::PostRender()
 
 	sp.Draw();
 
-	for (auto disp : scoDisplay) {
-		disp.Draw();
+	for (int i = 0; i < 2; i++) {
+		stg[i].Draw();
 	}
 
-	for (auto st : stg) {
-		st.Draw();
+	for (int i = 0; i < 3; i++) {
+		scoDisplay[i].Draw();
 	}
 }

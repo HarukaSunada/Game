@@ -68,6 +68,9 @@ void Player::Init()
 	param.initSpeed = speed;
 	D3DXVECTOR3 pos = characterController.GetPosition() + (direction*0.5);
 	param.emitPosition = pos;
+	param.initAlpha = 1.0f;
+	param.isFade = true;
+	param.fadeTime = 0.3f;
 	//UŒ‚—pƒNƒ‰ƒX‚Ì‰Šú‰»
 	playerAttack.Init(param, game->GetPManager());
 

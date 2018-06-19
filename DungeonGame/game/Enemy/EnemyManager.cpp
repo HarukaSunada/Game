@@ -4,6 +4,7 @@
 #include "sheep.h"
 #include "FirstBoss.h"
 #include "SecondBoss.h"
+#include "lastBoss.h"
 
 
 EnemyManager::EnemyManager()
@@ -30,6 +31,9 @@ void EnemyManager::CreateEnemy(SMapChipLocInfo& locInfo,EnemyType type)
 	}
 	else if (type == Boss2) {
 		enemy = new SecondBoss;
+	}
+	else if (type == BossEX) {
+		enemy = new LastBoss;
 	}
 
 	enemy->Init(locInfo);

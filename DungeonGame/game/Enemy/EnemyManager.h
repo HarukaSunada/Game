@@ -11,6 +11,8 @@ enum EnemyType {
 	sheep,
 	Boss1,		//ボス
 	Boss2,		//ボス2
+	Boss3,
+	BossEX,
 };
 
 class EnemyManager

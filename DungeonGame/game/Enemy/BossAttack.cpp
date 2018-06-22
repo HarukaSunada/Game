@@ -12,7 +12,7 @@ BossAttack::~BossAttack()
 {
 }
 
-void BossAttack::Init(const SParicleEmitParameter& param, ParticleManager* pm,int type)
+void BossAttack::Init(const SParicleEmitParameter& param, ParticleManager* pm,BossType type)
 {
 	this->param = param;
 	timer = 0.0f;
@@ -23,11 +23,14 @@ void BossAttack::Init(const SParicleEmitParameter& param, ParticleManager* pm,in
 
 	switch (type)
 	{
-	case 1:
+	case first:
 		MaxBulletNum = 4;
 		break;
-	case 2:
+	case moll:
 		MaxBulletNum = 3;
+		break;
+	case flower:
+		MaxBulletNum = 4;
 		break;
 	}
 }
@@ -37,7 +40,7 @@ void BossAttack::Update()
 	Player* player = game->GetPlayer();
 
 	for (auto p : bulletList) {
-		if (player->GetStatus().HP > 0 && player->Length(p->GetPosition())< 3.5f) {
+		if (player->GetStatus().HP > 0 && player->Length(p->GetPosition())< 2.5f) {
 			player->Damage(1);
 		}
 	}
@@ -54,7 +57,7 @@ void BossAttack::Update()
 	timer += 1.0f / 60.0f;
 
 	//弾生成
-	if (isCreate && timer >= param.intervalTime) {
+	if (isCreate && (bossType ==1 || bossType ==4 || timer >= param.intervalTime)) {
 		Create();
 		bulletCount++;
 	}
@@ -72,7 +75,7 @@ void BossAttack::Create()
 	//四方にパーティクル
 	int speed = 5.0f;
 
-	if (bossType == 1) {
+	if (bossType == first) {
 		if (bulletCount == 0) {
 			param.initSpeed = D3DXVECTOR3(0.0f, 0.0f, -1.0f)*speed;
 		}
@@ -86,7 +89,7 @@ void BossAttack::Create()
 			param.initSpeed = D3DXVECTOR3(1.0f, 0.0f, 0.0f)*speed;
 		}
 	}
-	else if (bossType == 2) {
+	else if (bossType == moll) {
 		speed = 7.5f;
 
 		D3DXVECTOR3 playerPos = game->GetPlayer()->GetPosition();
@@ -96,6 +99,22 @@ void BossAttack::Create()
 		D3DXVec3Normalize(&dir, &dir);
 
 		param.initSpeed = dir * speed;
+	}
+	if (bossType == flower) {
+		speed = 7.5f;
+
+		if (bulletCount == 0) {
+			param.initSpeed = D3DXVECTOR3(0.0f, 0.0f, -1.0f)*speed;
+		}
+		else if (bulletCount == 1) {
+			param.initSpeed = D3DXVECTOR3(-1.0f, 0.0f, 0.0f)*speed;
+		}
+		else if (bulletCount == 2) {
+			param.initSpeed = D3DXVECTOR3(0.0f, 0.0f, 1.0f)*speed;
+		}
+		else if (bulletCount == 3) {
+			param.initSpeed = D3DXVECTOR3(1.0f, 0.0f, 0.0f)*speed;
+		}
 	}
 
 	//パーティクルを生成。

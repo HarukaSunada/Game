@@ -106,7 +106,7 @@ protected:
 	CSoundSource*		se;					//サウンド
 
 	Status				state;				//エネミーのステータス
-	AnimNo				anim;				//アニメーション番号
+	int					anim;				//アニメーション番号
 	Act					act;				//現在の行動
 
 	float				timer		= 0.0f;		//タイマー
@@ -117,6 +117,8 @@ protected:
 	bool				isDamage = false;		//ダメージフラグ
 	bool				isDead		= false;	//死亡フラグ
 	bool				isDelRigidBody = false;	//RigidBodyをデリートしたか
+
+	float offset_y = 0.5f;	//当たり判定の高さ補正
 };
 
 

@@ -42,7 +42,7 @@ void BossBase::Action()
 		}
 	}
 	//“–‚½‚Á‚½
-	if (act != actDamage && length < 3.0f) {
+	if (act != actDamage && length < 3.0f && !isNoDamage) {
 		if (game->GetPlayer()->GetStatus().HP > 0) {
 			game->GetPlayer()->Damage(1);
 			act = actFound;
@@ -52,7 +52,7 @@ void BossBase::Action()
 
 void BossBase::Damage(int dm, D3DXVECTOR3 pos)
 {
-	if (isDead || isDamage) { return; }
+	if (isDead || isDamage || isNoDamage) { return; }
 
 	Enemy::Damage(dm, pos);
 

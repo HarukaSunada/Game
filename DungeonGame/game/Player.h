@@ -87,13 +87,7 @@ public:
 	D3DXVECTOR3 Direction();
 
 	//トータルスコアの加算
-	void AddTotalScore();
-
-	//合計スコア取得
-	int GetTotalScore()
-	{
-		return totalScore;
-	}
+	void AddScore();
 
 	int* GetAllScore()
 	{
@@ -124,7 +118,6 @@ private:
 	AnimNo				anim;					//アニメーション番号
 	D3DXVECTOR3			dir;					//キャラの方向
 	Status				state;					//ステータス
-	int					totalScore=0;			//合計スコア
 	int					allScore[4] = { 0,0,0,0 };	//各ステージのスコア
 
 	float				fMoveSpeed;				//移動速度

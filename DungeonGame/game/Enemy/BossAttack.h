@@ -9,6 +9,12 @@ class Particle;
 class BossAttack
 {
 public:
+	enum BossType {
+		first,
+		moll,
+		flower,
+	};
+
 	BossAttack();
 	~BossAttack();
 	/*!
@@ -16,7 +22,7 @@ public:
 	*@param[in]	camera		パーティクルの描画で使用するカメラ。
 	*@param[in]	param		パーティクル生成用のパラメータ。
 	*/
-	void Init(const SParicleEmitParameter& param, ParticleManager* pm, int type);
+	void Init(const SParicleEmitParameter& param, ParticleManager* pm, BossType type);
 	void Update();
 
 	//弾生成
@@ -45,6 +51,6 @@ protected:
 	ParticleManager*		PManager;
 	int						bulletCount;
 	int						MaxBulletNum = 4;
-	int						bossType;
+	BossType				bossType;
 	bool					isCreate;
 };

@@ -23,5 +23,6 @@ protected:
 	bool		flag;
 	BossAttack bossAttack;
 	float attackTimer = 0.0f;
+	bool		isNoDamage = false;	//ƒ_ƒ[ƒW”»’è–³Œø‚©
 };
 

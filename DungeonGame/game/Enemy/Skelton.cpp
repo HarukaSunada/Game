@@ -14,10 +14,10 @@ Skelton::~Skelton()
 void Skelton::Init(SMapChipLocInfo& locInfo)
 {
 	//ステータス初期化
-	state.HP = 3;
+	state.HP = 2;
 	state.score = 200;
 
-	damageLength = 2.5f;
+	damageLength = 2.0f;
 
 	Enemy::Init(locInfo);
 }
@@ -26,7 +26,7 @@ void Skelton::Init(SMapChipLocInfo& locInfo)
 void Skelton::Action()
 {
 	//前のモーション
-	AnimNo prevAnim = anim;
+	int prevAnim = anim;
 	D3DXVECTOR3 moveSpeed = characterController.GetMoveSpeed();
 
 	//移動速度

@@ -16,10 +16,10 @@ Sheep::~Sheep()
 void Sheep::Init(SMapChipLocInfo& locInfo)
 {
 	//ステータス初期化
-	state.HP = 2;
+	state.HP = 1;
 	state.score = 100;
 
-	damageLength = 3.0f;
+	damageLength = 2.5f;
 
 	Enemy::Init(locInfo);
 

@@ -20,7 +20,8 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 	state.HP = 3;
 	state.score = 300;
 
-	damageLength = 4.0f;
+	damageLength = 3.5f;
+	offset_y = 1.0f;
 
 	firstPos = locInfo.position;
 
@@ -63,7 +64,7 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 	param.isFade = true;
 	param.fadeTime = 0.3f;
 	//攻撃用クラスの初期化
-	bossAttack.Init(param, game->GetPManager(), 1);
+	bossAttack.Init(param, game->GetPManager(), BossAttack::BossType::first);
 
 	attackTimer = 0.0f;
 }
@@ -72,8 +73,6 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 void FirstBoss::Action()
 {
 	BossBase::Action();
-
-	//model.SetShadowCasterFlag(false);
 
 	if (act == actFound || act == actDamage) {
 		//最初の位置から移動した量
@@ -98,7 +97,7 @@ void FirstBoss::Action()
 		characterController.SetMoveSpeed(moveDir*SPEED);
 
 		D3DXVECTOR3 pos = characterController.GetPosition();
-		pos.y += 0.5f;
+		pos.y += 1.0f;
 		bossAttack.SetPosition(pos);
 		if (attackTimer > 0.8f) {
 			bossAttack.SetBullet();

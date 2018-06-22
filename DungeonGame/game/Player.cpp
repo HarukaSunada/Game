@@ -46,8 +46,6 @@ void Player::Init()
 	state.score = 0;
 	state.isGetKey = false;
 
-	totalScore = 0;
-
 	//キャラクタコントローラを初期化。
 	D3DXVECTOR3 position = D3DXVECTOR3(0.0f, 5.0f, 0.0f);
 	characterController.Init(0.3f, 1.0f, position);
@@ -234,8 +232,8 @@ void Player::Action()
 
 				D3DXVECTOR3 pos2 = pos;
 
-				pos += dirX * 0.5;
-				pos2 -= dirX * 0.5;
+				pos += dirX * 0.4;
+				pos2 -= dirX * 0.4;
 
 
 				D3DXVECTOR3 speed = direction*8.0f;
@@ -443,9 +441,8 @@ void Player::Reset(bool isReStart)
 }
 
 //トータルスコアの加算
-void Player::AddTotalScore()
+void Player::AddScore()
 {
-	totalScore += state.score;
 	allScore[game->GetStage()] = state.score;
 }
 

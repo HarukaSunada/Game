@@ -20,11 +20,12 @@ public:
 	//•`‰æ
 	void PostRender();
 
-	void SetScore(int scr,int* sSco)
+	void SetScore(int* sSco)
 	{
-		totalScore = scr;
+		totalScore = 0;
 		for (int i = 0; i < 2; i++) {
 			stageScore[i] = sSco[i];
+			totalScore += sSco[i];
 		}
 	}
 

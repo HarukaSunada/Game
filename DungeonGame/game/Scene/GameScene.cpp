@@ -196,7 +196,7 @@ void Game::Reset()
 void Game::setClear()
 {
 	state = GameClear;
-	player.AddTotalScore();
+	player.AddScore();
 	bgmSource.Stop();
 	Jingle = new CSoundSource;
 	Jingle->Init("Assets/sound/clear.wav");
@@ -233,7 +233,8 @@ void Game::CreateStage(state_stage stage)
 
 		map.Create(&enemyManager, en_Stage1);
 
-		nextStage = en_Stage2;
+		//nextStage = en_Stage2;
+		nextStage = en_StageEX;
 
 		bgmSource.Release();
 		bgmSource.InitStreaming("Assets/sound/stage1.wav");
@@ -243,8 +244,8 @@ void Game::CreateStage(state_stage stage)
 
 		map.Create(&enemyManager, en_Stage2);
 
-		nextStage = en_end;
-		//nextStage = en_StageEX;
+		//nextStage = en_end;
+		nextStage = en_StageEX;
 
 		//‰¼BGM
 		bgmSource.Release();

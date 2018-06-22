@@ -84,7 +84,10 @@ void Enemy::Damage(int dm,D3DXVECTOR3 pos)
 
 	//’e‚©‚çŽ©•ª
 	D3DXVECTOR3 diff;
-	diff = pos- characterController.GetPosition();
+
+	D3DXVECTOR3 myPos = characterController.GetPosition();
+	myPos.y += offset_y;
+	diff = pos - myPos;
 
 	//ƒxƒNƒgƒ‹‚Ì‘å‚«‚³
 	float length = diff.x * diff.x + diff.y * diff.y + diff.z * diff.z;

@@ -19,7 +19,8 @@ void SecondBoss::Init(SMapChipLocInfo& locInfo)
 	state.HP = 3;
 	state.score = 400;
 
-	damageLength = 4.0f;
+	damageLength = 3.5f;
+	offset_y = 1.0f;
 
 	firstPos = locInfo.position;
 
@@ -45,7 +46,7 @@ void SecondBoss::Init(SMapChipLocInfo& locInfo)
 	param.isFade = true;
 	param.fadeTime = 0.3f;
 	//UŒ‚—pƒNƒ‰ƒX‚Ì‰Šú‰»
-	bossAttack.Init(param, game->GetPManager(), 2);
+	bossAttack.Init(param, game->GetPManager(), BossAttack::BossType::moll);
 
 	attackTimer = 0.0f;
 }
@@ -64,7 +65,7 @@ void SecondBoss::Action()
 		characterController.SetMoveSpeed(toPlayer*SPEED);
 
 		D3DXVECTOR3 pos = characterController.GetPosition();
-		pos.y += 0.5;
+		pos.y += 1.0;
 		bossAttack.SetPosition(pos);
 		if (attackTimer > 2.0f) {
 			bossAttack.SetBullet();

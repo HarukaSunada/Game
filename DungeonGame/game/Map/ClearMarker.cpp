@@ -5,24 +5,19 @@
 
 ClearMarker::ClearMarker()
 {
+	ParticleOpenDoor = NULL;
 }
 
 
 ClearMarker::~ClearMarker()
 {
+	if (ParticleOpenDoor != NULL) {
+		delete ParticleOpenDoor;
+	}
 }
 
 void ClearMarker::Init(D3DXVECTOR3 pos)
 {
-	/*
-	//モデルをロード
-	modelData.LoadModelData("Assets/modelData/test.X", NULL);
-	//モデルデータでSkinModel初期化
-	model.Init(&modelData);
-
-	//ライト
-	model.SetLight(game->GetLight());
-	*/
 
 	modelData.CloneModelData(*g_modelManager->LoadModelData("close"), NULL);
 	//モデルデータでSkinModel初期化
@@ -40,6 +35,16 @@ void ClearMarker::Init(D3DXVECTOR3 pos)
 
 void ClearMarker::Update()
 {
+	if (ParticleOpenDoor != NULL) {
+		ParticleOpenDoor->Update();
+
+		particleTimer += game->GetDeltaTime();
+		//発生から3秒経った
+		if (particleTimer > 3.0f) {
+			delete ParticleOpenDoor;
+			ParticleOpenDoor = NULL;
+		}
+	}
 
 	//クリアフラグを立てる
 	if (!flag) {
@@ -50,6 +55,7 @@ void ClearMarker::Update()
 			p->UseKey();
 			game->setClear();
 			flag = true;
+			SetParticle();
 		}
 	}
 }
@@ -62,14 +68,28 @@ void ClearMarker::Draw()
 
 float ClearMarker::Length()
 {
-	////プレイヤーへのベクトル
-	//D3DXVECTOR3 diff;
-	//diff = game->GetPlayer()->GetPosition() - position;
-
-	////ベクトルの大きさ
-	//float length = diff.x * diff.x + diff.y * diff.y + diff.z * diff.z;
-	//sqrt(length);
-
-	//return length;
 	return game->GetPlayer()->Length(position);
+}
+
+void ClearMarker::SetParticle()
+{
+	//パラメータ
+	SParicleEmitParameter param;
+	param.texturePath = "Assets/Sprite/kirakira.png";
+	param.life = 0.7f;
+	param.w = 0.8f;
+	param.h = 0.8f;
+	param.intervalTime = 0.05f;
+	param.initSpeed = D3DXVECTOR3(0.0f, 3.0f, 0.0f);
+	param.emitPosition = position;
+	param.initPositionRandomMargin = D3DXVECTOR3(1.2f, 0.0f, 1.2f);
+	param.initAlpha = 0.8f;
+	param.isFade = true;
+	param.fadeTime = 0.5f;
+	//攻撃用クラスの初期化
+
+	ParticleOpenDoor = new ParticleEmitter();
+	ParticleOpenDoor->Init(param, game->GetPManager());
+
+	particleTimer = 0.0f;
 }

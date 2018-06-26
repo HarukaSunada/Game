@@ -2,6 +2,7 @@
 #include "SceneBase.h"
 #include "Sprite.h"
 #include "UI/ScoreDisplay.h"
+#include "GameScene.h"
 
 /*
 	リザルト画面クラス
@@ -23,20 +24,19 @@ public:
 	void SetScore(int* sSco)
 	{
 		totalScore = 0;
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < en_StageNum; i++) {
 			stageScore[i] = sSco[i];
 			totalScore += sSco[i];
 		}
 	}
-
 private:
 	Sprite			back;
 	bool			sceneEnd = false;
 	int				totalScore = 0;
-	int				stageScore[2];
+	int				stageScore[4];
 
 	Sprite			sp;
-	Sprite			stg[2];
+	Sprite			stg[4];
 	CSoundSource	bgmSource;
-	ScoreDisplay	scoDisplay[3];
+	ScoreDisplay	scoDisplay[5];
 };

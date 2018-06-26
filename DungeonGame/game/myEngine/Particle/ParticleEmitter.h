@@ -10,6 +10,7 @@ struct SParicleEmitParameter {
 	void Init()
 	{
 		memset(this, 0, sizeof(SParicleEmitParameter));
+		initAlpha = 1.0f;
 	}
 	const char* texturePath;			//!<テクスチャのファイルパス。
 	float		life;					//!<寿命。単位は秒。
@@ -18,6 +19,7 @@ struct SParicleEmitParameter {
 	float		intervalTime;			//!<パーティクルの発生間隔。
 	D3DXVECTOR3 initSpeed;				//!<初速度
 	D3DXVECTOR3 emitPosition;			//発生位置
+	D3DXVECTOR3	initPositionRandomMargin;			//!<初期位置のランダム幅。
 	float		initAlpha;				//!<初期アルファ値。
 	bool		isFade;					//!<死ぬときにフェードアウトする？
 	float		fadeTime;				//!<フェードする時間。

@@ -17,24 +17,16 @@ void LastBoss::Init(SMapChipLocInfo& locInfo)
 {
 	//ステータス初期化
 	state.HP = 3;
-	state.score = 300;
+	state.score = 600;
 
 	damageLength = 3.5f;
 	offset_y = 1.0f;
 
-	//Enemy::Init(locInfo);
+	invincibleTime = 2.5f;
 
-	modelData.CloneModelData(*g_modelManager->LoadModelData(locInfo.modelName), &animation);
+	Enemy::Init(locInfo);
 
-	//モデルの初期化
-	model.Init(&modelData);
-	model.SetLight(game->GetLight());	//ライトの設定
-	model.SetShadowCasterFlag(true);
-
-	//アニメーションの設定
-	animation.PlayAnimation(animIdle);
 	anim = animIdle;
-	act = actWait;
 	phase = phase_down;
 
 	timer = 0.0f;
@@ -42,11 +34,6 @@ void LastBoss::Init(SMapChipLocInfo& locInfo)
 
 	moveDir = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
-	//キャラクタコントローラを初期化。
-	characterController.Init(0.3f, 1.0f, locInfo.position);
-	characterController.SetGravity(-20.0f);		//重力設定
-
-	rotation = locInfo.rotation;
 	SetRotationY(0.0f);
 
 	model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(1.0f, 1.0f, 1.0f));
@@ -60,6 +47,7 @@ void LastBoss::Init(SMapChipLocInfo& locInfo)
 	param.intervalTime = 0.3f;
 	D3DXVECTOR3 pos = characterController.GetPosition();
 	param.emitPosition = pos;
+	param.initPositionRandomMargin = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	param.initAlpha = 1.0f;
 	param.isFade = true;
 	param.fadeTime = 0.3f;
@@ -89,7 +77,7 @@ void LastBoss::Action()
 		//移動
 		case LastBoss::phase_move:
 			ActMove();
-			model.SetShadowCasterFlag(false);
+			//model.SetShadowCasterFlag(false);
 			break;
 		//攻撃
 		case LastBoss::phase_attack:
@@ -136,11 +124,11 @@ void LastBoss::ActMove()
 	}
 
 	//8以上離れたら逆を向く
-	if (fabs(movePos.x) > 8.0) {
+	if (fabs(movePos.x) > 10.0) {
 		moveDir.x *= -1;
 		TurnToDir(moveDir);
 	}
-	if (fabs(movePos.z) > 8.0) {
+	if (fabs(movePos.z) > 10.0) {
 		moveDir.z *= -1;
 		TurnToDir(moveDir);
 	}
@@ -165,7 +153,7 @@ void LastBoss::ActAttack()
 	characterController.SetMoveSpeed(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 	D3DXVECTOR3 pos = characterController.GetPosition();
-	pos.y += 1.0f;
+	pos.y += 0.7f;
 	bossAttack.SetPosition(pos);
 	if (attackTimer > 0.8f) {
 		bossAttack.SetBullet();
@@ -180,6 +168,7 @@ void LastBoss::ActAttack()
 		//phase = phase_move;
 		phase = phase_down;
 		anim = animDown;
+		isNoDamage = true;
 
 		moveTimer = 0.0f;
 		attackTimer = 0.0f;
@@ -209,7 +198,7 @@ void LastBoss::ActDown() {
 		//動きを移行
 		phase = phase_move;
 		anim = animWait;
-		isNoDamage = true;
+		//isNoDamage = true;
 
 		moveTimer = 0.0f;
 	}

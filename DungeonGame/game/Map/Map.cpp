@@ -13,7 +13,7 @@ static SMapChipLocInfo Stage2[] = {
 };
 
 static SMapChipLocInfo StageEX[] = {
-#include "stage_test.h"
+#include "stageEX.h"
 };
 
 Map::Map()
@@ -33,19 +33,19 @@ void Map::Create(EnemyManager* en, int stageNum)
 
 	sky = new Sky();
 
-	if (stageNum == 0) {
+	if (stageNum == en_Stage1) {
 		mapChipInfo = Stage1;
 		//配置オブジェクト個数を計算
 		numObject = sizeof(Stage1) / sizeof(Stage1[0]);
 		sky->Init(0);
 	}
-	else if (stageNum == 1) {
+	else if (stageNum == en_Stage2) {
 		mapChipInfo = Stage2;
 		//配置オブジェクト個数を計算
 		numObject = sizeof(Stage2) / sizeof(Stage2[0]);
 		sky->Init(1);
 	}
-	else if (stageNum == 3) {
+	else if (stageNum == en_StageEX) {
 		mapChipInfo = StageEX;
 		//配置オブジェクト個数を計算
 		numObject = sizeof(StageEX) / sizeof(StageEX[0]);

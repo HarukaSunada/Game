@@ -67,6 +67,9 @@ public:
 
 	void Reset(bool isReStart);
 
+	//アイテム取得時エフェクトの準備
+	void SetItemGetParticle();
+
 	//位置を取得
 	D3DXVECTOR3 GetPosition()
 	{
@@ -123,6 +126,7 @@ private:
 	float				fMoveSpeed;				//移動速度
 	float				timer = 0.0f;			//タイマー
 	float				attackTimer = 0.0f;		//タイマー
+	float				particleTimer = 0.0f;	//パーティクルタイマー
 
 	bool				isAttack = false;		//攻撃フラグ
 	bool				isDamage = false;		//ダメージフラグ
@@ -133,4 +137,6 @@ private:
 
 	int					Skill = 0;
 	int					SP = 0;
+
+	ParticleEmitter*	ParticleItemGet;		//アイテムゲット時のパーティクル
 };

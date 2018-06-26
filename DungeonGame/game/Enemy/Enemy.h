@@ -5,6 +5,7 @@
 #pragma once
 #include "myEngine/Physics/CharacterController.h"
 #include "Map/MapChip.h"
+#include "myEngine/Particle/ParticleEmitter.h"
 
 /*
 	エネミーの基本クラス
@@ -79,6 +80,9 @@ public:
 	//削除時の処理
 	void Remove();
 
+	//やられ時エフェクトの準備
+	virtual void SetParticle();
+
 	//位置を取得
 	D3DXVECTOR3 GetPosition()
 	{
@@ -119,6 +123,11 @@ protected:
 	bool				isDelRigidBody = false;	//RigidBodyをデリートしたか
 
 	float offset_y = 0.5f;	//当たり判定の高さ補正
+
+	float				invincibleTime = 1.20f; //無敵時間
+
+	ParticleEmitter*	particleDeath;			//やられ時のパーティクル
+	float				particleTimer = 0.0f;	//パーティクルタイマー
 };
 
 

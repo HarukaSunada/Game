@@ -22,6 +22,7 @@
 /*!
  * @brief	ゲームクラス。
  */
+
 class Game : public SceneBase
 {
 public:
@@ -33,15 +34,6 @@ public:
 		GameClear,	//クリア
 		GameStop,	//中断
 		GameLoad,	//ロード中
-	};
-
-	//ステージ番号
-	enum state_stage {
-		en_Stage1,		//ステージ1
-		en_Stage2,		//ステージ2
-		en_Stage3,		//ステージ3
-		en_StageEX,		//ラスボス
-		en_end,			//ゲームクリア処理用のダミー
 	};
 	/*!
 	 * @brief	コンストラクタ。

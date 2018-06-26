@@ -29,7 +29,7 @@ void BossBase::Action()
 		float player_y = game->GetPlayer()->GetPosition().y;
 
 		//‹ß‹——£‚©‚Â‚’á·‚ª¬‚³‚¢
-		if (!flag && length < 200 && abs(player_y - characterController.GetPosition().y) < 3.0f) {
+		if (!flag && length < 200 && fabs(player_y - characterController.GetPosition().y) < 3.0f) {
 			game->SetBoss(this);
 			flag = true;
 		}

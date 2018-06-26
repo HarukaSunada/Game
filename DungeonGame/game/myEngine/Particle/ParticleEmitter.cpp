@@ -17,6 +17,7 @@ void ParticleEmitter::Init(const SParicleEmitParameter& param ,ParticleManager* 
 	this->param = param;
 	timer = 0.0f;
 	PManager = pm;
+	timer = param.intervalTime;
 }
 
 void ParticleEmitter::Update()

@@ -6,11 +6,15 @@
 Enemy::Enemy()
 {
 	rotation = D3DXQUATERNION(0.0f, 0.0f, 0.0f, 1.0f);
+	particleDeath = NULL;
 }
 
 
 Enemy::~Enemy()
 {
+	if (particleDeath != NULL) {
+		delete particleDeath;
+	}
 }
 
 void Enemy::Init(SMapChipLocInfo& locInfo)
@@ -38,6 +42,18 @@ void Enemy::Init(SMapChipLocInfo& locInfo)
 
 void Enemy::Update()
 {
+	//やられエフェクト
+	if (particleDeath != NULL) {
+		particleDeath->Update();
+
+		particleTimer += game->GetDeltaTime();
+		//発生から1秒経った
+		if (particleTimer > 1.0f) {
+			delete particleDeath;
+			particleDeath = NULL;
+		}
+	}
+
 	//HPが0
 	if (isDead) {
 		return;
@@ -50,7 +66,7 @@ void Enemy::Update()
 		//se->SetPosition(characterController.GetPosition());
 		//se->Update();
 	}
-	if (damageTimer > 1.00f)
+	if (damageTimer > invincibleTime)
 	{
 		damageTimer = 0.0f;
 		isDamage = false;
@@ -115,6 +131,8 @@ void Enemy::Damage(int dm,D3DXVECTOR3 pos)
 		//剛体除去
 		g_physicsWorld->RemoveRigidBody(characterController.GetRigidBody());
 		isDelRigidBody = true;
+
+		SetParticle();
 	}
 }
 
@@ -215,4 +233,28 @@ void Enemy::TurnAroundToPlayer()
 	//D3DXVECTOR3 toPlayer = toPlayerDir();
 
 	TurnToDir(toPlayerDir());
+}
+
+void Enemy::SetParticle()
+{
+	//パラメータ
+	SParicleEmitParameter param;
+	param.texturePath = "Assets/Sprite/star.png";
+	param.life = 0.1f;
+	param.w = 0.4f;
+	param.h = 0.4f;
+	param.intervalTime = 0.05f;
+	param.initSpeed = D3DXVECTOR3(0.0f, 5.0f, 0.0f);
+	param.emitPosition = characterController.GetPosition();
+	param.initPositionRandomMargin = D3DXVECTOR3(0.5f, 0.0f, 0.5f);
+	param.initAlpha = 0.5f;
+	param.isFade = true;
+	param.fadeTime = 0.5f;
+	//攻撃用クラスの初期化
+	//playerAttack.Init(param, game->GetPManager());
+
+	particleDeath = new ParticleEmitter();
+	particleDeath->Init(param, game->GetPManager());
+
+	particleTimer = 0.0f;
 }

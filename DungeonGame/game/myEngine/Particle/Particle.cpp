@@ -25,20 +25,17 @@ Particle::Particle() :
 
 Particle::~Particle()
 {
-	//if (texture != nullptr) {
-	//	texture->Release();
-	//}
 }
 
 void Particle::Init(const SParicleEmitParameter& param)
 {
+	std::random_device rnd;     // 非決定的な乱数生成器
+	randam.seed(rnd());            // シード指定
+
 	float halfW = param.w * 0.5f;
 	float halfH = param.h * 0.5f;
 
 	D3DXVECTOR4 uv(0.0f, 0.0f, 1.0f, 1.0f);
-	moveSpeed = param.initSpeed;
-
-	position = param.emitPosition;
 
 	timer = 0.0f;
 	life = param.life;
@@ -49,10 +46,20 @@ void Particle::Init(const SParicleEmitParameter& param)
 
 	state = eStateRun;
 
+	moveSpeed = param.initSpeed;
 	float add = ((rand() % 255) - 128) / 128.0f;
 	moveSpeed.x += add * 0.3f;
 	moveSpeed.y += add * 0.3f;
 	moveSpeed.z += add * 0.3f;
+
+	//0.0～1.0のランダム値を返す
+	std::uniform_real_distribution<> rand100(0.0, 1.0);
+
+	//初期位置に乱数を加える
+	position = param.emitPosition;
+	position.x += (((float)rand100(randam) - 0.5f) * 2.0f) * param.initPositionRandomMargin.x;
+	position.y += (((float)rand100(randam) - 0.5f) * 2.0f) * param.initPositionRandomMargin.y;
+	position.z += (((float)rand100(randam) - 0.5f) * 2.0f) * param.initPositionRandomMargin.z;
 
 	SShapeVertex_PT vb[] = {
 		{

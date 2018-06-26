@@ -4,6 +4,7 @@
 
 #pragma once
 #include "Primitive.h"
+#include <random>
 
 struct SParicleEmitParameter;
 
@@ -44,5 +45,7 @@ private:
 	bool				isFade;				//!<死ぬときにフェードアウトする？
 	float				fadeTIme;			//!<フェードの時間。
 	eState				state;				//!<状態。
+
+	std::mt19937		randam;			// メルセンヌ・ツイスタの32ビット版
 };
 

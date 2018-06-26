@@ -12,11 +12,11 @@ ScoreDisplay::~ScoreDisplay()
 }
 
 //èâä˙âª
-void ScoreDisplay::Init(D3DXVECTOR2 pos,int numType)
+void ScoreDisplay::Init(D3DXVECTOR2 pos,int numType,D3DXVECTOR2 scale,int interval)
 {
 
 	for (int i = 0; i < 5; i++) {
-		num[i].Init(D3DXVECTOR2((pos.x + i * 50), pos.y), numType);
+		num[i].Init(D3DXVECTOR2((pos.x + i * interval), pos.y), numType, scale);
 	}
 }
 

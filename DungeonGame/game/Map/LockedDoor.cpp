@@ -7,11 +7,15 @@ LockedDoor::LockedDoor() :
 	position(0.0f, 0.0f, 0.0f),
 	rotation(0.0f, 0.0f, 0.0f, 1.0f)
 {
+	ParticleOpenDoor = NULL;
 }
 
 
 LockedDoor::~LockedDoor()
 {
+	if (ParticleOpenDoor != NULL) {
+		delete ParticleOpenDoor;
+	}
 }
 
 void LockedDoor::Init(SMapChipLocInfo& locInfo)
@@ -49,6 +53,17 @@ void LockedDoor::Init(SMapChipLocInfo& locInfo)
 
 void LockedDoor::Update()
 {
+	if (ParticleOpenDoor != NULL) {
+		ParticleOpenDoor->Update();
+
+		particleTimer += game->GetDeltaTime();
+		//発生から1秒経った
+		if (particleTimer > 1.0f) {
+			delete ParticleOpenDoor;
+			ParticleOpenDoor = NULL;
+		}
+	}
+
 	//プレイヤーが近づいた。
 	//もしプレイヤーが鍵を持っていたら
 	Player* player = game->GetPlayer();
@@ -60,6 +75,8 @@ void LockedDoor::Update()
 		player->UseKey();
 		//剛体除去
 		g_physicsWorld->RemoveRigidBody(&rigidBody);
+
+		SetParticle();
 	}
 }
 
@@ -75,4 +92,27 @@ void LockedDoor::Remove()
 		//剛体除去
 		g_physicsWorld->RemoveRigidBody(&rigidBody);
 	}
+}
+
+void LockedDoor::SetParticle()
+{
+	//パラメータ
+	SParicleEmitParameter param;
+	param.texturePath = "Assets/Sprite/kirakira.png";
+	param.life = 0.7f;
+	param.w = 0.8f;
+	param.h = 0.8f;
+	param.intervalTime = 0.05f;
+	param.initSpeed = D3DXVECTOR3(0.0f, 3.0f, 0.0f);
+	param.emitPosition = position;
+	param.initPositionRandomMargin = D3DXVECTOR3(1.2f, 0.0f, 1.2f);
+	param.initAlpha = 0.8f;
+	param.isFade = true;
+	param.fadeTime = 0.5f;
+	//攻撃用クラスの初期化
+
+	ParticleOpenDoor = new ParticleEmitter();
+	ParticleOpenDoor->Init(param, game->GetPManager());
+
+	particleTimer = 0.0f;
 }

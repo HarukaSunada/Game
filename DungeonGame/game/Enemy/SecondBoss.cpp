@@ -24,6 +24,8 @@ void SecondBoss::Init(SMapChipLocInfo& locInfo)
 
 	firstPos = locInfo.position;
 
+	invincibleTime = 2.0f;
+
 	Enemy::Init(locInfo);
 
 	timer = 0.0f;
@@ -42,6 +44,7 @@ void SecondBoss::Init(SMapChipLocInfo& locInfo)
 	param.intervalTime = 0.5f;
 	D3DXVECTOR3 pos = characterController.GetPosition();
 	param.emitPosition = pos;
+	param.initPositionRandomMargin = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	param.initAlpha = 1.0f;
 	param.isFade = true;
 	param.fadeTime = 0.3f;
@@ -65,7 +68,7 @@ void SecondBoss::Action()
 		characterController.SetMoveSpeed(toPlayer*SPEED);
 
 		D3DXVECTOR3 pos = characterController.GetPosition();
-		pos.y += 1.0;
+		pos.y += 0.7;
 		bossAttack.SetPosition(pos);
 		if (attackTimer > 2.0f) {
 			bossAttack.SetBullet();

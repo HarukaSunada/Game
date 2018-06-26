@@ -7,6 +7,16 @@
 
 class MapChip;
 
+enum state_stage {
+	en_Stage1,		//ステージ1
+	en_Stage2,		//ステージ2
+	//en_Stage3,		//ステージ3
+	en_StageEX,		//ラスボス
+
+	en_StageNum,	//ステージ数
+	en_end,			//ゲームクリア処理用のダミー
+};
+
 class Map
 {
 public:

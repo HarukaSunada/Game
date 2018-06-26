@@ -220,7 +220,12 @@ void Game::GameReStart() {
 	BossCameraFlag = false;
 	bgmSource.Play(true);
 	bgmSource.Release();
-	bgmSource.InitStreaming("Assets/sound/boss.wav");
+	if (currentStage == en_StageEX) {
+		bgmSource.InitStreaming("Assets/sound/lastBoss.wav");
+	}
+	else {
+		bgmSource.InitStreaming("Assets/sound/boss.wav");
+	}
 	bgmSource.Play(true);
 }
 
@@ -233,8 +238,8 @@ void Game::CreateStage(state_stage stage)
 
 		map.Create(&enemyManager, en_Stage1);
 
-		//nextStage = en_Stage2;
-		nextStage = en_StageEX;
+		nextStage = en_Stage2;
+		//nextStage = en_StageEX;
 
 		bgmSource.Release();
 		bgmSource.InitStreaming("Assets/sound/stage1.wav");
@@ -260,7 +265,7 @@ void Game::CreateStage(state_stage stage)
 
 		//‰¼BGM
 		bgmSource.Release();
-		bgmSource.InitStreaming("Assets/sound/stage2.wav");
+		bgmSource.InitStreaming("Assets/sound/stageEX.wav");
 		bgmSource.Play(true);
 		break;
 	}

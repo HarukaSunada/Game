@@ -20,6 +20,7 @@ void BossAttack::Init(const SParicleEmitParameter& param, ParticleManager* pm,Bo
 	isCreate = true;
 	PManager = pm;
 	bossType = type;
+	timer = param.intervalTime;
 
 	switch (type)
 	{
@@ -40,7 +41,7 @@ void BossAttack::Update()
 	Player* player = game->GetPlayer();
 
 	for (auto p : bulletList) {
-		if (player->GetStatus().HP > 0 && player->Length(p->GetPosition())< 2.5f) {
+		if (player->GetStatus().HP > 0 && player->Length(p->GetPosition())< 0.8f) {
 			player->Damage(1);
 		}
 	}

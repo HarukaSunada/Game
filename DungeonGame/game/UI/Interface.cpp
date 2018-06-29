@@ -51,6 +51,10 @@ void UserInterface::Init()
 	keyIcon.SetPosition(D3DXVECTOR2(640, 620));
 	keyIcon.SetScale(D3DXVECTOR2(0.4f, 0.4f));
 	keyIcon.Init();
+
+	test.SetFileName("Assets/Sprite/keyIcon.png");
+	test.SetPosition(D3DXVECTOR2(0, 0));
+	test.Init();
 }
 
 void UserInterface::Update()
@@ -83,6 +87,8 @@ void UserInterface::Update()
 
 void UserInterface::Render()
 {
+	//test.Draw();
+
 	//ƒeƒXƒg
 	if (flag)
 	{

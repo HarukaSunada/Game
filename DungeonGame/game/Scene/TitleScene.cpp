@@ -15,8 +15,8 @@ void TitleScene::Init()
 {
 	//テクスチャ読み込み
 	back.SetFileName("Assets/Sprite/title.png");
-	back.SetPosition(D3DXVECTOR2(0, 340));
-	back.SetScale(D3DXVECTOR2(0.99f, 0.95f));
+	back.SetPosition(D3DXVECTOR2(0, 360));
+	back.SetScale(D3DXVECTOR2(1.00f, 1.00f));
 	back.Init();
 
 	bgmSource.InitStreaming("Assets/sound/title.wav");

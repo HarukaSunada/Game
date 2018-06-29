@@ -13,7 +13,8 @@ SceneManager* scene;
 RenderTarget* mainRenderTarget;	//!<18-2 メインレンダリングターゲット。
 Primitive*	quadPrimitive;			//!<18-3 四角形の板ポリプリミティブ。
 LPD3DXEFFECT monochromeEffect;		//!<18-4 モノクロフィルターをかけるシェーダー。
-LPD3DXEFFECT copyEffect;
+LPD3DXEFFECT copyEffect;			//コピーエフェクト
+LPD3DXEFFECT postEffect;			//ポストエフェクト
 LPD3DXEFFECT shader;
 
 void InitMainRenderTarget();
@@ -35,6 +36,7 @@ void Init()
 	monochromeEffect = g_effectManager->LoadEffect("Assets/Shader/MonochromeFilter.fx");
 	copyEffect = g_effectManager->LoadEffect("Assets/Shader/Copy.fx");
 	shader = copyEffect;
+	postEffect = nullptr;
 
 	g_soundEngine = new CSoundEngine;
 	g_soundEngine->Init();
@@ -71,6 +73,15 @@ VOID Render()
 	// 通常描画
 	scene->Render();
 
+	if (postEffect != nullptr) {
+		//ポストエフェクトをかける
+		shader = postEffect;
+		CopyMainRTToCurrentRT();
+	}
+
+	//Post描画
+	scene->PostRender();
+
 	//シーンの描画が完了したのでレンダリングターゲットをフレームバッファに戻す
 	g_pd3dDevice->SetRenderTarget(0, frameBufferRT);
 	g_pd3dDevice->SetDepthStencilSurface(frameBufferDS);
@@ -79,11 +90,9 @@ VOID Render()
 	frameBufferRT->Release();
 	frameBufferDS->Release();
 
+	shader = copyEffect;
 	//オフスクリーンレンダリングした絵をフレームバッファに貼り付ける
 	CopyMainRTToCurrentRT();
-
-	//Post描画
-	scene->PostRender();
 
 	//シーンの描画終了
 	g_pd3dDevice->EndScene();	
@@ -235,10 +244,10 @@ void ChangeEffect(int ef)
 	switch (ef)
 	{
 	case 1:
-		shader = copyEffect;
+		postEffect = nullptr;
 		break;
 	case 2:
-		shader = monochromeEffect;
+		postEffect = monochromeEffect;
 		break;
 	default:
 		break;

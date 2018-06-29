@@ -6,11 +6,15 @@
 
 LastBoss::LastBoss()
 {
+	ParticleUp = NULL;
 }
 
 
 LastBoss::~LastBoss()
 {
+	if (ParticleUp != NULL) {
+		delete ParticleUp;
+	}
 }
 
 void LastBoss::Init(SMapChipLocInfo& locInfo)
@@ -44,7 +48,7 @@ void LastBoss::Init(SMapChipLocInfo& locInfo)
 	param.life = 2.0f;
 	param.w = 1.0f;
 	param.h = 1.0f;
-	param.intervalTime = 0.3f;
+	param.intervalTime = 0.1f;
 	D3DXVECTOR3 pos = characterController.GetPosition();
 	param.emitPosition = pos;
 	param.initPositionRandomMargin = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
@@ -72,12 +76,20 @@ void LastBoss::Action()
 	BossBase::Action();
 
 	if (act == actFound || act == actDamage) {
+
+		//やられエフェクト
+		if (ParticleUp != NULL) {
+			ParticleUp->SetPosition(characterController.GetPosition());
+			ParticleUp->Update();
+
+			particleTimer += game->GetDeltaTime();
+		}
 		switch (phase)
 		{
 		//移動
 		case LastBoss::phase_move:
 			ActMove();
-			//model.SetShadowCasterFlag(false);
+			model.SetShadowCasterFlag(false);
 			break;
 		//攻撃
 		case LastBoss::phase_attack:
@@ -132,11 +144,20 @@ void LastBoss::ActMove()
 		moveDir.z *= -1;
 		TurnToDir(moveDir);
 	}
-	characterController.SetMoveSpeed(moveDir*SPEED);
+	if (moveTimer <= 3.0f) {
+		characterController.SetMoveSpeed(moveDir*SPEED);
+	}
 
 	moveTimer += game->GetDeltaTime();
+
+	//土煙発生
+	if (moveTimer > 3.0f && ParticleUp==NULL) {
+		characterController.SetMoveSpeed(D3DXVECTOR3(0.0f,0.0f,0.0f));
+		SetParticleUP();
+	}
+
 	//3秒移動した
-	if (moveTimer > 3.0f) {
+	if (moveTimer > 3.6f) {
 		moveTimer = 0.0f;
 
 		//動きを移行
@@ -145,6 +166,9 @@ void LastBoss::ActMove()
 		anim = animUp;
 
 		isNoDamage = false;
+
+		delete ParticleUp;
+		ParticleUp = NULL;
 	}
 }
 
@@ -153,9 +177,9 @@ void LastBoss::ActAttack()
 	characterController.SetMoveSpeed(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 	D3DXVECTOR3 pos = characterController.GetPosition();
-	pos.y += 0.7f;
+	pos.y += 1.0f;
 	bossAttack.SetPosition(pos);
-	if (attackTimer > 0.8f) {
+	if (attackTimer > 1.0f) {
 		bossAttack.SetBullet();
 		attackTimer = 0.0f;
 	}
@@ -180,10 +204,22 @@ void LastBoss::ActUp() {
 	characterController.SetMoveSpeed(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	moveTimer += game->GetDeltaTime();
 
+	//上がった瞬間に攻撃
+	if (!flag && moveTimer > 0.65f) {
+		D3DXVECTOR3 pos = characterController.GetPosition();
+		pos.y += 1.0f;
+		bossAttack.SetPosition(pos);
+		bossAttack.SetBullet();
+		attackTimer = 0.0f;
+		flag = true;
+	}
+	attackTimer += game->GetDeltaTime();
+
 	if (moveTimer > 0.85f) {
 		//動きを移行
 		phase = phase_attack;
 		anim = animIdle;
+		flag = false;
 
 		moveTimer = 0.0f;
 	}
@@ -202,4 +238,27 @@ void LastBoss::ActDown() {
 
 		moveTimer = 0.0f;
 	}
+}
+
+void LastBoss::SetParticleUP()
+{
+	//パラメータ
+	SParicleEmitParameter param;
+	param.texturePath = "Assets/Sprite/kemuri.png";
+	param.life = 0.7f;
+	param.w = 0.8f;
+	param.h = 0.8f;
+	param.intervalTime = 0.05f;
+	param.initSpeed = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+	param.emitPosition = characterController.GetPosition();
+	param.initPositionRandomMargin = D3DXVECTOR3(1.5f, 0.0f, 1.5f);
+	param.initAlpha = 0.7f;
+	param.isFade = true;
+	param.fadeTime = 0.3f;
+	param.alphaBlendMode = 0;
+
+	ParticleUp = new ParticleEmitter();
+	ParticleUp->Init(param, game->GetPManager());
+
+	particleTimer = 0.0f;
 }

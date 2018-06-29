@@ -15,6 +15,7 @@ BossAttack::~BossAttack()
 void BossAttack::Init(const SParicleEmitParameter& param, ParticleManager* pm,BossType type)
 {
 	this->param = param;
+	this->param.alphaBlendMode = 1;
 	timer = 0.0f;
 	bulletCount = 0;
 	isCreate = true;
@@ -31,7 +32,7 @@ void BossAttack::Init(const SParicleEmitParameter& param, ParticleManager* pm,Bo
 		MaxBulletNum = 3;
 		break;
 	case flower:
-		MaxBulletNum = 4;
+		MaxBulletNum = 8;
 		break;
 	}
 }
@@ -115,6 +116,18 @@ void BossAttack::Create()
 		}
 		else if (bulletCount == 3) {
 			param.initSpeed = D3DXVECTOR3(1.0f, 0.0f, 0.0f)*speed;
+		}
+		else if (bulletCount == 4) {
+			param.initSpeed = D3DXVECTOR3(0.5f, 0.0f, -0.5f)*speed;
+		}
+		else if (bulletCount == 5) {
+			param.initSpeed = D3DXVECTOR3(-0.5f, 0.0f, 0.5f)*speed;
+		}
+		else if (bulletCount == 6) {
+			param.initSpeed = D3DXVECTOR3(0.5f, 0.0f, 0.5f)*speed;
+		}
+		else if (bulletCount == 7) {
+			param.initSpeed = D3DXVECTOR3(-0.5f, 0.0f, -0.5f)*speed;
 		}
 	}
 

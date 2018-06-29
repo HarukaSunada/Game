@@ -23,7 +23,7 @@ void ScoreDisplay::Init(D3DXVECTOR2 pos,int numType,D3DXVECTOR2 scale,int interv
 //çXêV
 void ScoreDisplay::SetScore(int score)
 {
-	num[1].NumSet((score / 10000));
+	num[0].NumSet((score / 10000));
 	score %= 10000;
 
 	num[1].NumSet((score / 1000));

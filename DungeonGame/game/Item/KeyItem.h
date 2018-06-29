@@ -4,6 +4,7 @@
 
 #pragma once
 #include "ItemBase.h"
+#include "myEngine/Particle/ParticleEmitter.h"
 
 class KeyItem : public ItemBase
 {
@@ -15,5 +16,8 @@ public:
 
 	//更新
 	void Update();
+
+private:
+	ParticleEmitter*	particleKey;		//パーティクル
 };
 

@@ -46,6 +46,9 @@ public:
 	//下降行動
 	void ActDown();
 
+	//ドアオープン時エフェクトの準備
+	void SetParticleUP();
+
 private:
 	float				moveTimer = 0.0f;
 	D3DXVECTOR3			moveDir;
@@ -53,5 +56,8 @@ private:
 	std::mt19937		mt;		// メルセンヌ・ツイスタの32ビット版
 
 	BossPhase			phase;	//現在の段階
+
+	ParticleEmitter*	ParticleUp;		//ドアオープン時のパーティクル
+	float				particleTimer = 0.0f;	//パーティクルタイマー
 };
 

@@ -5,6 +5,7 @@
 #include "ShowScore.h"
 #include "performWarning.h"
 #include "SkillGauge.h"
+#include "CSprite.h"
 
 /*
 	ユーザーインターフェースのクラス
@@ -43,5 +44,7 @@ private:
 	bool			bossFlag = false;
 
 	float			timer = 0.0f;
+
+	CSprite			test;
 };
 

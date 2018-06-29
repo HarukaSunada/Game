@@ -2,6 +2,7 @@
 #include "SceneManager.h"
 
 Game* game = nullptr;
+SceneChange* change = nullptr;
 
 SceneManager::SceneManager()
 {
@@ -22,6 +23,8 @@ void SceneManager::Start()
 
 	loading.Init();
 	load = Wait;
+
+	change = new SceneChange();
 }
 
 void SceneManager::Update()
@@ -40,7 +43,7 @@ void SceneManager::Update()
 			load = Wait;
 		}
 		else if (load == LoadStart) {
-			SceneChange();
+			SceneSwitching();
 		}
 		else if (scene->isSceneEnd()) {
 			load = LoadStart;
@@ -58,7 +61,7 @@ void SceneManager::Update()
 			load = Wait;
 		}
 		else if (load == LoadStart) {
-			SceneChange();
+			SceneSwitching();
 		}
 		//ƒQ[ƒ€I—¹
 		else if (game->isSceneEnd()) {
@@ -72,7 +75,7 @@ void SceneManager::Update()
 			load = Wait;
 		}
 		else if (load == LoadStart) {
-			SceneChange();
+			SceneSwitching();
 		}
 		//‰¼
 		else if (pad.IsTrigger(Pad::enButtonStart)) {
@@ -86,7 +89,7 @@ void SceneManager::Update()
 			load = Wait;
 		}
 		else if (load == LoadStart) {
-			SceneChange();
+			SceneSwitching();
 		}
 		//‰¼
 		else if (scene->isSceneEnd()) {
@@ -94,6 +97,7 @@ void SceneManager::Update()
 		}
 		break;
 	}
+	change->Update();
 }
 
 void SceneManager::Render()
@@ -110,18 +114,22 @@ void SceneManager::PostRender()
 	if (state == stateGame && game->GetState() == Game::GameLoad)
 	{
 		loading.Draw();
+		change->Render();
 		return;
 	}
 
 	if (load != Wait) {
 		loading.Draw();
+		change->Render();
 		return;
 	}
 	//ƒV[ƒ“‚Ì•`‰æ
 	scene->PostRender();
+
+	change->Render();
 }
 
-void SceneManager::SceneChange()
+void SceneManager::SceneSwitching()
 {
 	switch (state)
 	{

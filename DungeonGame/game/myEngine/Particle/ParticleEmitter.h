@@ -11,6 +11,7 @@ struct SParicleEmitParameter {
 	{
 		memset(this, 0, sizeof(SParicleEmitParameter));
 		initAlpha = 1.0f;
+		alphaBlendMode = 1;
 	}
 	const char* texturePath;			//!<テクスチャのファイルパス。
 	float		life;					//!<寿命。単位は秒。
@@ -23,6 +24,7 @@ struct SParicleEmitParameter {
 	float		initAlpha;				//!<初期アルファ値。
 	bool		isFade;					//!<死ぬときにフェードアウトする？
 	float		fadeTime;				//!<フェードする時間。
+	int			alphaBlendMode;			//!<0半透明合成、1加算合成。
 };
 
 class Particle;

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ResultScene.h"
-
+#include "SceneChange.h"
 
 ResultScene::ResultScene()
 {
@@ -25,13 +25,16 @@ void ResultScene::Init()
 	scoDisplay[0].Init(D3DXVECTOR2(800.0f, 450.0f), Type);
 	scoDisplay[0].SetScore(totalScore);
 
-	scoDisplay[1].Init(D3DXVECTOR2(800.0f, 100.0f), Type);
+	D3DXVECTOR2 scale = D3DXVECTOR2(0.7f, 0.7f);
+	int spase = 45;
+
+	scoDisplay[1].Init(D3DXVECTOR2(800.0f, 100.0f), Type, scale, spase);
 	scoDisplay[1].SetScore(stageScore[0]);
 
-	scoDisplay[2].Init(D3DXVECTOR2(800.0f, 200.0f), Type);
+	scoDisplay[2].Init(D3DXVECTOR2(800.0f, 200.0f), Type, scale, spase);
 	scoDisplay[2].SetScore(stageScore[1]);
 
-	scoDisplay[3].Init(D3DXVECTOR2(800.0f, 300.0f), Type);
+	scoDisplay[3].Init(D3DXVECTOR2(800.0f, 300.0f), Type, scale, spase);
 	scoDisplay[3].SetScore(stageScore[2]);
 
 	sp.SetFileName("Assets/sprite/result/score_total.png");
@@ -41,21 +44,23 @@ void ResultScene::Init()
 
 	stg[0].SetFileName("Assets/sprite/result/result_stage1.png");
 	stg[0].SetPosition(D3DXVECTOR2(550.0f, 100.0f));
-	stg[0].SetScale(D3DXVECTOR2(0.8f, 0.8f));
+	stg[0].SetScale(D3DXVECTOR2(0.7f, 0.7f));
 	stg[0].Init();
 
 	stg[1].SetFileName("Assets/sprite/result/result_stage2.png");
 	stg[1].SetPosition(D3DXVECTOR2(550.0f, 200.0f));
-	stg[1].SetScale(D3DXVECTOR2(0.8f, 0.8f));
+	stg[1].SetScale(D3DXVECTOR2(0.7f, 0.7f));
 	stg[1].Init();
 
 	stg[2].SetFileName("Assets/sprite/result/result_stageEX.png");
-	stg[2].SetPosition(D3DXVECTOR2(500.0f, 300.0f));
-	stg[2].SetScale(D3DXVECTOR2(0.8f, 0.8f));
+	stg[2].SetPosition(D3DXVECTOR2(550.0f, 300.0f));
+	stg[2].SetScale(D3DXVECTOR2(0.7f, 0.7f));
 	stg[2].Init();
 
 	bgmSource.InitStreaming("Assets/sound/result.wav");
 	bgmSource.Play(true);
+
+	change->StartFadeIn();
 }
 
 void ResultScene::Update()

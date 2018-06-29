@@ -250,8 +250,7 @@ void Enemy::SetParticle()
 	param.initAlpha = 0.5f;
 	param.isFade = true;
 	param.fadeTime = 0.5f;
-	//UŒ‚—pƒNƒ‰ƒX‚Ì‰Šú‰»
-	//playerAttack.Init(param, game->GetPManager());
+	param.alphaBlendMode = 1;
 
 	particleDeath = new ParticleEmitter();
 	particleDeath->Init(param, game->GetPManager());

@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CSprite.cpp" />
     <ClCompile Include="Enemy\BossAttack.cpp" />
     <ClCompile Include="Enemy\BossBase.cpp" />
     <ClCompile Include="Enemy\Enemy.cpp" />
@@ -209,6 +210,7 @@
     <ClCompile Include="Scene\LoadingScene.cpp" />
     <ClCompile Include="Scene\ResultScene.cpp" />
     <ClCompile Include="Scene\SceneBase.cpp" />
+    <ClCompile Include="Scene\SceneChange.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -229,6 +231,7 @@
     <ClCompile Include="VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CSprite.h" />
     <ClInclude Include="Enemy\BossAttack.h" />
     <ClInclude Include="Enemy\BossBase.h" />
     <ClInclude Include="Enemy\Enemy.h" />
@@ -256,6 +259,7 @@
     <ClInclude Include="myEngine\Sound\SoundSource.h" />
     <ClInclude Include="myEngine\Sound\WaveFile.h" />
     <ClInclude Include="myEngine\Sound\WaveFileBank.h" />
+    <ClInclude Include="myEngine\SShapeVertex_PT.h" />
     <ClInclude Include="myEngine\Util.h" />
     <ClInclude Include="Map\Map.h" />
     <ClInclude Include="Map\MapChip.h" />
@@ -288,6 +292,7 @@
     <ClInclude Include="Scene\LoadingScene.h" />
     <ClInclude Include="Scene\ResultScene.h" />
     <ClInclude Include="Scene\SceneBase.h" />
+    <ClInclude Include="Scene\SceneChange.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="Sprite.h" />

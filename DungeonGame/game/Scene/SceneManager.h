@@ -5,6 +5,7 @@
 #include "LoadingScene.h"
 #include "GameOverScene.h"
 #include "ResultScene.h"
+#include "SceneChange.h"
 
 /*
 	シーン管理クラス
@@ -27,7 +28,7 @@ public:
 	//描画関数
 	void PostRender();
 
-	void SceneChange();
+	void SceneSwitching();
 
 	//シーン状態
 	enum SceneState {
@@ -60,5 +61,5 @@ private:
 	SceneBase*			scene;		//現在のシーンのポインタ
 	GameOverScene*		g_over;		//ゲームオーバーシーン
 	LoadingScene		loading;	//ローディング画面
-	LoadStep			load;		//現在のローディング段階
+	LoadStep			load;		//現在のローディング段階		
 };

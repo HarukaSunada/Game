@@ -30,21 +30,21 @@ void PerformWarning::Init()
 void PerformWarning::Update()
 {
 	timer += game->GetDeltaTime();	//プレイ時間カウント
-	//if (timer >= 2.6f) {
+	//if (timer > 3.0f) {
 	//	timer = 0.0f;
 	//	alpha = 1.0f;
 	//}
-	//if (timer >= 1.5f && timer<2.0f) {
-	//	alpha -= 0.06f;
+	//if (timer<1.5f) {
+	//	alpha -= 0.05f;
 	//}
-	//else if (timer >= 2.0f &&timer<2.5f) {
-	//	alpha += 0.06;
+	//else if (timer >=1.5f) {
+	//	alpha += 0.05;
 	//}
 }
 
 void PerformWarning::Draw()
 {
-	//back.SetAlpha();
+	word.SetAlpha(alpha);
 	int tmp = timer * 10;
 	if (tmp % 7 != 0) {
 		word.Draw();

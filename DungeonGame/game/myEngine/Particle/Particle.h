@@ -45,6 +45,7 @@ private:
 	bool				isFade;				//!<死ぬときにフェードアウトする？
 	float				fadeTIme;			//!<フェードの時間。
 	eState				state;				//!<状態。
+	int					alphaBlendMode;		//!<0半透明合成、1加算合成。
 
 	std::mt19937		randam;			// メルセンヌ・ツイスタの32ビット版
 };

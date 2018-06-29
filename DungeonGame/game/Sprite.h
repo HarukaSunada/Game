@@ -56,9 +56,12 @@ public:
 		m_angle = angle;
 	}
 
+	//アルファ値をセット
 	void SetAlpha(float a)
 	{
-		//m_backColor->
+		m_alpha = a;
+		int al = m_alpha * 255;
+		m_backColor = D3DCOLOR_ARGB(al, 255, 255, 255);
 	}
 
 protected:
@@ -75,6 +78,6 @@ protected:
 	RECT				m_rect;				//描画矩形
 	D3DXMATRIX			m_transformMatrix;	//変換行列
 
-	float			m_alpha = 1.0f;			//!<不透明度。
+	float				m_alpha = 1.0f;			//!<不透明度。
 };
 

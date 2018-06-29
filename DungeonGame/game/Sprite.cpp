@@ -58,9 +58,13 @@ void Sprite::SetupMatrices()
 
 void Sprite::Release()
 {
-	g_pSprite->Release();
-	g_pSprite = nullptr;
+	if (g_pSprite != nullptr) {
+		g_pSprite->Release();
+		g_pSprite = nullptr;
+	}
 
-	g_pTexture->Release();
-	g_pTexture = nullptr;
+	if (g_pTexture != nullptr) {
+		g_pTexture->Release();
+		g_pTexture = nullptr;
+	}
 }

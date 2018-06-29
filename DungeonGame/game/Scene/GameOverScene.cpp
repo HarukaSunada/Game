@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GameOverScene.h"
 #include "Scene/GameScene.h"
-
+#include "SceneChange.h"
 
 GameOverScene::GameOverScene()
 {
@@ -41,6 +41,8 @@ void GameOverScene::Init()
 
 	bgmSource.InitStreaming("Assets/sound/game_over.wav");
 	bgmSource.Play(true);
+
+	change->StartFadeIn();
 }
 
 void GameOverScene::Update()

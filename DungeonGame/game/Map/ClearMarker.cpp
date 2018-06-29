@@ -82,11 +82,12 @@ void ClearMarker::SetParticle()
 	param.intervalTime = 0.05f;
 	param.initSpeed = D3DXVECTOR3(0.0f, 3.0f, 0.0f);
 	param.emitPosition = position;
+	param.emitPosition.y -= 1.0;
 	param.initPositionRandomMargin = D3DXVECTOR3(1.2f, 0.0f, 1.2f);
 	param.initAlpha = 0.8f;
 	param.isFade = true;
 	param.fadeTime = 0.5f;
-	//UŒ‚—pƒNƒ‰ƒX‚Ì‰Šú‰»
+	param.alphaBlendMode = 1;
 
 	ParticleOpenDoor = new ParticleEmitter();
 	ParticleOpenDoor->Init(param, game->GetPManager());

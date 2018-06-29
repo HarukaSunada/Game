@@ -3,6 +3,7 @@
  */
 #include "stdafx.h"
 #include "GameScene.h"
+#include "SceneChange.h"
 
 /*!
  * @brief	コンストラクタ。
@@ -56,9 +57,6 @@ void Game::Init()
 	currentStage = en_Stage1;
 	nextStage = en_Stage2;
 
-	////マップの初期化
-	//map.Init(&enemyManager);
-
 	//マップの初期化
 	CreateStage(currentStage);
 
@@ -66,6 +64,8 @@ void Game::Init()
 	ui.Init();
 
 	state = GameRun;
+
+	change->StartFadeIn();
 }
 /*!
  * @brief	更新。
@@ -94,21 +94,31 @@ void Game::Update()
 	//ゲームオーバーの時
 	if (state == GameOver) {
 		timer += frameDeltaTime;
-		if (timer > 3.0f) {
+		if (timer >= 3.7f && !change->IsExecute()) {
 			nextStage = currentStage;
 			sceneEnd = true;
 			state = GameWait;
+		}
+		else if (timer > 3.0f) {
+			if (!change->IsExecute()) {
+				change->StartFadeOut();
+			}
 		}
 	}
 	//クリアの時
 	else if (state == GameClear) {
 		timer += frameDeltaTime;
-		if (timer > 5.0f) {
+		if (timer >= 5.7f && !change->IsExecute()) {
 			if (nextStage == en_end) {
 				sceneEnd = true;
 			}
 			else {
 				state = GameLoad;
+			}
+		}
+		else if (timer > 5.0f) {
+			if (!change->IsExecute()) {
+				change->StartFadeOut();
 			}
 		}
 	}
@@ -191,6 +201,8 @@ void Game::Reset()
 	timer = 0.0f;
 	sceneEnd = false;
 	state = GameRun;
+
+	change->StartFadeIn();
 }
 
 void Game::setClear()

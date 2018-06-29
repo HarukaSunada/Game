@@ -2,19 +2,7 @@
 #include "Particle.h"
 #include "ParticleEmitter.h"
 #include "ParticleResources.h"
-
-/*!
-*@brief	座標とUV座標
-*/
-struct SShapeVertex_PT {
-	float		pos[4];
-	float		uv[2];
-};
-static const D3DVERTEXELEMENT9 scShapeVertex_PT_Element[] = {
-	{ 0, 0 ,   D3DDECLTYPE_FLOAT4		, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_POSITION	, 0 },
-	{ 0, 16 ,  D3DDECLTYPE_FLOAT2		, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_TEXCOORD	, 0 },
-	D3DDECL_END()
-};
+#include "myEngine/SShapeVertex_PT.h"
 
 Particle::Particle() :
 	texture(nullptr),
@@ -43,6 +31,7 @@ void Particle::Init(const SParicleEmitParameter& param)
 	alpha = initAlpha;
 	isFade = param.isFade;
 	fadeTIme = param.fadeTime;
+	alphaBlendMode = param.alphaBlendMode;
 
 	state = eStateRun;
 
@@ -163,10 +152,19 @@ void Particle::Render(const D3DXMATRIX& viewMatrix, const D3DXMATRIX& projMatrix
 
 	//アルファブレンディングを有効にする。(加算合成)
 	g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-	g_pd3dDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
-	g_pd3dDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ONE);
 
-	shaderEffect->SetTechnique("ColorTexPrimAdd");
+	switch (alphaBlendMode) {
+	case 0:
+		g_pd3dDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+		g_pd3dDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+		shaderEffect->SetTechnique("ColorTexPrimTrans");
+		break;
+	case 1:
+		g_pd3dDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
+		g_pd3dDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ONE);
+		shaderEffect->SetTechnique("ColorTexPrimAdd");
+		break;
+	}
 
 	shaderEffect->Begin(NULL, D3DXFX_DONOTSAVESHADERSTATE);
 	shaderEffect->BeginPass(0);

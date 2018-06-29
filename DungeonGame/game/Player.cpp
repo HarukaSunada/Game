@@ -74,6 +74,7 @@ void Player::Init()
 	param.initAlpha = 1.0f;
 	param.isFade = true;
 	param.fadeTime = 0.3f;
+	param.alphaBlendMode = 1;
 	//攻撃用クラスの初期化
 	playerAttack.Init(param, game->GetPManager());
 
@@ -479,21 +480,26 @@ void Player::AddSP()
 
 void Player::SetItemGetParticle()
 {
+	//NULLでなければ消す
+	if (ParticleItemGet != NULL) {
+		delete ParticleItemGet;
+	}
+
 	//パラメータ
 	SParicleEmitParameter param;
-	param.texturePath = "Assets/Sprite/kirakira.png";
-	param.life = 0.5f;
-	param.w = 0.7f;
-	param.h = 0.7f;
+	param.texturePath = "Assets/Sprite/star056.png";
+	param.life = 0.3f;
+	param.w = 0.3f;
+	param.h = 0.3f;
 	param.intervalTime = 0.05f;
 	param.initSpeed = D3DXVECTOR3(0.0f, 3.0f, 0.0f);
 	param.emitPosition = characterController.GetPosition();
-	param.initPositionRandomMargin = D3DXVECTOR3(0.7f, 0.0f, 0.7f);
+	param.emitPosition.y += 0.5f;
+	param.initPositionRandomMargin = D3DXVECTOR3(0.7f, 0.5f, 0.7f);
 	param.initAlpha = 0.8f;
 	param.isFade = true;
 	param.fadeTime = 0.5f;
-	//攻撃用クラスの初期化
-	//playerAttack.Init(param, game->GetPManager());
+	param.alphaBlendMode = 1;
 
 	ParticleItemGet = new ParticleEmitter();
 	ParticleItemGet->Init(param, game->GetPManager());

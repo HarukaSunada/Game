@@ -38,6 +38,7 @@ void BossBase::Action()
 			if (timer > 3.0f) {
 				act = actFound;
 				game->GameReStart();
+				flag = false;
 			}
 		}
 	}

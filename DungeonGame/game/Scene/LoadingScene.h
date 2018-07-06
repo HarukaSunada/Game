@@ -8,15 +8,10 @@ public:
 	//‰Šú‰»
 	void Init();
 
-	//XV
-	void Update();
-
 	//•`‰æ
 	void Draw();
 
 private:
 	Sprite			sprite;
-	//Sprite			indicator;
-	//float			angle;			//‰ñ“]î•ñ
 };
 

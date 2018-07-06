@@ -18,7 +18,7 @@ void BossAttack::Init(const SParicleEmitParameter& param, ParticleManager* pm,Bo
 	this->param.alphaBlendMode = 1;
 	timer = 0.0f;
 	bulletCount = 0;
-	isCreate = true;
+	isCreate = false;
 	PManager = pm;
 	bossType = type;
 	timer = param.intervalTime;
@@ -39,13 +39,6 @@ void BossAttack::Init(const SParicleEmitParameter& param, ParticleManager* pm,Bo
 
 void BossAttack::Update()
 {
-	Player* player = game->GetPlayer();
-
-	for (auto p : bulletList) {
-		if (player->GetStatus().HP > 0 && player->Length(p->GetPosition())< 0.8f) {
-			player->Damage(1);
-		}
-	}
 	//remove-eraseイディオム。
 	auto delIt = remove_if(
 		bulletList.begin(),
@@ -56,10 +49,18 @@ void BossAttack::Update()
 	);
 	bulletList.erase(delIt, bulletList.end());
 
+	Player* player = game->GetPlayer();
+
+	for (auto p : bulletList) {
+		if (player->GetStatus().HP > 0 && player->Length(p->GetPosition())< 0.75f) {
+			player->Damage(1);
+		}
+	}
+
 	timer += 1.0f / 60.0f;
 
 	//弾生成
-	if (isCreate && (bossType ==1 || bossType ==4 || timer >= param.intervalTime)) {
+	if (isCreate && (bossType == first || bossType == flower || bossType == moll && timer >= param.intervalTime)) {
 		Create();
 		bulletCount++;
 	}

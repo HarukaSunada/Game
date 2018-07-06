@@ -50,6 +50,10 @@ public:
 	//HPを増やす
 	bool AddHP(int hp);
 
+	//スキル使用回数を増やす
+	bool AddSkilPower(int sp);
+
+
 	//鍵獲得
 	void GetKey();
 
@@ -68,7 +72,10 @@ public:
 	void Reset(bool isReStart);
 
 	//アイテム取得時エフェクトの準備
-	void SetItemGetParticle();
+	void SetItemGetParticle(int type);
+
+	//移動時エフェクトの準備
+	void SetMoveParticle();
 
 	//位置を取得
 	D3DXVECTOR3 GetPosition()
@@ -139,4 +146,5 @@ private:
 	int					SP = 0;
 
 	ParticleEmitter*	ParticleItemGet;		//アイテムゲット時のパーティクル
+	ParticleEmitter*	MoveParticle;			//移動時のパーティクル
 };

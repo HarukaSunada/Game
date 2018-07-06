@@ -19,6 +19,8 @@ public:
 	//É_ÉÅÅ[ÉW
 	void Damage(int dm, D3DXVECTOR3 position) override;
 
+	void SetParticle() override;
+
 protected:
 	bool		flag;
 	BossAttack bossAttack;

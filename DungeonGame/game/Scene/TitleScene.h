@@ -21,9 +21,19 @@ public:
 
 private:
 	Sprite			back;
+	Sprite			start;
 
 	CSoundSource		bgmSource;
 	CSoundSource*		se;
 	Pad					pad;
+
+	float timer = 0.0f;
+	bool	isDecision = false;
+
+	float alpha = 0.0f;
+
+	//SkinModel		model;			//モデル
+	//SkinModelData	modelData;		//モデルデータ
+	//Animation			animation;				//アニメーション
 };
 

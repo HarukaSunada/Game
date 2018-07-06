@@ -19,11 +19,13 @@ public:
 	void SetBoss(BossBase* b)
 	{
 		boss = b;
+		num = b->GetStatus().HP;
 	}
 
 private:
-	Sprite			backHeart[3];
-	Sprite			heart[3];
+	Sprite			backHeart[5];
+	Sprite			heart[5];
 	BossBase*		boss;
+	int	num;
 };
 

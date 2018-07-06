@@ -21,10 +21,6 @@ void PlayerAttack::Init(const SParicleEmitParameter& param, ParticleManager* pm)
 
 void PlayerAttack::Update()
 {
-	for (auto p : bulletList) {
-		//敵とのあたり判定;
-		game->GetEnemyManager()->Damage(1, p->GetPosition());
-	}
 	//remove-eraseイディオム。
 	auto delIt = remove_if(
 		bulletList.begin(),
@@ -34,6 +30,25 @@ void PlayerAttack::Update()
 	}
 	);
 	bulletList.erase(delIt, bulletList.end());
+
+	//remove-eraseイディオム。
+	auto delIt2 = remove_if(
+		bulletList2.begin(),
+		bulletList2.end(),
+		[](Particle* p)->bool {
+		return p->GetIsDead();
+	}
+	);
+	bulletList2.erase(delIt2, bulletList2.end());
+
+	for (auto p : bulletList) {
+		//敵とのあたり判定;
+		game->GetEnemyManager()->Damage(1, p->GetPosition());
+	}
+	for (auto p : bulletList2) {
+		//敵とのあたり判定;
+		game->GetEnemyManager()->Damage(2, p->GetPosition());
+	}
 
 	//弾生成
 	if (isCreate && timer >= param.intervalTime) {
@@ -66,6 +81,7 @@ void PlayerAttack::Create()
 	Particle* p = new Particle;
 	if (bulletType == 1) {
 		p->Init(param);
+		bulletList.push_back(p);
 	}
 	else if (bulletType == 2) {
 		p->Init(SPParam);
@@ -74,9 +90,9 @@ void PlayerAttack::Create()
 		Particle* p2 = new Particle;
 		p2->Init(SPParam);
 		PManager->EntryParticle(p2);
-		bulletList.push_back(p2);
+		bulletList2.push_back(p);
+		bulletList2.push_back(p2);
 	}
 	timer = 0.0f;
 	PManager->EntryParticle(p);
-	bulletList.push_back(p);
 }

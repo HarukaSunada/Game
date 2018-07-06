@@ -3,6 +3,7 @@
 #include "MapChip.h"
 #include "Item/Recovery.h"
 #include "Item/KeyItem.h"
+#include "Item/PowerCharge.h"
 
 static SMapChipLocInfo Stage1[] = {
 #include "stage1.h"
@@ -51,6 +52,7 @@ void Map::Create(EnemyManager* en, int stageNum)
 		numObject = sizeof(StageEX) / sizeof(StageEX[0]);
 		sky->Init(3);
 	}
+	//sky->Init(stageNum);
 
 	//オブジェクトを一個ずつロード
 	for (int i = 0; i < numObject; i++) {
@@ -88,6 +90,13 @@ void Map::Create(EnemyManager* en, int stageNum)
 		else if (strcmp("Key", mapChipInfo[i].modelName) == 0) {
 			//KeyItemのインスタンスを動的に生成
 			KeyItem* mapChip = new KeyItem;
+			mapChip->Init(mapChipInfo[i].position);
+			//動的配列にプッシュ
+			ItemList.push_back(mapChip);
+		}
+		else if (strcmp("diamond", mapChipInfo[i].modelName) == 0) {
+			//PowerChargeのインスタンスを動的に生成
+			PowerCharge* mapChip = new PowerCharge;
 			mapChip->Init(mapChipInfo[i].position);
 			//動的配列にプッシュ
 			ItemList.push_back(mapChip);

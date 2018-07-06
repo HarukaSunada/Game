@@ -47,6 +47,13 @@ void GameOverScene::Init()
 
 void GameOverScene::Update()
 {
+	if (isDecision) {
+		timer += frameDeltaTime;
+		if (timer >= 0.5) {
+			sceneEnd = true;
+		}
+		return;
+	}
 	bgmSource.Update();
 	pad.Update();
 	//Pad* pad = game->GetPad();
@@ -75,10 +82,12 @@ void GameOverScene::Update()
 
 	if (pad.IsTrigger(Pad::enButtonA))
 	{
-		sceneEnd = true;
+		isDecision = true;
 		se = new CSoundSource;
 		se->Init("Assets/sound/se/decision2.wav");
 		se->Play(false);
+
+		change->StartFadeOut();
 	}
 }
 

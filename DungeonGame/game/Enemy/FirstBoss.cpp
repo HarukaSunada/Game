@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "FirstBoss.h"
 #include "Scene/GameScene.h"
-#define SPEED 5.0f
+#define SPEED 4.0f
 
 FirstBoss::FirstBoss()
 {
@@ -29,12 +29,15 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 
 	//Enemy::Init(locInfo);
 
-	modelData.CloneModelData(*g_modelManager->LoadModelData(locInfo.modelName), NULL);
+	modelData.CloneModelData(*g_modelManager->LoadModelData("lesser"), &animation);
 
 	//モデルの初期化
 	model.Init(&modelData);
 	model.SetLight(game->GetLight());	//ライトの設定
 	model.SetShadowCasterFlag(true);
+
+	//アニメーションの設定
+	animation.PlayAnimation(animStand);
 
 	anim = animStand;
 	act = actWait;
@@ -49,8 +52,9 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 	characterController.SetGravity(-20.0f);		//重力設定
 
 	rotation = locInfo.rotation;
-	SetRotationY(180.0f);
+	SetRotationY(0.0f);
 
+	scale = D3DXVECTOR3(0.3f, 0.3f, 0.3f);
 	model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(1.0f, 1.0f, 1.0f));
 
 	//パラメータ
@@ -75,38 +79,52 @@ void FirstBoss::Init(SMapChipLocInfo& locInfo)
 
 void FirstBoss::Action()
 {
+	//前のモーション
+	int prevAnim = anim;
+
 	BossBase::Action();
 
 	if (act == actFound || act == actDamage) {
+		if (prevAnim == 0) {
+			//アニメーションの設定
+			animation.PlayAnimation(1);
+			anim = 1;
+		}
+
 		//最初の位置から移動した量
 		D3DXVECTOR3 movePos = characterController.GetPosition() - firstPos;
 		if (moveDir.z == -1.0 && movePos.z <-3.0f) {
 			moveDir = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
-			SetRotationY(270.0f);
+			SetRotationY(90.0f);
 		}
 		else if (moveDir.x == 1.0 && movePos.x > 3.0f) {
 			moveDir = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
-			SetRotationY(180.0f);
+			SetRotationY(0.0f);
 		}
 		else if (moveDir.z == 1.0 && movePos.z > 3.0f) {
 			moveDir = D3DXVECTOR3(-1.0f, 0.0f, 0.0f);
-			SetRotationY(90.0f);
+			SetRotationY(270.0f);
 		}
 		else if (moveDir.x == -1.0 && movePos.x < -3.0f) {
 			moveDir = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
-			SetRotationY(0.0f);
+			SetRotationY(180.0f);
 		}
 
 		characterController.SetMoveSpeed(moveDir*SPEED);
 
 		D3DXVECTOR3 pos = characterController.GetPosition();
 		pos.y += 0.7f;
+		D3DXVECTOR3 temp = moveDir;
+		//temp *= -1.0;
+		pos.x += temp.x*0.7f;
+		pos.z += temp.z*0.7f;
+
 		bossAttack.SetPosition(pos);
-		if (attackTimer > 0.8f) {
+		if (attackTimer > 1.0f) {
 			bossAttack.SetBullet();
 			attackTimer = 0.0f;
 		}
-		bossAttack.Update();
 		attackTimer += game->GetDeltaTime();
 	}
+	bossAttack.Update();
 }

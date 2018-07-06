@@ -20,8 +20,8 @@ LastBoss::~LastBoss()
 void LastBoss::Init(SMapChipLocInfo& locInfo)
 {
 	//ステータス初期化
-	state.HP = 3;
-	state.score = 600;
+	state.HP = 5;
+	state.score = 1000;
 
 	damageLength = 3.5f;
 	offset_y = 1.0f;
@@ -65,6 +65,8 @@ void LastBoss::Init(SMapChipLocInfo& locInfo)
 
 	std::random_device rnd;     // 非決定的な乱数生成器
 	mt.seed(rnd());            // シード指定
+
+	isNoDamage = false;
 }
 
 
@@ -165,7 +167,7 @@ void LastBoss::ActMove()
 		phase = phase_up;
 		anim = animUp;
 
-		isNoDamage = false;
+		//isNoDamage = false;
 
 		delete ParticleUp;
 		ParticleUp = NULL;
@@ -212,6 +214,7 @@ void LastBoss::ActUp() {
 		bossAttack.SetBullet();
 		attackTimer = 0.0f;
 		flag = true;
+		isNoDamage = false;
 	}
 	attackTimer += game->GetDeltaTime();
 
@@ -234,7 +237,7 @@ void LastBoss::ActDown() {
 		//動きを移行
 		phase = phase_move;
 		anim = animWait;
-		//isNoDamage = true;
+		isNoDamage = true;
 
 		moveTimer = 0.0f;
 	}

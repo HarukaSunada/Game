@@ -168,6 +168,7 @@
     <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="Item\ItemBase.cpp" />
     <ClCompile Include="Item\KeyItem.cpp" />
+    <ClCompile Include="Item\PowerCharge.cpp" />
     <ClCompile Include="Item\Recovery.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map\ClearMarker.cpp" />
@@ -246,6 +247,7 @@
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="Item\ItemBase.h" />
     <ClInclude Include="Item\KeyItem.h" />
+    <ClInclude Include="Item\PowerCharge.h" />
     <ClInclude Include="Item\Recovery.h" />
     <ClInclude Include="Map\ClearMarker.h" />
     <ClInclude Include="Map\LockedDoor.h" />

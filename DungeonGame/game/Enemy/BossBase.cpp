@@ -55,9 +55,32 @@ void BossBase::Damage(int dm, D3DXVECTOR3 pos)
 {
 	if (isDead || isDamage || isNoDamage) { return; }
 
-	Enemy::Damage(dm, pos);
+	Enemy::Damage(1, pos);
 
 	if (state.HP <= 0) {
 		game->GetMap()->CreateKey(characterController.GetPosition());
 	}
+}
+
+void BossBase::SetParticle()
+{
+	//ƒpƒ‰ƒ[ƒ^
+	SParicleEmitParameter param;
+	param.texturePath = "Assets/Sprite/star.png";
+	param.life = 0.3f;
+	param.w = 0.5f;
+	param.h = 0.5f;
+	param.intervalTime = 0.01f;
+	param.initSpeed = D3DXVECTOR3(0.0f, 5.0f, 0.0f);
+	param.emitPosition = characterController.GetPosition();
+	param.initPositionRandomMargin = D3DXVECTOR3(1.5f, 0.0f, 1.5f);
+	param.initAlpha = 0.5f;
+	param.isFade = true;
+	param.fadeTime = 0.5f;
+	param.alphaBlendMode = 1;
+
+	particleDeath = new ParticleEmitter();
+	particleDeath->Init(param, game->GetPManager());
+
+	particleTimer = 0.0f;
 }

@@ -25,6 +25,15 @@ sampler_state
     MagFilter = LINEAR;
 };
 
+texture g_fadetex;
+sampler fadeTexture =
+sampler_state
+{
+	Texture = <g_fadetex>;
+	MipFilter = NONE;
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+};
 
 VS_OUTPUT VSMain( VS_INPUT In )
 {
@@ -36,6 +45,7 @@ VS_OUTPUT VSMain( VS_INPUT In )
 float4 PSMain( VS_OUTPUT In ) : COLOR0
 {
 	float4 color = tex2D( TextureSampler, In.uv );
+	float4 fadeColor = tex2D(fadeTexture, In.uv);
 	
 	float4 c;
 	float fadeSize;
@@ -43,7 +53,16 @@ float4 PSMain( VS_OUTPUT In ) : COLOR0
 	//横切れ込みフェード
 	fadeSize = 80.0; //フェードの大きさ
 	visible = 1.0 - floor(frac(In.uv.x / (fadeSize / g_screenParams.x)) + g_FadeRate);
-	c = float4(color.rgb * visible, 1.0);
+	//c = float4(color.rgb * visible, 1.0);
+
+	if (visible == 0.0) {
+		//c = 1.0;
+		c= float4(fadeColor.rgb, 1.0);
+	}
+	else {
+		c= float4(color.rgb, 1.0);
+	}
+
 	return c;
 }
 

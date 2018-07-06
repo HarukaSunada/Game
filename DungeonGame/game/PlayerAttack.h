@@ -49,6 +49,7 @@ public:
 		}
 	private:
 		std::list<Particle*>	bulletList;		//UŒ‚‚Ì’e‚ÌƒŠƒXƒg
+		std::list<Particle*>	bulletList2;		//•KEUŒ‚‚Ì’e‚ÌƒŠƒXƒg
 		int						bulletCount;
 		const int				MaxBulletNum = 3;
 		const int				MaxBulletNumSP = 6;

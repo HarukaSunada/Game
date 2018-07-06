@@ -18,8 +18,12 @@ ClearMarker::~ClearMarker()
 
 void ClearMarker::Init(D3DXVECTOR3 pos)
 {
-
-	modelData.CloneModelData(*g_modelManager->LoadModelData("close"), NULL);
+	if (game->GetStage() == en_Stage1 || game->GetStage() == en_Stage2) {
+		modelData.CloneModelData(*g_modelManager->LoadModelData("close"), NULL);
+	}
+	else {
+		modelData.CloneModelData(*g_modelManager->LoadModelData("close2"), NULL);
+	}
 	//モデルデータでSkinModel初期化
 	model.Init(&modelData);
 
@@ -39,8 +43,8 @@ void ClearMarker::Update()
 		ParticleOpenDoor->Update();
 
 		particleTimer += game->GetDeltaTime();
-		//発生から3秒経った
-		if (particleTimer > 3.0f) {
+		//発生から5秒経った
+		if (particleTimer > 5.0f) {
 			delete ParticleOpenDoor;
 			ParticleOpenDoor = NULL;
 		}

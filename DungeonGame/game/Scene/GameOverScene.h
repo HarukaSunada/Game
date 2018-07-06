@@ -41,5 +41,8 @@ private:
 	Pad					pad;
 	CSoundSource		bgmSource;
 	CSoundSource*		se;
+
+	float timer = 0.0f;
+	bool	isDecision=false;
 };
 

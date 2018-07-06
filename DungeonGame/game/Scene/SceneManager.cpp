@@ -16,6 +16,8 @@ SceneManager::~SceneManager()
 
 void SceneManager::Start()
 {
+	change = new SceneChange();
+
 	//タイトルシーン生成
 	state = stateTitel;
 	scene = new TitleScene();
@@ -23,8 +25,6 @@ void SceneManager::Start()
 
 	loading.Init();
 	load = Wait;
-
-	change = new SceneChange();
 }
 
 void SceneManager::Update()
@@ -39,6 +39,10 @@ void SceneManager::Update()
 	{
 	//タイトルシーン
 	case stateTitel:
+	//リザルト
+	case stateResult:
+	//ゲームオーバー
+	case stateGameOver:
 		if (load == LoadEnd) {
 			load = Wait;
 		}
@@ -48,7 +52,6 @@ void SceneManager::Update()
 		else if (scene->isSceneEnd()) {
 			load = LoadStart;
 		}
-
 		break;
 	//ゲームシーン
 	case stateGame:
@@ -69,33 +72,32 @@ void SceneManager::Update()
 		}
 		break;
 
-	//リザルト
-	case stateResult:
-		if (load == LoadEnd) {
-			load = Wait;
-		}
-		else if (load == LoadStart) {
-			SceneSwitching();
-		}
-		//仮
-		else if (pad.IsTrigger(Pad::enButtonStart)) {
-			load = LoadStart;
-		}
-		break;
+	////リザルト
+	//case stateResult:
+	//	if (load == LoadEnd) {
+	//		load = Wait;
+	//	}
+	//	else if (load == LoadStart) {
+	//		SceneSwitching();
+	//	}
+	//	//仮
+	//	else if (scene->isSceneEnd()) {
+	//		load = LoadStart;
+	//	}
+	//	break;
 
-	//ゲームオーバー
-	case stateGameOver:
-		if (load == LoadEnd) {
-			load = Wait;
-		}
-		else if (load == LoadStart) {
-			SceneSwitching();
-		}
-		//仮
-		else if (scene->isSceneEnd()) {
-			load = LoadStart;
-		}
-		break;
+	////ゲームオーバー
+	//case stateGameOver:
+	//	if (load == LoadEnd) {
+	//		load = Wait;
+	//	}
+	//	else if (load == LoadStart) {
+	//		SceneSwitching();
+	//	}
+	//	else if (scene->isSceneEnd()) {
+	//		load = LoadStart;
+	//	}
+	//	break;
 	}
 	change->Update();
 }
@@ -111,18 +113,19 @@ void SceneManager::Render()
 
 void SceneManager::PostRender()
 {
-	if (state == stateGame && game->GetState() == Game::GameLoad)
-	{
-		loading.Draw();
-		change->Render();
-		return;
-	}
+	//if (state == stateGame && game->GetState() == Game::GameLoad)
+	//{
+	//	change->Render();
+	//	loading.Draw();
+	//	return;
+	//}
 
-	if (load != Wait) {
-		loading.Draw();
-		change->Render();
-		return;
-	}
+	//if (load != Wait) {
+	//	change->Render();
+	//	loading.Draw();
+	//	return;
+	//}
+
 	//シーンの描画
 	scene->PostRender();
 
@@ -167,10 +170,6 @@ void SceneManager::SceneSwitching()
 			scene = g_over;
 		}
 
-		//game->Release();
-		//delete game;
-		//game = NULL;
-
 		scene->Init();
 
 		break;
@@ -202,7 +201,6 @@ void SceneManager::SceneSwitching()
 		else{
 			//ゲームシーンへ切り替え
 			state = stateGame;
-			//game = new Game();
 			game->Reset();
 			scene = game;
 		}

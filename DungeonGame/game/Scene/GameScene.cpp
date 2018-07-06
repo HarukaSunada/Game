@@ -94,7 +94,7 @@ void Game::Update()
 	//ゲームオーバーの時
 	if (state == GameOver) {
 		timer += frameDeltaTime;
-		if (timer >= 3.7f && !change->IsExecute()) {
+		if (timer >= 3.5f && !change->IsExecute()) {
 			nextStage = currentStage;
 			sceneEnd = true;
 			state = GameWait;
@@ -108,7 +108,7 @@ void Game::Update()
 	//クリアの時
 	else if (state == GameClear) {
 		timer += frameDeltaTime;
-		if (timer >= 5.7f && !change->IsExecute()) {
+		if (timer >= 5.5f && !change->IsExecute()) {
 			if (nextStage == en_end) {
 				sceneEnd = true;
 			}

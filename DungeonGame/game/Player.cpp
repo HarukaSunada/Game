@@ -9,6 +9,7 @@ Player::Player()
 {
 	rotation = D3DXQUATERNION(0.0f, 0.0f, 0.0f, 1.0f);
 	ParticleItemGet = NULL;
+	MoveParticle = NULL;
 }
 
 
@@ -19,6 +20,9 @@ Player::~Player()
 	}
 	if (ParticleItemGet != NULL) {
 		delete ParticleItemGet;
+	}
+	if (MoveParticle != NULL) {
+		delete MoveParticle;
 	}
 }
 
@@ -100,6 +104,11 @@ void Player::Update()
 		}
 	}
 
+	if (MoveParticle != NULL) {
+		MoveParticle->SetPosition(characterController.GetPosition());
+		MoveParticle->Update();
+	}
+
 	Action();
 	
 	//無敵状態
@@ -158,6 +167,11 @@ void Player::Action()
 		//パッド入力無し
 		if ((pad_x == 0.0f) && (pad_y == 0.0f)) {
 
+			if (MoveParticle != NULL) {
+				delete MoveParticle;
+				MoveParticle = NULL;
+			}
+
 			anim = animStand;
 
 			if (fMoveSpeed > MoveSpeedMin) {
@@ -167,6 +181,11 @@ void Player::Action()
 		}
 		//パッド入力有り
 		else {
+			if (MoveParticle == NULL) {
+				//パーティクルエミッタ準備
+				SetMoveParticle();
+			}
+
 			dir.x = cameraX.x * pad_x + cameraZ.x * pad_y;
 			dir.y = 0.0f;	//Y方向は不要
 			dir.z = cameraX.z * pad_x + cameraZ.z * pad_y;
@@ -256,6 +275,11 @@ void Player::Action()
 
 				D3DXVECTOR3 speed = direction*8.0f;
 
+				D3DXVECTOR3 temp = moveSpeed;
+				temp.y = 0;
+
+				speed += temp;
+
 				playerAttack.SetSP(speed, pos, pos2);
 
 				if (attackTimer > 1.5f)
@@ -279,6 +303,11 @@ void Player::Action()
 				playerAttack.SetPosition(pos);
 
 				D3DXVECTOR3 speed = direction*4.5f;
+
+				D3DXVECTOR3 temp = moveSpeed;
+				temp.y = 0;
+
+				speed += temp;
 				playerAttack.SetSpeed(speed);
 
 				if (attackTimer > 0.75f)
@@ -378,7 +407,26 @@ bool Player::AddHP(int hp)
 	sound->Init("Assets/sound/se/healing.wav");
 	sound->Play(false);
 
-	SetItemGetParticle();
+	SetItemGetParticle(0);
+
+	return true;
+}
+
+bool Player::AddSkilPower(int sp)
+{
+	if (Skill >= 3) { return false; }
+
+	Skill += sp;
+
+	if (Skill > 3) {
+		Skill = 3;
+	}
+
+	CSoundSource* sound = new CSoundSource();
+	sound->Init("Assets/sound/se/healing.wav");
+	sound->Play(false);
+
+	SetItemGetParticle(1);
 
 	return true;
 }
@@ -478,7 +526,7 @@ void Player::AddSP()
 	}
 }
 
-void Player::SetItemGetParticle()
+void Player::SetItemGetParticle(int type)
 {
 	//NULLでなければ消す
 	if (ParticleItemGet != NULL) {
@@ -487,7 +535,12 @@ void Player::SetItemGetParticle()
 
 	//パラメータ
 	SParicleEmitParameter param;
-	param.texturePath = "Assets/Sprite/star056.png";
+	if (type == 0) {
+		param.texturePath = "Assets/Sprite/star056.png";
+	}
+	else {
+		param.texturePath = "Assets/Sprite/star073.png";
+	}
 	param.life = 0.3f;
 	param.w = 0.3f;
 	param.h = 0.3f;
@@ -505,4 +558,31 @@ void Player::SetItemGetParticle()
 	ParticleItemGet->Init(param, game->GetPManager());
 
 	particleTimer = 0.0f;
+}
+
+void Player::SetMoveParticle()
+{
+	//NULLでなければ消す
+	if (MoveParticle != NULL) {
+		delete MoveParticle;
+	}
+
+	//パラメータ
+	SParicleEmitParameter param;
+	param.texturePath = "Assets/Sprite/star046.png";
+
+	param.life = 0.3f;
+	param.w = 0.5f;
+	param.h = 0.5f;
+	param.intervalTime = 0.05f;
+	param.initSpeed = D3DXVECTOR3(0.0f, 1.5f, 0.0f);
+	param.emitPosition = characterController.GetPosition();
+	param.initPositionRandomMargin = D3DXVECTOR3(0.5f, 0.0f, 0.5f);
+	param.initAlpha = 0.3f;
+	param.isFade = true;
+	param.fadeTime = 0.7f;
+	param.alphaBlendMode = 1;
+
+	MoveParticle = new ParticleEmitter();
+	MoveParticle->Init(param, game->GetPManager());
 }

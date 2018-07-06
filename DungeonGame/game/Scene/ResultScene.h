@@ -31,12 +31,16 @@ public:
 	}
 private:
 	Sprite			back;
-	bool			sceneEnd = false;
 	int				totalScore = 0;
 	int				stageScore[4];
 
-	Sprite			sp;
-	Sprite			stg[4];
+	//Sprite			sp;
+	Sprite			stg[5];
 	CSoundSource	bgmSource;
 	ScoreDisplay	scoDisplay[5];
+
+	Pad					pad;
+
+	float timer = 0.0f;
+	bool	isDecision = false;
 };

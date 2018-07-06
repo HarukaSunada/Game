@@ -6,6 +6,7 @@
 Enemy::Enemy()
 {
 	rotation = D3DXQUATERNION(0.0f, 0.0f, 0.0f, 1.0f);
+	scale = D3DXVECTOR3(1.0f, 1.0f, 1.0f);
 	particleDeath = NULL;
 }
 
@@ -32,12 +33,12 @@ void Enemy::Init(SMapChipLocInfo& locInfo)
 	act = actWait;
 
 	//キャラクタコントローラを初期化。
-	characterController.Init(0.3f, 1.0f, locInfo.position);
+	characterController.Init(0.5f, 1.0f, locInfo.position);
 	characterController.SetGravity(-20.0f);		//重力設定
 
 	rotation = locInfo.rotation;
 
-	model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(1.0f, 1.0f, 1.0f));
+	model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(scale));
 }
 
 void Enemy::Update()
@@ -91,7 +92,7 @@ void Enemy::Update()
 	characterController.Execute();
 
 	animation.Update(1.0f / 60.0f);
-	model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(1.0f, 1.0f, 1.0f));
+	model.Update(characterController.GetPosition(), rotation, scale);
 }
 
 void Enemy::Damage(int dm,D3DXVECTOR3 pos)

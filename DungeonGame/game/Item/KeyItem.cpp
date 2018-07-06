@@ -59,7 +59,7 @@ void KeyItem::Update()
 {
 	if (isGet) { return; }
 
-	//やられエフェクト
+	//エフェクト
 	if (particleKey != NULL) {
 		particleKey->Update();
 	}

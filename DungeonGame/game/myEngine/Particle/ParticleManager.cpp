@@ -22,9 +22,6 @@ void ParticleManager::EntryParticle(Particle* p)
 
 void ParticleManager::Update()
 {
-	for (auto p : particleList) {
-		p->Update();
-	}
 	//remove-eraseイディオム。
 	auto delIt = remove_if(
 		particleList.begin(),
@@ -39,6 +36,10 @@ void ParticleManager::Update()
 	}
 	);
 	particleList.erase(delIt, particleList.end());
+
+	for (auto p : particleList) {
+		p->Update();
+	}
 }
 void ParticleManager::Render(const D3DXMATRIX& viewMatrix, const D3DXMATRIX& projMatrix)
 {

@@ -42,12 +42,14 @@ private:
 		eFadeIn,	//フェードイン
 	};
 
-	const float		FADE_TIME	= 0.7f;			//フェード時間
+	const float		FADE_TIME	= 0.5f;			//フェード時間
 	float			timer		= 0.0f;			//フェードタイマー
 	float			rate		= 0.0f;
 	LPD3DXEFFECT	effect;						//ポストエフェクト
 	EnState			m_state		= eFadeIn;		//状態
 	bool			m_isExecute = false;		//フェード実行中か
+
+	LPDIRECT3DTEXTURE9	texture;			//フェード時のテクスチャ。
 };
 
 extern SceneChange* change;

@@ -105,6 +105,7 @@ protected:
 	SkinModelData		modelData;			//モデルデータ
 	Animation			animation;			//アニメーション
 	D3DXQUATERNION		rotation;			//回転
+	D3DXVECTOR3			scale;
 	CharacterController characterController;//キャラクタコントローラ
 
 	CSoundSource*		se;					//サウンド

@@ -10,6 +10,12 @@
 	D3DXVECTOR3(-0.76f, -0.01f, 1.69f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },
+//test
+{
+	"diamond",
+	D3DXVECTOR3(-0.76f, -0.01f, 1.69f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f),  //回転
+},
 //Floor-Wood-Model-02
 {
 	"Floor-Wood-Model-02",
@@ -1699,7 +1705,7 @@
 //penguin
 {
 	"penguin",
-	D3DXVECTOR3(21.70f, -0.99f, -177.20f),             //平行移動
+	D3DXVECTOR3(21.70f, -1.90f, -177.20f),             //平行移動
 	D3DXQUATERNION(0.00f, -0.71f, 0.00f, 0.71f ),  //回転
 },
 //Floor-Wood-Model-02

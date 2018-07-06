@@ -6,6 +6,7 @@ SceneChange::SceneChange()
 {
 	//シーンチェンジのシェーダーをロード
 	effect = g_effectManager->LoadEffect("Assets/Shader/SceneChange.fx");
+	D3DXCreateTextureFromFileA(g_pd3dDevice, "Assets/Sprite/loading_old.png", &texture);
 	m_isExecute = false;
 }
 
@@ -28,6 +29,9 @@ void SceneChange::Render()
 	effect->BeginPass(0);
 	//シーンテクスチャを設定する
 	effect->SetTexture("g_tex", mainRenderTarget->GetTexture());
+
+	//シーンテクスチャを設定する
+	effect->SetTexture("g_fadetex", texture);
 
 	//縦横サイズ
 	D3DXVECTOR2 screenParams = D3DXVECTOR2(mainRenderTarget->GetWidth(), mainRenderTarget->GetHeight());

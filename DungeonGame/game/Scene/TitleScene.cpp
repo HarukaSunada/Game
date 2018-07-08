@@ -20,7 +20,7 @@ void TitleScene::Init()
 
 	//テクスチャ読み込み
 	start.SetFileName("Assets/Sprite/gamestart.png");
-	start.SetPosition(D3DXVECTOR2(600, 600));
+	start.SetPosition(D3DXVECTOR2(600, 620));
 	start.Init();
 
 	bgmSource.InitStreaming("Assets/sound/title.wav");

@@ -15,7 +15,7 @@ HPGauge::~HPGauge()
 
 void HPGauge::Init()
 {
-	float posY = 620.0f;
+	float posY = 650.0f;
 
 	//ƒoƒbƒN‚Ì‰Šú‰»
 	for (int i = 0; i < 3; i++) {

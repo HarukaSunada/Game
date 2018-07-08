@@ -48,7 +48,7 @@ void UserInterface::Init()
 
 	//Œ®ƒAƒCƒRƒ“
 	keyIcon.SetFileName("Assets/Sprite/keyIcon.png");
-	keyIcon.SetPosition(D3DXVECTOR2(640, 620));
+	keyIcon.SetPosition(D3DXVECTOR2(670, 620));
 	keyIcon.SetScale(D3DXVECTOR2(0.4f, 0.4f));
 	keyIcon.Init();
 

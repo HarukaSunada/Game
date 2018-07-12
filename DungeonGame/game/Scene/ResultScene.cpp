@@ -30,7 +30,7 @@ void ResultScene::Init()
 		scoDisplay[i].SetScore(stageScore[i]);
 	}
 
-	scoDisplay[3].Init(D3DXVECTOR2(810.0f, 500.0f), Type, D3DXVECTOR2(0.9f, 0.9f), 60);
+	scoDisplay[3].Init(D3DXVECTOR2(840.0f, 500.0f), Type, D3DXVECTOR2(0.9f, 0.9f), 60);
 	scoDisplay[3].SetScore(totalScore);
 
 	stg[0].SetFileName("Assets/sprite/result/result_stage1.png");
@@ -43,12 +43,12 @@ void ResultScene::Init()
 		stg[i].SetScale(D3DXVECTOR2(0.7f, 0.7f));
 		stg[i].Init();
 	}
-	stg[2].SetPosition(D3DXVECTOR2(580.0f, 350.0f));
+	stg[2].SetPosition(D3DXVECTOR2(585.0f, 350.0f));
 	stg[2].SetScale(D3DXVECTOR2(0.7f, 0.7f));
 	stg[2].Init();
 
 	stg[3].SetFileName("Assets/sprite/result/score_total.png");
-	stg[3].SetPosition(D3DXVECTOR2(620.0f, 500.0f));
+	stg[3].SetPosition(D3DXVECTOR2(570.0f, 500.0f));
 	stg[2].SetScale(D3DXVECTOR2(0.9f, 0.9f));
 	stg[3].Init();
 

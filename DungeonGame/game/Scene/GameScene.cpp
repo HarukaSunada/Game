@@ -63,9 +63,11 @@ void Game::Init()
 	//UIの初期化
 	ui.Init();
 
-	state = GameRun;
+	//state = GameRun;
 
-	change->StartFadeIn();
+	//change->StartFadeIn();
+
+	state = GameFade;
 }
 /*!
  * @brief	更新。
@@ -91,8 +93,13 @@ void Game::Update()
 		Jingle->Init("Assets/sound/se/missed.wav");
 		Jingle->Play(false);
 	}
+	if (state == GameFade) {
+		state = GameRun;
+
+		change->StartFadeIn();
+	}
 	//ゲームオーバーの時
-	if (state == GameOver) {
+	else if (state == GameOver) {
 		timer += frameDeltaTime;
 		if (timer >= 3.5f && !change->IsExecute()) {
 			nextStage = currentStage;
@@ -202,7 +209,8 @@ void Game::Reset()
 	sceneEnd = false;
 	state = GameRun;
 
-	change->StartFadeIn();
+	//change->StartFadeIn();
+	state = GameFade;
 }
 
 void Game::setClear()

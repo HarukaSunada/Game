@@ -34,6 +34,7 @@ public:
 		GameClear,	//クリア
 		GameStop,	//中断
 		GameLoad,	//ロード中
+		GameFade,	//フェード中
 	};
 	/*!
 	 * @brief	コンストラクタ。

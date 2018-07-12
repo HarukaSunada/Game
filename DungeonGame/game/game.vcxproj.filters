@@ -276,6 +276,9 @@
     <ClCompile Include="Item\PowerCharge.cpp">
       <Filter>ソース ファイル\Item</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy\ThirdBoss.cpp">
+      <Filter>ソース ファイル\Enemy\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -505,6 +508,9 @@
     </ClInclude>
     <ClInclude Include="Scene\SceneChange.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\ThirdBoss.h">
+      <Filter>ソース ファイル\Enemy\Boss</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -163,6 +163,7 @@
     <ClCompile Include="Enemy\SecondBoss.cpp" />
     <ClCompile Include="Enemy\sheep.cpp" />
     <ClCompile Include="Enemy\Skelton.cpp" />
+    <ClCompile Include="Enemy\ThirdBoss.cpp" />
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
@@ -242,6 +243,7 @@
     <ClInclude Include="Enemy\SecondBoss.h" />
     <ClInclude Include="Enemy\sheep.h" />
     <ClInclude Include="Enemy\Skelton.h" />
+    <ClInclude Include="Enemy\ThirdBoss.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="IndexBuffer.h" />

@@ -2623,12 +2623,24 @@
 //mole
 {
 	"mole",
-	D3DXVECTOR3(0.00f, 0.50f, -167.00f),             //平行移動
+	D3DXVECTOR3(-1.21f, 0.50f, -167.00f),             //平行移動
 	D3DXQUATERNION(0.00f, -0.71f, 0.00f, 0.71f ),  //回転
 },
 //apple
 {
 	"apple",
-	D3DXVECTOR3(-1.13f, 0.70f, -142.87f),             //平行移動
+	D3DXVECTOR3(-0.69f, 0.70f, -145.14f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+},
+//candy
+{
+	"candy",
+	D3DXVECTOR3(-1.00f, 5.04f, -111.53f),             //平行移動
+	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
+},
+//candy
+{
+	"candy",
+	D3DXVECTOR3(-10.10f, 13.82f, -165.01f),             //平行移動
 	D3DXQUATERNION(0.00f, 0.00f, 0.00f, 1.00f ),  //回転
 },

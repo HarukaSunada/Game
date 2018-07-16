@@ -94,7 +94,7 @@ void Map::Create(EnemyManager* en, int stageNum)
 			//動的配列にプッシュ
 			ItemList.push_back(mapChip);
 		}
-		else if (strcmp("diamond", mapChipInfo[i].modelName) == 0) {
+		else if (strcmp("candy", mapChipInfo[i].modelName) == 0) {
 			//PowerChargeのインスタンスを動的に生成
 			PowerCharge* mapChip = new PowerCharge;
 			mapChip->Init(mapChipInfo[i].position);

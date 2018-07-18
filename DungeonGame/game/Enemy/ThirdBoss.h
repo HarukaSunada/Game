@@ -20,5 +20,6 @@ public:
 private:
 	D3DXVECTOR3 firstPos;
 	D3DXVECTOR3 moveDir;
+	D3DXVECTOR3 TurnDir;
 };
 

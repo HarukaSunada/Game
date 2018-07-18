@@ -4,6 +4,7 @@
 #include "sheep.h"
 #include "FirstBoss.h"
 #include "SecondBoss.h"
+#include "ThirdBoss.h"
 #include "lastBoss.h"
 
 

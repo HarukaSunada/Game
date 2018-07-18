@@ -12,12 +12,6 @@ BossBase::~BossBase()
 {
 }
 
-//‰Šú‰»
-void BossBase::Init(SMapChipLocInfo& locInfo)
-{
-	
-}
-
 //s“®
 void BossBase::Action()
 {
@@ -38,6 +32,7 @@ void BossBase::Action()
 			if (timer > 3.0f) {
 				act = actFound;
 				game->GameReStart();
+				timer = 0.0f;
 				flag = false;
 			}
 		}

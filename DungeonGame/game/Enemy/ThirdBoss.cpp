@@ -53,17 +53,18 @@ void ThirdBoss::Init(SMapChipLocInfo& locInfo)
 
 	rotation = locInfo.rotation;
 	SetRotationY(0.0f);
+	TurnDir = D3DXVECTOR3(0.0f, 0.f, -1.0f);
 
 	scale = D3DXVECTOR3(0.3f, 0.3f, 0.3f);
 	model.Update(characterController.GetPosition(), rotation, D3DXVECTOR3(1.0f, 1.0f, 1.0f));
 
 	//パラメータ
 	SParicleEmitParameter param;
-	param.texturePath = "Assets/Sprite/enemy_star.png";
-	param.life = 0.8f;
-	param.w = 1.0f;
-	param.h = 1.0f;
-	param.intervalTime = 0.2f;
+	param.texturePath = "Assets/Sprite/nc.png";
+	param.life = 1.5f;
+	param.w = 0.8f;
+	param.h = 0.8f;
+	param.intervalTime = 0.3f;
 	D3DXVECTOR3 pos = characterController.GetPosition();
 	param.emitPosition = pos;
 	param.initPositionRandomMargin = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
@@ -71,7 +72,7 @@ void ThirdBoss::Init(SMapChipLocInfo& locInfo)
 	param.isFade = true;
 	param.fadeTime = 0.3f;
 	//攻撃用クラスの初期化
-	bossAttack.Init(param, game->GetPManager(), BossAttack::BossType::first);
+	bossAttack.Init(param, game->GetPManager(), BossAttack::BossType::moll);
 
 	attackTimer = 0.0f;
 }
@@ -91,26 +92,46 @@ void ThirdBoss::Action()
 			anim = 1;
 		}
 
-		//最初の位置から移動した量
-		D3DXVECTOR3 movePos = characterController.GetPosition() - firstPos;
-		if (moveDir.z == -1.0 && movePos.z <-5.0f) {
-			moveDir = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
-			SetRotationY(90.0f);
-		}
-		else if (moveDir.x == 1.0 && movePos.x > 5.0f) {
-			moveDir = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
-			SetRotationY(0.0f);
-		}
-		else if (moveDir.z == 1.0 && movePos.z > 5.0f) {
-			moveDir = D3DXVECTOR3(-1.0f, 0.0f, 0.0f);
-			SetRotationY(270.0f);
-		}
-		else if (moveDir.x == -1.0 && movePos.x < -5.0f) {
-			moveDir = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
-			SetRotationY(180.0f);
+		D3DXVECTOR3 moveSpeed = characterController.GetMoveSpeed();
+		//移動速度
+		moveSpeed.x = 0.0f;
+		moveSpeed.z = 0.0f;
+
+		timer += game->GetDeltaTime();
+		if (timer > 1.8f) {
+			moveSpeed.y = 8.0f;
+			//ジャンプしたことをキャラクタコントローラーに通知。
+			characterController.Jump();
+			timer = 0.0f;
 		}
 
-		characterController.SetMoveSpeed(moveDir*SPEED);
+		//最初の位置から移動した量
+		D3DXVECTOR3 movePos = characterController.GetPosition() - firstPos;
+		if (moveDir.z == -1.0 && movePos.z <-7.0f) {
+			moveDir = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
+			TurnDir = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
+			SetRotationY(0.0f);
+		}
+		else if (moveDir.x == 1.0 && movePos.x > 7.0f) {
+			moveDir = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
+			TurnDir = D3DXVECTOR3(-1.0f, 0.0f, 0.0f);
+			SetRotationY(270.0f);
+		}
+		else if (moveDir.z == 1.0 && movePos.z > 7.0f) {
+			moveDir = D3DXVECTOR3(-1.0f, 0.0f, 0.0f);
+			TurnDir = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
+			SetRotationY(180.0f);
+		}
+		else if (moveDir.x == -1.0 && movePos.x < -7.0f) {
+			moveDir = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
+			TurnDir = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
+			SetRotationY(90.0f);
+		}
+
+		moveSpeed.x = moveDir.x*SPEED;
+		moveSpeed.z = moveDir.z*SPEED;
+
+		characterController.SetMoveSpeed(moveSpeed);
 
 		D3DXVECTOR3 pos = characterController.GetPosition();
 		pos.y += 0.7f;

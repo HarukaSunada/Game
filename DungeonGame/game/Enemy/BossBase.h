@@ -10,8 +10,6 @@ class BossBase : public Enemy
 public:
 	BossBase();
 	~BossBase();
-	//‰Šú‰»
-	void Init(SMapChipLocInfo& locInfo) override;
 
 	//s“®
 	void Action() override;
